@@ -1,5 +1,5 @@
 # Static
-src/images/*
+src/frontend/images/*
 
 # Dev
 .yarn
