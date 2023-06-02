@@ -1,5 +1,5 @@
-import "../scss/style.scss";
-import "../css/style.css";
+import "../scss/sample.scss";
+import "../css/sample.css";
 
 import logo from "../images/logo.png";
 
