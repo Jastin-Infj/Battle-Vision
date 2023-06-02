@@ -1,5 +1,9 @@
+###################
+## frontend
+###################
+
 # Static
-src/images/*
+src/frontend/images/*
 
 # Dev
 .yarn
@@ -7,5 +11,18 @@ yarn.lock
 
 .pnp*
 
-# build
+# Build
 dist
+
+
+###################
+## backend
+###################
+
+# Dev
+django-env
+
+src/backend/db.sqlite3
+
+## Run
+src/backend/djangoEnv/__pycache__

@@ -5,7 +5,7 @@ const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
 const MINI_CSS_EXTRACT_PLUGIN = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/js/index.jsx',
+  entry: './src/frontend/js/index.jsx',
   output: {
     // jsx は対応していない
     filename: 'main_[hash].js',
@@ -47,7 +47,7 @@ module.exports = {
   },
   plugins: [
     new HTML_WEBPACK_PLUGIN({
-      template: "./src/html/index.html",
+      template: "./src/frontend/html/index.html",
       filename: "./index.html"
     }),
     new MINI_CSS_EXTRACT_PLUGIN({
