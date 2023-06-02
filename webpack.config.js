@@ -30,6 +30,14 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.png$/,
+        loader: 'url-loader',
+        options: {
+          limit: 0,
+          name: './images/[name].[ext]'
+        }
       }
     ]
   },
