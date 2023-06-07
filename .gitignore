@@ -13,6 +13,7 @@ yarn.lock
 
 # Build
 dist
+node_modules
 
 
 ###################
@@ -21,8 +22,11 @@ dist
 
 # Dev
 django-env
+*.env
 
 src/backend/db.sqlite3
 
 ## Run
-src/backend/djangoEnv/__pycache__
+src/backend/*/__pycache__
+src/backend/*/migrations
+!src/backend/*/migrations/__init__.py
