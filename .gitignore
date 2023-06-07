@@ -14,7 +14,8 @@ yarn.lock
 # Build
 dist
 node_modules
-
+src/backend/static/*.html
+src/backend/static/*.js
 
 ###################
 ## backend

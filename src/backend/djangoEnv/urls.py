@@ -16,12 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
+
 from django.conf import settings
 from django.conf.urls.static import static
 
+from rest_framework import routers
+from ServerSide import views
+
+router = routers.DefaultRouter()
+router.register(r'users',views.UserView,'ServerSide')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('django/', include('ServerSide.urls'))
+    path('django/', include('ServerSide.urls')),
+    path('api/',include(router.urls)),
 ]
 
 urlpatterns += static(settings.STATIC_URL , document_root=settings.STATICFILES_DIRS)
