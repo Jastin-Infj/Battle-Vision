@@ -1,6 +1,9 @@
 const PATH = require('path');
 
-const OUTPUT_PATH = PATH.resolve(__dirname , 'dist');
+//const DIST_PATH = 'dist';
+const DIST_PATH = 'src/backend/static';
+
+const OUTPUT_PATH = PATH.resolve(__dirname , DIST_PATH);
 const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
 const MINI_CSS_EXTRACT_PLUGIN = require('mini-css-extract-plugin');
 
@@ -8,8 +11,10 @@ module.exports = {
   entry: './src/frontend/js/index.jsx',
   output: {
     // jsx は対応していない
-    filename: 'main_[hash].js',
-    path: OUTPUT_PATH
+    //filename: '[name]_[hash].js',
+    filename: 'main.js',
+    //* すべて同じ場所に統一する場合
+    path: OUTPUT_PATH,
   },
   module: {
     rules: [
@@ -48,7 +53,7 @@ module.exports = {
   plugins: [
     new HTML_WEBPACK_PLUGIN({
       template: "./src/frontend/html/index.html",
-      filename: "./index.html"
+      filename: "index.html"
     }),
     new MINI_CSS_EXTRACT_PLUGIN({
       filename: '[name].[hash].css'
@@ -56,7 +61,7 @@ module.exports = {
   ],
   devServer: {
     static: {
-      directory: PATH.join(__dirname, 'dist')
+      directory: PATH.join(__dirname, DIST_PATH)
     }
   }
 };
