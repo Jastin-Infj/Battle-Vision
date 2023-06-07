@@ -21,7 +21,12 @@ node_modules
 ###################
 
 # Dev
-django-env
+*/bin
+*/include
+*/lib
+*/lib64
+*/pyvenv.cfg
+
 *.env
 
 src/backend/db.sqlite3
