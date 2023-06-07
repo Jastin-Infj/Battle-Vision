@@ -13,13 +13,16 @@ git clone https://github.com/Jastin-Infj/battle-vision.git
 cd battle-vision
 ```
 
-
 ```bash
 yarn install
 ```
 
 ```bash
 yarn build
+```
+
+```bash
+yarn start
 ```
 
 ## Backend

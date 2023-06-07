@@ -5,7 +5,7 @@
   "main": "index.jsx",
   "scripts": {
     "build": "webpack --mode development",
-    "server": "webpack serve --mode development",
+    "start": "webpack serve --mode development",
     "build:pro": "webpack --mode production"
   },
   "author": "",
