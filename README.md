@@ -1,6 +1,3 @@
-# battle-vision
-ポケモンのパーティ編成画面をブラウザで管理出来るツールです
-
 # Usege
 
 ## Frontend

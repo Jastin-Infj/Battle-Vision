@@ -1,14 +1,11 @@
 {
   "name": "battle-vision",
   "version": "1.0.0",
-  "description": "ポケモンのパーティ編成画面をブラウザで管理出来るツールです",
+  "description": "None",
   "main": "test.tsx",
   "scripts": {
-    "build": "webpack --config ./webpack.config.dev.js",
-    "build:test": "webpack --config ./webpack.config.test.js",
-    "start": "webpack serve --config ./webpack.config.dev.js",
-    "start:test": "webpack serve --config ./webpack.config.test.js",
-    "build:pro": "webpack --mode production",
+    "build": "webpack --config ./webpack.config.test.js",
+    "start": "webpack serve --config ./webpack.config.test.js",
     "tsc": "tsc"
   },
   "author": "",
