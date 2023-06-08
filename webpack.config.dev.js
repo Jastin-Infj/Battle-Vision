@@ -8,7 +8,7 @@ const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
 const MINI_CSS_EXTRACT_PLUGIN = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/frontend/js/index.jsx',
+  entry: './src/frontend/ts/index.tsx',
   output: {
     // jsx は対応していない
     //filename: '[name]_[hash].js',
@@ -21,9 +21,11 @@ module.exports = {
       {
         test: /\.js?x$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.ts?x$/,
+        use: 'ts-loader'
       },
       {
         test: /\.html$/,
@@ -48,7 +50,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".js",".jsx"]
+    extensions: [".ts",".tsx",".js",".jsx",".json"]
   },
   plugins: [
     new HTML_WEBPACK_PLUGIN({
@@ -63,5 +65,7 @@ module.exports = {
     static: {
       directory: PATH.join(__dirname, DIST_PATH)
     }
-  }
+  },
+  target: ["web", "es5"],
+  mode: "development"
 };
