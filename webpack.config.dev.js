@@ -8,23 +8,28 @@ const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
 const MINI_CSS_EXTRACT_PLUGIN = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/frontend/ts/index.tsx',
+  mode: "development",
+  entry: {
+    module: ['react','react-dom/client'],
+    main: {
+      import: './src/frontend/ts/index.tsx',
+      dependOn: 'module'
+    }
+  },
   output: {
-    // jsx は対応していない
-    //filename: '[name]_[hash].js',
-    filename: 'main.js',
-    //* すべて同じ場所に統一する場合
+    filename: '[name].js',
     path: OUTPUT_PATH,
   },
   module: {
     rules: [
       {
-        test: /\.js?x$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       },
       {
-        test: /\.ts?x$/,
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
         use: 'ts-loader'
       },
       {
@@ -66,6 +71,5 @@ module.exports = {
       directory: PATH.join(__dirname, DIST_PATH)
     }
   },
-  target: ["web", "es5"],
-  mode: "development"
+  target: ["web", "es5"]
 };
