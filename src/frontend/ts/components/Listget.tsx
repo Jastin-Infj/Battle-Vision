@@ -1,6 +1,5 @@
-//@ts-ignore
+// @ts-ignore IDE側がエラーとして認識するため
 import React , {useEffect , useState} from "react";
-//@ts-ignore
 import axios from 'axios';
 
 import messages from '../../json/Message.json';
@@ -23,7 +22,7 @@ function Listget (props:Props) {
     FetchResponse: any
   ];
 
-  let [jsonfetchDatas,FetchResponse]:fetchUpdate = useState<UserData[]>([]);
+  const [jsonfetchDatas,FetchResponse]:fetchUpdate = useState<UserData[]>([]);
   
   useEffect(() => {
     axios.get(props.url)
@@ -65,6 +64,6 @@ function Listget (props:Props) {
       { fetched  && (() => Success(jsonfetchDatas))}
     </>
   );
-};
+}
 
 export default Listget;

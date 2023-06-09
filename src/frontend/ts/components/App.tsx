@@ -1,5 +1,6 @@
-//@ts-ignore
+// @ts-ignore IDE側がエラーとして認識するため
 import React from 'react';
+
 import Listget from "./Listget";
 import { END_POINT } from "..";
 

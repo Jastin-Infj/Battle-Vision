@@ -6,6 +6,7 @@ const DIST_PATH = 'src/backend/static';
 const OUTPUT_PATH = PATH.resolve(__dirname , DIST_PATH);
 const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
 const MINI_CSS_EXTRACT_PLUGIN = require('mini-css-extract-plugin');
+const ESLINT_WEBPACK_PLUGIN = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: "development",
@@ -55,7 +56,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".ts",".tsx",".js",".jsx",".json"]
+    extensions: ['.ts','.tsx','.js','.jsx','.json']
   },
   plugins: [
     new HTML_WEBPACK_PLUGIN({
@@ -65,6 +66,9 @@ module.exports = {
     new MINI_CSS_EXTRACT_PLUGIN({
       filename: '[name].[hash].css'
     }),
+    new ESLINT_WEBPACK_PLUGIN({
+      extensions: ['ts','tsx','js','jsx']
+    })
   ],
   devServer: {
     static: {
