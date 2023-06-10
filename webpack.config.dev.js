@@ -11,7 +11,7 @@ const ESLINT_WEBPACK_PLUGIN = require('eslint-webpack-plugin');
 module.exports = {
   mode: "development",
   entry: {
-    module: ['react','react-dom/client'],
+    module: ['react','react-dom/client','./src/frontend/css/tw-style.css'],
     main: {
       import: './src/frontend/ts/index.tsx',
       dependOn: 'module'
@@ -42,6 +42,7 @@ module.exports = {
         use: [
           MINI_CSS_EXTRACT_PLUGIN.loader,
           'css-loader',
+          'postcss-loader',
           'sass-loader'
         ]
       },
@@ -56,7 +57,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.ts','.tsx','.js','.jsx','.json']
+    extensions: ['.ts','.tsx','.js','.jsx','.css','.json']
   },
   plugins: [
     new HTML_WEBPACK_PLUGIN({

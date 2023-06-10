@@ -1,6 +1,6 @@
 // @ts-ignore IDE側がエラーとして認識するため
 import React , {useEffect , useState} from "react";
-import axios , { AxiosError } from 'axios';
+import axios from 'axios';
 import { OutputLogTypeOf } from "../common";
 
 import messages from '../../json/Message.json';
@@ -34,7 +34,7 @@ function Listget (props:Props) {
       fetched = true;
     })
     .catch((error:object) => {
-      console.log(error);
+      console.log(`%c ${error}`,'color: red');
     });
 
   },[]);

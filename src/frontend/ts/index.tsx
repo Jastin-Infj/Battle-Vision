@@ -11,6 +11,7 @@ if (rootEl) {
   const root = createRoot(rootEl);
   root.render(
     <React.StrictMode>
+      <div className="text-yellow-400">Hello Tailwind css!!</div>
       <App />
     </React.StrictMode>
   );

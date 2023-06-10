@@ -32,7 +32,7 @@
         "minimumDescriptionLength": 10
       }
     ],
-    /* any 型はwarning対象とする */
-    "@typescript-eslint/no-explicit-any": 1
+    /* any 型は許可する */
+    "@typescript-eslint/no-explicit-any": 0
   }
 }
