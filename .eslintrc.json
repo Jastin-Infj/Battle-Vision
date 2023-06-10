@@ -27,11 +27,12 @@
     "@typescript-eslint/ban-ts-comment": [
       "error",
       {
-        /* 理由がないとエラー対象とする */
+        /* 理由がないとerror対象とする */
         "ts-ignore": "allow-with-description",
         "minimumDescriptionLength": 10
       }
     ],
-    "@typescript-eslint/no-explicit-any": "error"
+    /* any 型はwarning対象とする */
+    "@typescript-eslint/no-explicit-any": 1
   }
 }

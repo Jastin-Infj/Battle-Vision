@@ -1,6 +1,7 @@
 // @ts-ignore IDE側がエラーとして認識するため
 import React , {useEffect , useState} from "react";
-import axios from 'axios';
+import axios , { AxiosError } from 'axios';
+import { OutputLogTypeOf } from "../common";
 
 import messages from '../../json/Message.json';
 
@@ -27,10 +28,12 @@ function Listget (props:Props) {
   useEffect(() => {
     axios.get(props.url)
     .then((res:any) => {
+      OutputLogTypeOf(res,"axiosres");
       FetchResponse(res.data);
+      OutputLogTypeOf(FetchResponse,"FetchResFunc");
       fetched = true;
     })
-    .catch((error:any) => {
+    .catch((error:object) => {
       console.log(error);
     });
 
