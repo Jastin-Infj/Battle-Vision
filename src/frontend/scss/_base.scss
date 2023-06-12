@@ -5,3 +5,7 @@
 @mixin text-stroke-color($color) {
   -webkit-text-stroke-color: $color;
 }
+
+@mixin font_family($fonts) {
+  font-family: $fonts;
+}

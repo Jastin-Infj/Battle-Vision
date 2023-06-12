@@ -2,7 +2,6 @@ const PATH = require('path');
 
 //const DIST_PATH = 'dist';
 const DIST_PATH = 'src/backend/static';
-const PUBLIC_PATH = '/';
 
 const OUTPUT_PATH = PATH.resolve(__dirname , DIST_PATH);
 const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');

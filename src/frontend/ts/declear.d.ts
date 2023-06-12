@@ -4,10 +4,12 @@
 declare module 'react-dom/client';
 declare module 'react/jsx-runtime';
 declare module 'axios';
+declare module 'browser-dtector';
 
 declare namespace JSX {
   // 名前は固定
   interface IntrinsicElements {
+    body:any,
     div:any,
     p:any,
     span:any,
@@ -15,5 +17,12 @@ declare namespace JSX {
     li:any,
     button:any,
     img:any,
+
+    screen: any,
+    opasity: any,
+    titlelogo: any,
+    backbg:any,
+    main:any,
+    sub: any,
   }
 }

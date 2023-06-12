@@ -1,5 +1,13 @@
 {
   "Title": "Battle-vision",
+  "Page": {
+    "Top": {
+      "Button": {
+        "Demo": "デモから試す",
+        "Used": "使ってみる"
+      }
+    }
+  },
   "Server": {
     "BackendFetchError": {
       "01": "バックエンドのサーバーを起動してください"

@@ -1,0 +1,32 @@
+@import "../base";
+
+$font_browser_objects: (
+  titlelogo: 'font-titlelogo',
+  btn: 'font-btn',
+);
+
+$family-o-1: "Inter";
+$family-o-2: "InterChrome";
+$family-o-3: "sans-serif";
+
+
+@each $key , $classname in $font_browser_objects {
+
+  /* Google Chrome */
+  @media screen and (-webkit-min-device-pixel-ratio:0){
+    
+    @if $key == 'titlelogo' {
+      .#{$classname} {
+        @include font_family(#{$family-o-2,$family-o-3});
+      }
+
+      /* Cent Browser */
+      .#{$classname}-c {
+        font-family: $family-o-1, $family-o-3;
+      }
+
+    }
+
+  }
+
+}

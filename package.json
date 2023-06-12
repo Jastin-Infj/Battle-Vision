@@ -28,6 +28,8 @@
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.9",
     "babel-loader": "^9.1.2",
+    "browser-dtector": "^3.3.0",
+    "classnames": "^2.3.2",
     "css-loader": "^6.8.1",
     "eslint": "^8.42.0",
     "eslint-config-airbnb": "^19.0.4",
