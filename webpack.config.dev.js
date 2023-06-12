@@ -2,6 +2,7 @@ const PATH = require('path');
 
 //const DIST_PATH = 'dist';
 const DIST_PATH = 'src/backend/static';
+const PUBLIC_PATH = '/';
 
 const OUTPUT_PATH = PATH.resolve(__dirname , DIST_PATH);
 const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
@@ -10,8 +11,20 @@ const ESLINT_WEBPACK_PLUGIN = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: "development",
+  target: ["web", "es5"],
+  devServer: {
+    static: {
+      directory: PATH.join(__dirname, DIST_PATH)
+    }
+  },
   entry: {
-    module: ['react','react-dom/client','./src/frontend/css/tw-style.css'],
+    module: [
+      './src/frontend/json/Strings.json',
+      'react',
+      'react-dom/client',
+      './src/frontend/css/tw-style.css',
+      './src/frontend/scss/tw-completion.scss'
+    ],
     main: {
       import: './src/frontend/ts/index.tsx',
       dependOn: 'module'
@@ -19,7 +32,7 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: OUTPUT_PATH,
+    path: OUTPUT_PATH
   },
   module: {
     rules: [
@@ -43,15 +56,15 @@ module.exports = {
           MINI_CSS_EXTRACT_PLUGIN.loader,
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          'sass-loader',
         ]
       },
       {
-        test: /\.png$/,
-        loader: 'file-loader',
+        test: /\.(png|jpg)/i,
+        loader: 'url-loader',
         options: {
           limit: 0,
-          name: './images/[name].[ext]'
+          name: 'images/[name]-[hash].[ext]'
         }
       }
     ]
@@ -70,11 +83,5 @@ module.exports = {
     new ESLINT_WEBPACK_PLUGIN({
       extensions: ['ts','tsx','js','jsx']
     })
-  ],
-  devServer: {
-    static: {
-      directory: PATH.join(__dirname, DIST_PATH)
-    }
-  },
-  target: ["web", "es5"]
+  ]
 };

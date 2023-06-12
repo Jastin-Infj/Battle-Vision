@@ -1,13 +1,12 @@
 // @ts-ignore IDE側がエラーとして認識するため
 import React from 'react';
 
-import Listget from "./Listget";
-import { END_POINT } from "..";
+import Page_Top from '../page/Top';
 
 function App() {
   return (
     <>
-      <Listget url={END_POINT} />
+      <Page_Top />
     </>
   );
 }

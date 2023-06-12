@@ -9,8 +9,11 @@ declare namespace JSX {
   // 名前は固定
   interface IntrinsicElements {
     div:any,
+    p:any,
+    span:any,
     ul:any,
     li:any,
-    span:any
+    button:any,
+    img:any,
   }
 }

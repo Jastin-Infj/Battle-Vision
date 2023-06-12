@@ -3,7 +3,7 @@ import React , {useEffect , useState} from "react";
 import axios from 'axios';
 import { OutputLogTypeOf } from "../common";
 
-import messages from '../../json/Message.json';
+import messages from '../../json/Strings.json';
 
 type Props = {
   url: string

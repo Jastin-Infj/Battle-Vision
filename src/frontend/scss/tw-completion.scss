@@ -1,0 +1,18 @@
+@import "base";
+
+$theme-colors: (
+  titlelogo: rgba(75, 88, 209, 1)
+);
+
+$max: 10;
+
+@each $key , $color in $theme-colors {
+  @for $i from 1 through $max {
+    .text-stroke-#{$i} {
+      @include text-stroke-width(calc($i * 1px));
+    }
+    .text-stroke-#{$key} {
+      @include text-stroke-color($color);
+    }
+  }
+}

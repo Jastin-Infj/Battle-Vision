@@ -3,7 +3,7 @@
 ###################
 
 # Static
-src/frontend/images/*
+src/frontend/img
 
 # Dev
 .yarn
@@ -14,8 +14,7 @@ yarn.lock
 # Build
 dist
 node_modules
-src/backend/static/*.html
-src/backend/static/*.js
+src/backend/static
 
 ###################
 ## backend
