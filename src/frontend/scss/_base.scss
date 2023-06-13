@@ -10,5 +10,13 @@
       -webkit-text-stroke-width: map-get($styles,$style);
     }
 
+    @if $style == 'background' {
+      background: map-get($styles,$style);
+    }
+
+    @if $style == 'color' {
+      color: map-get($styles, $style);
+    }
+
   }
 }

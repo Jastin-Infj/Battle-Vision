@@ -1,51 +1,147 @@
-@use "../base" as *;
-@use "../../css/tw-style.css" as components;
+@use "../../css/tw-style.css" as *;
 
-$objects: (
-  ".text-titlelogo": (
-    init: (
-      "-webkit-text-stroke-color": rgba(75, 88, 209, 1),
-      "-webkit-text-stroke-width": 4px
-    )
-  ),
-  ".button-btn": (
-    active: (
-      "background": rgba(249, 246, 255, 1),
-      "color": rgba(59, 58, 109, 1),
-      "-webkit-text-stroke-color": rgba(255, 255, 255, 1)
-    ),
-    disabled: (
-      "background": rgba(59, 58, 109, 1),
-      "color": rgba(255, 255, 255, 1),
-      "-webkit-text-stroke-color": rgba(111, 105, 124, 1) 
-    )
-  )
+$layout: (
+  "layer-main": (),
+  "back": ()
 );
 
-@layer components {
+%text-titlelogo__init {
+  -webkit-text-stroke-color: rgba(75, 88, 209, 1);
+  -webkit-text-stroke-width: 4px;
+};
 
-  @each $key , $sub_val in $objects {
+%button-start__hover {
+  background: rgba(249, 246, 255, 1);
+  color: rgba(59, 58, 109, 1);
+  -webkit-text-stroke-color: rgba(255, 255, 255, 1);
+};
 
-    @if $key == '.text-titlelogo' {
-  
-      #{$key} {
-        @apply whitespace-nowrap;
-        @apply font-bold italic;
-        @apply text-9xl text-white;
+%button-start_normal {
+  background: rgba(59, 58, 109, 1);
+  color: rgba(255, 255, 255, 1);
+  -webkit-text-stroke-color: rgba(111, 105, 124, 1);
+};
 
-        @each $key_sub , $sub_sub_val in $sub_val {
+%text-button__hover {
+  color: rgba(59, 58, 109, 1);
+  -webkit-text-stroke-color: rgba(255, 255, 255, 1);
+}
 
-          @if $key_sub == 'init' {
-            @include style_attach($sub_sub_val);
+%text-button__normal {
+  color: rgba(255, 255, 255, 1);
+  -webkit-text-stroke-color: rgba(111, 105, 124, 1);
+}
+
+@layer base {
+
+  @each $key , $sub_val in $layout {
+
+    @if $key == 'layer-main' {
+
+      div.#{$key} {
+
+        @apply absolute left-0 top-0;
+        @apply w-screen h-screen;
+
+        div.layer-canvas {
+          @apply absolute left-0 top-0;
+          @apply w-full h-full;
+
+
+          div.layer-components {
+            @apply absolute left-0 top-0;
+            @apply w-full h-full;
+
           }
 
         }
 
       }
-  
     }
+
+    @if $key == 'back' {
+
+      //描画処理を一番にするために必要
+      div {
+
+        .#{$key} {
+          @apply absolute left-0 top-0;
+          @apply w-full h-full;
   
+          //透過処理
+          @apply bg-black opacity-50;
+  
+  
+          //画像を入れる場合
+          &__img {
+            @apply absolute left-0 top-0;
+            @apply w-full h-full;
+    
+            @apply overflow-hidden object-cover;
+            @apply bg-fixed bg-left-top;
+    
+          }
+  
+        }
+
+      }
+
+    }
+    
   }
 
+}
+
+@layer components {
+
+  // base に詳細は記載
+  div.layer-components {
+
+    div#titlelogo {
+      @apply m-9;
+                      
+      span {
+        @apply whitespace-nowrap;
+        @apply font-bold italic;
+        @apply text-9xl text-white;
+        @extend %text-titlelogo__init;
+      }
+
+    }
+
+    div#buttons {
+      @apply relative top-0;
+      left: 70%;
+      right: 70%;
+
+      div {
+        @apply relative;
+        &:nth-of-type(2) {
+          top: 10vh
+        }
+
+        button {
+          @apply relative;
+          @apply bg-page-top-btn-bgColor rounded-2xl;
+          @apply border-solid border-[1px] border-page-top-btn-boColor;
+          width:  300px;
+          height: 100px;
+
+          span {
+            @apply text-white text-3xl;
+          }
+
+          &:hover {
+            @extend %button-start__hover;
+          }
+
+          &:hover span {
+            @extend %text-button__hover;
+          }
+
+        }
+      }
+    }
+  }
 }
 

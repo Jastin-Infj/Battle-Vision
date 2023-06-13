@@ -21,9 +21,7 @@ function Page_Top() {
   const TitleLogo = () => {
     const env = getBrowserEnv(useBrowser);
 
-    let styles:CustomJSX.cssStyle = {
-      "text-titlelogo": true
-    };
+    let styles:CustomJSX.cssStyle = {};
 
     if(env === "Cent Browser"){
       styles = { ...styles , "font-Inter-Default": true };
@@ -39,30 +37,30 @@ function Page_Top() {
 
   return (
     <>
-      <div className="absolute left-0 top-0 h-screen w-screen">
-        <body className="absolute left-0 top-0 w-full h-full">
+      <div className="layer-main">
+        <div className='layer-canvas'>
           <div>
-            <img src={image} alt="image" className="absolute left-0 top-0 w-full h-full bg-fixed bg-left-top overflow-hidden object-cover"/>
-            <div className="absolute left-0 top-0 w-full h-full bg-black opacity-50"></div>
+            <img src={image} alt="image" className="back__img"/>
+            <div className="back"></div>
           </div>
-          <main className="absolute left-0 top-0 w-full h-full">
-            <div className="m-9">
+          <div className="layer-components">
+            <div id="titlelogo">
               <span className={classnames(style_titlelogo)}>{Messages.Title}</span>
             </div>
-            <sub className="left-[70%] right-[70%] top-[0%]">
-              <div className="relative">
-                <button className="relative w-[300px] h-[100px] bg-page-top-btn-bgColor rounded-2xl border-solid border-[1px] border-page-top-btn-boColor">
-                  <span className=" text-white text-3xl">{Messages.Page.Top.Button.Demo}</span>
+            <div id="buttons">
+              <div>
+                <button name='use'>
+                  <span>{Messages.Page.Top.Button.Demo}</span>
                 </button>
               </div>
-              <div className="relative top-[15%]">
-              <button className="relative w-[300px] h-[100px] bg-page-top-btn-bgColor rounded-2xl border-solid border-[1px] border-page-top-btn-boColor drop-shadow-2xl">
-                  <span className="text-white text-3xl">{Messages.Page.Top.Button.Used}</span>
+              <div>
+                <button name='demo'>
+                  <span>{Messages.Page.Top.Button.Used}</span>
                 </button>
               </div>
-            </sub>
-          </main>
-        </body>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
