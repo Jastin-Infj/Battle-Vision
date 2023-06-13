@@ -1,4 +1,3 @@
-// @ts-ignore IDE側がエラーとして認識するため
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 

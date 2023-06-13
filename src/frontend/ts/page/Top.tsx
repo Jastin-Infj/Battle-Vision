@@ -1,9 +1,6 @@
-// @ts-ignore IDE側がエラーとして認識するため
 import React from 'react';
-// @ts-ignore IDE側がエラーとして認識するため
 import classnames from 'classnames';
 import BrowserDetector from 'browser-dtector';
-import { m_BD } from '../struct';
 import { Top } from '../jsxform';
 
 import { getBrowserEnv } from '../common';
@@ -20,7 +17,7 @@ import '../../scss/page/top.scss';
 function Page_Top() {
 
   const browser = new BrowserDetector(window.navigator.userAgent);
-  const useBrowser:m_BD.Browser = browser.parseUserAgent();
+  const useBrowser = browser.parseUserAgent();
 
   const TitleLogo = () => {
     const env = getBrowserEnv(useBrowser);
@@ -49,12 +46,12 @@ function Page_Top() {
 
   return (
     <>
-      <screen className="absolute left-0 top-0 h-screen w-screen">
+      <div className="absolute left-0 top-0 h-screen w-screen">
         <body className="absolute left-0 top-0 w-full h-full">
-          <backbg>
+          <div>
             <img src={image} alt="image" className="absolute left-0 top-0 w-full h-full bg-fixed bg-left-top overflow-hidden object-cover"/>
-            <opasity className="absolute left-0 top-0 w-full h-full bg-black opacity-50"></opasity>
-          </backbg>
+            <div className="absolute left-0 top-0 w-full h-full bg-black opacity-50"></div>
+          </div>
           <main className="absolute left-0 top-0 w-full h-full">
             <div className="m-9">
               <p className={classnames(style_titlelogo)}>{Messages.Title}</p>
@@ -73,7 +70,7 @@ function Page_Top() {
             </sub>
           </main>
         </body>
-      </screen>
+      </div>
     </>
   );
 }

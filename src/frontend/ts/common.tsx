@@ -3,7 +3,7 @@ export function OutputLogTypeOf(prop:any,varname?: string): void {
   console.log(`%c${{var:varname,type:typeof prop}}`,'color: green');
 }
 
-export function getBrowserEnv (env:import('../ts/struct').m_BD.Browser): string {
+export function getBrowserEnv (env:import('browser-dtector').BrowserInfoFull) {
     
   switch(env.name) {
     case 'Google Chrome':
