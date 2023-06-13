@@ -1,32 +1,51 @@
-@import "../base";
+@use "../base" as *;
+@use "../../css/tw-style.css" as components;
 
-$font_browser_objects: (
-  titlelogo: 'font-titlelogo',
-  btn: 'font-btn',
+$objects: (
+  ".text-titlelogo": (
+    init: (
+      "-webkit-text-stroke-color": rgba(75, 88, 209, 1),
+      "-webkit-text-stroke-width": 4px
+    )
+  ),
+  ".button-btn": (
+    active: (
+      "background": rgba(249, 246, 255, 1),
+      "color": rgba(59, 58, 109, 1),
+      "-webkit-text-stroke-color": rgba(255, 255, 255, 1)
+    ),
+    disabled: (
+      "background": rgba(59, 58, 109, 1),
+      "color": rgba(255, 255, 255, 1),
+      "-webkit-text-stroke-color": rgba(111, 105, 124, 1) 
+    )
+  )
 );
 
-$family-o-1: "Inter";
-$family-o-2: "InterChrome";
-$family-o-3: "sans-serif";
+@layer components {
 
+  @each $key , $sub_val in $objects {
 
-@each $key , $classname in $font_browser_objects {
+    @if $key == '.text-titlelogo' {
+  
+      #{$key} {
+        @apply whitespace-nowrap;
+        @apply font-bold italic;
+        @apply text-9xl text-white;
 
-  /* Google Chrome */
-  @media screen and (-webkit-min-device-pixel-ratio:0){
-    
-    @if $key == 'titlelogo' {
-      .#{$classname} {
-        @include font_family(#{$family-o-2,$family-o-3});
+        @each $key_sub , $sub_sub_val in $sub_val {
+
+          @if $key_sub == 'init' {
+            @include style_attach($sub_sub_val);
+          }
+
+        }
+
       }
-
-      /* Cent Browser */
-      .#{$classname}-c {
-        font-family: $family-o-1, $family-o-3;
-      }
-
+  
     }
-
+  
   }
 
 }
+

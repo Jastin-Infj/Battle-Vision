@@ -8,7 +8,8 @@
     "build:pro": "webpack --mode production",
     "tsc": "tsc",
     "eslint": "eslint",
-    "css:build": "tailwindcss build src/frontend/css/tailwindStyle.css -o dist/tailwind.css"
+    "css:build": "tailwindcss build src/frontend/css/tailwindStyle.css -o dist/tailwind.css",
+    "sass": "sass"
   },
   "author": "",
   "license": "ISC",

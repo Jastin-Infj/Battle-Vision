@@ -1,0 +1,9 @@
+@layer components {
+  .text-titlelogo {
+    @apply whitespace-nowrap;
+    @apply font-bold italic;
+    @apply text-9xl;
+  }
+}
+
+/*# sourceMappingURL=top.css.map */

@@ -1,5 +1,7 @@
-export namespace Top {
-  export interface Titlelogo {
+export namespace CustomJSX {
+
+  export interface cssStyle {
     [key: string]: boolean;
   }
+
 }

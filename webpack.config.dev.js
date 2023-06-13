@@ -20,13 +20,11 @@ module.exports = {
     module: [
       './src/frontend/json/Strings.json',
       'react',
-      'react-dom/client',
-      './src/frontend/css/tw-style.css',
-      './src/frontend/scss/tw-completion.scss'
+      'react-dom/client'
     ],
     main: {
       import: './src/frontend/ts/index.tsx',
-      dependOn: 'module'
+      dependOn: ['module']
     }
   },
   output: {

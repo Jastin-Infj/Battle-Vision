@@ -15,8 +15,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        'Inter': ['"InterChrome"','sans-serif'],
-        'InterC': ['"Inter"','sans-serif']
+        'Inter-Chrome': ['"InterChrome"','sans-serif'],
+        'Inter-Default': ['"Inter"','sans-serif']
       }
     }
   }

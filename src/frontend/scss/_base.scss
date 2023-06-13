@@ -1,11 +1,14 @@
-@mixin text-stroke-width($px) {
-  -webkit-text-stroke-width: $px;
-}
+@mixin style_attach($styles : ()) {
 
-@mixin text-stroke-color($color) {
-  -webkit-text-stroke-color: $color;
-}
+  @each $style , $value in $styles {
+    
+    @if $style == '-webkit-text-stroke-color' {
+      -webkit-text-stroke-color: map-get($styles,$style);
+    }
 
-@mixin font_family($fonts) {
-  font-family: $fonts;
+    @if $style == '-webkit-text-stroke-width' {
+      -webkit-text-stroke-width: map-get($styles,$style);
+    }
+
+  }
 }
