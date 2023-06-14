@@ -37,29 +37,28 @@ function Page_Top() {
 
   return (
     <>
-      <div className="layer-main">
-        <div className='layer-canvas'>
-          <div>
-            <img src={image} alt="image" className="back__img"/>
-            <div className="back"></div>
+      <div className='layer-canvas'>
+        <div className="layer-components">
+          <div id="titlelogo">
+            <span className={classnames(style_titlelogo)}>{Messages.Title}</span>
           </div>
-          <div className="layer-components">
-            <div id="titlelogo">
-              <span className={classnames(style_titlelogo)}>{Messages.Title}</span>
+          <div id="buttons">
+            <div>
+              <button name='use'>
+                <span>{Messages.Page.Top.Button.Demo}</span>
+              </button>
             </div>
-            <div id="buttons">
-              <div>
-                <button name='use'>
-                  <span>{Messages.Page.Top.Button.Demo}</span>
-                </button>
-              </div>
-              <div>
-                <button name='demo'>
-                  <span>{Messages.Page.Top.Button.Used}</span>
-                </button>
-              </div>
+            <div>
+              <button name='demo'>
+                <span>{Messages.Page.Top.Button.Used}</span>
+              </button>
             </div>
           </div>
+        </div>
+        <div className='footer'></div>
+        <div className='back'>
+          <img src={image} alt="image"/>
+          <div className='opacity'></div>
         </div>
       </div>
     </>

@@ -1,22 +1,13 @@
-@mixin style_attach($styles : ()) {
-
-  @each $style , $value in $styles {
-    
-    @if $style == '-webkit-text-stroke-color' {
-      -webkit-text-stroke-color: map-get($styles,$style);
-    }
-
-    @if $style == '-webkit-text-stroke-width' {
-      -webkit-text-stroke-width: map-get($styles,$style);
-    }
-
-    @if $style == 'background' {
-      background: map-get($styles,$style);
-    }
-
-    @if $style == 'color' {
-      color: map-get($styles, $style);
-    }
-
-  }
+@font-face {
+  font-family: 'InterChrome';
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;600;700;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap'); */

@@ -1,147 +1,197 @@
-@use "../../css/tw-style.css" as *;
+@use '../../css/tw-style.css' as *;
+@use '../base' as *;
 
-$layout: (
-  "layer-main": (),
-  "back": ()
-);
+//* ブラウザの描画範囲
+$screenWidth: 100vw;
+$screenHeight: calc(100vh * 1.5);
 
-%text-titlelogo__init {
-  -webkit-text-stroke-color: rgba(75, 88, 209, 1);
-  -webkit-text-stroke-width: 4px;
-};
+//* ブラウザの表示割合
+$screen_Full: 1;
+$screen_Header: 0.15;
+$screen_Footer: 0.15;
+$screen_Body: $screen_Full - $screen_Header - $screen_Footer;
 
-%button-start__hover {
-  background: rgba(249, 246, 255, 1);
-  color: rgba(59, 58, 109, 1);
-  -webkit-text-stroke-color: rgba(255, 255, 255, 1);
-};
+$screenHeaderHeight: $screenHeight * $screen_Header;
+$screenFooterHeight: $screenHeight * $screen_Footer;
+$screenBodyHeight: $screenHeight * $screen_Body;
 
-%button-start_normal {
-  background: rgba(59, 58, 109, 1);
-  color: rgba(255, 255, 255, 1);
-  -webkit-text-stroke-color: rgba(111, 105, 124, 1);
-};
-
-%text-button__hover {
-  color: rgba(59, 58, 109, 1);
-  -webkit-text-stroke-color: rgba(255, 255, 255, 1);
-}
-
-%text-button__normal {
-  color: rgba(255, 255, 255, 1);
-  -webkit-text-stroke-color: rgba(111, 105, 124, 1);
-}
+//* ブラウザの最大表示範囲
+// 範囲外が多少あるためリサイズ
+$screen_Max_Width: $screenWidth * 0.99;
+$screen_Max_Height: $screenHeight * 1.0;
 
 @layer base {
 
-  @each $key , $sub_val in $layout {
+  %layer-canvas {
+    @apply absolute left-0 top-0;
+    max-width: $screen_Max_Width;
+    max-height: $screen_Max_Height;
 
-    @if $key == 'layer-main' {
+    width: $screen_Max_Width;
+    height: $screen_Max_Height;
 
-      div.#{$key} {
+    // background: black;
 
-        @apply absolute left-0 top-0;
-        @apply w-screen h-screen;
+    %header {
+      @apply absolute left-0 top-0;
+      @apply w-full;
 
-        div.layer-canvas {
-          @apply absolute left-0 top-0;
-          @apply w-full h-full;
-
-
-          div.layer-components {
-            @apply absolute left-0 top-0;
-            @apply w-full h-full;
-
-          }
-
-        }
-
-      }
+      height: $screenHeaderHeight;
     }
 
-    @if $key == 'back' {
+    %layer-component {
+      @apply absolute left-0;
+      @apply w-full;
 
-      //描画処理を一番にするために必要
-      div {
+      @apply z-40;
 
-        .#{$key} {
-          @apply absolute left-0 top-0;
-          @apply w-full h-full;
-  
-          //透過処理
-          @apply bg-black opacity-50;
-  
-  
-          //画像を入れる場合
-          &__img {
-            @apply absolute left-0 top-0;
-            @apply w-full h-full;
-    
-            @apply overflow-hidden object-cover;
-            @apply bg-fixed bg-left-top;
-    
-          }
-  
-        }
+      top: 0px;
+      height: $screenHeaderHeight + $screenBodyHeight;
 
+    }
+
+    %footer {
+      @apply absolute left-0 bottom-0;
+      @apply w-full;
+      
+      height: $screenFooterHeight;
+
+      //todo test
+      background: red;
+    }
+
+    %back {
+      @apply absolute left-0;
+      @apply w-full;
+
+      @apply top-0 h-full;
+      @apply z-30;
+
+      img {
+        @apply absolute w-full h-full;
+
+        @apply overflow-hidden;
+        @apply bg-fixed bg-left-top;
+
+        // header + body を覆う
+        height: $screenHeaderHeight + $screenBodyHeight;
+      }
+
+      //* 暗くするには必ず下に配置すること
+      div.opacity {
+        @apply absolute w-full h-full;
+
+        // header + body を覆う
+        height: $screenHeaderHeight + $screenBodyHeight;
+        background: rgba(0, 0, 0, 0.65);
       }
 
     }
-    
+
   }
-
+  
 }
 
 @layer components {
 
-  // base に詳細は記載
-  div.layer-components {
+  %text-titlelogo {
+    @apply m-9;
 
-    div#titlelogo {
-      @apply m-9;
-                      
-      span {
-        @apply whitespace-nowrap;
-        @apply font-bold italic;
-        @apply text-9xl text-white;
-        @extend %text-titlelogo__init;
+    span {
+      @apply whitespace-nowrap;
+      @apply font-bold italic;
+      @apply text-white;
+
+      font-weight: 800;
+      font-size: 7.5rem;
+
+      -webkit-text-stroke: {
+        color: rgba(75, 88, 209, 1);
+        width: 0.3rem;
       }
-
     }
+  }
 
-    div#buttons {
-      @apply relative top-0;
-      left: 70%;
-      right: 70%;
+  %button {
+    $width: $screenWidth * 0.2;
 
-      div {
+    @apply relative top-0;
+    //width 指定しないと widthが自動的に大きくなる
+    width: $width;
+    left: 70%;
+    right: 70%;
+    
+    div {
+      @apply relative;
+  
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  
+      &:not(:first-child) {
+        top: $screenHeight * 0.1;
+      }
+  
+      button {
         @apply relative;
-        &:nth-of-type(2) {
-          top: 10vh
+        @apply rounded-2xl;
+        background: rgba(59, 58, 109, 1);
+        width: $width;
+        height: $screenHeight * 0.06;
+
+        &:hover {
+          background: rgba(249, 246, 255, 1);
+          -webkit-text-stroke: {
+            color: rgba(255, 255, 255, 1);
+          }
         }
+        span {
+          @apply items-center;
+          @apply text-center;
 
-        button {
-          @apply relative;
-          @apply bg-page-top-btn-bgColor rounded-2xl;
-          @apply border-solid border-[1px] border-page-top-btn-boColor;
-          width:  300px;
-          height: 100px;
+          font-size: 2.5rem;
+          font-weight: 600;
 
-          span {
-            @apply text-white text-3xl;
-          }
-
-          &:hover {
-            @extend %button-start__hover;
-          }
-
-          &:hover span {
-            @extend %text-button__hover;
-          }
-
+          color: rgba(255, 255, 255, 1);
+        }
+        &:hover span {
+          color: rgba(59, 58, 109, 1);
         }
       }
     }
   }
+
 }
 
+
+div.layer-canvas {
+  @extend %layer-canvas;
+
+  div.header {
+    @extend %header;
+  }
+
+  div.layer-components {
+    @extend %layer-component;
+  }
+
+  div.footer {
+    @extend %footer;
+  }
+
+  div.back {
+    @extend %back;
+  }
+
+
+}
+
+
+// base に詳細は記載
+div.layer-components {
+  div#titlelogo {
+    @extend %text-titlelogo;
+  }
+
+  div#buttons {
+    @extend %button;
+  }
+}
