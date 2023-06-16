@@ -7,6 +7,7 @@ const OUTPUT_PATH = PATH.resolve(__dirname , DIST_PATH);
 const HTML_WEBPACK_PLUGIN = require('html-webpack-plugin');
 const MINI_CSS_EXTRACT_PLUGIN = require('mini-css-extract-plugin');
 const ESLINT_WEBPACK_PLUGIN = require('eslint-webpack-plugin');
+const BROWSER_SYNC_PLUGIN = require('browser-sync-webpack-plugin');
 
 module.exports = {
   mode: "development",
@@ -14,7 +15,8 @@ module.exports = {
   devServer: {
     static: {
       directory: PATH.join(__dirname, DIST_PATH)
-    }
+    },
+    port: 8080
   },
   entry: {
     module: [
@@ -28,7 +30,7 @@ module.exports = {
     }
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[hach].js',
     path: OUTPUT_PATH
   },
   module: {
@@ -61,7 +63,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 0,
-          name: 'images/[name]-[hash].[ext]'
+          name: 'images/[name].[hach].[ext]'
         }
       }
     ]
@@ -75,10 +77,15 @@ module.exports = {
       filename: "index.html"
     }),
     new MINI_CSS_EXTRACT_PLUGIN({
-      filename: '[name].[hash].css'
+      filename: '[name].[hach].css'
     }),
     new ESLINT_WEBPACK_PLUGIN({
       extensions: ['ts','tsx','js','jsx']
+    }),
+    new BROWSER_SYNC_PLUGIN({
+      host: 'localhost',
+      port: 8080,
+      server: { baseDir: DIST_PATH }
     })
   ]
 };

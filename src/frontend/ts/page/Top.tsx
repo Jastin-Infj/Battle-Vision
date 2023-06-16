@@ -18,7 +18,9 @@ function Page_Top() {
   const browser = new BrowserDetector(window.navigator.userAgent);
   const useBrowser = browser.parseUserAgent();
 
-  const TitleLogo = () => {
+  console.log(window.screen);
+
+  const createElement = (str? :string) => {
     const env = getBrowserEnv(useBrowser);
 
     let styles:CustomJSX.cssStyle = {};
@@ -29,11 +31,20 @@ function Page_Top() {
       styles = { ...styles , "font-Inter-Chrome": true };
     }
 
+    // 追加でclass を割り当てる
+
+    if(str) {
+      styles = { ...styles , [str]: true};
+    }
+
     return styles;
 
   };
 
-  const style_titlelogo = TitleLogo();
+  const style_titlelogo = createElement();
+  const style_fotter_text = createElement("footer__messages");
+  const style_fotter_copyright = createElement("footer__copyright");
+  const style_fotter_accounts = createElement("footer__accounts");
 
   return (
     <>
@@ -55,7 +66,38 @@ function Page_Top() {
             </div>
           </div>
         </div>
-        <div className='footer'></div>
+        <div className='footer'>
+          <div className={classnames(style_fotter_text)}>
+            <span>{Messages.Page.Top.Fotter.Text1}</span>
+            <span>{Messages.Page.Top.Fotter.Text2}</span>
+            <span>{Messages.Page.Top.Fotter.Text3}</span>
+          </div>
+          <div className={classnames(style_fotter_copyright)}>
+            {/* <img></img> */}
+            <span>{Messages.Page.Top.Fotter.Text4}</span>
+            <span>{Messages.Page.Top.Fotter.Text5}</span>
+          </div>
+          <div className={classnames(style_fotter_accounts)}>
+            <span>{Messages.Page.Top.Fotter.Accounts.Text}</span>
+            <div>
+              <button id="SignIn">
+                <span>
+                  {Messages.Page.Top.Fotter.Accounts.SignIn}
+                </span>
+              </button>
+              <button id="SignUp">
+                <span>
+                  {Messages.Page.Top.Fotter.Accounts.SignUp}
+                </span>
+              </button>
+              <button id="Demo">
+                <span>
+                  {Messages.Page.Top.Fotter.Accounts.Demo}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
         <div className='back'>
           <img src={image} alt="image"/>
           <div className='opacity'></div>
