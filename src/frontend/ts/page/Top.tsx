@@ -45,6 +45,7 @@ function Page_Top() {
   const style_fotter_text = createElement("footer__messages");
   const style_fotter_copyright = createElement("footer__copyright");
   const style_fotter_accounts = createElement("footer__accounts");
+  const style_fotter_links = createElement("footer__links");
 
   return (
     <>
@@ -68,26 +69,26 @@ function Page_Top() {
         </div>
         <div className='footer'>
           <div className={classnames(style_fotter_text)}>
-            <span>{Messages.Page.Top.Fotter.Text1}</span>
-            <span>{Messages.Page.Top.Fotter.Text2}</span>
-            <span>{Messages.Page.Top.Fotter.Text3}</span>
+            <span>{Messages.Page.Top.Fotter.Messages.Text1}</span>
+            <span>{Messages.Page.Top.Fotter.Messages.Text2}</span>
+            <span>{Messages.Page.Top.Fotter.Messages.Text3}</span>
           </div>
           <div className={classnames(style_fotter_copyright)}>
             {/* <img></img> */}
-            <span>{Messages.Page.Top.Fotter.Text4}</span>
-            <span>{Messages.Page.Top.Fotter.Text5}</span>
+            <span>{Messages.Page.Top.Fotter.Copyright.Text1}</span>
+            <span>{Messages.Page.Top.Fotter.Copyright.Text2}</span>
           </div>
           <div className={classnames(style_fotter_accounts)}>
             <span>{Messages.Page.Top.Fotter.Accounts.Text}</span>
             <div>
-              <button id="SignIn">
-                <span>
-                  {Messages.Page.Top.Fotter.Accounts.SignIn}
-                </span>
-              </button>
               <button id="SignUp">
                 <span>
                   {Messages.Page.Top.Fotter.Accounts.SignUp}
+                </span>
+              </button>
+              <button id="SignIn">
+                <span>
+                  {Messages.Page.Top.Fotter.Accounts.SignIn}
                 </span>
               </button>
               <button id="Demo">
@@ -96,6 +97,11 @@ function Page_Top() {
                 </span>
               </button>
             </div>
+          </div>
+          <div className={classnames(style_fotter_links)}>
+            <a>{Messages.Page.Top.Fotter.Links.Text1}</a>
+            <a>{Messages.Page.Top.Fotter.Links.Text2}</a>
+            <a>{Messages.Page.Top.Fotter.Links.Text3}</a>
           </div>
         </div>
         <div className='back'>

@@ -29,7 +29,7 @@ $screen_Max_Height: $screenHeight * 1.0;
 }
 
 @function viewport_getHeight($num) {
-  @return $screen_Max_Height * calc($num / 100);  
+  @return $screen_Max_Height * calc($num / 100);
 }
 
 @function viewport_getWidth($num) {
