@@ -30,7 +30,7 @@ module.exports = {
     }
   },
   output: {
-    filename: '[name].[hach].js',
+    filename: '[name].[hash].js',
     path: OUTPUT_PATH
   },
   module: {
@@ -63,7 +63,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 0,
-          name: 'images/[name].[hach].[ext]'
+          name: 'images/[name].[hash].[ext]'
         }
       }
     ]
@@ -77,7 +77,7 @@ module.exports = {
       filename: "index.html"
     }),
     new MINI_CSS_EXTRACT_PLUGIN({
-      filename: '[name].[hach].css'
+      filename: '[name].[hash].css'
     }),
     new ESLINT_WEBPACK_PLUGIN({
       extensions: ['ts','tsx','js','jsx']
