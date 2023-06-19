@@ -1,0 +1,38 @@
+{
+  /* React */
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  /* eslint */
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "es2022",
+    "sourceType": "module"
+  },
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "semi": ["error"],
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        /* 理由がないとerror対象とする */
+        "ts-ignore": "allow-with-description",
+        "minimumDescriptionLength": 10
+      }
+    ],
+    /* any 型は許可する */
+    "@typescript-eslint/no-explicit-any": 0
+  }
+}

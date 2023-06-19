@@ -1,0 +1,53 @@
+@custom-media --device-tablet-lg screen and (max-width: 428px);
+
+$brackpoints: (
+  device-phone:     "screen and (max-width: 428px)",   //スマートフォン
+  device-tablet:    "screen and (max-width: 768px)",   //通常のタブレット
+  device-ipad:      "screen and (max-width: 834px)",   //ipad
+  device-tablet-lg: "screen and (max-width: 1280px)",  //タブレット(ipadより少し大きい)
+  device-pc:        "screen and (min-width: 1281px)",  //PC
+) !default;
+
+@mixin z-map($list) {
+  @each $name in $list {
+    #{$name}: #{index($list,$name) - 1};
+  }
+}
+
+@mixin style-fix-content() {
+  width: fit-content;
+  height: fit-content;
+}
+
+@mixin mq($target) {
+  @media #{map-get($brackpoints , $target)} {
+    @content;
+  }
+}
+
+//* ブラウザの描画範囲
+$screenWidth: 100vw;
+$screenHeight: calc(100vh * 1.5);
+
+//* ブラウザの表示割合
+$screen_Full: 1;
+$screen_Header: 0.15;
+$screen_Footer: 0.17;
+$screen_Body: $screen_Full - $screen_Header - $screen_Footer;
+
+$screenHeaderHeight: $screenHeight * $screen_Header;
+$screenFooterHeight: $screenHeight * $screen_Footer;
+$screenBodyHeight: $screenHeight * $screen_Body;
+
+//* ブラウザの最大表示範囲
+// 範囲外が多少あるためリサイズ
+$screen_Max_Width: $screenWidth * 0.9914;
+$screen_Max_Height: $screenHeight * 1.0;
+
+@function viewport_getHeight($num) {
+  @return $screen_Max_Height * calc($num / 100);
+}
+
+@function viewport_getWidth($num,$device:"none") {
+  @return $screen_Max_Width * calc($num / 100);
+}

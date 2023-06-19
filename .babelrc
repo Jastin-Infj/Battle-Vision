@@ -1,10 +1,10 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "presets": ["@babel/preset-env", "@babel/preset-react","@babel/preset-typescript"],
   "plugins": [
     [
       "@babel/plugin-transform-react-jsx",
       {
-        "runtime": "automatic"    /* import React を自動化 */
+        "runtime": "automatic"
       }
     ]
   ]
