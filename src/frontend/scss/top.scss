@@ -1,7 +1,6 @@
-@use '../../css/tw-style.css' as *;
-@use '../base' as *;
-@use '../common' as *;
-
+@use '../css/globals.css' as *;
+@use 'base' as *;
+@use 'common' as *;
 
 //* 描画順番
 :root {
@@ -13,7 +12,7 @@
   ));
 }
 
-@layer base {
+// @layer base {
 
   %common__fontstyle {
     @apply italic;
@@ -364,9 +363,9 @@
 
   }
   
-}
+// }
 
-@layer components {
+// @layer components {
 
   %text-titlelogo {
     @apply m-9;
@@ -474,8 +473,7 @@
     }
   }
 
-}
-
+// }
 
 div.layer-canvas {
   @extend %layer-canvas;

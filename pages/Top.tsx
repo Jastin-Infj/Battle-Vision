@@ -1,51 +1,59 @@
 //* Module
-import React from 'react';
+import React , { useEffect , useState } from 'react';
 import classnames from 'classnames';
 import BrowserDetector from 'browser-dtector';
 //* 共通関連
-import { getBrowserEnv } from '../common';
+import { getBrowserEnv } from '../src/frontend/ts/common';
 //* 設定関連
-import Messages from '../../json/Strings.json';
-import { CustomJSX } from '../jsxform';
+import Messages from '../src/frontend/json/Strings.json';
+import { CustomJSX } from '../src/frontend/ts/jsxform';
 //* CSS
-import '../../scss/page/top.scss';
+import '../src/frontend/scss/top.scss';
+
 //* 画像ファイル
 // @ts-ignore IDE側がエラーとして認識するため
-import image from '../../img/topimage.jpg';
+import image from '../src/frontend/img/topimage.jpg';
 
-function Page_Top() {
+function Top() {
+  const [style_titlelogo,SetStyleTitlelogo] = useState<CustomJSX.cssStyle>();
+  const [style_fotter_text,SetStyleFotterText] = useState<CustomJSX.cssStyle>();
+  const [style_fotter_copyright,SetStyleFotterCopyRight] = useState<CustomJSX.cssStyle>();
+  const [style_fotter_accounts,SetStyleFotterAccounts] = useState<CustomJSX.cssStyle>();
+  const [style_fotter_links,SetStyleFotterLinks] = useState<CustomJSX.cssStyle>();
 
-  const browser = new BrowserDetector(window.navigator.userAgent);
-  const useBrowser = browser.parseUserAgent();
+  useEffect(() => {
+    const browser = new BrowserDetector(window.navigator.userAgent);
+    const useBrowser = browser.parseUserAgent();
+    console.log(window.screen);
 
-  console.log(window.screen);
+    const createElement = (str? :string) => {
+      const env = getBrowserEnv(useBrowser);
+  
+      let styles:CustomJSX.cssStyle = {};
+  
+      if(env === "Cent Browser"){
+        styles = { ...styles , "font-Inter-Default": true };
+      } else {
+        styles = { ...styles , "font-Inter-Chrome": true };
+      }
+  
+      // 追加でclass を割り当てる
+  
+      if(str) {
+        styles = { ...styles , [str]: true};
+      }
+  
+      return styles;
+  
+    };
 
-  const createElement = (str? :string) => {
-    const env = getBrowserEnv(useBrowser);
+    SetStyleTitlelogo(createElement());
+    SetStyleFotterText(createElement('footer__messages'));
+    SetStyleFotterCopyRight(createElement("footer__copyright"));
+    SetStyleFotterAccounts(createElement("footer__accounts"));
+    SetStyleFotterLinks(createElement("footer__links"));
 
-    let styles:CustomJSX.cssStyle = {};
-
-    if(env === "Cent Browser"){
-      styles = { ...styles , "font-Inter-Default": true };
-    } else {
-      styles = { ...styles , "font-Inter-Chrome": true };
-    }
-
-    // 追加でclass を割り当てる
-
-    if(str) {
-      styles = { ...styles , [str]: true};
-    }
-
-    return styles;
-
-  };
-
-  const style_titlelogo = createElement();
-  const style_fotter_text = createElement("footer__messages");
-  const style_fotter_copyright = createElement("footer__copyright");
-  const style_fotter_accounts = createElement("footer__accounts");
-  const style_fotter_links = createElement("footer__links");
+  },[]);
 
   return (
     <>
@@ -105,7 +113,7 @@ function Page_Top() {
           </div>
         </div>
         <div className='back'>
-          <img src={image} alt="image"/>
+          <img src={image.src} alt="image"/>
           <div className='opacity'></div>
         </div>
       </div>
@@ -113,4 +121,4 @@ function Page_Top() {
   );
 }
 
-export default Page_Top;
+export default Top;

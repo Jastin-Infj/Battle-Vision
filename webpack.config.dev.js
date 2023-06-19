@@ -16,7 +16,8 @@ module.exports = {
     static: {
       directory: PATH.join(__dirname, DIST_PATH)
     },
-    port: 8080
+    port: 8080,
+    historyApiFallback: true
   },
   entry: {
     module: [
@@ -25,7 +26,8 @@ module.exports = {
       'react-dom/client'
     ],
     main: {
-      import: './src/frontend/ts/index.tsx',
+      //* next.jsの場合は entry 不要
+      import: '',
       dependOn: ['module']
     }
   },
@@ -36,7 +38,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(jsx)?$/,
         exclude: /node_modules/,
         loader: 'babel-loader'
       },

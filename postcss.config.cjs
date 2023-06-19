@@ -1,6 +1,6 @@
 module.exports = {
   plugins: [
-    require('tailwindcss'),
+    require.resolve('tailwindcss'),
     [
       'postcss-px-to-viewport-8-plugin',
       {
