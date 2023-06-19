@@ -1,0 +1,38 @@
+{
+  "Title": "Battle-vision",
+  "Page": {
+    "Top": {
+      "Button": {
+        "Demo": "デモから試す",
+        "Used": "使ってみる"
+      },
+      "Fotter": {
+        "Messages": {
+          "Text1": "ポケットモンスター・ポケモン・Pokémonは株式会社ポケモン・任天堂・クリーチャーズ・ゲームフリークの登録商標です。",
+          "Text2": "当サイトは個人ファンサイトであり、株式会社ポケモン他企業様とは一切関係ありません。",
+          "Text3": "当サイトはFlaticon.comの画像を使用してデザインされています。"
+        },
+        "Copyright": {
+          "Text1": "Copyright",
+          "Text2": "2023 ©usaigmi"
+        },
+        "Accounts": {
+          "Text": "アカウント",
+          "SignUp": "新規登録",
+          "SignIn": "ログイン",
+          "Demo": "デモを試す"
+        },
+        "Links": {
+          "Text1": "トップ",
+          "Text2": "利用規約",
+          "Text3": "プライバシーポリシー"
+        }
+      }
+    }
+  },
+  "Server": {
+    "BackendFetchError": {
+      "01": "バックエンドのサーバーを起動してください"
+    }
+  }
+}

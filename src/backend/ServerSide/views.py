@@ -4,6 +4,9 @@ from django.views.generic.edit import CreateView
 
 from django.urls import reverse_lazy
 
+from rest_framework import viewsets
+from .serializers import UserSerializer
+
 from .models import User
 
 # Create your views here.
@@ -17,3 +20,7 @@ class User_Create(CreateView):
   fields = ['name','age']
   
   success_url = reverse_lazy('ServerSide:home')
+
+class UserView(viewsets.ModelViewSet):
+  serializer_class = UserSerializer
+  queryset = User.objects.all()
