@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "InterChrome";
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap");
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;600;700;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap'); */
+@layer base {
+  div.layer-main {
+    @apply absolute left-0 top-0;
+    @apply w-screen h-screen;
+  }
+  div.layer-main div.layer-canvas, div.layer-main div.layer-canvas div.layer-components, div.layer-main div.layer-canvas div.back div, div.layer-main div.layer-canvas div.back img, div.layer-main div.layer-canvas div.layer-components, div.layer-main div.layer-canvas div.layer-components div.layer-components, div.layer-main div.layer-canvas div.back div div.layer-components, div.layer-main div.layer-canvas div.back img div.layer-components, div.layer-main div.layer-canvas div.back img, div.layer-main div.layer-canvas div.layer-components div.back img, div.layer-main div.layer-canvas div.back div div.back img, div.layer-main div.layer-canvas div.back img div.back img, div.layer-main div.layer-canvas div.back div, div.layer-main div.layer-canvas div.layer-components div.back div, div.layer-main div.layer-canvas div.back div div.back div, div.layer-main div.layer-canvas div.back img div.back div {
+    @apply absolute left-0 top-0;
+    @apply w-full h-full;
+  }
+  div.layer-main div.layer-canvas div.back div {
+    @apply bg-black opacity-50;
+  }
+  div.layer-main div.layer-canvas div.back img {
+    @apply overflow-hidden object-cover;
+    @apply bg-fixed bg-left-top;
+  }
+}
+@layer components {
+  div.layer-components div#titlelogo {
+    @apply m-9;
+  }
+  div.layer-components div#titlelogo span {
+    @apply whitespace-nowrap;
+    @apply font-bold italic;
+    @apply text-9xl text-white;
+    -webkit-text-stroke-color: rgb(75, 88, 209);
+    -webkit-text-stroke-width: 4px;
+  }
+  div.layer-components div#buttons {
+    @apply relative top-0;
+    left: 70%;
+    right: 70%;
+  }
+  div.layer-components div#buttons div {
+    @apply relative;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+  div.layer-components div#buttons div:not(:first-child) {
+    top: 10vh;
+  }
+  div.layer-components div#buttons div button {
+    @apply relative;
+    @apply rounded-2xl;
+    background: rgb(59, 58, 109);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(111, 105, 124);
+    width: 300px;
+    height: 100px;
+  }
+  div.layer-components div#buttons div button:hover {
+    background: rgb(249, 246, 255);
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+  }
+  div.layer-components div#buttons div button span {
+    @apply text-3xl;
+    color: rgb(255, 255, 255);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(111, 105, 124);
+  }
+  div.layer-components div#buttons div button:hover span {
+    color: rgb(59, 58, 109);
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+  }
+}
+
+/*# sourceMappingURL=top.css.map */
