@@ -1,7 +1,11 @@
+import Listget from "./Listget"
+
+import { ENDPOINT_URL } from '../index'
+
 const App = () => {
   return (
     <>
-      <div>Hello React App!!</div>
+      <Listget url={ENDPOINT_URL}/>
     </>
   );
 };
