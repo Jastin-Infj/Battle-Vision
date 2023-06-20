@@ -1,0 +1,335 @@
+@use '../css/globals.css';
+@use 'base' as *;
+@use 'mixin' as *;
+
+:root {
+  @include z-map((
+    --z-canvas,
+    --z-back,
+    --z-header,
+    --z-footer,
+    --z-component,
+    --z-header__textbox_search_img
+  ));
+}
+
+//* base
+%layer-canvas {
+  @apply absolute top-0 left-0;
+  width: viewport_getWidth(100);
+  height: viewport_getHeight(100);
+  z-index: var(--z-canvas);
+
+  @apply grid;
+  grid-template:
+    "...    ...    ...    ...    ...   " 0px
+    "header header header header header" 7.5fr
+    "...    ...... ...... ...... ...   " 10fr
+    "...    main    main  main   ...   " 55fr
+    "...    ...... ...... ...... ...   " 10fr
+    "footer footer footer footer footer" 7.5fr
+    "...    ...... ...... ...... ...   " 0px;
+
+  @include mq(device-ipad) {
+    grid-template:
+      "header"
+      "main"
+      "footer"
+  }
+
+  %header {
+    @apply relative top-0 left-0;
+    grid-area: header;
+    @apply flex flex-row;
+
+    background: rgba(146, 171, 233, 1);
+    z-index: var(--z-header);
+
+    div {
+      &:nth-of-type(2) {
+        margin-left: 0;
+      }
+    }
+
+    %header__text_Demo {
+      @apply relative top-0 left-0;
+      @include margin_height_auto();
+      width: 120px;
+      height: 90px;
+      left: 16px;
+
+      p {
+        @apply absolute top-1/2 left-1/2;
+        transform: translate(-50%, -50%);
+
+        width: 100%;
+        
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 26px;
+
+        text-align: center;
+        color: rgba(255, 255, 255, 1);
+
+        -webkit-text-stroke: {
+          width: 1px;
+          color: rgba(255, 255, 255, 1);
+        }
+
+      }
+    }
+
+    %header__textbox_search {
+      @apply relative top-0 left-0;
+
+      width: 320px;
+      height: 65px;
+      left: 90px;
+      margin: auto 0;
+
+      img {
+        @apply absolute top-0 left-0;
+        top:50%;
+        transform: translateY(-50%);
+        left: 24px;
+        background: green;
+
+        width: 32px;
+        height: 32px;
+
+        z-index: var(--z-header__textbox_search_img);
+      }
+
+      input {
+        @apply absolute top-0 left-0;
+
+        width:100%;
+        height: 100%;
+
+        padding-left: 80px;
+
+        border-radius: 40px;
+
+        //text
+        color: rgba(180, 180, 180, 1);
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 27px;
+
+        &:focus {
+          @apply outline-none;
+
+          @apply border-solid;
+          border-width: 3px;
+          background: #FFFFFF;
+
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+          //text
+          color: rgba(4, 4, 4, 1);
+        }
+      }
+    }
+
+    %header__icon_step {
+      @apply relative;
+      @apply flex flex-row;
+
+      height: 90px;
+      width: 950px;
+      margin: auto 0;
+      left: 150px;
+
+      div {
+        @apply relative  top-0 left-0;
+        @apply flex flex-col;
+        @apply border-solid;
+        
+        width: 100%;
+        height: 100%;
+
+        div.stepflow {
+          @apply absolute top-0 left-0;
+
+          width: 60px;
+          height: 60px;
+
+          @include position_centerWidthRender();
+
+          background: rgba(70, 99, 174, 1);
+
+          @apply border-solid;
+          border-width: 8px;
+          border-color: rgba(255, 255, 255, 1);
+          border-radius: 50%;
+
+          &.current {
+            background: rgba(255, 255, 255, 1);
+            border-color: rgba(70, 99, 174, 1);
+          }
+
+        }
+
+        span {
+          @apply absolute bottom-0;
+
+          text-align: center;
+
+          left: 45%;
+          transform: translateX(-45%);
+
+          width: 150px;
+          height: 20px;
+
+          @apply whitespace-nowrap;
+          @apply font-semibold;
+          font-weight: 700;
+          font-size: 29px;
+          line-height: 27px;
+          color: rgba(255, 255, 255, 1);
+
+          -webkit-text-stroke: {
+            width: 4px;
+            color: rgba(40, 38, 158, 1);
+          }
+
+          &:hover {
+            -webkit-text-stroke: {
+              color: rgba(81, 138, 222, 1);
+            }
+          }
+
+          span {
+            @include attach_textstyle_forFigma();
+          }
+
+        }
+
+        div.arrow {
+          @apply absolute;
+          //? 調整
+          margin-left: 170px;
+          top: 33.5%;
+
+          width: 135px;
+          height: 5px;
+          
+          @apply border-solid;
+          border-radius: 20px;
+          background: rgba(70, 99, 174, 1);
+        }
+
+        //? 調整
+        &:nth-of-type(1) {
+          span {
+            left: 45%;
+            transform: translateX(-45%);
+          }
+        }
+
+        &:nth-of-type(2) {
+          span {
+            left: 52.5%;
+            transform: translateX(-52.5%);
+          }
+        }
+
+        &:nth-of-type(3) {
+          span {
+            left: 53%;
+            transform: translateX(-53%);
+          }
+        }
+
+        &:nth-of-type(4) {
+          span {
+            left: 40%;
+            transform: translateX(-40%);
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+  %nav {
+    @apply relative top-0 left-0;
+    grid-area: nav;
+
+    //todo
+    background: yellowgreen;
+    z-index: var(--z-component);
+  }
+
+  %main {
+    @apply relative top-0 left-0;
+    grid-area: main;
+    // height: viewport_getHeight(60);
+    // width: viewport_getWidth(100);
+
+    //todo
+    background: green;
+    z-index: var(--z-component);
+  }
+
+  %aside {
+    @apply relative top-0 left-0;
+    grid-area: aside;
+
+    //todo
+    background: pink;
+    z-index: var(--z-component);
+  }
+
+  %footer {
+    @apply relative top-0 left-0;
+    grid-area: footer;
+
+    //todo
+    background: purple;
+    z-index: var(--z-footer);
+  }
+}
+
+
+//* base
+
+div.layer-canvas {
+  @extend %layer-canvas;
+
+  header {
+    @extend %header;
+
+    div.header__text_Demo {
+      @extend %header__text_Demo;
+    }
+
+    div.header__textbox_search {
+      @extend %header__textbox_search;
+    }
+
+    div.header__icon_step {
+      @extend %header__icon_step;
+    }
+
+  }
+
+  nav {
+    @extend %nav;
+  }
+
+  main {
+    @extend %main;
+  }
+
+  aside {
+    @extend %aside;
+  }
+
+  footer {
+    @extend %footer;
+  }
+}

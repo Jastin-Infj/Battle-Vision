@@ -25,6 +25,39 @@ $brackpoints: (
   }
 }
 
+@mixin attach_textstyle_forFigma() {
+  & {
+    @apply absolute;
+    -webkit-text-stroke-width: 0px;
+  }
+
+}
+
+@mixin position_centerWidthRender() {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin position_centerHeightRender() {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin position_centerRender() {
+  @include position_centerWidthRender();
+  @include position_centerHeightRender();
+}
+
+@mixin margin_height_auto() {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@mixin margin_width_auto() {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 //* ブラウザの描画範囲
 $screenWidth: 100vw;
 $screenHeight: calc(100vh * 1.5);

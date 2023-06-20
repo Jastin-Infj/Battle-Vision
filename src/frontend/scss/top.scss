@@ -1,6 +1,6 @@
 @use '../css/globals.css' as *;
 @use 'base' as *;
-@use 'common' as *;
+@use 'mixin' as *;
 
 //* 描画順番
 :root {

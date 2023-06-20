@@ -1,0 +1,57 @@
+@use '../css/globals.css';
+@use 'base' as *;
+@use 'mixin' as *;
+
+
+
+div {
+  @apply grid;
+  grid-template: 
+    "header header header header header " 300px
+    ".....  .....  .....  .....  .....  " 10px
+    "left   .....  center .....  right  " 1fr
+    ".....  ...... .....  .....  .....  " 10px
+    "footer footer footer footer footer " 150px
+    / 150px 20px 1fr 10px 200px;
+
+  font-size: 2rem;
+  width: 100vw;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: aquamarine;
+
+  * {
+    @apply border-solid;
+    border-width: 1px;
+    border-color: green;
+  }
+
+  @include mq(device-tablet) {
+    grid-template: 
+      "header" 300px
+      "left  " auto
+      "center" 1fr
+      "right " auto
+      "footer" 150px;
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  nav {
+    grid-area: left;
+  }
+
+  main {
+    grid-area: center;
+  }
+
+  aside {
+    grid-area: right;
+  }
+
+  footer {
+    grid-area: footer;  
+  }
+}
