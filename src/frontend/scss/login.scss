@@ -25,10 +25,11 @@
     "...    ...    ...    ...    ...   " 0px
     "header header header header header" 7.5fr
     "...    ...... ...... ...... ...   " 10fr
-    "...    main    main  main   ...   " 55fr
-    "...    ...... ...... ...... ...   " 10fr
-    "footer footer footer footer footer" 7.5fr
-    "...    ...... ...... ...... ...   " 0px;
+    "...    main    main  main   ...   " 40fr
+    "...    ...... ...... ...... ...   " 20fr
+    "footer footer footer footer footer" 12.5fr
+    "...    ...... ...... ...... ...   " 0px
+    / 1fr 1fr 1fr 1fr 1fr;
 
   @include mq(device-ipad) {
     grid-template:
@@ -171,7 +172,7 @@
 
         }
 
-        span {
+        span.main {
           @apply absolute bottom-0;
 
           text-align: center;
@@ -200,7 +201,7 @@
             }
           }
 
-          span {
+          span.back {
             @include attach_textstyle_forFigma();
           }
 
@@ -226,12 +227,22 @@
             left: 45%;
             transform: translateX(-45%);
           }
+
+          span.back {
+            left: 0%;
+            transform: translateX(0%);
+          }
         }
 
         &:nth-of-type(2) {
           span {
             left: 52.5%;
             transform: translateX(-52.5%);
+          }
+
+          span.back {
+            left: 1%;
+            transform: translateX(1%);
           }
         }
 
@@ -240,6 +251,11 @@
             left: 53%;
             transform: translateX(-53%);
           }
+
+          span.back {
+            left: 2%;
+            transform: translateX(2%);
+          }
         }
 
         &:nth-of-type(4) {
@@ -247,12 +263,155 @@
             left: 40%;
             transform: translateX(-40%);
           }
+
+          span.back {
+            left: 0%;
+            transform: translateX(0%);
+          }
         }
 
       }
 
     }
 
+    %header__icon_login {
+      @apply relative;
+      @include margin_height_auto();
+      //? 調整
+      left: 320px;
+
+      width: 100px;
+      height: 100px;
+
+      div.icon {
+        @include option_disabled();
+
+        img {
+          @apply absolute top-0 left-0;
+          width: 100%;
+          height: 100%;
+
+          &.uploaded {
+            @apply border-solid;
+            border-radius: 50%;
+            border-width: 1px;
+            border-color: rgba(232, 224, 255, 1);
+          }
+
+          &.none {
+            background: rgba(255, 255, 255, 1);
+
+            @apply border-solid;
+            border-radius: 50%;
+            border-width: 2px;
+            border-color: rgba(109, 121, 227, 1);
+          }
+        }
+      }
+
+      %div__font_login {
+        @include option_disabled();
+        @apply relative top-0 left-0;
+        width: 100px;
+        height: 100px;
+
+        span {
+          @apply absolute;
+          @include position_centerRender();
+          //? 調整
+          top: 50%;
+          left: 9.5%;
+          
+          text-align: center;
+          @apply whitespace-nowrap;
+
+          @apply font-semibold;
+          font-weight: 600;
+          font-size: 22px;
+          line-height: 27px;
+          color: rgba(255, 255, 255, 1);
+          -webkit-text-stroke: {
+            width: 4px;
+            color: rgba(34, 32, 96, 1);
+          }
+
+          &:hover {
+            -webkit-text-stroke: {
+              color: rgba(81, 138, 222, 1);
+            }
+          }
+
+          span {
+            @include attach_textstyle_forFigma();
+            //? 調整
+            top: 51%;
+            left: 0%;
+          }
+
+        }
+      }
+
+      div.login {
+        @extend %div__font_login;
+      }
+
+      div.logout {
+        @extend %div__font_login;
+      }
+    }
+
+    %header__box_menu {
+      @include option_disabled();
+      @apply absolute top-full right-0;
+      width: 270px;
+      height: 550px;
+      background: rgba(146, 171, 233, 1);
+
+      @apply border-solid;
+      border-color: rgba(145, 131, 232, 1);
+      border-width: 3px;
+      border-radius: 10px;
+
+      ul {
+        @apply flex flex-col;
+        @apply justify-evenly;
+
+        @apply left-full top-full;
+        width: 100%;
+        height: 100%;
+
+        li {
+          @apply  top-full left-full;
+          width: 100%;
+          padding-left: 15%;
+
+          span.main {
+            width: 100%;
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 27px;
+            color: rgba(255, 255, 255, 1);
+            -webkit-text-stroke: {
+              width: 4px;
+              color: rgba(34, 32, 96, 1);
+            }
+
+            &:hover {
+              -webkit-text-stroke: {
+                color: rgba(166, 201, 255, 1);
+              }
+            }
+
+            span.back {
+              @apply left-0;
+              @include attach_textstyle_forFigma();
+              padding-left: 15%;
+            }
+          }
+          
+        }
+      }
+    }
   }
 
   %nav {
@@ -288,9 +447,17 @@
     @apply relative top-0 left-0;
     grid-area: footer;
 
-    //todo
-    background: purple;
+    background: linear-gradient(180deg, rgba(223, 233, 253, 0.8) 0%, rgba(146, 171, 233, 0) 100%), #92ABE9;
     z-index: var(--z-footer);
+
+    %footer__text_messages {
+      @apply flex flex-col;
+      background: red;
+
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+
   }
 }
 
@@ -315,6 +482,14 @@ div.layer-canvas {
       @extend %header__icon_step;
     }
 
+    div.header__icon_login {
+      @extend %header__icon_login;
+    }
+
+    div.header__box_menu {
+      @extend %header__box_menu;
+    }
+
   }
 
   nav {
@@ -331,5 +506,9 @@ div.layer-canvas {
 
   footer {
     @extend %footer;
+
+    div.footer__text_messages {
+      @extend %footer__text_messages;
+    }
   }
 }
