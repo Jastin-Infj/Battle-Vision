@@ -132,13 +132,15 @@ function Login() {
             <span>{Messages.Page.Top.Fotter.Messages.Text2}</span>
             <span>{Messages.Page.Top.Fotter.Messages.Text3}</span>
           </div>
-          {/* <div className="footer__text_copyright">
+          <div className="footer__text_copyright">
             <span>{Messages.Page.Top.Fotter.Copyright.Text1}</span>
             <span>{Messages.Page.Top.Fotter.Copyright.Text2}</span>
-          </div> */}
-          {/* <div className="footer__button_accounts">
-            <span>{Messages.Page.Top.Fotter.Accounts.Text}</span>
-            <div>
+          </div>
+          <div className="footer__button_accounts">
+            <div className="title">
+              <span>{Messages.Page.Top.Fotter.Accounts.Text}</span>
+            </div>
+            <div className="buttons">
               <button className="SignUp">
                 <span>
                   {Messages.Page.Top.Fotter.Accounts.SignUp}
@@ -155,12 +157,12 @@ function Login() {
                 </span>
               </button>
             </div>
-          </div> */}
-          {/* <div className="footer__link_info">
+          </div>
+          <div className="footer__link_info">
             <a>{Messages.Page.Top.Fotter.Links.Text1}</a>
             <a>{Messages.Page.Top.Fotter.Links.Text2}</a>
             <a>{Messages.Page.Top.Fotter.Links.Text3}</a>
-          </div> */}
+          </div>
         </footer>
       </div>
     </>

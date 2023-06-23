@@ -1,6 +1,7 @@
 @use '../css/globals.css';
 @use 'base' as *;
 @use 'mixin' as *;
+@use 'style' as *;
 
 :root {
   @include z-map((
@@ -451,11 +452,114 @@
     z-index: var(--z-footer);
 
     %footer__text_messages {
+      @include style-fix-content();
       @apply flex flex-col;
-      background: red;
 
       margin-left: 20px;
       margin-top: 20px;
+
+      span {
+        @extend %footer__font_common_style;
+
+        &:nth-of-type(3) {
+          margin-top: 10px;
+        }
+      }
+    }
+
+    %footer__text_copyright {
+      @apply flex flex-col;
+      @apply absolute;
+      //? 調整
+      left: 46%;
+      top: 60%;
+
+      height: 100px;
+      width: 200px;
+
+      span {
+        @extend %footer__font_common_style;
+
+        &:nth-of-type(2) {
+          padding-top: 10px;
+          padding-left: 15px;
+        }
+      }
+    }
+
+    %footer__button_accounts {
+      @apply flex flex-col;
+      @apply absolute top-0;
+      left: 65%;
+
+      span {
+        @extend %footer__font_common_style;
+      }
+      
+      div.title {
+        margin-top: 20px;
+      }
+
+      div.buttons {
+        @apply flex flex-row;
+        @apply relative;
+        margin-top: 15px;
+
+        %footer__button_accounts_style {
+          @apply relative;
+          @extend %footer__button_common_style;
+          width: 160px;
+          height: 60px;
+        }
+
+        button {
+          @extend %footer__button_accounts_style;
+          margin-left: 20px;
+        }
+
+        button.Demo {
+          @extend %footer__button_accounts_style;
+          margin-left: 80px;
+
+          background: rgba(48, 99, 198, 1);
+          &:hover {
+            background: rgba(249, 246, 255, 1);
+          }
+
+          span:hover {
+            color: rgba(48, 99, 198, 1);
+          }
+        }
+      }
+    }
+
+    %footer__link_info {
+      @apply flex flex-row;
+      @apply absolute top-0;
+      left: 65%;
+      top: 75%;
+
+      a {
+        @apply relative;
+        @apply whitespace-nowrap;
+        @extend %footer__font_common_style;
+        @include margin_width_auto();
+
+        width: 120px;
+
+        &:not(:first-child)::before {
+          @apply absolute top-0;
+          content: "";
+          display: inline-flex;
+          left: -25%;
+          transform: translateY(-25%);
+          
+          width: 5px;
+          height: 50px;
+          background: rgba(24, 33, 116, 1);
+        }
+
+      }
     }
 
   }
@@ -509,6 +613,18 @@ div.layer-canvas {
 
     div.footer__text_messages {
       @extend %footer__text_messages;
+    }
+
+    div.footer__text_copyright {
+      @extend %footer__text_copyright;
+    }
+
+    div.footer__button_accounts {
+      @extend %footer__button_accounts;
+    }
+
+    div.footer__link_info {
+      @extend %footer__link_info;
     }
   }
 }
