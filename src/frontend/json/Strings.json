@@ -1,33 +1,85 @@
 {
   "Title": "Battle-vision",
   "Page": {
-    "Top": {
-      "Button": {
-        "Demo": "デモから試す",
-        "Used": "使ってみる"
+    "Header": {
+      "Texts": {
+        "Demo1": "デモ",
+        "Demo2": "モード"
       },
-      "Fotter": {
-        "Messages": {
-          "Text1": "ポケットモンスター・ポケモン・Pokémonは株式会社ポケモン・任天堂・クリーチャーズ・ゲームフリークの登録商標です。",
-          "Text2": "当サイトは個人ファンサイトであり、株式会社ポケモン他企業様とは一切関係ありません。",
-          "Text3": "当サイトはFlaticon.comの画像を使用してデザインされています。"
+      "Textbox": {
+        "search": "チームの検索"
+      },
+      "Icon": {
+        "Steps": {
+          "Text1": "ポケモンを追加",
+          "Text2": "チームを登録",
+          "Text3": "対戦を記録",
+          "Text4": "対戦記録を見る"
         },
-        "Copyright": {
-          "Text1": "Copyright",
-          "Text2": "2023 ©usaigmi"
-        },
-        "Accounts": {
-          "Text": "アカウント",
-          "SignUp": "新規登録",
-          "SignIn": "ログイン",
-          "Demo": "デモを試す"
-        },
-        "Links": {
-          "Text1": "トップ",
-          "Text2": "利用規約",
-          "Text3": "プライバシーポリシー"
+        "Logins": {
+          "Logout": "ログアウト",
+          "Login": "ログイン"
+        }
+      },
+      "Box": {
+        "Menus": {
+          "Text1": "マイページ",
+          "Text2": "ポケモン新規登録",
+          "Text3": "ポケモン一覧",
+          "Text4": "チーム一覧",
+          "Text5": "対戦を記録",
+          "Text6": "成績結果を見る",
+          "Text7": "デモデータを試す",
+          "Text8": "チュートリアル",
+          "Text9": "ログアウト"
         }
       }
+    },
+    "Fotter": {
+      "Messages": {
+        "Text1": "ポケットモンスター・ポケモン・Pokémonは株式会社ポケモン・任天堂・クリーチャーズ・ゲームフリークの登録商標です。",
+        "Text2": "当サイトは個人ファンサイトであり、株式会社ポケモン他企業様とは一切関係ありません。",
+        "Text3": "当サイトはFlaticon.comの画像を使用してデザインされています。"
+      },
+      "Copyright": {
+        "Text1": "Copyright",
+        "Text2": "2023 ©usaigmi"
+      },
+      "Accounts": {
+        "Text": "アカウント",
+        "SignUp": "新規登録",
+        "SignIn": "ログイン",
+        "Demo": "デモを試す"
+      },
+      "Links": {
+        "Text1": "トップ",
+        "Text2": "利用規約",
+        "Text3": "プライバシーポリシー"
+      }
+    },
+    "Login": {
+      "Text": {
+        "Title": "アカウント"
+      },
+      "Form": {
+        "Login": {
+          "Mail": "メールアドレス",
+          "Password": "パスワード",
+          "Forget1": "パスワードを忘れた方は",
+          "Forget2": "こちら"
+        },
+        "BR": "他のログイン方法で試す",
+        "Login_Platform": {
+          "Google": "Googleアカウントでログインする",
+          "Twitter": "Twitterアカウントでログインする"
+        }
+      }
+    }
+  },
+  "Top": {
+    "Button": {
+      "Demo": "デモから試す",
+      "Used": "使ってみる"
     }
   },
   "Server": {

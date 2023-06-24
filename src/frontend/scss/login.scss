@@ -415,33 +415,180 @@
     }
   }
 
-  %nav {
-    @apply relative top-0 left-0;
-    grid-area: nav;
-
-    //todo
-    background: yellowgreen;
-    z-index: var(--z-component);
-  }
-
   %main {
+    @apply flex flex-col;
     @apply relative top-0 left-0;
     grid-area: main;
-    // height: viewport_getHeight(60);
-    // width: viewport_getWidth(100);
-
-    //todo
-    background: green;
     z-index: var(--z-component);
-  }
 
-  %aside {
-    @apply relative top-0 left-0;
-    grid-area: aside;
+    //? 調整
+    width: 70%;
+    height: 90%;
+    @include position_centerWidthRender();
 
-    //todo
-    background: pink;
-    z-index: var(--z-component);
+    %main__text_title {
+      @apply relative top-0 left-0;
+      //? 調整
+      width: 100%;
+      height: 15%;
+
+      span {
+        @apply relative;
+        left: 40.5%;
+        
+        color: rgba(0, 0, 0, 1);
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 44px;
+      }
+    }
+
+    %main__form {
+      @apply flex flex-col;
+      @apply relative left-0;
+      //? 調整
+      width: 100%;
+      height: 85%;
+
+      background: rgba(250, 250, 250, 1);
+
+      div.loginform {
+        @apply flex flex-col;
+        @apply relative;
+        width: 100%;
+        height: 40%;
+        
+        input {
+          @apply relative;
+          @include position_centerWidthRender();
+          margin-top: 30px;
+          padding-left: 20px;
+          padding-bottom: 5px;
+
+          width: 600px;
+          height: 200px;
+          background: rgba(255, 255, 255, 1);
+
+          @apply border-solid;
+          border-width: 3.5px;
+          border-radius: 4.5px;
+          border-color: rgba(153, 153, 153, 1);
+
+          font-weight: 600;
+          font-size: 32px;
+          color: rgba(0, 0, 0, 1);
+
+          &::placeholder {
+            font-size: 20px;
+          }
+
+          &:focus {
+            outline: none;
+            box-shadow: 0px 6.25225px 6.25225px rgba(0, 0, 0, 0.25);
+          }
+
+        }
+      }
+
+      span.password_forgetlink {
+        @apply relative;
+        margin-top: 25px;
+        margin-left: 20px;
+
+        width: 225px;
+        height: 22px;
+
+        color: rgba(60, 60, 60, 1);
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 18px;
+
+        a {
+          color: rgba(83, 80, 209, 1);
+        }
+      }
+
+      div.BR {
+        @apply flex flex-row;
+        width: 100%;
+        margin-top: 10px;
+
+        div {
+          @apply relative;
+          @include position_centerHeightRender();
+          margin: {
+            left: 30px;
+            right: 30px;
+          }
+          
+          width: 100%;
+          height: 10px;
+          background: rgba(231, 231, 231, 1);
+        }
+
+        span {
+          @apply whitespace-nowrap;
+          width: 100%;
+          
+          text-align: center;
+          color: rgba(80, 80, 80, 1);
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 18px;
+        }
+      }
+
+      div.login_platform {
+        @apply flex flex-col justify-between;
+        @apply relative top-0 left-0;
+        @apply h-full;
+        margin: {
+          top: 40px;
+          bottom: 40px;
+          left: auto;
+          right: auto;
+        }
+        width: 80%;
+
+        button {
+          @apply relative top-0 left-0;
+          height: 40%;
+          width: 100%;
+
+          background: rgba(255,255,255,1);
+
+          @apply border-solid;
+          border-width: 1px;
+          border-color: rgba(235,235,235,0.92);
+          border-radius: 15px;
+
+          img.icon , img.arrow {
+            @apply absolute top-0;
+            @include position_centerHeightRender();
+            width: 12.5%;
+            height: 80%;
+
+          }
+
+          img.icon {
+            left: 6.5%;
+          }
+
+          span.main {
+            font-size: 22px;
+            font-weight: 600;
+            word-wrap: break-word;
+            color: rgba(128, 128, 128, 1);
+          }
+
+          img.arrow {
+            left: 80%;
+          }
+        }
+      }
+    }
+
+
   }
 
   %footer {
@@ -596,16 +743,16 @@ div.layer-canvas {
 
   }
 
-  nav {
-    @extend %nav;
-  }
-
   main {
     @extend %main;
-  }
 
-  aside {
-    @extend %aside;
+    div.main__text_title {
+      @extend %main__text_title;
+    }
+
+    div.main__form {
+      @extend %main__form;
+    }
   }
 
   footer {
