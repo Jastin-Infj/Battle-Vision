@@ -7,8 +7,13 @@ import { getBrowserEnv } from '../src/frontend/ts/common';
 //* 設定関連
 import Messages from '../src/frontend/json/Strings.json';
 import { CustomJSX } from '../src/frontend/ts/jsxform';
+
+//* JSX
+import Canvas from '../src/frontend/ts/components/Canvas';
+import Footer from '../src/frontend/ts/components/Footer';
+
 //* CSS
-import '../src/frontend/scss/top.scss';
+import '../src/frontend/scss/top2.scss';
 
 //* 画像ファイル
 // @ts-ignore IDE側がエラーとして認識するため
@@ -57,12 +62,13 @@ function Top() {
 
   return (
     <>
-      <div className='layer-canvas'>
-        <div className="layer-components">
-          <div id="titlelogo">
+      <Canvas>
+        <img src={image.src} className='back__image' />
+        <main>
+          <div className="main__text_titlelogo">
             <span className={classnames(style_titlelogo)}>{Messages.Title}</span>
           </div>
-          <div id="buttons">
+          <div className="main__button_start">
             <div>
               <button name='use'>
                 <span>{Messages.Page.Top.Button.Demo}</span>
@@ -74,49 +80,10 @@ function Top() {
               </button>
             </div>
           </div>
-        </div>
-        <div className='footer'>
-          <div className={classnames(style_fotter_text)}>
-            <span>{Messages.Page.Top.Fotter.Messages.Text1}</span>
-            <span>{Messages.Page.Top.Fotter.Messages.Text2}</span>
-            <span>{Messages.Page.Top.Fotter.Messages.Text3}</span>
-          </div>
-          <div className={classnames(style_fotter_copyright)}>
-            {/* <img></img> */}
-            <span>{Messages.Page.Top.Fotter.Copyright.Text1}</span>
-            <span>{Messages.Page.Top.Fotter.Copyright.Text2}</span>
-          </div>
-          <div className={classnames(style_fotter_accounts)}>
-            <span>{Messages.Page.Top.Fotter.Accounts.Text}</span>
-            <div>
-              <button id="SignUp">
-                <span>
-                  {Messages.Page.Top.Fotter.Accounts.SignUp}
-                </span>
-              </button>
-              <button id="SignIn">
-                <span>
-                  {Messages.Page.Top.Fotter.Accounts.SignIn}
-                </span>
-              </button>
-              <button id="Demo">
-                <span>
-                  {Messages.Page.Top.Fotter.Accounts.Demo}
-                </span>
-              </button>
-            </div>
-          </div>
-          <div className={classnames(style_fotter_links)}>
-            <a>{Messages.Page.Top.Fotter.Links.Text1}</a>
-            <a>{Messages.Page.Top.Fotter.Links.Text2}</a>
-            <a>{Messages.Page.Top.Fotter.Links.Text3}</a>
-          </div>
-        </div>
-        <div className='back'>
-          <img src={image.src} alt="image"/>
-          <div className='opacity'></div>
-        </div>
-      </div>
+          
+        </main>
+        <Footer />
+      </Canvas>
     </>
   );
 }

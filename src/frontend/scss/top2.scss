@@ -1,0 +1,130 @@
+@use '../css/globals.css';
+@use 'base' as *;
+@use 'mixin' as *;
+@use 'style' as *;
+@use 'layerbase' as *;
+
+%layer-canvas_changeStyle {
+  // change
+  grid-template: 
+    "...    ...    ...    ...    ...   " 0px
+    "main   main   main   main   main  " calc((100 - 13) / 3 * 1fr)
+    "main   main   main   main   main  " calc((100 - 13) / 3 * 1fr)
+    "main   main   main   main   main  " calc((100 - 13) / 3 * 1fr)
+    "...    ...... ...... ...... ...   " 0px
+    "footer footer footer footer footer" 13fr
+    "...    ...... ...... ...... ...   " 0px
+    / 1fr 1fr 1fr 1fr 1fr;
+}
+
+%back__image {
+  @apply absolute top-0 left-0;
+  grid-area: main;
+
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-back);
+}
+
+%main {
+  @apply flex flex-col;
+  @apply relative top-0 left-0;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  background: rgba(0, 0, 0, 0.65);
+
+  %main__text_titlelogo {
+    @apply m-9;
+
+    @include style-fix-content();
+
+    span {
+      @apply whitespace-nowrap;
+      @apply font-bold italic;
+      
+      font-weight: 800;
+      font-size: 7.5rem;
+      color: rgba(255,255,255,1.0);
+      
+      -webkit-text-stroke: {
+        color: rgba(75, 88, 209, 1);
+        width: 0.3rem;
+      }
+    }
+  }
+
+  %main__button_start {
+    @apply relative;
+    @apply flex flex-col;
+
+    width: fit-content;
+    left: 70%;
+
+    div {
+      @apply relative;
+
+      &:last-child {
+        margin-top: 100px;
+      }
+      
+      button {
+        @apply overflow-hidden;
+        width: 350px;
+        height: 100px;
+
+        border-radius: 16px;
+        background: rgba(59, 58, 109, 1);
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        &:hover {
+          background: rgba(249, 246, 255, 1);
+          -webkit-text-stroke: {
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+
+        span {
+          @apply whitespace-nowrap;
+          @apply overflow-hidden;
+
+          color: rgba(2, 11, 94, 1);
+          font-weight: 600;
+          font-size: 28px;
+          line-height: 1.5rem;
+          
+          text-overflow: clip;
+
+          @apply items-center;
+          @apply text-center;
+
+          color: rgba(255, 255, 255, 1);
+        }
+
+        &:hover span {
+          color: rgba(59, 58, 109, 1);
+        }
+      }
+    }
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  img.back__image {
+    @extend %back__image;
+  }
+
+  main {
+    @extend %main;
+
+    div.main__text_titlelogo {
+      @extend %main__text_titlelogo;
+    }
+
+    div.main__button_start {
+      @extend %main__button_start;
+    }
+  }
+}
