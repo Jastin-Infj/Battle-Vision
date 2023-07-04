@@ -67,6 +67,10 @@
         font-size: 32px;
         color: rgba(0, 0, 0, 1);
 
+        @include mq(device-tablet-lg) {
+          width: 480px;
+        }
+
         &::placeholder {
           font-size: 20px;
         }
@@ -161,6 +165,10 @@
 
         img.icon {
           left: 6.5%;
+
+          @include mq(device-tablet-lg) {
+            left: 3.5%;
+          }
         }
 
         span.main {
@@ -168,10 +176,17 @@
           font-weight: 600;
           word-wrap: break-word;
           color: rgba(128, 128, 128, 1);
+
+          @include mq(device-tablet-lg) {
+            font-size: 20px;
+          }
         }
 
         img.arrow {
           left: 80%;
+          @include mq(device-tablet-lg) {
+            left: 84%;
+          }
         }
       }
     }

@@ -81,6 +81,10 @@
       width: 320px;
       height: 65px;
       left: 90px;
+      @include mq(device-tablet-lg) {
+        left: 40px;
+      }
+
       margin: auto 0;
 
       img {
@@ -135,6 +139,11 @@
       width: 950px;
       margin: auto 0;
       left: 150px;
+
+      @include mq(device-tablet-lg) {
+        left: 0px;
+        transform: scale(85%);
+      }
 
       div {
         @apply relative  top-0 left-0;
@@ -209,10 +218,15 @@
 
           width: 135px;
           height: 5px;
-          
+
           @apply border-solid;
           border-radius: 20px;
           background: rgba(70, 99, 174, 1);
+
+          @include mq(device-tablet-lg) {
+            margin-left: 165px;
+            width: 75px;
+          }
         }
 
         //? 調整
@@ -276,6 +290,10 @@
 
       width: 100px;
       height: 100px;
+
+      @include mq(device-tablet-lg) {
+        left: -3%;
+      }
 
       div.icon {
         @include option_disabled();

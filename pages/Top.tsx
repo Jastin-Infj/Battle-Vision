@@ -13,7 +13,7 @@ import Canvas from '../src/frontend/ts/components/Canvas';
 import Footer from '../src/frontend/ts/components/Footer';
 
 //* CSS
-import '../src/frontend/scss/top2.scss';
+import '../src/frontend/scss/top.scss';
 
 //* 画像ファイル
 // @ts-ignore IDE側がエラーとして認識するため
