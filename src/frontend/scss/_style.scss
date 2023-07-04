@@ -12,6 +12,7 @@
 
 %footer__button_common_style {
   @apply overflow-hidden;
+  @apply break-all;
   @apply rounded-2xl;
   
   background: rgba(59, 58, 109, 1);
