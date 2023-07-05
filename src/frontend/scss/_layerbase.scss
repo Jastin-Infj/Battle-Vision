@@ -24,11 +24,11 @@
   @apply grid;
   grid-template:
     "...    ...    ...    ...    ...   " 0px
-    "header header header header header" 7.5fr
-    "...    ...... ...... ...... ...   " 10fr
-    "...    main    main  main   ...   " 40fr
-    "...    ...... ...... ...... ...   " 20fr
-    "footer footer footer footer footer" 12.5fr
+    "header header header header header" 125px
+    "...    ...... ...... ...... ...   " 0.1fr
+    "...    main    main  main   ...   " 1fr
+    "...    ...... ...... ...... ...   " 0.2fr
+    "footer footer footer footer footer" 210px
     "...    ...... ...... ...... ...   " 0px
     / 1fr 1fr 1fr 1fr 1fr;
 

@@ -1,0 +1,105 @@
+@use '../css/globals.css';
+@use 'base' as *;
+@use 'mixin' as *;
+@use 'style' as *;
+@use 'layerbase' as *;
+
+%layer-canvas_changeStyle {
+  //change
+  grid-template: 
+  "...    ...    ...    ...    ...   " 0px
+  "header header header header header" 125px
+  "...    ...... ...... ...... ...   " 200px
+  "...    main    main  main   ...   " 1fr
+  "...    ...... ...... ...... ...   " 0.03fr
+  "footer footer footer footer footer" 210px
+  "...    ...... ...... ...... ...   " 0px
+  / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+
+  height: viewport_getHeight(400) !important;
+
+}
+
+//* 個別の余白設定
+
+div.main__text_title:nth-of-type(3) > p.main__text_messageText:nth-of-type(1) {
+  margin-bottom: 30px;
+}
+
+div.main__text_title:nth-of-type(4) {
+  p.main__text_messageText:nth-of-type(1) {
+    margin-bottom: 10px;
+  }
+
+  p.main__text_messageText:nth-of-type(3) {
+    margin-bottom: 10px;
+  }
+  
+}
+
+%main {
+  @apply flex flex-col;
+  @apply relative top-0 left-0;
+  grid-area: main;
+  z-index: (--z-component);
+
+  width: 100%;
+  height: 100%;
+
+  %main__text_title {
+    @apply relative;
+    @apply flex flex-col;
+
+    &:not(:first-child) {
+      margin-top: 35px;
+    }
+
+    %main__text_messageTitle {
+      color: rgba(0, 0, 0, 1);
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    %main__br {
+      @apply relative;
+      margin: {
+        top: 15px;
+        bottom: 10px;
+      }
+      width: 100%;
+      height: 4px;
+      
+      background: rgba(212, 212, 212, 1);
+    }
+
+    %main__text_messageText {
+      @apply break-all;
+      color: rgba(0, 0, 0, 1);
+      font-size: 17.55px;
+      font-weight: 600;
+    }
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+
+    div.main__text_title {
+      @extend %main__text_title;
+      span.main__text_messageTitle {
+        @extend %main__text_messageTitle;
+      }
+
+      div.main__br {
+        @extend %main__br;
+      }
+
+      p.main__text_messageText {
+        @extend %main__text_messageText;
+      }
+    }
+  }
+}
