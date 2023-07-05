@@ -4,6 +4,33 @@
 @use 'style' as *;
 @use 'layerbase' as *;
 
+%layer-canvas_changeStyle {
+  // change
+  @include mq(device-ipad) {
+    grid-template: 
+      "header header header" 0.4fr
+      "...... ...... ......" 0.5fr
+      "main   main   main  " 1fr
+      "main   main   main  " 1fr
+      "main   main   main  " 1fr
+      "...... ...... ......" 0.5fr
+      "footer footer footer" 1fr
+    / 1fr 1fr 1fr !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template: 
+    "header header header" 0.6fr
+    "...... ...... ......" 0.5fr
+    "main   main   main  " 1fr
+    "main   main   main  " 1fr
+    "main   main   main  " 1fr
+    "...... ...... ......" 0.5fr
+    "footer footer footer" 1.8fr
+  / 1fr 1fr 1fr !important;
+  }
+}
+
 %main {
   @apply flex flex-col;
   @apply relative top-0 left-0;
@@ -14,6 +41,10 @@
   width: 70%;
   height: 90%;
   @include position_centerWidthRender();
+
+  @include mq(device-ipad) {
+    z-index: 0;
+  }
 
   %main__text_title {
     @apply relative top-0 left-0;
@@ -29,6 +60,10 @@
       font-weight: 600;
       font-size: 36px;
       line-height: 44px;
+
+      @include mq(device-phone) {
+        left: 26.5%;
+      }
     }
   }
 
@@ -68,11 +103,24 @@
         color: rgba(0, 0, 0, 1);
 
         @include mq(device-tablet-lg) {
-          width: 480px;
+          width: 80%;
+        }
+
+        @include mq(device-ipad) {
+          font-size: 30px;
+        }
+
+        @include mq(device-phone) {
+          font-size: 15.5px;
+          padding-bottom: 0px;
         }
 
         &::placeholder {
           font-size: 20px;
+
+          @include mq(device-ipad) {
+            font-size: 18px;
+          }
         }
 
         &:focus {
@@ -106,6 +154,10 @@
       width: 100%;
       margin-top: 10px;
 
+      @include mq(device-phone) {
+        margin-top: 30px;
+      }
+
       div {
         @apply relative;
         @include position_centerHeightRender();
@@ -117,6 +169,14 @@
         width: 100%;
         height: 10px;
         background: rgba(231, 231, 231, 1);
+
+        @include mq(device-phone) {
+          margin: {
+            left: 15px;
+            right: 15px;
+          }
+        }
+
       }
 
       span {
@@ -161,6 +221,16 @@
           width: 12.5%;
           height: 80%;
 
+          @include mq(device-ipad) {
+            width: 40px;
+            height: 40px;
+          }
+
+          @include mq(device-phone) {
+            width: 25px;
+            height: 25px;
+          }
+
         }
 
         img.icon {
@@ -168,6 +238,10 @@
 
           @include mq(device-tablet-lg) {
             left: 3.5%;
+          }
+
+          @include mq(device-ipad) {
+            left: 5%;
           }
         }
 
@@ -180,12 +254,24 @@
           @include mq(device-tablet-lg) {
             font-size: 20px;
           }
+
+          @include mq(device-phone) {
+            @apply relative;
+            left: 6%;
+            bottom: 3%;
+            font-size: 13px;
+          }
+
         }
 
         img.arrow {
           left: 80%;
           @include mq(device-tablet-lg) {
             left: 84%;
+          }
+
+          @include mq(device-phone) {
+            display: none;
           }
         }
       }
@@ -194,6 +280,7 @@
 }
 
 div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
   main {
     @extend %main;
 

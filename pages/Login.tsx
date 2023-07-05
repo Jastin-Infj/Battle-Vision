@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 
 // style scss or json
@@ -11,6 +11,7 @@ import Header from '../src/frontend/ts/components/Header';
 import Footer from '../src/frontend/ts/components/Footer';
 
 function Login() {
+  
   return (
     <>
       <Canvas>

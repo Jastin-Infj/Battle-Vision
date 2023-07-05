@@ -53,6 +53,12 @@
       height: 90px;
       left: 16px;
 
+      @include mq(device-phone) {
+        width: 200px;
+        top: 85%;
+        left: 0%;
+      }
+
       p {
         @apply absolute top-1/2 left-1/2;
         transform: translate(-50%, -50%);
@@ -72,6 +78,15 @@
           color: rgba(255, 255, 255, 1);
         }
 
+        @include mq(device-phone) {
+          color: rgba(70, 99, 174, 1);
+          font-size: 30px;
+          width: 100px;
+          -webkit-text-stroke: {
+            width: 0px;
+          }
+        }
+
       }
     }
 
@@ -83,6 +98,18 @@
       left: 90px;
       @include mq(device-tablet-lg) {
         left: 40px;
+      }
+
+      @include mq(device-ipad) {
+        width: 384px;
+      }
+
+      @include mq(device-tablet) {
+        width: 487px;
+      }
+
+      @include mq(device-phone) {
+        left: -70px;
       }
 
       margin: auto 0;
@@ -98,6 +125,11 @@
         height: 32px;
 
         z-index: var(--z-header__textbox_search_img);
+
+        @include mq(device-tablet) {
+          width: 25px;
+          height: 25px;
+        }
       }
 
       input {
@@ -115,6 +147,14 @@
         font-weight: 600;
         font-size: 22px;
         line-height: 27px;
+
+        @include mq(device-ipad) {
+          font-size: 18px;
+        }
+
+        @include mq(device-tablet) {
+          font-size: 15px;
+        }
 
         &:focus {
           @apply outline-none;
@@ -143,6 +183,18 @@
       @include mq(device-tablet-lg) {
         left: 0px;
         transform: scale(85%);
+      }
+
+      @include mq(device-ipad) {
+        transform: scale(73%);
+      }
+
+      @include mq(device-tablet) {
+        transform: scale(76%);
+      }
+
+      @include mq(device-phone) {
+        display: none;
       }
 
       div {
@@ -227,10 +279,37 @@
             margin-left: 165px;
             width: 75px;
           }
+
+          @include mq(device-ipad) {
+            margin-left: 102px;
+            width: 42px;
+          }
+
+          @include mq(device-tablet) {
+            margin-left: 94px;
+            width: 28px;
+          }
         }
 
         //? 調整
         &:nth-of-type(1) {
+
+          @include mq(device-ipad) {
+            span {
+              font-size: 0px;
+            }
+
+            span::before {
+              font-size: 29px;
+              content: "追加";
+            }
+
+            span.back::before {
+              @apply absolute;
+              transform: translateX(79%);
+            }
+          }
+
           span {
             left: 45%;
             transform: translateX(-45%);
@@ -243,6 +322,22 @@
         }
 
         &:nth-of-type(2) {
+          @include mq(device-ipad) {
+            span {
+              font-size: 0px;
+            }
+
+            span::before {
+              font-size: 29px;
+              content: "登録";
+            }
+
+            span.back::before {
+              @apply absolute;
+              transform: translateX(76%);
+            }
+          }
+
           span {
             left: 52.5%;
             transform: translateX(-52.5%);
@@ -255,6 +350,22 @@
         }
 
         &:nth-of-type(3) {
+          @include mq(device-ipad) {
+            span {
+              font-size: 0px;
+            }
+
+            span::before {
+              font-size: 29px;
+              content: "記録";
+            }
+
+            span.back::before {
+              @apply absolute;
+              transform: translateX(74%);
+            }
+          }
+
           span {
             left: 53%;
             transform: translateX(-53%);
@@ -267,6 +378,28 @@
         }
 
         &:nth-of-type(4) {
+          @include mq(device-ipad) {
+            span {
+              font-size: 0px;
+            }
+
+            span::before {
+              font-size: 29px;
+              content: "見る";
+            }
+
+            span.back::before {
+              @apply absolute;
+              transform: translateX(93%);
+            }
+          }
+
+          @include mq(device-tablet) {
+            span.back::before {
+              transform: translateX(95%);
+            }
+          }
+
           span {
             left: 40%;
             transform: translateX(-40%);
@@ -293,6 +426,22 @@
 
       @include mq(device-tablet-lg) {
         left: -3%;
+      }
+
+      @include mq(device-ipad) {
+        left: -5%;
+        width: 150px;
+      }
+
+      @include mq(device-tablet) {
+        left: -4.5%;
+
+        width: 125px;
+        height: 75px;
+      }
+
+      @include mq(device-phone) {
+        left: -9.5%;
       }
 
       div.icon {
@@ -383,6 +532,13 @@
       border-color: rgba(145, 131, 232, 1);
       border-width: 3px;
       border-radius: 10px;
+
+      z-index: var(--z-header__textbox_search_img);
+
+      @include mq(device-phone) {
+        width: 100%;
+        border-radius: 0px;
+      }
 
       ul {
         @apply flex flex-col;
