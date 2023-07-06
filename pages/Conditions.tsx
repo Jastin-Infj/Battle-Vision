@@ -11,15 +11,20 @@ import Footer from "../src/frontend/ts/components/Footer";
 
 function Conditions() {
 
-  let renderJsx:any = {};
-  for(const key in Messages.Page.PrivacyPolicy.Text.Message) {
+  let renderJsx:object = {};
+  let indexcounter = 0;
+  for(const key in Messages.Page.Conditions.Text.Message) {
     //メッセージを先に取得
-    const msg = Messages.Page.PrivacyPolicy.Text.Message[key].map(val => <p key={key + "_" + val} className="main__text_messageText">{val}</p>);
+    const msg = Messages.Page.Conditions.Text.Message[key].map((val) => {
+      indexcounter++;
+      return <p key={key + "_" + indexcounter} className="main__text_messageText">{val}</p>;
+    });
+    indexcounter = 0;
 
     //出力スタイルの定義
     const renderstyle = (
       <div className="main__text_title">
-        <span className="main__text_messageTitle">{Messages.Page.PrivacyPolicy.Text.Titles[key]}</span>
+        <span className="main__text_messageTitle">{Messages.Page.Conditions.Text.Titles[key]}</span>
         <div className="main__br" />
         {msg}
       </div>

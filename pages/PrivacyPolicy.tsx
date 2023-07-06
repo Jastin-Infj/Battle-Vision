@@ -11,10 +11,15 @@ import Footer from "../src/frontend/ts/components/Footer";
 
 function PrivacyPolicy() {
 
-  let renderJsx:any = {};
+  let renderJsx:object = {};
+  let indexcounter = 0;
   for(const key in Messages.Page.PrivacyPolicy.Text.Message) {
     //メッセージを先に取得
-    const msg = Messages.Page.PrivacyPolicy.Text.Message[key].map(val => <p key={key + "_" + val} className="main__text_messageText">{val}</p>);
+    const msg = Messages.Page.Conditions.Text.Message[key].map((val) => {
+      indexcounter++;
+      return <p key={key + "_" + indexcounter} className="main__text_messageText">{val}</p>;
+    });
+    indexcounter = 0;
 
     //出力スタイルの定義
     const renderstyle = (
@@ -29,11 +34,24 @@ function PrivacyPolicy() {
     renderJsx[key] = renderstyle;
   }
 
+  //for renderの場合 key が必要になるため一つひとつ定義する
+
   return (
     <>
       <Canvas>
         <Header />
         <main>
+          {renderJsx[1]}
+          {renderJsx[2]}
+          {renderJsx[3]}
+          {renderJsx[4]}
+          {renderJsx[5]}
+          {renderJsx[6]}
+          {renderJsx[7]}
+          {renderJsx[8]}
+          {renderJsx[9]}
+          {renderJsx[10]}
+          {renderJsx[11]}
         </main>
         <Footer /> 
       </Canvas>

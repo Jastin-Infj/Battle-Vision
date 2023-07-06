@@ -3,6 +3,7 @@
 @use 'mixin' as *;
 @use 'style' as *;
 @use 'layerbase' as *;
+@use '../scss/template/textonly' as *;
 
 %layer-canvas_changeStyle {
   //change
@@ -11,11 +12,11 @@
     "...    ...    ...    ...    ...   " 0px
     "header header header header header" $header__height_normal
     "...    ...... ...... ...... ...   " 200px
-    "...    main    main  main   ...   " 1fr
-    "...    ...... ...... ...... ...   " 0.03fr
+    "...    main    main  main   ...   " auto
+    "...    ...... ...... ...... ...   " 150px
     "footer footer footer footer footer" $footer__height_normal
     "...    ...... ...... ...... ...   " 0px
-    / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+    / 0.6fr 1fr 1fr 1fr 0.8fr !important;
   
     height: viewport_getHeight(320) !important;
   }
@@ -52,9 +53,9 @@
     grid-template: 
     "...    ...    ...    ...    ...   " 0fr
     "header header header header header" $header__height_normal
-    "...    ...... ...... ...... ...   " 0fr
+    "...    ...... ...... ...... ...   " 100px
     "...    main    main  main   ...   " 1fr
-    "...    ...... ...... ...... ...   " 0fr
+    "...    ...... ...... ...... ...   " 125px
     "footer footer footer footer footer" $footer__height_phone
     "...    ...... ...... ...... ...   " 0fr
     / 0.3fr 1fr 1fr 1fr 0.2fr !important;
@@ -62,46 +63,14 @@
     height: viewport_getHeight(400) !important;
   }
 
-  %header__text_Demo_changeStyle {
-    @include mq(device-phone) {
-      display: none !important;
-    }
-  }
-
-  %header__textbox_search_changeStyle {
-    @include mq(device-phone) {
-      margin-left: 100px !important;
-      flex: 1 !important;
-    }
-  }
-
-  %header__icon_login_changeStyle {
-    @include mq(device-phone) {
-      width: 75px !important;
-      height: 75px !important;
-    }
-  }
-
 }
 
-//* 個別のテキスト設定
-
-$margin__large: 30px;
-$margin__normal: 10px;
-
-$content__add_liText: "・";
-
+//* テキスト設定
 $margin__large_attachlist: (
   "3": [1],
   "6": [1,3,4,5],
   "7": [1,4,5,9,10,14,16,18]
 );
-
-div.main__text_title {
-  p:not(:first-of-type , :last-of-type) {
-    margin-bottom: 2.5px;
-  }
-}
 
 @each $key , $vals in $margin__large_attachlist {
   div.main__text_title:nth-of-type(#{$key}) {
@@ -112,6 +81,13 @@ div.main__text_title {
     }
   }
 }
+
+div.main__text_title {
+  p:not(:first-of-type , :last-of-type) {
+    margin-bottom: 2.5px;
+  }
+}
+
 
 div.main__text_title:nth-of-type(3) {
   p:nth-of-type(3) {
@@ -134,55 +110,19 @@ div.main__text_title:nth-of-type(7) {
   }
 }
 
+//------------------------------------------------------
+
 %main {
   @apply flex flex-col;
   @apply relative top-0 left-0;
   grid-area: main;
-  z-index: (--z-component);
+  z-index: var(--z-component);
 
   width: 100%;
   height: 100%;
 
-  %main__text_title {
-    @apply relative;
-    @apply flex flex-col;
-
-    &:not(:first-child) {
-      margin-top: 35px;
-    }
-
-    %main__text_messageTitle {
-      color: rgba(0, 0, 0, 1);
-      font-size: 28px;
-      font-weight: 600;
-
-      @include mq(device-phone) {
-        font-size: 20px;
-      }
-    }
-
-    %main__br {
-      @apply relative;
-      margin: {
-        top: 15px;
-        bottom: 10px;
-      }
-      width: 100%;
-      height: 4px;
-      
-      background: rgba(212, 212, 212, 1);
-    }
-
-    %main__text_messageText {
-      @apply break-all;
-      color: rgba(0, 0, 0, 1);
-      font-size: 17.55px;
-      font-weight: 600;
-
-      @include mq(device-phone) {
-        font-size: 12.55px;
-      }
-    }
+  @include mq(device-tablet-lg) {
+    z-index: 0;
   }
 }
 
