@@ -1,0 +1,124 @@
+@use '../css/globals.css';
+@use 'base' as *;
+@use 'mixin' as *;
+@use 'style' as *;
+@use 'layerbase' as *;
+
+%layer-canvas_changeStyle {
+  //todo
+  // background: red;
+
+  //change
+  grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 35px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.6fr !important;
+}
+
+%main {
+  @apply relative top-0 left-0;
+  @apply flex flex-col;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+
+  //todo
+  // background: lightgreen;
+
+  %main__filter {
+    @apply flex flex-row;
+    width: 100%;
+    flex: 0.2;
+
+    //todo
+    background: red;
+
+    $flex__text: 0.1;
+    $flex__tag: 0.6;
+    $flex__day: 0.15;
+
+    %main__text_common {
+      @apply relative;
+      top: 50%;
+
+      font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    %main__text_filter {
+      @extend %main__text_common;
+      flex: $flex__text;
+      transform: translateY(-10%);
+    }
+
+    %main__group_tag {
+      @apply relative;
+      @include position_centerHeightRender();
+      flex: $flex__tag;
+      width: 100%;
+      background: lightcoral;
+    }
+
+    %main__group_day {
+      @apply relative;
+      @apply flex flex-row;
+      flex: $flex__day;
+      background: lightgreen;
+
+      span {
+        @apply absolute;
+        @extend %main__text_common;
+        transform: translateY(-10%);
+        padding-left: 0px;
+
+        width: 40%;
+        height: 100%;
+
+        // flex: 1;
+      }
+
+      div {
+        @apply absolute;
+        background: lightcyan;
+        left: 40%;
+        width: 60%;
+        height: 100%;
+        // flex: 1;
+      }
+
+    }
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+
+    div.main__filter {
+      @extend %main__filter;
+
+      span.main__text_filter {
+        @extend %main__text_filter;
+      }
+
+      div.main__group_tag {
+        @extend %main__group_tag;
+      }
+
+      div.main__group_day {
+        @extend %main__group_day;
+      }
+    }
+
+  }
+}

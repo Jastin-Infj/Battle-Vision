@@ -287,6 +287,13 @@
           "Twitter": "Twitterアカウントでログインする"
         }
       }
+    },
+    "Main": {
+      "Text": {
+        "Filter": "集計対象",
+        "Register": "登録日",
+        "Update": "更新日"
+      }
     }
   },
   "Server": {
