@@ -14,6 +14,11 @@
   ));
 }
 
+$header__height_normal: 125px;
+$footer__height_normal: 210px;
+$footer__height_ipad: 300px;
+$footer__height_phone: 420px;
+
 //* base
 %layer-canvas {
   @apply absolute top-0 left-0;
@@ -24,11 +29,11 @@
   @apply grid;
   grid-template:
     "...    ...    ...    ...    ...   " 0px
-    "header header header header header" 125px
+    "header header header header header" $header__height_normal
     "...    ...... ...... ...... ...   " 0.1fr
     "...    main    main  main   ...   " 1fr
     "...    ...... ...... ...... ...   " 0.2fr
-    "footer footer footer footer footer" 210px
+    "footer footer footer footer footer" $footer__height_normal
     "...    ...... ...... ...... ...   " 0px
     / 1fr 1fr 1fr 1fr 1fr;
 

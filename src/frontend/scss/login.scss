@@ -6,27 +6,39 @@
 
 %layer-canvas_changeStyle {
   // change
+  @include mq(device-tablet-lg) {
+    grid-template:
+    "...    ...    ...    ...    ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 0.1fr
+    "...    main    main  main   ...   " 1fr
+    "...    ...... ...... ...... ...   " 0.2fr
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 1fr 1fr 1fr 1fr 1fr !important;
+  }
+
   @include mq(device-ipad) {
     grid-template: 
-      "header header header" 0.4fr
+      "header header header" $header__height_normal
       "...... ...... ......" 0.5fr
       "main   main   main  " 1fr
       "main   main   main  " 1fr
       "main   main   main  " 1fr
       "...... ...... ......" 0.5fr
-      "footer footer footer" 1fr
+      "footer footer footer" $footer__height_ipad
+      "...... ...... ......" 0px
     / 1fr 1fr 1fr !important;
   }
 
   @include mq(device-phone) {
     grid-template: 
-    "header header header" 0.6fr
+    "header header header" $header__height_normal
     "...... ...... ......" 0.5fr
-    "main   main   main  " 1fr
-    "main   main   main  " 1fr
-    "main   main   main  " 1fr
+    "main   main   main  " 3fr
     "...... ...... ......" 0.5fr
-    "footer footer footer" 1.8fr
+    "footer footer footer" $footer__height_phone
+    "...... ...... ......" 0px
   / 1fr 1fr 1fr !important;
   }
 }

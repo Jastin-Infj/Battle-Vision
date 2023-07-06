@@ -6,35 +6,132 @@
 
 %layer-canvas_changeStyle {
   //change
-  grid-template: 
-  "...    ...    ...    ...    ...   " 0px
-  "header header header header header" 125px
-  "...    ...... ...... ...... ...   " 200px
-  "...    main    main  main   ...   " 1fr
-  "...    ...... ...... ...... ...   " 0.03fr
-  "footer footer footer footer footer" 210px
-  "...    ...... ...... ...... ...   " 0px
-  / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+  @include mq(device-pc) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 200px
+    "...    main    main  main   ...   " 1fr
+    "...    ...... ...... ...... ...   " 0.03fr
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+  
+    height: viewport_getHeight(320) !important;
+  }
 
-  height: viewport_getHeight(400) !important;
+  @include mq(device-tablet-lg) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 125px
+    "...    main    main  main   ...   " auto
+    "...    ...... ...... ...... ...   " 125px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(340) !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0fr
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 125px
+    "...    main    main  main   ...   " auto
+    "...    ...... ...... ...... ...   " 125px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(400) !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0fr
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 0fr
+    "...    main    main  main   ...   " 1fr
+    "...    ...... ...... ...... ...   " 0fr
+    "footer footer footer footer footer" $footer__height_phone
+    "...    ...... ...... ...... ...   " 0fr
+    / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(400) !important;
+  }
+
+  %header__text_Demo_changeStyle {
+    @include mq(device-phone) {
+      display: none !important;
+    }
+  }
+
+  %header__textbox_search_changeStyle {
+    @include mq(device-phone) {
+      margin-left: 100px !important;
+      flex: 1 !important;
+    }
+  }
+
+  %header__icon_login_changeStyle {
+    @include mq(device-phone) {
+      width: 75px !important;
+      height: 75px !important;
+    }
+  }
 
 }
 
-//* 個別の余白設定
+//* 個別のテキスト設定
 
-div.main__text_title:nth-of-type(3) > p.main__text_messageText:nth-of-type(1) {
-  margin-bottom: 30px;
+$margin__large: 30px;
+$margin__normal: 10px;
+
+$content__add_liText: "・";
+
+$margin__large_attachlist: (
+  "3": [1],
+  "6": [1,3,4,5],
+  "7": [1,4,5,9,10,14,16,18]
+);
+
+div.main__text_title {
+  p:not(:first-of-type , :last-of-type) {
+    margin-bottom: 2.5px;
+  }
+}
+
+@each $key , $vals in $margin__large_attachlist {
+  div.main__text_title:nth-of-type(#{$key}) {
+    @each $val in $vals {
+      p:nth-of-type(#{$val}) {
+        margin-bottom: $margin__large;
+      }
+    }
+  }
+}
+
+div.main__text_title:nth-of-type(3) {
+  p:nth-of-type(3) {
+    margin-bottom: $margin__normal;
+  }
 }
 
 div.main__text_title:nth-of-type(4) {
-  p.main__text_messageText:nth-of-type(1) {
-    margin-bottom: 10px;
+  p:is(:nth-of-type(1) , :nth-of-type(2)) {
+    margin-bottom: $margin__normal;
   }
+}
 
-  p.main__text_messageText:nth-of-type(3) {
-    margin-bottom: 10px;
+div.main__text_title:nth-of-type(7) {
+  p:is(:nth-of-type(7) , :nth-of-type(8) , :nth-of-type(12) , :nth-of-type(13)) {
+    &::before {
+      content: $content__add_liText;
+    }
+    margin-left: $margin__large;
   }
-  
 }
 
 %main {
@@ -58,6 +155,10 @@ div.main__text_title:nth-of-type(4) {
       color: rgba(0, 0, 0, 1);
       font-size: 28px;
       font-weight: 600;
+
+      @include mq(device-phone) {
+        font-size: 20px;
+      }
     }
 
     %main__br {
@@ -77,12 +178,28 @@ div.main__text_title:nth-of-type(4) {
       color: rgba(0, 0, 0, 1);
       font-size: 17.55px;
       font-weight: 600;
+
+      @include mq(device-phone) {
+        font-size: 12.55px;
+      }
     }
   }
 }
 
 div.layer-canvas {
   @extend %layer-canvas_changeStyle;
+
+  div.header__text_Demo {
+    @extend %header__text_Demo_changeStyle;
+  }
+
+  div.header__textbox_search {
+    @extend %header__textbox_search_changeStyle;
+  }
+
+  div.header__icon_login {
+    @extend %header__icon_login_changeStyle;
+  }
 
   main {
     @extend %main;

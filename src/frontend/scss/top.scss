@@ -6,28 +6,30 @@
 
 %layer-canvas_changeStyle {
   // change
-  grid-template: 
+  @include mq(device-pc) {
+    grid-template: 
     "...    ...    ...    ...    ...   " 0px
-    "main   main   main   main   main  " calc((100 - 13) / 3 * 1fr)
-    "main   main   main   main   main  " calc((100 - 13) / 3 * 1fr)
-    "main   main   main   main   main  " calc((100 - 13) / 3 * 1fr)
+    "main   main   main   main   main  " 1fr
     "...    ...... ...... ...... ...   " 0px
-    "footer footer footer footer footer" 13fr
+    "footer footer footer footer footer" $footer__height_normal
     "...    ...... ...... ...... ...   " 0px
-    / 1fr 1fr 1fr 1fr 1fr;
+    / 1fr 1fr 1fr 1fr 1fr !important;
+  }
 
   @include mq(device-ipad) {
     grid-template: 
     "main   main   main  " 4fr
     "footer footer footer" 1fr
-    / 1fr 1fr 1fr;
+    "...... ...... ......" 0fr
+    / 1fr 1fr 1fr !important;
   }
 
   @include mq(device-phone) {
     grid-template: 
     "main   main   main  " 4fr
-    "footer footer footer" 1.5fr
-    / 1fr 1fr 1fr;
+    "footer footer footer" $footer__height_phone
+    "...... ...... ......" 0fr
+    / 1fr 1fr 1fr !important;
   }
 
 }
