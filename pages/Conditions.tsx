@@ -2,14 +2,14 @@ import React from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
-import '../src/frontend/scss/privacyPolicy.scss';
+import '../src/frontend/scss/conditions.scss';
 
 // style JSX
 import Canvas from "../src/frontend/ts/components/Canvas";
 import Header from "../src/frontend/ts/components/Header";
 import Footer from "../src/frontend/ts/components/Footer";
 
-function PrivacyPolicy() {
+function Conditions() {
 
   let renderJsx:any = {};
   for(const key in Messages.Page.PrivacyPolicy.Text.Message) {
@@ -34,6 +34,22 @@ function PrivacyPolicy() {
       <Canvas>
         <Header />
         <main>
+          {renderJsx[1]}
+          {renderJsx[2]}
+          {renderJsx[3]}
+          {renderJsx[4]}
+          {renderJsx[5]}
+          {renderJsx[6]}
+          {renderJsx[7]}
+          {renderJsx[8]}
+          {renderJsx[9]}
+          {renderJsx[10]}
+          {renderJsx[11]}
+          {renderJsx[12]}
+          {renderJsx[13]}
+          {renderJsx[14]}
+          {renderJsx[15]}
+          {renderJsx[16]}
         </main>
         <Footer /> 
       </Canvas>
@@ -41,4 +57,4 @@ function PrivacyPolicy() {
   );
 };
 
-export default PrivacyPolicy;
+export default Conditions;
