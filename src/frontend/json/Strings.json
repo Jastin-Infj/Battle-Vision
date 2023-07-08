@@ -292,7 +292,11 @@
       "Text": {
         "Filter": "集計対象",
         "Register": "登録日",
-        "Update": "更新日"
+        "Update": "更新日",
+        "Winlose": "対策率",
+        "Win": "Win",
+        "Lose": "Lose",
+        "Report": "対戦相手を記録する"
       }
     }
   },

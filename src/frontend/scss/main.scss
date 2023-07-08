@@ -20,6 +20,15 @@
     / 0.2fr 1fr 1fr 1fr 0.6fr !important;
 }
 
+//* common
+%main__text_common {
+  top: 50%;
+
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
 %main {
   @apply relative top-0 left-0;
   @apply flex flex-col;
@@ -32,28 +41,22 @@
   //todo
   // background: lightgreen;
 
+  $flex__filter: 0.2;
+  $flex__winlose: 0.2;
+  $flex__battlecanvas: 0.6;
+
   %main__filter {
     @apply flex flex-row;
     width: 100%;
-    flex: 0.2;
+    flex: $flex__filter;
 
-    //todo
-    background: red;
-
+    //* 比率
     $flex__text: 0.1;
     $flex__tag: 0.6;
     $flex__day: 0.15;
 
-    %main__text_common {
-      @apply relative;
-      top: 50%;
-
-      font-size: 20px;
-      font-weight: 600;
-      text-align: center;
-    }
-
     %main__text_filter {
+      @apply relative;
       @extend %main__text_common;
       flex: $flex__text;
       transform: translateY(-10%);
@@ -71,7 +74,10 @@
       @apply relative;
       @apply flex flex-row;
       flex: $flex__day;
-      background: lightgreen;
+
+      //* 比率
+      $flex_span: 40%;
+      $flex_div: 60%;
 
       span {
         @apply absolute;
@@ -79,22 +85,178 @@
         transform: translateY(-10%);
         padding-left: 0px;
 
-        width: 40%;
+        width: $flex_span;
         height: 100%;
-
-        // flex: 1;
       }
 
-      div {
+      input {
         @apply absolute;
-        background: lightcyan;
-        left: 40%;
-        width: 60%;
+        @include position_centerHeightRender();
+        left: $flex_span;
+        width: $flex_div;
+        height: 40%;
+
+        background: rgba(255, 255, 255, 1);
+
+        border: solid;
+        border-radius: 2.5px;
+        border-color: rgba(0, 0, 0, 1);
+
+        padding-left: 5px;
+        text-align: center;
+        font-size: 16.5px;
+        font-weight: 600;
+
+      }
+    }
+  }
+
+  %main__group_winlose {
+    @apply relative left-0;
+    margin-top: 2.5%;
+    width: 100%;
+    flex: $flex__winlose;
+
+    @apply flex flex-row;
+
+    $flex__winlose: 0.3;
+    $flex__button: 0.45;
+    $flex__reports: 0.25;
+
+    %winlose__text {
+      @apply relative;
+      @extend %main__text_common;
+      transform: translateY(-50%);
+      
+      margin-left: 150px;
+      height: fit-content;
+    }
+
+    %winlose__box {
+      @apply relative;
+      flex: $flex__winlose;
+      height: 40%;
+
+      margin-left: 2.5%;
+      @include position_centerHeightRender();
+
+      @apply flex flex-row;
+      background-color: rgba(255, 255, 255, 1);
+
+      border: solid;
+      border-radius: 8px;
+      border-color: rgba(0, 0, 0, 1);
+      box-shadow: 0px 3.35px 3.35px 0px rgba(0, 0, 0, 0.25);
+
+      %winlose__box_win {
+        @apply relative;
+        width: 50%;
         height: 100%;
-        // flex: 1;
+
+        background-color: rgba(255, 0, 0, 0.38);
+        border-radius: 3.75px 0px 0px 3.75px;
+
+        span {
+          @apply absolute;
+          @extend %main__text_common;
+          left: 10%;
+          transform: translateY(-50%);
+        }
       }
 
+      %winlose__box_lose {
+        @apply relative;
+        width: 50%;
+        height: 100%;
+
+        background-color: rgba(0, 26, 255, 0.38);
+        border-radius: 0px 3.75px 3.75px 0px;
+
+        span {
+          @apply absolute;
+          @extend %main__text_common;
+          right: 10%;
+          transform: translateY(-50%);
+        }
+      }
     }
+
+    %winlose__buttons {
+      @apply relative;
+      @apply flex flex-row justify-around;
+      flex: $flex__button;
+      margin-left: 5%;
+
+      button {
+        @apply relative top-0 left-0;
+        margin: {
+          top: auto;
+          bottom: auto;
+        }
+
+        width: 190px;
+        height: 90px;
+        
+        border-radius: 16px;
+        background: rgba(59, 58, 109, 1);
+        box-shadow: 0px 3.35px 3.35px 0px rgba(0, 0, 0, 0.25);
+
+        span {
+          font-weight: 600;
+          font-size: 30px;
+          color: rgba(255, 255, 255, 1);
+          text-align: center;
+        }
+      }
+    }
+
+    %winlose__reports {
+      @apply relative top-0 left-0;
+      @apply flex flex-row justify-between;
+      flex: $flex__reports;
+
+      img {
+        @apply relative top-0 left-0;
+        width: 46px;
+        height: 46px;
+
+        background: rgba(215, 215, 215, 1);
+        border-radius: 50%;
+
+        margin-left: 10%;
+        margin: {
+          top: 2.5%;
+        }
+      }
+
+      button {
+        @apply relative top-0 left-0;
+        width: 250px;
+        height: 50px;
+
+        margin: {
+          top: auto;
+          bottom: auto;
+        }
+
+        border-radius: 16px;
+        background: rgba(59, 58, 109, 1);
+        box-shadow: 0px 3.35px 3.35px 0px rgba(0, 0, 0, 0.25);
+
+        @extend %main__text_common;
+
+        color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+
+  %main__group_battlecanvas {
+    @apply relative top-0 left-0;
+    width: 100%;
+    flex: $flex__battlecanvas;
+
+    //todo
+    background-color: lightblue;
   }
 }
 
@@ -118,6 +280,38 @@ div.layer-canvas {
       div.main__group_day {
         @extend %main__group_day;
       }
+    }
+
+    div.main__group_winlose {
+      @extend %main__group_winlose;
+
+      span.winlose__text {
+        @extend %winlose__text;
+      }
+
+      div.winlose__box {
+        @extend %winlose__box;
+
+        div.winlose__box_win {
+          @extend %winlose__box_win;
+        }
+
+        div.winlose__box_lose {
+          @extend %winlose__box_lose;
+        }
+      }
+
+      div.winlose__buttons {
+        @extend %winlose__buttons;
+      }
+
+      div.winlose__reports {
+        @extend %winlose__reports;
+      }
+    }
+
+    div.main__group_battlecanvas {
+      @extend %main__group_battlecanvas;
     }
 
   }
