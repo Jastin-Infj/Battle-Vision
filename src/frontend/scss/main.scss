@@ -18,6 +18,8 @@
     "footer footer footer footer footer" $footer__height_normal
     "...    ...... ...... ...... ...   " 0px
     / 0.2fr 1fr 1fr 1fr 0.6fr !important;
+  
+  // height: viewport_getHeight(150) !important;
 }
 
 //* common
@@ -27,6 +29,22 @@
   font-size: 20px;
   font-weight: 600;
   text-align: center;
+}
+
+%main__button_common {
+  border-radius: 16px;
+  background: rgba(59, 58, 109, 1);
+  box-shadow: 0px 3.35px 3.35px 0px rgba(0, 0, 0, 0.25);
+  
+  color: rgba(255, 255, 255, 1);
+
+  &:hover {
+    background: rgba(249, 246, 255, 1);
+  }
+
+  &:hover span {
+    color: rgba(59, 58, 109, 1);
+  }
 }
 
 %main {
@@ -41,14 +59,10 @@
   //todo
   // background: lightgreen;
 
-  $flex__filter: 0.2;
-  $flex__winlose: 0.2;
-  $flex__battlecanvas: 0.6;
-
   %main__filter {
     @apply flex flex-row;
     width: 100%;
-    flex: $flex__filter;
+    height: 150px;
 
     //* 比率
     $flex__text: 0.1;
@@ -64,10 +78,64 @@
 
     %main__group_tag {
       @apply relative;
+      @apply flex flex-row justify-between;
       @include position_centerHeightRender();
       flex: $flex__tag;
-      width: 100%;
-      background: lightcoral;
+      height: 50%;
+
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0px 5.35px 5.35px 0px rgba(0, 0, 0, 0.25);
+      border: solid;
+      border-radius: 2.5px;
+      border-color: rgba(0, 0, 0, 1);
+      border-width: 3.5px;
+
+      div {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        width: 100%;
+        height: 100%;
+
+        padding-left: 1.5%;
+
+        //todo
+        // background-color: lightsalmon;
+
+        label {
+          @apply relative top-0 left-0;
+          font-size: 20px;
+          font-weight: 600;
+          padding-left: 27.5%;
+
+          input {
+            @apply relative top-0 left-0;
+            width: 0px;
+            height: 0px;
+          }
+
+          img {
+            @apply absolute top-0 left-0;
+            height: 20px;
+            width: 20px;
+            top: 57.5%;
+            transform: translateY(-50%);
+
+            border: solid;
+            border-width: 2px;
+            border-radius: 2.5px;
+            border-color: rgba(0, 0, 0, 1);
+            
+            //todo
+            background-color: white;
+          }
+
+          input:checked ~ img {
+            //todo
+            background-color: lightgreen;
+          }
+        }
+      }
+
     }
 
     %main__group_day {
@@ -115,7 +183,7 @@
     @apply relative left-0;
     margin-top: 2.5%;
     width: 100%;
-    flex: $flex__winlose;
+    height: 200px;
 
     @apply flex flex-row;
 
@@ -185,7 +253,7 @@
       @apply relative;
       @apply flex flex-row justify-around;
       flex: $flex__button;
-      margin-left: 5%;
+      margin-left: 1%;
 
       button {
         @apply relative top-0 left-0;
@@ -197,9 +265,7 @@
         width: 190px;
         height: 90px;
         
-        border-radius: 16px;
-        background: rgba(59, 58, 109, 1);
-        box-shadow: 0px 3.35px 3.35px 0px rgba(0, 0, 0, 0.25);
+        @extend %main__button_common;
 
         span {
           font-weight: 600;
@@ -239,24 +305,229 @@
           bottom: auto;
         }
 
-        border-radius: 16px;
-        background: rgba(59, 58, 109, 1);
-        box-shadow: 0px 3.35px 3.35px 0px rgba(0, 0, 0, 0.25);
-
+        @extend %main__button_common;
         @extend %main__text_common;
-
-        color: rgba(255, 255, 255, 1);
       }
     }
   }
 
   %main__group_battlecanvas {
     @apply relative top-0 left-0;
-    width: 100%;
-    flex: $flex__battlecanvas;
-
+    @apply flex flex-row;
+    width: 75%;
+    height: 675px;
     //todo
-    background-color: lightblue;
+    // background-color: black;
+
+    $flex__me: calc((1 - 0.17) / 2);
+    $flex__other: 0.17;
+
+    margin-top: 2.5%;
+    margin-left: 23%;
+
+    %battlecanvas_common {
+      @apply relative top-0 left-0;
+      flex: $flex__me;
+      border-radius: 8.5px;
+
+      img.battlecanvas__img_history {
+        @apply absolute top-0 right-0;
+        width: 48px;
+        height: 48px;
+
+        top: 2.5%;
+        right: 5.5%;
+
+        //todo
+        background-color: lightgreen;
+      }
+
+      div.battlecanvas__select {
+        @apply relative top-0 left-0;
+        @apply flex flex-row justify-between;
+        width: 100%;
+        height: 52px;
+        margin-top: 20%;
+
+        img {
+          @apply relative top-0 left-0;
+          width: 52px;
+          height: 100%;
+          background-color: lightcoral;
+          &:nth-of-type(1) {
+            margin-left: 5%;
+          }
+
+          &:nth-of-type(2) {
+            margin-right: 5%;
+          }
+        }
+        
+        div {
+          @apply relative top-0 left-0;
+          flex: 1;
+          margin: {
+            left: 3%;
+            right: 3%;
+          }
+
+          background: rgba(62, 84, 141, 1);
+
+          border-radius: 8.5px;
+          span {
+            @apply absolute top-0 left-0;
+            left: 48.5%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+
+            @extend %main__text_common;
+            color: rgba(255, 255, 255, 1);
+          }
+        }
+      }
+
+      div.battlecanvas__patry {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        width: 100%;
+        //? 調整
+        height: 62.5%;
+        margin-top: 8.5%;
+
+        div {
+          @apply relative top-0 left-0;
+          @apply flex flex-row justify-around;
+          width: 100%;
+          height: 100%;
+          
+          div {
+            @apply relative top-0 left-0;
+            width: 152px;
+            height: 132px;
+            margin-bottom: 4.5%;
+
+            border-radius: 12px;
+
+            &.none_me {
+              background: rgba(62, 84, 141, 1);
+            }
+            &.none_target {
+              background: rgba(170, 97, 87, 1);
+            }
+            &.active {
+              background: rgba(236, 255, 119, 1);
+            }
+            &.soon {
+              background: rgba(103, 227, 153, 1);
+            }
+
+            &:nth-of-type(1) {
+              margin: {
+                right: -7.5%;
+              }
+            }
+
+            &:nth-of-type(2) {
+              margin: {
+                left: -7.5%;
+              }
+            }
+
+            img {
+              @apply absolute top-0 left-0;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%,-50%);
+
+              width: 80%;
+              height: 80%;
+
+              //todo
+              background-color: lightblue;
+            }
+            
+          }
+        }
+      }
+    }
+
+    %battlecanvas__me {
+      @extend %battlecanvas_common;
+      background: rgba(109, 120, 219, 1);
+    }
+
+    %battlecanvas__target {
+      @extend %battlecanvas_common;
+      background: rgba(229, 123, 123, 1);
+
+      div.battlecanvas__patry {
+        margin-top: 40.5%;
+      }
+    }
+
+    %battlecanvas__other {
+      @apply relative top-0 left-0;
+      flex: $flex__other;
+      @apply flex flex-col;
+      height: 100%;
+
+      margin-left: 3%;
+      margin-right: 3%;
+
+      //todo
+      // background-color: lightgreen;
+
+      button {
+        @apply relative top-0 left-0;
+        height: 45px;
+        width: 100%;
+        @extend %main__button_common;
+        border-radius: 10px;
+
+        @extend %main__text_common;
+      }
+
+      div {
+        @apply relative top-0 left-0;
+        height: 100%;
+        width: 100%;
+
+        //todo
+        // background-color: lightblue;
+
+        img {
+          @apply relative top-0 left-0;
+          width: 100px;
+          height: 100px;
+          left: 50%;
+          top: 40%;
+          transform: translate(-50%,-40%);
+
+          //todo
+          background-color: lightcoral;
+        }
+
+        span {
+          @apply absolute;
+          @extend %main__text_common;
+          left: 12.5%;
+          top: 40%;
+          transform: translateY(-40%);
+
+          @apply italic;
+          letter-spacing: 50px;
+          font-size: 60px;
+          font-weight: 800;
+          color: rgba(241, 255, 155, 1);
+
+          -webkit-text-stroke: {
+            width: 0.8px;
+            color: rgba(208, 194, 121, 1);
+          }
+        }
+      }
+    }
+
   }
 }
 
@@ -312,6 +583,18 @@ div.layer-canvas {
 
     div.main__group_battlecanvas {
       @extend %main__group_battlecanvas;
+
+      div.battlecanvas__me {
+        @extend %battlecanvas__me;
+      }
+
+      div.battlecanvas__other {
+        @extend %battlecanvas__other;
+      }
+
+      div.battlecanvas__target {
+        @extend %battlecanvas__target;
+      }
     }
 
   }
