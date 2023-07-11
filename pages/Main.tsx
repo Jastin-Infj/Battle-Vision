@@ -1,4 +1,4 @@
-import React, { ReactFragment, useState } from "react";
+import React, { useRef, useState } from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
@@ -8,50 +8,67 @@ import '../src/frontend/scss/main.scss';
 import Canvas from "../src/frontend/ts/components/Canvas";
 import Header from "../src/frontend/ts/components/Header";
 import Footer from "../src/frontend/ts/components/Footer";
+import { format } from "path";
 
 function Main() {
   const MAX_PATRY_MEMBERS = 6;
   const CREATE_PATRY = ['me','target'];
 
-  interface I_STATE_PATRYS {
-    [key:string]: Array<string>;
-  };
-  const STATE_PATRYS:I_STATE_PATRYS = {
+  // render
+  const JSX_PATRYS:object = {
     'me': [],
     'target': []
   };
 
-  interface I_JSX_PATRY {
-    [key:string]: Array<React.JSX.Element>;
-  }
-  const JSX_PATRYS:I_JSX_PATRY = {
-    'me': [],
-    'target': []
+  // DOM 操作
+  const REFS_PATRYS:object = {
+    "me": [],
+    "target": []
   };
 
+  //* className ステート状態
   let stateList_me = ['none_me','active','soon'];
   let stateList_target = ['none_target','active','soon'];
 
+  // イベントハンドラにて実際適用
+  let [,setActive_me] = useState(REFS_PATRYS["me"]);
+  let [,setActive_target] = useState(REFS_PATRYS["target"]);
+
   //* イベントハンドラ定義
-  const ChangeState = (e) => {
+  const ChangeState = (target) => {
 
-    //! 何番目のインデックスかを確認したい
-    console.log(e);
+    let key = target[0];
+    let row = target[1];
 
-    //! ステート更新処理
-    // let [isactive , setActive ] = State;
-    // let num = stateList.indexOf(isactive);
+    let targets = REFS_PATRYS[key];
 
-    // if(stateList.length !== (num + 1)) {
-    //   setActive(stateList[num + 1]);
-    // }else {
-    //   setActive(stateList[0]);
-    // }
+    // class 変更
+    if(key === 'me') {
+      let next = stateList_me.indexOf(targets[row].current.className) + 1;
+      if(next === stateList_me.length) {
+        next = 0;
+      }
+
+      targets[row].current.className = stateList_me[next];
+      setActive_me(targets[key]);
+    } else {
+      let next = stateList_target.indexOf(targets[row].current.className) + 1;
+      if(next === stateList_target.length) {
+        next = 0;
+      }
+
+      targets[row].current.className = stateList_target[next];
+      setActive_target(targets[key]);
+    }
     
   };
 
   //* パーティー枠のスタイル定義
   CREATE_PATRY.map((key) => {
+    let state_patrys:object = {
+      "me": [],
+      "target": []
+    };
     //* state 状態 初期化
     for(let i = 0; i < MAX_PATRY_MEMBERS;++i){
       let initstate: null | string = null;
@@ -60,43 +77,58 @@ function Main() {
       } else {
         initstate = stateList_target[0];
       }
-      STATE_PATRYS[key].push(initstate);
+      state_patrys[key].push(initstate);
     }
 
     //* スタイル 定義
-    for(let i = 0; i < Math.ceil(STATE_PATRYS[key].length / 2); ++i) {
+    for(let i = 0; i < Math.ceil(state_patrys[key].length / 2); ++i) {
+      let num_1 = i * 2;
+      let ref_1 = useRef<HTMLDivElement>(null!);
+      let num_2 = i * 2 + 1;
+      let ref_2 = useRef<HTMLDivElement>(null!);
+
       let generate_div = (
         <div>
-          <div id={key + "_" + i} className={STATE_PATRYS[key][i]} onClick={(e) => {
-            ChangeState(e);
+          <div ref={ref_1} className={state_patrys[key][num_1]} onClick={() => {
+            ChangeState([key , num_1]);
           }}>
             <img />
           </div>
-          <div id={key + "_" + (i + 1)} className={STATE_PATRYS[key][i + 1]} onClick={(e) => {
-            ChangeState(e);
+          <div ref={ref_2} className={state_patrys[key][num_2]} onClick={() => {
+            ChangeState([key , num_2]);
           }}>
             <img />
           </div>
         </div>
       );
+
+      REFS_PATRYS[key].push(ref_1);
+      REFS_PATRYS[key].push(ref_2);
       
       JSX_PATRYS[key].push(generate_div);
     }
   });
-
-  let [isactive_me,setActive_me] = useState(STATE_PATRYS["me"]);
-  let [isactive_target,setActive_target] = useState(STATE_PATRYS["target"]);
 
   //* タグのスタイル定義
   let lists = Messages.Page.Main.Checkbox.Tags.map((val) => {
     return (
       <label key={val}>
         <input type="checkbox" />
-        <img />
+        <span />
         {val}
       </label>
     );
   });
+
+  //* 日付データの定義
+  let _startday:any = new Date().toLocaleDateString('ja-JP',{
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).split("/").join("-");
+
+  let [startDay,setstartDay]:any = useState(_startday);
+  let [updateDay,setupdateDay] = useState();
 
   //配置の拡張性があまりないため for は利用しない
 
@@ -137,12 +169,14 @@ function Main() {
               </div>
             </div>
             <div className="main__group_day">
-              <span>{Messages.Page.Main.Text.Register}</span>
-              <input type="date"></input>
-            </div>
-            <div className="main__group_day">
-              <span>{Messages.Page.Main.Text.Update}</span>
-              <input type="date"></input>
+              <div>
+                <span>{Messages.Page.Main.Text.Register}</span>
+                <input type="date" defaultValue={startDay}></input>
+              </div>
+              <div>
+                <span>{Messages.Page.Main.Text.Update}</span>
+                <input type="date"></input>
+              </div>
             </div>
           </div>
           <div className="main__group_winlose">

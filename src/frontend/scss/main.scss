@@ -9,7 +9,8 @@
   // background: red;
 
   //change
-  grid-template: 
+  @include mq(device-pc) {
+    grid-template: 
     "...    ...... ...... ...... ...   " 0px
     "header header header header header" $header__height_normal
     "...    ...... ...... ...... ...   " 35px
@@ -19,7 +20,23 @@
     "...    ...... ...... ...... ...   " 0px
     / 0.2fr 1fr 1fr 1fr 0.6fr !important;
   
-  // height: viewport_getHeight(150) !important;
+    // height: viewport_getHeight(150) !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 35px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.2fr !important;
+  
+    // height: viewport_getHeight(150) !important;
+  }
+
 }
 
 //* common
@@ -56,9 +73,6 @@
   width: 100%;
   height: 100%;
 
-  //todo
-  // background: lightgreen;
-
   %main__filter {
     @apply flex flex-row;
     width: 100%;
@@ -69,18 +83,30 @@
     $flex__tag: 0.6;
     $flex__day: 0.15;
 
+    //todo
+    // background-color: red;
+
+    @include mq(device-tablet-lg) {
+      @apply flex-col;
+      width: 80%;
+      height: 300px;
+    }
+
     %main__text_filter {
       @apply relative;
       @extend %main__text_common;
       flex: $flex__text;
       transform: translateY(-10%);
+
+      @include mq(device-tablet-lg) {
+        @apply absolute top-0 left-0;
+      }
     }
 
     %main__group_tag {
       @apply relative;
       @apply flex flex-row justify-between;
       @include position_centerHeightRender();
-      flex: $flex__tag;
       height: 50%;
 
       background: rgba(255, 255, 255, 1);
@@ -90,6 +116,15 @@
       border-color: rgba(0, 0, 0, 1);
       border-width: 3.5px;
 
+      @include mq(device-pc) {
+        flex: $flex__tag;
+      }
+
+      @include mq(device-tablet-lg) {
+        top: 25%;
+        height: 80px;
+      }
+
       div {
         @apply relative top-0 left-0;
         @apply flex flex-col;
@@ -98,8 +133,16 @@
 
         padding-left: 1.5%;
 
-        //todo
-        // background-color: lightsalmon;
+        @include mq(device-tablet-lg) {
+          &:not(:nth-of-type(4)) {
+            @apply justify-around;
+          }
+
+          &:nth-of-type(4) {
+            top: 11.5%;
+          }
+          
+        }
 
         label {
           @apply relative top-0 left-0;
@@ -107,13 +150,20 @@
           font-weight: 600;
           padding-left: 27.5%;
 
+          @include mq(device-tablet-lg) {
+            @apply whitespace-nowrap;
+            font-size: 14.5px;
+
+            padding-left: 35%;
+          }
+
           input {
             @apply relative top-0 left-0;
             width: 0px;
             height: 0px;
           }
 
-          img {
+          span {
             @apply absolute top-0 left-0;
             height: 20px;
             width: 20px;
@@ -125,13 +175,40 @@
             border-radius: 2.5px;
             border-color: rgba(0, 0, 0, 1);
             
-            //todo
-            background-color: white;
+            background: rgba(255, 255, 255, 1);
+
+            @include mq(device-tablet-lg) {
+              height: 20px;
+              width: 20px;
+            }
           }
 
-          input:checked ~ img {
-            //todo
-            background-color: lightgreen;
+          input:checked ~ span {
+            width: 20px;
+            height: 20px;
+
+            @apply border-solid border-transparent;
+            background: rgba(68, 189, 219,1);
+
+            @include mq(device-tablet-lg) {
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          input:checked ~ span::after {
+            @apply absolute top-0 left-0;
+            left: 50%;
+            top: 40%;
+            width: 6px;
+            height: 10px;
+            transform: translate(-50%,-50%) rotate(45deg) scale(120%);
+
+            border: solid;
+            border-width: 0 2px 2px 0;
+            border-color: rgba(255, 255, 255, 1);
+            
+            content: "";
           }
         }
       }
@@ -141,63 +218,116 @@
     %main__group_day {
       @apply relative;
       @apply flex flex-row;
-      flex: $flex__day;
 
       //* 比率
-      $flex_span: 40%;
-      $flex_div: 60%;
+      $width_span: 40%;
+      $width_span_tablet_lg: 30%;
+      $width_div: 60%;
+      $width_div_tablet_lg: 70%;
 
-      span {
-        @apply absolute;
-        @extend %main__text_common;
-        transform: translateY(-10%);
-        padding-left: 0px;
+      @include mq(device-pc) {
+        flex: $flex__day;
+      }
 
-        width: $flex_span;
+      @include mq(device-tablet-lg) {
+        @apply flex flex-row;
+        top: 95px;
+        left: 0px;
+        height: 100px;
+        width: 100%;
+      }
+
+      div {
+        @apply absolute top-0 left-0;
+        @apply flex flex-col justify-normal;
         height: 100%;
-      }
+        width: 100%;
 
-      input {
-        @apply absolute;
-        @include position_centerHeightRender();
-        left: $flex_span;
-        width: $flex_div;
-        height: 40%;
+        @include mq(device-pc) {
+          &:last-of-type {
+            left: 100%;
+          }
+        }
 
-        background: rgba(255, 255, 255, 1);
+        @include mq(device-tablet-lg) {
+          @apply relative top-0 left-0;
+          width: 30%;
+        }
 
-        border: solid;
-        border-radius: 2.5px;
-        border-color: rgba(0, 0, 0, 1);
+        span {
+          @apply absolute;
+          @extend %main__text_common;
+          transform: translateY(-10%);
+          padding-left: 0px;
+  
+          width: $width_span;
+          height: 100%;
+  
+          @include mq(device-tablet-lg) {
+            @apply relative top-0 left-0;
+            @apply whitespace-nowrap;
+            width: fit-content;
+            height: fit-content;
+            transform: translateY(-50%);
+          }
+        }
+  
+        input {
+          @apply absolute;
+          @include position_centerHeightRender();
+          left: $width_span;
+          width: $width_div;
+          height: 40%;
+  
+          background: rgba(255, 255, 255, 1);
+  
+          border: solid;
+          border-radius: 2.5px;
+          border-color: rgba(0, 0, 0, 1);
+  
+          padding-left: 5px;
+          text-align: center;
+          font-size: 16.5px;
+          font-weight: 600;
+  
+          @include mq(device-tablet-lg) {
+            @apply relative top-0 left-0;
+            margin-left: 75px;
+            width: 150px;
+            height: 50px;
+  
+            font-size: 14px;
+          }
+        }
+      } 
 
-        padding-left: 5px;
-        text-align: center;
-        font-size: 16.5px;
-        font-weight: 600;
-
-      }
     }
   }
 
   %main__group_winlose {
     @apply relative left-0;
+    @apply flex flex-row;
     margin-top: 2.5%;
     width: 100%;
     height: 200px;
-
-    @apply flex flex-row;
 
     $flex__winlose: 0.3;
     $flex__button: 0.45;
     $flex__reports: 0.25;
 
+    @include mq(device-tablet-lg) {
+      height: 300px;
+    }
+
     %winlose__text {
       @apply relative;
       @extend %main__text_common;
       transform: translateY(-50%);
-      
-      margin-left: 150px;
       height: fit-content;
+
+      @include mq(device-pc) {
+        margin-left: 150px;
+      }
     }
 
     %winlose__box {
