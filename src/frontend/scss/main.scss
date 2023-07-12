@@ -37,6 +37,20 @@
     // height: viewport_getHeight(150) !important;
   }
 
+  @include mq(device-ipad) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 35px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 200px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(150) !important;
+  }
+
 }
 
 //* common
@@ -92,6 +106,10 @@
       height: 300px;
     }
 
+    @include mq(device-ipad) {
+      height: 300px;
+    }
+
     %main__text_filter {
       @apply relative;
       @extend %main__text_common;
@@ -125,6 +143,12 @@
         height: 80px;
       }
 
+      @include mq(device-ipad) {
+        top: 42%;
+        height: 160px;
+        width: 85%;
+      }
+
       div {
         @apply relative top-0 left-0;
         @apply flex flex-col;
@@ -141,7 +165,17 @@
           &:nth-of-type(4) {
             top: 11.5%;
           }
-          
+        }
+
+        @include mq(device-ipad) {
+          &:not(:nth-of-type(4)) {
+            height: 50%;
+          }
+
+          &:nth-of-type(4) {
+            height: 50%;
+            top: 5.5%;
+          }
         }
 
         label {
@@ -316,7 +350,7 @@
     $flex__reports: 0.25;
 
     @include mq(device-tablet-lg) {
-      height: 300px;
+      height: 125px;
     }
 
     %winlose__text {
@@ -327,6 +361,10 @@
 
       @include mq(device-pc) {
         margin-left: 150px;
+      }
+
+      @include mq(device-tablet-lg) {
+        @apply absolute;  
       }
     }
 
@@ -411,6 +449,12 @@
       @apply flex flex-row justify-between;
       flex: $flex__reports;
 
+      @include mq(device-tablet-lg) {
+        @apply absolute;
+        left: 53%;
+        top: -60%;
+      }
+
       img {
         @apply relative top-0 left-0;
         width: 46px;
@@ -422,6 +466,11 @@
         margin-left: 10%;
         margin: {
           top: 2.5%;
+        }
+
+        @include mq(device-tablet-lg) {
+          top: -56px;
+          width: 56px;
         }
       }
 
@@ -453,7 +502,15 @@
     $flex__other: 0.17;
 
     margin-top: 2.5%;
-    margin-left: 23%;
+    
+    @include mq(device-pc) {
+      margin-left: 23%;
+    }
+
+    @include mq(device-tablet-lg) {
+      margin-top: 95px;
+      width: 100%;
+    }
 
     %battlecanvas_common {
       @apply relative top-0 left-0;
