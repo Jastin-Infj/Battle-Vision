@@ -1,5 +1,6 @@
 import React from "react";
 
+// css
 import '../../scss/_layerbase.scss';
 
 function Canvas(props) {

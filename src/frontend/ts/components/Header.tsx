@@ -3,6 +3,9 @@ import React from "react";
 import Messages from '../../json/Strings.json';
 import '../../scss/_layerbase.scss';
 
+//test
+import { MyContext } from "./Canvas";
+
 function Header() {
   return (
     <>

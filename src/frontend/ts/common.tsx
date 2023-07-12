@@ -41,7 +41,6 @@ export type ENV_WINDOW = 'pc' | 'tablet-lg' | 'ipad' | 'tablet' | 'phone';
 
 export function getENV_WINDOW(currentWindow:WINDOW_SCREEN):ENV_WINDOW {
   let env_window:ENV_WINDOW = null!;
-
   if(currentWindow.width > 1280) {
     env_window = 'pc';
   } else if(currentWindow.width > 834) {
@@ -51,7 +50,7 @@ export function getENV_WINDOW(currentWindow:WINDOW_SCREEN):ENV_WINDOW {
   } else if(currentWindow.width > 428) {
     env_window = 'tablet';
   } else {
-    env_window = 'ipad';
+    env_window = 'phone';
   }
 
   return env_window;

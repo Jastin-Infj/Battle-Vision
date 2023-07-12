@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
@@ -8,9 +8,13 @@ import '../src/frontend/scss/main.scss';
 import Canvas from "../src/frontend/ts/components/Canvas";
 import Header from "../src/frontend/ts/components/Header";
 import Footer from "../src/frontend/ts/components/Footer";
+// import { ENV_Window , COMMON_CURRENT_WINDOW_SIZE } from "../src/frontend/ts/components/updateComponent";
+
+// style JSX Main
+import Main__Tags from "../src/frontend/ts/contents/main__tags";
 
 // import
-import { ENV_WINDOW, WINDOW_SCREEN, getCurrentWindowScreenSize, getENV_WINDOW } from "../src/frontend/ts/common";
+import { ENV_Window } from "../src/frontend/ts/components/updateComponent";
 
 function Main() {
   //todo
@@ -18,15 +22,6 @@ function Main() {
 
   const MAX_PATRY_MEMBERS = 6;
   const CREATE_PATRY = ['me','target'];
-
-  const [CURRENT_WINDOW_SIZE,setCurrentWindow] = useState<WINDOW_SCREEN>({"width":0,"height":0});
-  const [ENV_WINDOW,setEnvWindow] = useState<ENV_WINDOW>(null!);
-
-  useEffect(() => {
-    //* 一度だけWindowの領域を取得
-    setCurrentWindow(getCurrentWindowScreenSize(window));
-    setEnvWindow(getENV_WINDOW(CURRENT_WINDOW_SIZE));
-  },[]);
 
   // render
   const JSX_PATRYS:object = {
@@ -135,57 +130,6 @@ function Main() {
 
   //配置の拡張性があまりないため for は利用しない
 
-  //* タグスタイルの定義
-  let render_tagStyles = {
-    "pc": [
-      [0,7],
-      [1,8],
-      [2,9],
-      [3],
-      [4,10],
-      [5,11],
-      [6,12]
-    ],
-    "ipad": [
-
-    ]
-  };
-
-  const [JSX_TAGS,setJSX_TAGS] = useState({
-    "pc": [],
-    "ipad": []
-  });
-
-  {
-    let generate_div = {
-      "pc": [],
-      "ipad": []
-    };
-    // console.log(Object.keys(render_tagStyles));
-    Object.keys(render_tagStyles).forEach((key) => {
-      render_tagStyles[key].forEach((vals) => {
-        let e_checkbox = vals.map((val) => {
-          return (
-            <label key={val}>
-              <input type="checkbox" />
-              <span />
-              {val}
-            </label>
-          );
-        });
-
-        let e_div = (
-          <div>
-            {e_checkbox}
-          </div>
-        );
-
-        generate_div[key].push(e_div);
-      })
-    });
-    // setJSX_TAGS(generate_div);
-  }
-
 
   return (
     <>
@@ -194,37 +138,9 @@ function Main() {
         <main>
           <div className="main__filter">
             <span className="main__text_filter">{Messages.Page.Main.Text.Filter}</span>
-            <div className="main__group_tag">
-              <h1>{CURRENT_WINDOW_SIZE["width"]}</h1>
-              {/* {JSX_TAGS[ENV_WINDOW]} */}
-              {/* <div>
-                {JSX_LISTS[0]}
-                {JSX_LISTS[7]}
-              </div>
-              <div>
-                {JSX_LISTS[1]}
-                {JSX_LISTS[8]}
-              </div>
-              <div>
-                {JSX_LISTS[2]}
-                {JSX_LISTS[9]}
-              </div>
-              <div>
-                {JSX_LISTS[3]}
-              </div>
-              <div>
-                {JSX_LISTS[4]}
-                {JSX_LISTS[10]}
-              </div>
-              <div>
-                {JSX_LISTS[5]}
-                {JSX_LISTS[11]}
-              </div>
-              <div>
-                {JSX_LISTS[6]}
-                {JSX_LISTS[12]}
-              </div> */}
-            </div>
+            <ENV_Window>
+              <Main__Tags />
+            </ENV_Window>
             <div className="main__group_day">
               <div>
                 <span>{Messages.Page.Main.Text.Register}</span>
