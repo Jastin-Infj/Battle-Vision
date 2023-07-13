@@ -80,7 +80,7 @@ $screenBodyHeight: $screenHeight * $screen_Body;
 
 //* ブラウザの最大表示範囲
 // 範囲外が多少あるためリサイズ
-$screen_Max_Width: $screenWidth * 0.9914;
+$screen_Max_Width: $screenWidth * 1.0;
 $screen_Max_Height: $screenHeight * 1.0;
 
 @function viewport_getHeight($num) {

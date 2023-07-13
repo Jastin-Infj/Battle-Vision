@@ -179,6 +179,7 @@ function Main() {
           </div>
           <div className="main__group_battlecanvas">
             <div className="battlecanvas__me">
+              <span className="battlecanvas__text_patryname">{Messages.Page.Main.Text.VS_Me}</span>
               <img className="battlecanvas__img_history" />
               <div className="battlecanvas__select">
                 <img />
@@ -203,6 +204,7 @@ function Main() {
               </div>
             </div>
             <div className="battlecanvas__target">
+              <span className="battlecanvas__text_patryname">{Messages.Page.Main.Text.VS_Target}</span>
               <img className="battlecanvas__img_history" />
               <div className="battlecanvas__patry">
                 {JSX_PATRYS["target"][0]}

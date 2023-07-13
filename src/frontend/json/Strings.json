@@ -298,7 +298,9 @@
         "Lose": "Lose",
         "Report": "対戦相手を記録する",
         "Reset": "対戦状況をリセット",
-        "Vs": "VS"
+        "Vs": "VS",
+        "VS_Me": "自分のチーム編成",
+        "VS_Target": "相手のチーム編成"
       },
       "Checkbox": {
         "Tags": [

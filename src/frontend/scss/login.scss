@@ -32,7 +32,7 @@
   }
 
   @include mq(device-phone) {
-    grid-template: 
+    grid-template:
     "header header header" $header__height_normal
     "...... ...... ......" 0.5fr
     "main   main   main  " 3fr

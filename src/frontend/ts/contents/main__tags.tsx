@@ -86,10 +86,12 @@ function Main__Tags() {
     Object.keys(generate_div).forEach((key) => {
       switch(key) {
         case 'tablet-lg':
+          generate_div[key] = generate_div['pc'];
+          break;
         case 'tablet':
         case 'phone':
-          generate_div[key] = generate_div['pc'];
-        break;
+          generate_div[key] = generate_div['ipad'];
+          break;
       }
     });
 

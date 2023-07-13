@@ -457,6 +457,16 @@ $footer__height_phone: 420px;
           width: 100%;
           height: 100%;
 
+          @include mq(device-ipad) {
+            width: 100px;
+            height: 100px;
+          }
+
+          @include mq(device-tablet) {
+            width: 100%;
+            height: 100%;
+          }
+
           &.uploaded {
             @apply border-solid;
             border-radius: 50%;
@@ -543,6 +553,9 @@ $footer__height_phone: 420px;
       @include mq(device-phone) {
         width: 100%;
         border-radius: 0px;
+
+        //todo
+        // display: none;
       }
 
       ul {
@@ -600,6 +613,13 @@ $footer__height_phone: 420px;
 
       margin-left: 20px;
       margin-top: 20px;
+
+      @include mq(device-phone) {
+        margin: {
+          left: 1%;
+          right: 1%;
+        }
+      }
 
       span {
         @extend %footer__font_common_style;
