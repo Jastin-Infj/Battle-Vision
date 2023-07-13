@@ -1,4 +1,4 @@
-import React , { useContext, useEffect, useState } from "react";
+import React , { useContext, useEffect, useReducer, useState } from "react";
 
 // style json
 import Messages from '../../json/Strings.json';
@@ -6,9 +6,44 @@ import Messages from '../../json/Strings.json';
 // use Context
 import { CONTEXT_ENV_WINDOW } from "../components/updateComponent";
 
+//* Reducer
+
+type State_Checkbox = {
+  list: Array<boolean>;
+};
+
+type Action = {
+  payload: {
+    target: EventTarget
+    index: number;
+  }
+};
+
+function reducer(state: State_Checkbox , action: Action): State_Checkbox {
+  let isHasKey = 'checked';
+
+  // input 属性
+  if(action.payload.target[isHasKey] !== undefined) {
+    state.list[action.payload.index] = action.payload.target[isHasKey];
+  }
+
+  return state;
+}
+
 function Main__Tags() {
 
+  //* 初期化処理
   const ENV_WINDOW = useContext(CONTEXT_ENV_WINDOW);
+  const MAX_TAG = 13;
+  const CHECKED_INIT = false;
+
+  let init_state:State_Checkbox = {
+    list: []
+  };
+  for(let i = 0; i < MAX_TAG;++i) {
+    init_state.list.push(CHECKED_INIT);
+  }
+  const [state,dispatch] = useReducer(reducer,init_state);
 
   //* タグスタイルの定義
   let render_tagStyles = {
@@ -43,12 +78,22 @@ function Main__Tags() {
   useEffect(() => {
     Object.keys(render_tagStyles).forEach((key) => {
       render_tagStyles[key].forEach((vals , index) => {
-        
         let e_checkbox = vals.map((val) => {
 
+          let e_input = state.list[val] ? <input type="checkbox" checked/>  : <input type="checkbox"/>; 
+
           let e_label = (
-            <label key={val}>
-              <input type="checkbox" />
+            <label key={val} onClick={(e) => {
+              let sendData:Action = {
+                payload: {
+                  target: e.target,
+                  index: val
+                }
+              };
+
+              dispatch(sendData);
+            }}>
+              {e_input}
               <span />
               {Messages.Page.Main.Checkbox.Tags[val]}
             </label>
