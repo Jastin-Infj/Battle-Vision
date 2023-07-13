@@ -1,10 +1,19 @@
 @use 'import' as *;
 
 %layer-canvas_changeStyle {
-  //? change
-
+  //change
   @include mq(device-pc) {
-    grid-template: initial !important;
+    grid-template:
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 175px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 300px
+      "footer footer footer footer footer" $footer__height_normal
+      "...    ...... ...... ...... ...   " 0px
+      / 0.2fr 1fr 1fr 1fr 0.6fr !important;
+
+    height: viewport_getHeight(200) !important;
   }
 
   @include mq(device-tablet-lg) {
@@ -28,6 +37,9 @@
 
   width: 100%;
   height: 100%;
+
+  //todo
+  background-color: lightcoral;
 }
 
 div.layer-canvas {

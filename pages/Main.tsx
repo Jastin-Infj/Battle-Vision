@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
@@ -8,7 +8,6 @@ import '../src/frontend/scss/main.scss';
 import Canvas from "../src/frontend/ts/components/Canvas";
 import Header from "../src/frontend/ts/components/Header";
 import Footer from "../src/frontend/ts/components/Footer";
-// import { ENV_Window , COMMON_CURRENT_WINDOW_SIZE } from "../src/frontend/ts/components/updateComponent";
 
 // style JSX Main
 import Main__Tags from "../src/frontend/ts/contents/main__tags";
@@ -17,9 +16,6 @@ import Main__Tags from "../src/frontend/ts/contents/main__tags";
 import { ENV_Window } from "../src/frontend/ts/components/updateComponent";
 
 function Main() {
-  //todo
-  console.log("Main");
-
   const MAX_PATRY_MEMBERS = 6;
   const CREATE_PATRY = ['me','target'];
 

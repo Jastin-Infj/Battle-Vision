@@ -1,13 +1,6 @@
-@use '../css/globals.css';
-@use 'base' as *;
-@use 'mixin' as *;
-@use 'style' as *;
-@use 'layerbase' as *;
+@use 'import' as *;
 
 %layer-canvas_changeStyle {
-  //todo
-  // background: red;
-
   //change
   @include mq(device-pc) {
     grid-template: 
@@ -113,9 +106,6 @@
     $flex__text: 0.1;
     $flex__tag: 0.6;
     $flex__day: 0.15;
-
-    //todo
-    // background-color: red;
 
     @include mq(device-tablet-lg) {
       @apply flex-col;
@@ -651,8 +641,6 @@
     @apply flex flex-row;
     width: 75%;
     height: 675px;
-    //todo
-    // background-color: black;
 
     $flex__me: calc((1 - 0.17) / 2);
     $flex__other: 0.17;
@@ -827,7 +815,6 @@
               background: rgba(103, 227, 153, 1);
             }
             
-            //todo
             @include mq(device-ipad) {
               top: 50%;
               transform: translateY(-50%) scale(90%) !important;

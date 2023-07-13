@@ -1,8 +1,4 @@
-@use '../css/globals.css';
-@use 'base' as *;
-@use 'mixin' as *;
-@use 'style' as *;
-@use 'layerbase' as *;
+@use 'import' as *;
 @use '../scss/template/textonly' as *;
 
 %layer-canvas_changeStyle {
