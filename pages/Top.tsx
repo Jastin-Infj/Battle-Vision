@@ -21,10 +21,10 @@ import image from '../src/frontend/img/topimage.jpg';
 
 function Top() {
   const [style_titlelogo,SetStyleTitlelogo] = useState<CustomJSX.cssStyle>();
-  const [style_fotter_text,SetStyleFotterText] = useState<CustomJSX.cssStyle>();
-  const [style_fotter_copyright,SetStyleFotterCopyRight] = useState<CustomJSX.cssStyle>();
-  const [style_fotter_accounts,SetStyleFotterAccounts] = useState<CustomJSX.cssStyle>();
-  const [style_fotter_links,SetStyleFotterLinks] = useState<CustomJSX.cssStyle>();
+  const [,SetStyleFotterText] = useState<CustomJSX.cssStyle>();
+  const [,SetStyleFotterCopyRight] = useState<CustomJSX.cssStyle>();
+  const [,SetStyleFotterAccounts] = useState<CustomJSX.cssStyle>();
+  const [,SetStyleFotterLinks] = useState<CustomJSX.cssStyle>();
 
   useEffect(() => {
     const browser = new BrowserDetector(window.navigator.userAgent);

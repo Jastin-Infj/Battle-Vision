@@ -38,3 +38,42 @@
     color: rgba(59, 58, 109, 1);
   }
 }
+
+//----------------------------------------------------
+//-----------------  other  -------------------------
+//----------------------------------------------------
+
+%not_copyline {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+%text_stroke_style_common {
+  @apply absolute top-0 left-0;
+  width: fit-content;
+  height: fit-content;
+
+  transform: translate(-50%,-50%);
+}
+
+%text_stroke_style_main {
+  background-color: transparent;
+  z-index: 1;
+
+  // add
+
+  // color: white;
+}
+
+%text_stroke_style_back {
+  z-index: 0;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+
+  // add
+
+  // color: red;
+  // -webkit-text-stroke-width: 4px;
+}

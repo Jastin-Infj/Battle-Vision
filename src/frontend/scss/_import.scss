@@ -1,6 +1,7 @@
 @use '../css/globals.css';
 
 @forward 'base';
+@forward 'variables';
 @forward 'mixin';
 @forward 'style';
 @forward 'layerbase';

@@ -15,16 +15,16 @@ module.exports = {
     //     exclude: /node_modules/i
     //   }
     // ],
-    [
-      'postcss-pxtorem',
-      {
-        rootValue: 16,
-        unitPrecision: 5,
-        propList: ['font*','line*', 'letter*'],
-        mediaQuery: false,
-        minPixelValue: 0,
-        exclude: /node_modules/i
-      }
-    ]
+    // [
+    //   'postcss-pxtorem',
+    //   {
+    //     rootValue: 16,
+    //     unitPrecision: 5,
+    //     propList: ['font*','line*', 'letter*'],
+    //     mediaQuery: false,
+    //     minPixelValue: 0,
+    //     exclude: /node_modules/i
+    //   }
+    // ]
   ]
 };

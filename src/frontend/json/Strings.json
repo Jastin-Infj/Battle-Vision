@@ -319,6 +319,30 @@
           "カスタム9"
         ]
       }
+    },
+    "Adjustment": {
+      "Text": {
+        "Required": "必須",
+        "Help": "?",
+        "Gender": {
+          "Man": "♂",
+          "Woman": "♀",
+          "None": "-"
+        },
+        "Name": "ポケモン",
+        "TeraType": "テラスタル",
+        "Ability": "とくせい",
+        "Item": "もちもの",
+        "Nature": "せいかく",
+        "CreateID": "作成ID:"
+      },
+      "PlaceHolder": {
+        "Name": "ポケモンを検索",
+        "TeraType": "テラスタルを検索",
+        "Ability": "とくせいを検索",
+        "Item": "もちものを検索",
+        "Nature": "せいかくを検索"
+      }
     }
   },
   "Server": {
