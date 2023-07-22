@@ -36,7 +36,15 @@ function Adjustment() {
     Ability: null,
     Item: null,
     Nature: null,
-    CreateID: null
+    CreateID: null,
+    Param: {
+      H: null,
+      A: null,
+      B: null,
+      C: null,
+      D: null,
+      S: null
+    }
   };
 
   //* コンテンツごとに異なる場所はここで定義
@@ -95,6 +103,11 @@ function Adjustment() {
   //* スタイル適用
   Object.keys(jsx_style).forEach((key) => {
 
+    // 無関係のキーはスキップ
+    if(key == "Param") {
+      return;
+    }
+
     //* デフォルト値の設定
     if(jsx_list[key].option.img_search === undefined) {
       jsx_list[key].option.img_search = true;
@@ -152,6 +165,95 @@ function Adjustment() {
     );
 
     jsx_style[key] = jsx_common;
+
+    //* パラメータ
+
+    Object.keys(jsx_style["Param"]).forEach((key) => {
+
+      let jsx:React.JSX.Element = null!;
+
+      let jsx_common:React.JSX.Element = (
+        <>
+          <input type="number" maxLength={3}></input>
+          <input type="number" maxLength={3}></input>
+          <input type="number" maxLength={3}></input>
+        </>
+      );
+
+      switch (key) {
+        case 'H':
+          jsx = (
+            <>
+              <div className="param__paramator">
+                <span>{Messages.Page.Adjustment.Text.Param__H}</span>
+                <input type="number" readOnly placeholder="80"></input>
+                {jsx_common}
+              </div>
+            </>
+          );
+          break;
+        case 'A':
+          jsx = (
+            <>
+              <div className="param__paramator">
+                <span>{Messages.Page.Adjustment.Text.Param__A}</span>
+                <input type="number" readOnly placeholder="40"></input>
+                {jsx_common}
+              </div>
+            </>
+          )
+          break;
+        case 'B':
+          jsx = (
+            <>
+              <div className="param__paramator">
+                <span>{Messages.Page.Adjustment.Text.Param__B}</span>
+                <input type="number" readOnly placeholder="40"></input>
+                {jsx_common}
+              </div>
+            </>
+          )
+          break;
+        case 'C':
+          jsx = (
+            <>
+              <div className="param__paramator">
+                <span>{Messages.Page.Adjustment.Text.Param__C}</span>
+                <input type="number" readOnly placeholder="40"></input>
+                {jsx_common}
+              </div>
+            </>
+          )
+          break;
+        case 'D':
+          jsx = (
+            <>
+              <div className="param__paramator">
+                <span>{Messages.Page.Adjustment.Text.Param__D}</span>
+                <input type="number" readOnly placeholder="40"></input>
+                {jsx_common}
+              </div>
+            </>
+          )
+          break;
+        case 'S':
+          jsx = (
+            <>
+              <div className="param__paramator">
+                <span>{Messages.Page.Adjustment.Text.Param__S}</span>
+                <input type="number" readOnly placeholder="40"></input>
+                {jsx_common}
+              </div>
+            </>
+          )
+          break;
+      }
+
+      // スタイルを追加
+      jsx_style["Param"][key] = jsx;
+
+    });
+
   });
 
   return (
@@ -169,10 +271,26 @@ function Adjustment() {
               {jsx_style["CreateID"]}
             </div>
             <div className="create__param">
-              
+              <div className="param__rows">
+                <span>{Messages.Page.Adjustment.Text.Base}</span>
+                <span>{Messages.Page.Adjustment.Text.IV}</span>
+                <span>{Messages.Page.Adjustment.Text.EV}</span>
+                <span>{Messages.Page.Adjustment.Text.Param}</span>
+              </div>
+              {jsx_style["Param"]["H"]}
+              {jsx_style["Param"]["A"]}
+              {jsx_style["Param"]["B"]}
+              {jsx_style["Param"]["C"]}
+              {jsx_style["Param"]["D"]}
+              {jsx_style["Param"]["S"]}
+              <div className="param__total">
+                <span>{Messages.Page.Adjustment.Text.Param__Total}</span>
+                <input type="number" readOnly placeholder="40"></input>
+                <input type="number"></input>
+              </div>
             </div>
             <div className="create__move">
-
+              
             </div>
           </div>
           <div className="main__detail">

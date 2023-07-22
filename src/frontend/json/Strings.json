@@ -334,7 +334,22 @@
         "Ability": "とくせい",
         "Item": "もちもの",
         "Nature": "せいかく",
-        "CreateID": "作成ID:"
+        "CreateID": "作成ID:",
+        "Base": "種族",
+        "IV": "個体",
+        "EV": "努力",
+        "Param": "実数",
+        "Param__H": "HP:",
+        "Param__A": "攻撃:",
+        "Param__B": "防御:",
+        "Param__C": "特攻:",
+        "Param__D": "特防:",
+        "Param__S": "素早さ:",
+        "Param__Total": "合計:",
+        "Days": {
+          "Start": "開始日",
+          "Update": "更新日"
+        }
       },
       "PlaceHolder": {
         "Name": "ポケモンを検索",

@@ -77,3 +77,11 @@
   // color: red;
   // -webkit-text-stroke-width: 4px;
 }
+
+%input_disabled_spin {
+  &[type=number]::-webkit-inner-spin-button, 
+  &[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+}

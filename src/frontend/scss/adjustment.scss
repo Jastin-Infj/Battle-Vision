@@ -11,7 +11,7 @@
       "...    ...... ...... ...... ...   " 300px
       "footer footer footer footer footer" $footer__height_normal
       "...    ...... ...... ...... ...   " 0px
-      / 0.4fr 1fr 1fr 1fr 0.4fr !important;
+      / 0.3fr 1fr 1fr 1fr 0.3fr !important;
 
     height: viewport_getHeight(200) !important;
   }
@@ -47,16 +47,10 @@
   font-size: 21px;
   font-weight: 800;
   font-style: bold;
-  color: $color-font-help;
   
   -webkit-text-stroke: {
     width: 0.25px;
-    color: $color-font-help;
   }
-}
-
-%common_text_stroke {
-  
 }
 
 %common_placeholder_normal {
@@ -64,10 +58,14 @@
   font-size: 18px;
   font-weight: 600;
 
-  color: $color-font-basic-placeholder;
+  color: $color-font-basic;
 
   &:focus {
     color: $color-font-basic;
+  }
+
+  &::placeholder {
+    color: $color-font-basic-placeholder;
   }
 }
 
@@ -94,9 +92,14 @@
     //todo
     background-color: lightblue;
 
+    $flex__basic: 0.3;
+    $flex__param: 0.45;
+    $flex__move: 0.25;
+
     %create__basic {
       @apply relative top-0 left-0;
-      flex: 1;
+      height: 100%;
+      flex: $flex__basic;
       
       div {
         @apply relative top-0 left-0;
@@ -135,6 +138,12 @@
               left: 47.5%;
               top: 45%;
               transform: translate(-50%,-50%);
+
+              color: $color-font-help;
+
+              -webkit-text-stroke: {
+                color: $color-font-help;
+              }
             }
           }
 
@@ -259,6 +268,7 @@
               @extend %not_copyline;
               //change
               font-size: 24px;
+              color: $color-background-basic;
             }
 
             &.basic__gender_man {
@@ -315,16 +325,142 @@
 
     %create__param {
       @apply relative top-0 left-0;
-      flex: 1;
       //todo
       // background-color: blue;
+      flex: $flex__param;
+
+      left: 75px;
+      top: -50px;
+
+      $width_children: 600px;
+
+      div.param__rows {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        width: $width_children;
+
+        span {
+          @apply relative top-0 left-0;
+          @extend %common_text_normal;
+
+          transform: translateX(-50%);
+          flex: 1;
+          color: $color-font-basic;
+        }
+
+        span:nth-of-type(1) {
+          left: 29.5%;
+        }
+
+        span:nth-of-type(2) {
+          left: 26.5%;
+        }
+
+        span:nth-of-type(3) {
+          left: 23.5%;
+        }
+
+        span:nth-of-type(4) {
+          left: 21%;
+        }
+      }
+
+      //* 共通
+      %wapper__span {
+        @apply relative top-0 left-0;
+        @extend %common_text_sm;
+        transform: translate(-50%,-50%);
+        top: 25px;
+        left: 10px;
+        color: $color-font-basic;
+        width: 50px;
+        text-align: left;
+      }
+
+      %wapper__input {
+        @apply relative top-0 left-0;
+        @extend %input_disabled_spin;
+        width: 125px;
+        height: 50px;
+
+        border-width: 3px;
+        border-radius: 4px;
+        border-color: $color-bordre-param-focus;
+
+        @extend %common_placeholder_normal;
+        font-size: 26px;
+        text-align: right;
+        padding-right: 10px;
+        
+        &:focus {
+          outline: none;
+        }
+      }
+
+      %wapper_input_placeholder {
+        border-color: $color-border-param;
+      }
+
+      $margin__top: 30px;
+
+      div.param__paramator {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        @apply justify-around;
+
+        width: $width_children;
+        margin-top: $margin__top;
+
+        span {
+          @extend %wapper__span;
+        }
+
+        input {
+          @extend %wapper__input;
+        }
+
+        input:nth-of-type(1) {
+          @extend %wapper_input_placeholder;
+        }
+      }
+      
+      //* total
+      div.param__total {
+        @apply relative top-0 left-0;
+        width: $width_children;
+        margin-top: $margin__top;
+
+        span {
+          @apply relative top-0 left-0;
+          @extend %wapper__span;
+          height: fit-content;
+          left: -11.5px;
+        }
+
+        input {
+          @apply relative top-0 left-0;
+          @extend %wapper__input;
+        }
+
+        input:nth-of-type(1) {
+          @extend %wapper_input_placeholder;
+          margin-left: 17.5px;
+        }
+
+        input:nth-of-type(2) {
+          margin-left: 145px;
+        }
+        
+      }
+
     }
 
     %create__move {
       @apply relative top-0 left-0;
-      flex: 1;
+      flex: $flex__move;
+      
       //todo
-      // background-color: green;
+      background-color: green;
     }
   }
 
