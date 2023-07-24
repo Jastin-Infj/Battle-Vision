@@ -550,6 +550,9 @@ $footer__height_phone: 420px;
 
       z-index: var(--z-header__textbox_search_img);
 
+      //todo
+      display: none;
+
       @include mq(device-phone) {
         width: 100%;
         border-radius: 0px;

@@ -11,6 +11,7 @@ import Footer from "../src/frontend/ts/components/Footer";
 
 // import
 import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
+import { type } from "os";
 
 function Adjustment() {
 
@@ -44,7 +45,15 @@ function Adjustment() {
       C: null,
       D: null,
       S: null
-    }
+    },
+    Move: {
+      1: null,
+      2: null,
+      3: null,
+      4: null
+    },
+    Tags: {},
+    Buttons: {}
   };
 
   //* コンテンツごとに異なる場所はここで定義
@@ -101,10 +110,25 @@ function Adjustment() {
   };
 
   //* スタイル適用
-  Object.keys(jsx_style).forEach((key) => {
+  Object.keys(jsx_style).forEach((key:string) => {
 
-    // 無関係のキーはスキップ
-    if(key == "Param") {
+    let g_flag = true;
+    //* 関係ない JSXスタイルは 何も処理をしない
+    switch (key) {
+      case 'Name':
+      case 'TeraType':
+      case 'Ability':
+      case 'Item':
+      case 'Nature':
+      case 'CreateID':
+        break;
+      default:
+        g_flag = false;
+        break;
+    }
+
+    // if return にしないと ts 2322が発生する
+    if(!g_flag) {
       return;
     }
 
@@ -146,7 +170,7 @@ function Adjustment() {
       <>
         <div>
           <div className="create__basic_text">
-            <div className="basic__text_help">
+            <div className="component_text_help">
               <span>{Messages.Page.Adjustment.Text.Help}</span>
             </div>
             <span className="basic__text_name">
@@ -165,95 +189,163 @@ function Adjustment() {
     );
 
     jsx_style[key] = jsx_common;
+  });
 
-    //* パラメータ
+  //* パラメータ
+  Object.keys(jsx_style["Param"]).forEach((key) => {
+    let jsx:React.JSX.Element = null!;
+    let jsx_common:React.JSX.Element = (
+      <>
+        <input type="number" maxLength={3}></input>
+        <input type="number" maxLength={3}></input>
+        <input type="number" maxLength={3}></input>
+      </>
+    );
+    switch (key) {
+      case 'H':
+        jsx = (
+          <>
+            <div className="param__paramator">
+              <span>{Messages.Page.Adjustment.Text.Param__H}</span>
+              <input type="number" readOnly placeholder="80"></input>
+              {jsx_common}
+            </div>
+          </>
+        );
+        break;
+      case 'A':
+        jsx = (
+          <>
+            <div className="param__paramator">
+              <span>{Messages.Page.Adjustment.Text.Param__A}</span>
+              <input type="number" readOnly placeholder="40"></input>
+              {jsx_common}
+            </div>
+          </>
+        )
+        break;
+      case 'B':
+        jsx = (
+          <>
+            <div className="param__paramator">
+              <span>{Messages.Page.Adjustment.Text.Param__B}</span>
+              <input type="number" readOnly placeholder="40"></input>
+              {jsx_common}
+            </div>
+          </>
+        )
+        break;
+      case 'C':
+        jsx = (
+          <>
+            <div className="param__paramator">
+              <span>{Messages.Page.Adjustment.Text.Param__C}</span>
+              <input type="number" readOnly placeholder="40"></input>
+              {jsx_common}
+            </div>
+          </>
+        )
+        break;
+      case 'D':
+        jsx = (
+          <>
+            <div className="param__paramator">
+              <span>{Messages.Page.Adjustment.Text.Param__D}</span>
+              <input type="number" readOnly placeholder="40"></input>
+              {jsx_common}
+            </div>
+          </>
+        )
+        break;
+      case 'S':
+        jsx = (
+          <>
+            <div className="param__paramator">
+              <span>{Messages.Page.Adjustment.Text.Param__S}</span>
+              <input type="number" readOnly placeholder="40"></input>
+              {jsx_common}
+            </div>
+          </>
+        )
+        break;
+    }
+    // スタイルを追加
+    jsx_style["Param"][key] = jsx;
 
-    Object.keys(jsx_style["Param"]).forEach((key) => {
+  });
 
-      let jsx:React.JSX.Element = null!;
+  //* わざ
+  Object.keys(jsx_style["Move"]).forEach((key) => {
+    let jsx:React.JSX.Element = null!;
 
-      let jsx_common:React.JSX.Element = (
-        <>
-          <input type="number" maxLength={3}></input>
-          <input type="number" maxLength={3}></input>
-          <input type="number" maxLength={3}></input>
-        </>
-      );
+    let jsx_span:React.JSX.Element = null!;
 
-      switch (key) {
-        case 'H':
-          jsx = (
-            <>
-              <div className="param__paramator">
-                <span>{Messages.Page.Adjustment.Text.Param__H}</span>
-                <input type="number" readOnly placeholder="80"></input>
-                {jsx_common}
-              </div>
-            </>
-          );
-          break;
-        case 'A':
-          jsx = (
-            <>
-              <div className="param__paramator">
-                <span>{Messages.Page.Adjustment.Text.Param__A}</span>
-                <input type="number" readOnly placeholder="40"></input>
-                {jsx_common}
-              </div>
-            </>
-          )
-          break;
-        case 'B':
-          jsx = (
-            <>
-              <div className="param__paramator">
-                <span>{Messages.Page.Adjustment.Text.Param__B}</span>
-                <input type="number" readOnly placeholder="40"></input>
-                {jsx_common}
-              </div>
-            </>
-          )
-          break;
-        case 'C':
-          jsx = (
-            <>
-              <div className="param__paramator">
-                <span>{Messages.Page.Adjustment.Text.Param__C}</span>
-                <input type="number" readOnly placeholder="40"></input>
-                {jsx_common}
-              </div>
-            </>
-          )
-          break;
-        case 'D':
-          jsx = (
-            <>
-              <div className="param__paramator">
-                <span>{Messages.Page.Adjustment.Text.Param__D}</span>
-                <input type="number" readOnly placeholder="40"></input>
-                {jsx_common}
-              </div>
-            </>
-          )
-          break;
-        case 'S':
-          jsx = (
-            <>
-              <div className="param__paramator">
-                <span>{Messages.Page.Adjustment.Text.Param__S}</span>
-                <input type="number" readOnly placeholder="40"></input>
-                {jsx_common}
-              </div>
-            </>
-          )
-          break;
-      }
+    switch (key) {
+      case '1':
+        jsx_span = <span>{Messages.Page.Adjustment.Text.Moves.Move1}</span>;
+        break;
+      case '2':
+        jsx_span = <span>{Messages.Page.Adjustment.Text.Moves.Move2}</span>;
+        break;
+      case '3':
+        jsx_span = <span>{Messages.Page.Adjustment.Text.Moves.Move3}</span>;
+        break;
+      case '4':
+        jsx_span = <span>{Messages.Page.Adjustment.Text.Moves.Move4}</span>;
+        break;
+    }
 
-      // スタイルを追加
-      jsx_style["Param"][key] = jsx;
+    jsx = (
+      <>
+        <div className="move__skill">
+          <div className="component_text_help">
+            <span>{Messages.Page.Adjustment.Text.Help}</span>
+          </div>
+          {jsx_span}
+          <div className="move__skill_box">
+            <img />
+            <input placeholder={Messages.Page.Adjustment.PlaceHolder.Move} />
+            <img />
+          </div>
+        </div>
+      </>
+    );
+    // スタイルを適用
+    jsx_style["Move"][key] = jsx;
 
-    });
+  });
 
+  //* タグ
+  Object.keys(Messages.Page.Adjustment.Checkbox).forEach((index) => {
+    let jsx:React.JSX.Element = null!;
+
+    jsx = (
+      <>
+        <label>
+          <input type="checkbox" />
+          <span />
+          {Messages.Page.Adjustment.Checkbox[index]}
+        </label>
+    </>
+    );
+
+    jsx_style["Tags"][index] = jsx;
+  });
+
+  //* ボタン
+  Object.keys(Messages.Page.Adjustment.Button).forEach((key) => {
+    let jsx:React.JSX.Element = null!;
+
+    jsx = (
+      <button>
+        <div className="stroke-text">
+          <span className="main">{Messages.Page.Adjustment.Button[key]}</span>
+          <span className="back">{Messages.Page.Adjustment.Button[key]}</span>
+        </div>
+      </button>
+    );
+
+    jsx_style["Buttons"][key] = jsx;
   });
 
   return (
@@ -272,10 +364,24 @@ function Adjustment() {
             </div>
             <div className="create__param">
               <div className="param__rows">
-                <span>{Messages.Page.Adjustment.Text.Base}</span>
-                <span>{Messages.Page.Adjustment.Text.IV}</span>
-                <span>{Messages.Page.Adjustment.Text.EV}</span>
-                <span>{Messages.Page.Adjustment.Text.Param}</span>
+                <div className="param__rowText">
+                  <span>{Messages.Page.Adjustment.Text.Base}</span>
+                </div>
+                <div className="param__rowText">
+                  <span>{Messages.Page.Adjustment.Text.IV}</span>
+                  <div className="component_text_help">
+                    <span>{Messages.Page.Adjustment.Text.Help}</span>
+                  </div>
+                </div>
+                <div className="param__rowText">
+                  <span>{Messages.Page.Adjustment.Text.EV}</span>
+                  <div className="component_text_help">
+                    <span>{Messages.Page.Adjustment.Text.Help}</span>
+                  </div>
+                </div>
+                <div className="param__rowText">
+                  <span>{Messages.Page.Adjustment.Text.Param}</span>
+                </div>
               </div>
               {jsx_style["Param"]["H"]}
               {jsx_style["Param"]["A"]}
@@ -288,9 +394,49 @@ function Adjustment() {
                 <input type="number" readOnly placeholder="40"></input>
                 <input type="number"></input>
               </div>
+              <div className="param__buttons">
+                {jsx_style["Buttons"]["Add"]}
+              </div>
+              <div className="param__error">
+                <span>{Messages.Page.Adjustment.Error["01"]}</span>
+              </div>
             </div>
             <div className="create__move">
-              
+              <div className="move__days">
+                <div className="move__day">
+                  <span>{Messages.Page.Adjustment.Text.Days.Start}</span>
+                  <input type="date"></input>
+                </div>
+                <div className="move__day">
+                  <span>{Messages.Page.Adjustment.Text.Days.Update}</span>
+                  <input type="date"></input>
+                </div>
+              </div>
+              <div className="move__skills">
+                {jsx_style["Move"]["1"]}
+                {jsx_style["Move"]["2"]}
+                {jsx_style["Move"]["3"]}
+                {jsx_style["Move"]["4"]}
+              </div>
+              <div className="move__tags">
+                <span>{Messages.Page.Adjustment.Text.Tag}</span>
+                <div className="move__tagG">
+                  <div>
+                    {jsx_style["Tags"]["0"]}
+                    {jsx_style["Tags"]["1"]}
+                    {jsx_style["Tags"]["2"]}
+                  </div>
+                  <div>
+                    {jsx_style["Tags"]["3"]}
+                    {jsx_style["Tags"]["4"]}
+                    {jsx_style["Tags"]["5"]}
+                  </div>
+                </div>
+              </div>
+              <div className="move__notes">
+                <span>{Messages.Page.Adjustment.Text.Notes}</span>
+                <textarea />
+              </div>
             </div>
           </div>
           <div className="main__detail">

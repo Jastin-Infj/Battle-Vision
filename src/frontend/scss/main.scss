@@ -263,7 +263,7 @@
             height: 20px;
 
             @apply border-solid border-transparent;
-            background: rgba(68, 189, 219,1);
+            background: $color-background-checkbox;
 
             @include mq(device-tablet-lg) {
               width: 20px;
