@@ -177,7 +177,7 @@ function Main() {
             <div className="battlecanvas__me">
               <span className="battlecanvas__text_patryname">{Messages.Page.Main.Text.VS_Me}</span>
               <img className="battlecanvas__img_history" />
-              <div className="battlecanvas__select">
+              <div className="component_patry_select_div">
                 <img />
                 <div>
                   <span>パーティ名</span>

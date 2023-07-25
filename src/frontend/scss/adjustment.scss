@@ -47,10 +47,10 @@
     @apply flex flex-row;
 
     width: 100%;
-    height: 100%;
+    height: 45%;
 
     //todo
-    // background-color: lightblue;
+    background-color: lightblue;
 
     $flex__basic: 0.3;
     $flex__param: 0.45;
@@ -778,24 +778,41 @@
     $flex__search: 1;
 
     %detail__patry {
-      @apply relative top-0 left-0;
+      @extend %component_patryCanvas_div;
       flex: $flex__patry;
+
+      width: 100%;
+      height: 650px;
 
       margin: {
         left: 40px;
         right: 60px;
+        top: 2.5%;
       }
 
-      //todo
-      // background-color: red;
+      div.component_patry_select_div {
+        @extend %component_patry_select_div;
+        margin-top: 10%;
+      }
+
+      div.component_patryMember_div {
+        @extend %component_patryMember_div;
+      }
     }
 
     %detail__search {
       @apply relative top-0 left-0;
       flex: $flex__search;
+      margin-top: 2.5%;
 
-      //todo
-      // background-color: blue;
+      height: 650px;
+      border-radius: 10px;
+
+      background: $color-background-detail-search;
+
+      div.search__filter {
+        @extend %checkbox_style_wapper;
+      }
     }
   }
 }

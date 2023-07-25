@@ -441,10 +441,63 @@ function Adjustment() {
           </div>
           <div className="main__detail">
             <div className="detail__patry">
-
+              <div className="component_patry_select_div">
+                <img />
+                <div>
+                  <span>パーティ名</span>
+                </div>
+                <img />
+              </div>
+              <div className="component_patryMember_div">
+                <div className="row">
+                  <div>
+                    <img />
+                  </div>
+                  <div>
+                    <img />
+                  </div>
+                </div>
+                <div className="row">
+                  <div>
+                    <img />
+                  </div>
+                  <div>
+                    <img />
+                  </div>
+                </div>
+                <div className="row">
+                  <div>
+                    <img />
+                  </div>
+                  <div>
+                    <img />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="detail__search">
-
+              <div className="search__filter">
+                <label>
+                  <input type="checkbox" />
+                  <span>テスト</span>
+                </label>
+                <label>
+                  <input type="checkbox" />
+                  <span>テスト2</span>
+                </label>
+                <label>
+                  <input type="checkbox" />
+                  <span>テスト3</span>
+                </label>
+              </div>
+              <div className="search__buttons">
+                <button>
+                  <span></span>
+                </button>
+                <button>
+                  <span></span>
+                </button>
+              </div>
             </div>
           </div>
         </main>

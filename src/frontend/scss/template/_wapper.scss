@@ -1,6 +1,7 @@
 @use '../../css/globals.css' as *;
 @use '../variables' as *;
 
+@use '../layerbase' as *;
 
 //* 共通
 %common_text_normal {
@@ -24,6 +25,11 @@
   -webkit-text-stroke: {
     width: 0.25px;
   }
+}
+
+%common_text_sm_2 {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 %common_placeholder_normal {
@@ -65,6 +71,106 @@
   
     -webkit-text-stroke: {
       color: $color-font-help;
+    }
+  }
+}
+
+//* パーティ枠
+%component_patryCanvas_div {
+  @apply relative top-0 left-0;
+  
+  border-radius: 8.5px;
+  background: $color-background-component__battlecanvas;
+}
+
+
+//* パーティ名
+%component_patry_select_div {
+  @apply relative top-0 left-0;
+  @apply flex flex-row justify-between;
+  width: 100%;
+  height: 52px;
+
+  img {
+    @apply relative top-0 left-0;
+    width: 52px;
+    height: 100%;
+    background: lightcoral;
+
+    &:nth-of-type(1) {
+      margin-left: 5%;
+    }
+
+    &:nth-of-type(2) {
+      margin-right: 5%;
+    }
+  }
+
+  div {
+    @apply relative top-0 left-0;
+    flex: 1;
+    margin: {
+      left: 3%;
+      right: 3%;
+    }
+
+    background: $color-background-component__patryselect;
+
+    border-radius: 8.5px;
+
+    span {
+      @apply absolute top-0 left-0;
+      left: 48.5%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+
+      @extend %common_text_sm_2;
+      color: $color-background-basic;
+    }
+
+  }
+}
+
+%component_patryMember_div {
+  @apply relative top-0 left-0;
+  @apply flex flex-col;
+  width: 100%;
+  height: 100%;
+
+  margin-top: 2.5%;
+
+  div.row {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+    @apply justify-around;
+
+    &:first-of-type {
+      margin-top: 2.5%;
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: 5%;
+    }
+
+    div {
+      @apply relative top-0 left-0;
+      @apply flex flex-col;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: 160px;
+      height: 140px;
+
+      &:nth-of-type(1) {
+        margin-left: 2.5%;
+      }
+
+      &:nth-of-type(2) {
+        margin-right: 2.5%;
+      }
+
+      border-radius: 15.5px;
+      background: $color-background-component__patryMember;
     }
   }
 }

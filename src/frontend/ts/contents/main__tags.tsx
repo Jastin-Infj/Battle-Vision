@@ -1,10 +1,11 @@
-import React , { useContext, useEffect, useReducer, useState } from "react";
+import React , { useContext, useEffect, useReducer, useRef, useState } from "react";
 
 // style json
 import Messages from '../../json/Strings.json';
 
 // use Context
 import { CONTEXT_ENV_WINDOW } from "../components/updateComponent";
+import { calculateOverrideValues } from "next/dist/server/font-utils";
 
 //* Reducer
 
@@ -13,37 +14,17 @@ type State_Checkbox = {
 };
 
 type Action = {
-  payload: {
-    target: EventTarget
-    index: number;
-  }
+  index: any;
 };
-
-function reducer(state: State_Checkbox , action: Action): State_Checkbox {
-  let isHasKey = 'checked';
-
-  // input 属性
-  if(action.payload.target[isHasKey] !== undefined) {
-    state.list[action.payload.index] = action.payload.target[isHasKey];
-  }
-
-  return state;
-}
 
 function Main__Tags() {
 
   //* 初期化処理
   const ENV_WINDOW = useContext(CONTEXT_ENV_WINDOW);
   const MAX_TAG = 13;
-  const CHECKED_INIT = false;
 
-  let init_state:State_Checkbox = {
-    list: []
-  };
-  for(let i = 0; i < MAX_TAG;++i) {
-    init_state.list.push(CHECKED_INIT);
-  }
-  const [state,dispatch] = useReducer(reducer,init_state);
+  //! test
+  const [text,setText] = useState('');
 
   //* タグスタイルの定義
   let render_tagStyles = {
@@ -63,6 +44,14 @@ function Main__Tags() {
       [10,11,12]
     ]
   };
+
+  //* フラグ管理
+  const CHECKBOX_STATE:object = {};
+  for(let i = 0; i < MAX_TAG;++i) {
+    CHECKBOX_STATE[i] = useRef<HTMLInputElement>(null!);
+  }
+  const [state,setState] = useState(CHECKBOX_STATE);
+  const [CREATE_FLAG,setCREATE_FLAG] = useState(false);
   
   const ENV_ARRAY_NULLS = {
     "pc": [],
@@ -76,22 +65,21 @@ function Main__Tags() {
   const [JSX_TAGS , setJSX_TAGS] = useState({...ENV_ARRAY_NULLS});
 
   useEffect(() => {
+
     Object.keys(render_tagStyles).forEach((key) => {
       render_tagStyles[key].forEach((vals , index) => {
         let e_checkbox = vals.map((val) => {
+          let e_input:React.JSX.Element = null!;
 
-          let e_input = state.list[val] ? <input type="checkbox" checked/>  : <input type="checkbox"/>; 
+          if(CREATE_FLAG === false) {
+            e_input = <input ref={state[val]} type="checkbox" value={text}/>;
+          } else {
+            e_input = <input ref={state[val]} type="checkbox" value={text}/>;
+          }
 
           let e_label = (
             <label key={val} onClick={(e) => {
-              let sendData:Action = {
-                payload: {
-                  target: e.target,
-                  index: val
-                }
-              };
-
-              dispatch(sendData);
+              
             }}>
               {e_input}
               <span />
@@ -105,7 +93,7 @@ function Main__Tags() {
               if(index === 0) {
                 e_label = (
                   <label key={val} className="other">
-                    <input type="checkbox" />
+                    {e_input}
                     <span />
                     {Messages.Page.Main.Checkbox.Tags[val]}
                   </label>
@@ -140,7 +128,9 @@ function Main__Tags() {
       }
     });
 
+    //* 更新
     setJSX_TAGS(generate_div);
+    setCREATE_FLAG(true);
 
   },[ENV_WINDOW]);
 
