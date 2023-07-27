@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useContext, useRef, useState} from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
@@ -11,6 +11,7 @@ import Footer from "../src/frontend/ts/components/Footer";
 
 // import
 import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
+
 
 function Adjustment() {
 

@@ -26,6 +26,8 @@
       "footer footer footer footer footer" $footer__height_normal
       "...    ...... ...... ...... ...   " 0px
       / 0.2fr 1fr 1fr 1fr 0.1fr !important;
+
+    height: viewport_getHeight(200) !important;
   }
 
   @include mq(device-ipad) {
@@ -55,19 +57,41 @@
     @apply flex flex-row;
 
     width: 100%;
-    height: 45%;
 
     //todo
     // background-color: lightblue;
 
+    //* 変数
     $flex__basic: 0.3;
     $flex__param: 0.45;
     $flex__move: 0.25;
 
+    $width__tablet_lg: 550px;
+    $height__tablet_lg: 700px;
+
+    @include mq(device-pc) {
+      height: 45%;
+    }
+
+    @include mq(device-tablet-lg) {
+      height: $height__tablet_lg;
+    }
+
     %create__basic {
       @apply relative top-0 left-0;
       height: 100%;
-      flex: $flex__basic;
+      
+      @include mq(device-pc) {
+        flex: $flex__basic;
+      }
+
+      @include mq(device-tablet-lg) {
+        left: -15px;
+        width: $width__tablet_lg;
+        height: $height__tablet_lg;
+      }
+
+      background-color: red;
       
       div {
         @apply relative top-0 left-0;
@@ -80,6 +104,10 @@
         $width_text: 35%;
         $width_margin_box: 10%;
         $width_box: 55%;
+
+        @include mq(device-tablet-lg) {
+          width: $width__tablet_lg;
+        }
 
         %create__basic_text {
           @apply relative top-0 left-0;
@@ -149,7 +177,14 @@
           @apply relative top-0 left-0;
           @apply flex flex-row;
           width: $width_box;
-          margin-left: $width_margin_box;
+
+          @include mq(device-pc) {
+            margin-left: $width_margin_box;
+          }
+
+          @include mq(device-tablet-lg) {
+            margin-left: 2.5%;
+          }
 
           //todo
           // background-color: blue;
@@ -241,6 +276,7 @@
           input {
             z-index: $z-input;
             @apply relative top-0 left-0;
+            outline: none;
             top: 50%;
             transform: translateY(-50%);
 
@@ -278,6 +314,10 @@
       top: -50px;
 
       $width_children: 600px;
+
+      @include mq(device-tablet-lg) {
+        left: 20px;
+      }
 
       div.param__rows {
         @apply relative top-0 left-0;
@@ -350,6 +390,11 @@
         text-align: right;
         padding-right: 10px;
 
+        @include mq(device-tablet-lg) {
+          width: calc(125px * 0.9);
+          height: calc(50px * 0.9);
+        }
+
         &:focus {
           outline: none;
         }
@@ -390,7 +435,14 @@
           @apply relative top-0 left-0;
           @extend %wapper__span;
           height: fit-content;
-          left: -11.5px;
+          
+          @include mq(device-pc) {
+            left: -11.5px;
+          }
+
+          @include mq(device-tablet-lg) {
+            left: -7.5px;
+          }
         }
 
         input {
@@ -400,11 +452,23 @@
 
         input:nth-of-type(1) {
           @extend %wapper_input_placeholder;
-          margin-left: 17.5px;
+          
+          @include mq(device-pc) {
+            margin-left: 17.5px;
+          }
+
+          @include mq(device-tablet-lg) {
+            margin-left: 32.5px;
+          }
         }
 
         input:nth-of-type(2) {
-          margin-left: 145px;
+          @include mq(device-pc) {
+            margin-left: 145px;
+          }
+          @include mq(device-tablet-lg) {
+            margin-left: 152.5px;
+          }
         }
       }
 
@@ -499,9 +563,16 @@
     }
 
     %create__move {
-      @apply relative top-0 left-0;
       @apply flex flex-col;
       flex: $flex__move;
+
+      @include mq(device-pc) {
+        @apply relative top-0 left-0;
+      }
+
+      @include mq(device-tablet-lg) {
+        @apply absolute top-0 left-0;
+      }
 
       %wapper_input {
         @apply relative top-0 left-0;
@@ -529,6 +600,10 @@
       div.move__days {
         @apply relative top-0 left-0;
         @apply flex flex-row;
+
+        @include mq(device-tablet-lg) {
+          @apply absolute top-0 left-0;
+        }
 
         div.move__day {
           @apply relative top-0 left-0;
@@ -558,6 +633,10 @@
       div.move__skills {
         @apply relative top-0 left-0;
         @apply flex flex-col;
+
+        @include mq(device-tablet-lg) {
+          margin-top: 800px;
+        }
         
         div.move__skill {
           @apply relative top-0 left-0;
@@ -644,6 +723,10 @@
         width: 100%;
         height: 150px;
 
+        @include mq(device-tablet-lg) {
+          top: 50px;
+        }
+
         span {
           @apply relative top-0 left-0;
           @extend %common_text_normal;
@@ -653,6 +736,10 @@
 
           width: fit-content;
           height: fit-content;
+
+          @include mq(device-tablet-lg) {
+            top: 22.5%;
+          }
         }
 
         div.move__tagG {
@@ -732,11 +819,19 @@
         @apply flex flex-col;
         width: 415px;
         height: 300px;
-        top: -40px;
-        left: 10px;
 
         //todo
         // background-color: red;
+
+        @include mq(device-pc) {
+          top: -40px;
+          left: 10px;
+        }
+
+        @include mq(device-tablet-lg) {
+          top: -310px;
+          left: 540px;
+        }
 
         span {
           @extend %common_text_normal;
@@ -774,8 +869,6 @@
     @apply relative top-0 left-0;
     @apply flex flex-row;
 
-    margin-top: 120px;
-
     width: 100%;
     height: 100%;
 
@@ -784,10 +877,23 @@
 
     $flex__patry: 0.55;
     $flex__search: 1;
+    
+    $height__tablet_lg: 720px;
+
+    @include mq(device-pc) {
+      margin-top: 120px;
+      height: 100%;
+    }
+
+    @include mq(device-tablet-lg) {
+      left: -75px;
+      margin-top: 600px;
+      height: $height__tablet_lg;
+      width: 1200px;
+    }
 
     %detail__patry {
       @extend %component_patryCanvas_div;
-      flex: $flex__patry;
 
       width: 100%;
       height: 650px;
@@ -796,6 +902,14 @@
         left: 40px;
         right: 60px;
         top: 2.5%;
+      }
+
+      @include mq(device-pc) {
+        flex: $flex__patry;
+      }
+
+      @include mq(device-tablet-lg) {
+        width: 390px;
       }
 
       div.component_patry_select_div {
@@ -810,7 +924,6 @@
 
     %detail__search {
       @apply relative top-0 left-0;
-      flex: $flex__search;
       margin-top: 2.5%;
 
       height: 650px;
@@ -822,6 +935,14 @@
       $height__button: 55px;
       $height__result: 465px;
 
+      @include mq(device-pc) {
+        flex: $flex__search;
+      }
+
+      @include mq(device-tablet-lg) {
+        width: 710px;
+      }
+
       div.search__filter {
         @apply relative top-0 left-0;
         width: 100%;
@@ -830,24 +951,45 @@
         div {
           @extend %checkbox_style_wapper;
           top: 30px;
-          width: 75%;
-
           margin-left: 2.5%;
 
           background: $color-background-component__patryMember;
 
           border-radius: 16px;
 
+          @include mq(device-pc) {
+            width: 75%;
+          }
+
+          @include mq(device-tablet-lg) {
+            width: 80%;
+          }
+
           label {
-            top: 10%;
             transform: translateY(-50%);
-            padding-left: 3.5%;
 
             color: $color-background-basic;
 
-            &:not(:last-of-type) {
-              margin-right: 1%;
+            @include mq(device-pc) {
+              top: 10%;
+              font-size: 26px;
+              padding-left: 3.5%;
+
+              &:not(:last-of-type) {
+                margin-right: 1%;
+              }
             }
+
+            @include mq(device-tablet-lg) {
+              top: 20%;
+              font-size: 18px;
+              padding-left: 5%;
+
+              &:not(:last-of-type) {
+                margin-right: 1.5%;
+              }
+            }
+
           }
 
           input {
@@ -921,7 +1063,6 @@
         div.col {
           @apply relative top-0 left-0;
           @apply flex flex-row;
-          left: 15px;
           
           width: 100%;
           flex: 1;
@@ -930,11 +1071,18 @@
             margin-top: 25px;
           }
 
+          @include mq(device-pc) {
+            left: 15px;
+          }
+
+          @include mq(device-tablet-lg) {
+            left: 30px;
+          }
+
           div {
             @apply relative top-0 left-0;
             width: 64px;
             height: 64px;
-
             border-radius: 15px;
 
             &.none {
@@ -945,9 +1093,23 @@
               background: $color-background-div_search_result2;
             }
 
-            &:not(:first-of-type) {
-              margin-left: 15px;
+            @include mq(device-pc) {
+              &:not(:first-of-type) {
+                margin-left: 15px;
+              }
             }
+
+            @include mq(device-tablet-lg) {
+
+              &:nth-of-type(n + 9) {
+                display: none;
+              }
+
+              &:not(:first-of-type) {
+                margin-left: 20px;
+              }
+            }
+
 
             img {
               @apply absolute top-0 left-0;
