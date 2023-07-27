@@ -31,7 +31,17 @@
   }
 
   @include mq(device-ipad) {
-    grid-template: initial !important;
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 175px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 250px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.1fr !important;
+
+    height: viewport_getHeight(340) !important;
   }
 
   @include mq(device-phone) {
@@ -52,6 +62,9 @@
     z-index: initial;
   }
 
+  //todo
+  // background-color: lightcyan;
+
   %main__create {
     @apply relative top-0 left-0;
     @apply flex flex-row;
@@ -67,7 +80,9 @@
     $flex__move: 0.25;
 
     $width__tablet_lg: 550px;
+    $width__ipad: 730px;
     $height__tablet_lg: 700px;
+    $height__ipad: 1200px;
 
     @include mq(device-pc) {
       height: 45%;
@@ -75,6 +90,12 @@
 
     @include mq(device-tablet-lg) {
       height: $height__tablet_lg;
+    }
+
+    @include mq(device-ipad) {
+      @apply flex-col;
+      width: $width__ipad;
+      height: $height__ipad;
     }
 
     %create__basic {
@@ -91,7 +112,12 @@
         height: $height__tablet_lg;
       }
 
-      background-color: red;
+      @include mq(device-ipad) {
+        width: $width__ipad;
+      } 
+
+      //todo
+      // background-color: red;
       
       div {
         @apply relative top-0 left-0;
@@ -107,6 +133,10 @@
 
         @include mq(device-tablet-lg) {
           width: $width__tablet_lg;
+        }
+
+        @include mq(device-ipad) {
+          width: 100%;
         }
 
         %create__basic_text {
@@ -184,6 +214,10 @@
 
           @include mq(device-tablet-lg) {
             margin-left: 2.5%;
+          }
+
+          @include mq(device-ipad) {
+            margin-left: initial;
           }
 
           //todo
@@ -295,6 +329,21 @@
               width: 3px;
               radius: 3.25px;
               color: $color-border-basic;
+            }
+
+            @include mq(device-ipad) {
+              padding-left: 20%;
+              &::placeholder {
+                padding-left: 12.5%;
+              }
+
+              &:focus {
+                padding-left: 20%;
+
+                &::placeholder {
+                  padding-left: 23.5%;
+                }
+              }
             }
 
             //todo
