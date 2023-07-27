@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
@@ -11,7 +11,6 @@ import Footer from "../src/frontend/ts/components/Footer";
 
 // import
 import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
-import { type } from "os";
 
 function Adjustment() {
 
@@ -53,7 +52,8 @@ function Adjustment() {
       4: null
     },
     Tags: {},
-    Buttons: {}
+    Buttons: {},
+    FilterResult: {},
   };
 
   //* コンテンツごとに異なる場所はここで定義
@@ -348,6 +348,76 @@ function Adjustment() {
     jsx_style["Buttons"][key] = jsx;
   });
 
+  //* 検索結果の数
+  const MAX_RESULT_COL = 12;
+  const MAX_RESULT_ROW = 4;
+
+  //* 状態管理
+  const State_SelectMode = ['none','selected'];
+  const REF_FILTER_RESULT:React.MutableRefObject<HTMLDivElement>[] = [];
+  const [,setREF_filter_result] = useState(REF_FILTER_RESULT);
+
+  const ChangeState_Filter_result = (indexs) => {
+    let targetNum = (indexs[0] * MAX_RESULT_COL) + indexs[1];
+    let target = REF_FILTER_RESULT[targetNum];
+    let current_class = target.current.className;
+    let next = State_SelectMode.indexOf(current_class) + 1;
+
+    if(next === State_SelectMode.length) {
+      next = 0;
+    }
+    // class 適用
+    target.current.className = State_SelectMode[next];
+    REF_FILTER_RESULT[targetNum] = target;
+
+    setREF_filter_result(REF_FILTER_RESULT);
+  }
+
+  { 
+    for(let y = 0; y < MAX_RESULT_ROW;++y) {
+      let jsx_row:React.JSX.Element = null!;
+      let jsx_render_col:React.JSX.Element[] = [];
+
+      for(let x = 0; x < MAX_RESULT_COL;++x){
+        let ref = useRef<HTMLDivElement>(null!);
+        let jsx:React.JSX.Element = null!;
+        jsx = (
+          <>
+            <div key={y + " " + x} ref={ref} className={State_SelectMode[0]} onClick={() => {
+              ChangeState_Filter_result([y,x]);
+            }}>
+              <img />
+            </div>
+          </>
+        );
+        jsx_render_col.push(jsx);
+        REF_FILTER_RESULT.push(ref);
+      }
+      
+      jsx_row = (
+        <>
+          <div className="col">
+            {jsx_render_col["0"]}
+            {jsx_render_col["1"]}
+            {jsx_render_col["2"]}
+            {jsx_render_col["3"]}
+            {jsx_render_col["4"]}
+            {jsx_render_col["5"]}
+            {jsx_render_col["6"]}
+            {jsx_render_col["7"]}
+            {jsx_render_col["8"]}
+            {jsx_render_col["9"]}
+            {jsx_render_col["10"]}
+            {jsx_render_col["11"]}
+          </div>
+        </>
+      );
+
+      //* 追加
+      jsx_style["FilterResult"][y] = jsx_row;
+    }
+  }
+
   return (
     <>
       <Canvas>
@@ -449,7 +519,7 @@ function Adjustment() {
                 <img />
               </div>
               <div className="component_patryMember_div">
-                <div className="row">
+                <div className="col">
                   <div>
                     <img />
                   </div>
@@ -457,7 +527,7 @@ function Adjustment() {
                     <img />
                   </div>
                 </div>
-                <div className="row">
+                <div className="col">
                   <div>
                     <img />
                   </div>
@@ -465,7 +535,7 @@ function Adjustment() {
                     <img />
                   </div>
                 </div>
-                <div className="row">
+                <div className="col">
                   <div>
                     <img />
                   </div>
@@ -477,26 +547,28 @@ function Adjustment() {
             </div>
             <div className="detail__search">
               <div className="search__filter">
-                <label>
-                  <input type="checkbox" />
-                  <span>テスト</span>
-                </label>
-                <label>
-                  <input type="checkbox" />
-                  <span>テスト2</span>
-                </label>
-                <label>
-                  <input type="checkbox" />
-                  <span>テスト3</span>
-                </label>
+                <div>
+                  {jsx_style["Tags"]["0"]}
+                  {jsx_style["Tags"]["1"]}
+                  {jsx_style["Tags"]["2"]}
+                  {jsx_style["Tags"]["3"]}
+                  {jsx_style["Tags"]["4"]}
+                  {jsx_style["Tags"]["5"]}
+                </div>
               </div>
               <div className="search__buttons">
                 <button>
-                  <span></span>
+                  <span>{Messages.Page.Adjustment.Button.Search}</span>
                 </button>
                 <button>
-                  <span></span>
+                  <span>{Messages.Page.Adjustment.Button.Search_Condition}</span>
                 </button>
+              </div>
+              <div className="search__result">
+                {jsx_style["FilterResult"]["0"]}
+                {jsx_style["FilterResult"]["1"]}
+                {jsx_style["FilterResult"]["2"]}
+                {jsx_style["FilterResult"]["3"]}
               </div>
             </div>
           </div>

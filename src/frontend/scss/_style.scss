@@ -105,7 +105,7 @@
   //* basic add
   font-size: 26px;
   font-weight: 600;
-  padding-left: 27.5%;
+  padding-left: 0%;
 }
 
 %checkbox_input {
@@ -113,6 +113,7 @@
   width: 0px;
   height: 0px;
 
+  //* チェックしない
   &:checked ~ span {
     //* basic add
     width: 20px;
@@ -120,9 +121,10 @@
 
     @apply border-solid border-transparent;
     //* basic add
-    background: red;
+    // background: red;
   }
 
+  //* チェック後
   &:checked ~ span::after {
     @apply absolute top-0 left-0;
     left: 50%;
@@ -134,29 +136,37 @@
     border: solid;
     border-width: 0 2px 2px 0;
     //* basic add
-    border-color: red;
+    // border-color: red;
 
     content: "";
   }
 }
 
+//* チェックマーク
 %checkbox_span {
   @apply absolute top-0 left-0;
   //* basic add
-  // height: 20px;
-  // width: 20px;
-  // top: 57.5%;
+  height: 20px;
+  width: 20px;
+  top: 57.5%;
   transform: translateY(-50%);
 
   border: solid;
   //* basic add
-  // border-width: 2px;
-  // border-radius: 2.5px;
+  border-width: 2px;
+  border-radius: 2.5px;
+
   // border-color: red;
   // background: white;
 }
 
 %checkbox_style_wapper {
+  @apply relative top-0 left-0;
+  width: 100%;
+  height: 100%;
+
+  padding-left: 1.5%;
+
   label {
     @extend %checkbox_label;
 

@@ -378,7 +378,9 @@
       "Button": {
         "Add": "新規追加",
         "Update": "更新",
-        "Remove": "逃がす"
+        "Remove": "逃がす",
+        "Search": "検索",
+        "Search_Condition": "検索条件変更"
       },
       "Error": {
         "01": "※エラーになっている箇所が2ヶ所あります。"

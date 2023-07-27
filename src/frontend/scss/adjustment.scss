@@ -13,11 +13,19 @@
       "...    ...... ...... ...... ...   " 0px
       / 0.3fr 1fr 1fr 1fr 0.3fr !important;
 
-    height: viewport_getHeight(200) !important;
+    height: viewport_getHeight(160) !important;
   }
 
   @include mq(device-tablet-lg) {
-    grid-template: initial !important;
+    grid-template: 
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 175px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 300px
+      "footer footer footer footer footer" $footer__height_normal
+      "...    ...... ...... ...... ...   " 0px
+      / 0.2fr 1fr 1fr 1fr 0.1fr !important;
   }
 
   @include mq(device-ipad) {
@@ -50,7 +58,7 @@
     height: 45%;
 
     //todo
-    background-color: lightblue;
+    // background-color: lightblue;
 
     $flex__basic: 0.3;
     $flex__param: 0.45;
@@ -772,7 +780,7 @@
     height: 100%;
 
     //todo
-    background-color: lightgreen;
+    // background-color: lightgreen;
 
     $flex__patry: 0.55;
     $flex__search: 1;
@@ -810,9 +818,150 @@
 
       background: $color-background-detail-search;
 
+      $height__filter: 55px;
+      $height__button: 55px;
+      $height__result: 465px;
+
       div.search__filter {
-        @extend %checkbox_style_wapper;
+        @apply relative top-0 left-0;
+        width: 100%;
+        height: $height__filter;
+
+        div {
+          @extend %checkbox_style_wapper;
+          top: 30px;
+          width: 75%;
+
+          margin-left: 2.5%;
+
+          background: $color-background-component__patryMember;
+
+          border-radius: 16px;
+
+          label {
+            top: 10%;
+            transform: translateY(-50%);
+            padding-left: 3.5%;
+
+            color: $color-background-basic;
+
+            &:not(:last-of-type) {
+              margin-right: 1%;
+            }
+          }
+
+          input {
+            &:checked ~ span {
+              background: $color-background-checkbox_search_filter;
+            }
+
+            &:checked ~ span::after {
+              border-color: $color-background-component__patryMember !important;
+            }
+
+          }
+
+          span {
+            background: initial;
+          }
+        }
       }
+
+      div.search__buttons {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        width: 100%;
+        height: $height__button;
+
+        top: 7.5%;
+
+        button {
+          @apply relative top-0 left-0;
+          outline: none;
+          height: 100%;
+
+          border-radius: 21.3px;
+          background: $color-background-button_search;
+
+          &:hover {
+            background: $color-font-basic2;
+          }
+
+          &:hover > span {
+            color: $color-background-button_search;
+          }
+
+          span {
+            @extend %common_text_normal;
+            color: $color-font-basic2;
+            font-size: 28px;
+          }
+        }
+
+        button:nth-of-type(1) {
+          width: 250px;
+          left: 2.5%;
+        }
+        button:nth-of-type(2) {
+          width: 200px;
+          left: 5.5%;
+        }
+      }
+
+      div.search__result {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        width: 100%;
+        height: $height__result;
+        top: 75px;
+        background: $color-background-component__patryMember;
+
+        border-radius: 0 0 11px 11px;
+
+        div.col {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          left: 15px;
+          
+          width: 100%;
+          flex: 1;
+
+          &:first-of-type {
+            margin-top: 25px;
+          }
+
+          div {
+            @apply relative top-0 left-0;
+            width: 64px;
+            height: 64px;
+
+            border-radius: 15px;
+
+            &.none {
+              background: $color-background-div_search_result;
+            }
+  
+            &.selected {
+              background: $color-background-div_search_result2;
+            }
+
+            &:not(:first-of-type) {
+              margin-left: 15px;
+            }
+
+            img {
+              @apply absolute top-0 left-0;
+              top: 50%;
+              left: 50%;
+
+              width: 54px;
+              height: 54px;
+              transform: translate(-50%,-50%);
+            }
+          }
+        }
+      }
+
     }
   }
 }

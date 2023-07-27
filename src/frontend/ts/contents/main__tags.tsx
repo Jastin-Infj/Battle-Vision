@@ -78,9 +78,7 @@ function Main__Tags() {
           }
 
           let e_label = (
-            <label key={val} onClick={(e) => {
-              
-            }}>
+            <label key={val}>
               {e_input}
               <span />
               {Messages.Page.Main.Checkbox.Tags[val]}
