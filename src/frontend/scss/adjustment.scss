@@ -41,7 +41,7 @@
     "...    ...... ...... ...... ...   " 0px
     / 0.2fr 1fr 1fr 1fr 0.1fr !important;
 
-    height: viewport_getHeight(340) !important;
+    height: viewport_getHeight(320) !important;
   }
 
   @include mq(device-phone) {
@@ -331,6 +331,11 @@
               color: $color-border-basic;
             }
 
+            &:focus {
+              border-color: $color-border-param-focus;
+              outline: none;
+            }
+
             @include mq(device-ipad) {
               padding-left: 20%;
               &::placeholder {
@@ -366,6 +371,11 @@
 
       @include mq(device-tablet-lg) {
         left: 20px;
+      }
+
+      @include mq(device-ipad) {
+        top: 100px;
+        left: 75px;
       }
 
       div.param__rows {
@@ -533,6 +543,11 @@
         left: -40px;
         margin-top: 75px;
 
+        @include mq(device-ipad) {
+          left: -180px;
+          margin-top: 960px;
+        }
+
 
         button {
           @apply relative top-0 left-0;
@@ -599,6 +614,10 @@
         //todo
         // background-color: red;
 
+        @include mq(device-ipad) {
+          left: -140px;
+        }
+
         span {
           @apply relative top-0 left-0;
           left: 25%;
@@ -621,6 +640,11 @@
 
       @include mq(device-tablet-lg) {
         @apply absolute top-0 left-0;
+      }
+
+      @include mq(device-ipad) {
+        top: 800px;
+        left: 40px;
       }
 
       %wapper_input {
@@ -654,6 +678,10 @@
           @apply absolute top-0 left-0;
         }
 
+        @include mq(device-ipad) {
+          top: -785px;
+        }
+
         div.move__day {
           @apply relative top-0 left-0;
           @apply flex flex-row;
@@ -684,7 +712,7 @@
         @apply flex flex-col;
 
         @include mq(device-tablet-lg) {
-          margin-top: 800px;
+          margin-top: 660px;
         }
         
         div.move__skill {
@@ -882,6 +910,11 @@
           left: 540px;
         }
 
+        @include mq(device-ipad) {
+          top: 30px;
+          left: 12.5px;
+        }
+
         span {
           @extend %common_text_normal;
           width: fit-content;
@@ -928,6 +961,7 @@
     $flex__search: 1;
     
     $height__tablet_lg: 720px;
+    $height__ipad: 1300px;
 
     @include mq(device-pc) {
       margin-top: 120px;
@@ -936,9 +970,15 @@
 
     @include mq(device-tablet-lg) {
       left: -75px;
-      margin-top: 600px;
+      margin-top: 405px;
       height: $height__tablet_lg;
       width: 1200px;
+    }
+
+    @include mq(device-ipad) {
+      @apply flex flex-col;
+      top: 630px;
+      height: $height__ipad;
     }
 
     %detail__patry {
@@ -961,6 +1001,11 @@
         width: 390px;
       }
 
+      @include mq(device-ipad) {
+        left: 45px;
+        height: 720px;
+      }
+
       div.component_patry_select_div {
         @extend %component_patry_select_div;
         margin-top: 10%;
@@ -968,6 +1013,14 @@
 
       div.component_patryMember_div {
         @extend %component_patryMember_div;
+
+        div.col {
+          &:first-of-type {
+            @include mq(device-ipad) {
+              margin-top: 10%;
+            }
+          }
+        }
       }
     }
 
@@ -990,6 +1043,10 @@
 
       @include mq(device-tablet-lg) {
         width: 710px;
+      }
+
+      @include mq(device-ipad) {
+        left: 85px;
       }
 
       div.search__filter {
