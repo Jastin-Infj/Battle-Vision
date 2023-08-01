@@ -61,6 +61,15 @@
   border-radius: 50%;
   background: $color-background-help;
 
+  @include mq(device-tablet) {
+    top: 7px;
+  }
+
+  @include mq(device-phone) {
+    left: 132px;
+    top: 0px;
+  }
+
   span {
     @apply absolute top-0 left-0;
     @extend %common_text_sm;

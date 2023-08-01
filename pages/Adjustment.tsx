@@ -169,7 +169,7 @@ function Adjustment() {
 
     let jsx_common = (
       <>
-        <div>
+        <div className="create__basic_group">
           <div className="create__basic_text">
             <div className="component_text_help">
               <span>{Messages.Page.Adjustment.Text.Help}</span>

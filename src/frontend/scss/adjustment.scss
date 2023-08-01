@@ -44,8 +44,32 @@
     height: viewport_getHeight(320) !important;
   }
 
+  @include mq(device-tablet) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 175px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 250px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.1fr 1fr 1fr 1fr 0.1fr !important;
+
+    height: viewport_getHeight(320) !important;
+  }
+
   @include mq(device-phone) {
-    grid-template: initial !important;
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 175px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 250px
+    "footer footer footer footer footer" $footer__height_phone
+    "...    ...... ...... ...... ...   " 0px
+    / 0.1fr 1fr 1fr 1fr 0.1fr !important;
+
+    height: viewport_getHeight(490) !important;
   }
 }
 
@@ -60,6 +84,10 @@
 
   @include mq(device-pc) {
     z-index: initial;
+  }
+
+  @include mq(device-phone) {
+    z-index: 0;
   }
 
   //todo
@@ -98,6 +126,15 @@
       height: $height__ipad;
     }
 
+    @include mq(device-tablet) {
+      left: -10px;
+    }
+
+    @include mq(device-phone) {
+      width: 100%;
+      left: 0px;
+    }
+
     %create__basic {
       @apply relative top-0 left-0;
       height: 100%;
@@ -114,12 +151,17 @@
 
       @include mq(device-ipad) {
         width: $width__ipad;
-      } 
+      }
+
+      @include mq(device-phone) {
+        width: 100%;
+        left: -10px;
+      }
 
       //todo
       // background-color: red;
       
-      div {
+      div.create__basic_group {
         @apply relative top-0 left-0;
         @apply flex flex-row;
 
@@ -139,12 +181,29 @@
           width: 100%;
         }
 
+        @include mq(device-phone) {
+          @apply flex flex-col;
+
+          &:not(:first-of-type) {
+            margin-top: 35px;
+          }
+
+          //* テキストの調整
+          &:nth-of-type(2) > div.create__basic_text > span.basic__text_name {
+            left: 75px;
+          }
+        }
+
         %create__basic_text {
           @apply relative top-0 left-0;
           @apply flex flex-col;
 
           width: $width_text;
           height: 100%;
+
+          @include mq(device-phone) {
+            margin-bottom: -15px;
+          }
 
           div.component_text_help {
             @extend %component_text_help_div;
@@ -157,6 +216,10 @@
 
             left: 50%;
             transform: translateX(-50%);
+
+            @include mq(device-phone) {
+              left: 65px;
+            }
           }
 
           div.basic__required {
@@ -175,6 +238,12 @@
               width: 1.6px;
               radius: 3px;
               color: $color-border-requied;
+            }
+
+            @include mq(device-phone) {
+              @apply absolute top-0 left-0;
+              top: 29px;
+              left: 183px;
             }
 
             div.stroke-text {
@@ -220,6 +289,12 @@
             margin-left: initial;
           }
 
+          @include mq(device-phone) {
+            width: 75%;
+            left: 28px;
+            top: 15px;
+          }
+
           //todo
           // background-color: blue;
 
@@ -256,6 +331,11 @@
 
             //todo
             background-color: red;
+
+            @include mq(device-phone) {
+              height: 37px;
+              width: 37px;
+            }
           }
 
           //* gender
@@ -351,6 +431,11 @@
               }
             }
 
+            @include mq(device-phone) {
+              border-radius: 11.25px;
+              height: 45px;
+            }
+
             //todo
             // background-color: lightgreen;
           }
@@ -378,11 +463,23 @@
         left: 75px;
       }
 
+      @include mq(device-phone) {
+        top: 125px;
+        left: 15px;
+      }
+
       div.param__rows {
         @apply relative top-0 left-0;
         @apply flex flex-row;
         @apply justify-between;
+
         width: $width_children;
+
+        @include mq(device-phone) {
+          top: 15px;
+          left: -23px;
+          width: 410px;
+        }
 
         div.param__rowText {
           @apply relative top-0 left-0;
@@ -395,14 +492,26 @@
   
           &:nth-of-type(2) {
             left: 9.5%;
+
+            @include mq(device-phone) {
+              left: 7.5%;
+            }
           }
   
           &:nth-of-type(3) {
             left: 1.5%;
+
+            @include mq(device-phone) {
+              left: -1.5%;
+            }
           }
   
           &:nth-of-type(4) {
             left: -6.5%;
+
+            @include mq(device-phone) {
+              left: -11%;  
+            }
           }
           
           span {
@@ -434,6 +543,11 @@
         color: $color-font-basic;
         width: 50px;
         text-align: left;
+
+        @include mq(device-phone) {
+          left: -13px;
+          font-size: 16.5px;
+        }
       }
 
       %wapper__input {
@@ -454,6 +568,17 @@
           height: calc(50px * 0.9);
         }
 
+        @include mq(device-phone) {
+          left: -75px;
+          width: 72.5px;
+
+          font-size: 20px;
+
+          &:not(:first-of-type) {
+            margin-left: -34px;
+          }
+        }
+
         &:focus {
           outline: none;
         }
@@ -470,6 +595,10 @@
 
         width: $width_children;
         margin-top: $margin__top;
+
+        @include mq(device-phone) {
+          width: 445px;
+        }
 
         span {
           @extend %wapper__span;
@@ -519,6 +648,10 @@
           @include mq(device-tablet-lg) {
             margin-left: 32.5px;
           }
+
+          @include mq(device-phone) {
+            margin-left: -2.5px;
+          }
         }
 
         input:nth-of-type(2) {
@@ -527,6 +660,9 @@
           }
           @include mq(device-tablet-lg) {
             margin-left: 152.5px;
+          }
+          @include mq(device-phone) {
+            margin-left: 89.5px;
           }
         }
       }
@@ -546,6 +682,11 @@
         @include mq(device-ipad) {
           left: -180px;
           margin-top: 960px;
+        }
+
+        @include mq(device-phone) {
+          left: -30px;
+          margin-top: 1085px;
         }
 
 
@@ -618,6 +759,10 @@
           left: -140px;
         }
 
+        @include mq(device-phone) {
+          left: -95px;
+        }
+
         span {
           @apply relative top-0 left-0;
           left: 25%;
@@ -645,6 +790,11 @@
       @include mq(device-ipad) {
         top: 800px;
         left: 40px;
+      }
+
+      @include mq(device-phone) {
+        left: 0px;
+        width: 100%;
       }
 
       %wapper_input {
@@ -682,6 +832,15 @@
           top: -785px;
         }
 
+        @include mq(device-tablet) {
+          left: 40px;
+        }
+
+        @include mq(device-phone) {
+          transform: scale(0.8);
+          left: -35px;
+        }
+
         div.move__day {
           @apply relative top-0 left-0;
           @apply flex flex-row;
@@ -692,6 +851,10 @@
 
           &:nth-of-type(2) {
             left: 70px;
+
+            @include mq(device-phone) {
+              left: 55px;
+            }
           }
   
           span {
@@ -699,6 +862,10 @@
             @extend %common_text_normal;
             transform: translate(-50%,-50%);
             color: $color-font-basic;
+
+            @include mq(device-phone) {
+              font-size: 21px;
+            }
           }
   
           input {
@@ -714,6 +881,10 @@
         @include mq(device-tablet-lg) {
           margin-top: 660px;
         }
+
+        @include mq(device-phone) {
+          left: 0px;
+        }
         
         div.move__skill {
           @apply relative top-0 left-0;
@@ -723,6 +894,10 @@
 
           &:not(:first-of-type) {
             margin-top: 30px;
+
+            @include mq(device-phone) {
+              margin-top: 100px;
+            }
           }
 
           //座標がズレるので調整
@@ -732,12 +907,20 @@
             }
           }
 
+          @include mq(device-phone) {
+            @apply flex flex-col;
+          }
+
           div.component_text_help {
             @extend %component_text_help_div;
             //* add
             z-index: 1;
             top: -45px;
             left: 45px;
+
+            @include mq(device-phone) {
+              top: -30px;
+            }
           }
 
           span {
@@ -745,12 +928,21 @@
             @extend %common_text_normal;
             transform: translate(-50%,-50%);
             color: $color-font-basic;
+
+            @include mq(device-phone) {
+              font-size: 24px;
+            }
           }
 
           div.move__skill_box {
             @apply absolute top-0 left-0;
             @apply flex flex-col;
             left: 62.5px;
+
+            @include mq(device-phone) {
+              left: -25px;
+              top: 60px;
+            }
 
             img {
               z-index: 1;
@@ -804,6 +996,10 @@
           top: 50px;
         }
 
+        @include mq(device-phone) {
+          top: 100px;
+        }
+
         span {
           @apply relative top-0 left-0;
           @extend %common_text_normal;
@@ -816,6 +1012,11 @@
 
           @include mq(device-tablet-lg) {
             top: 22.5%;
+          }
+
+          @include mq(device-phone) {
+            left: 37px;
+            top: -13px;
           }
         }
 
@@ -834,6 +1035,11 @@
           border: solid;
           border-color: $color-border-move__tags;
           border-radius: 3px;
+
+          @include mq(device-phone) {
+            left: -34px;
+            top: 65px;
+          }
 
           div {
             @apply relative;
@@ -915,6 +1121,10 @@
           left: 12.5px;
         }
 
+        @include mq(device-phone) {
+          top: 85px;
+        }
+
         span {
           @extend %common_text_normal;
           width: fit-content;
@@ -936,6 +1146,10 @@
           border: solid;
           border-color: $color-border-move__tags;
           border-radius: 3px;
+
+          @include mq(device-phone) {
+            width: 320px;
+          }
 
           &:focus {
             border: solid;
@@ -981,6 +1195,15 @@
       height: $height__ipad;
     }
 
+    @include mq(device-tablet) {
+      top: 800px;
+    }
+
+    @include mq(device-phone) {
+      top: 1000px;
+      left: 0px;
+    }
+
     %detail__patry {
       @extend %component_patryCanvas_div;
 
@@ -1004,6 +1227,16 @@
       @include mq(device-ipad) {
         left: 45px;
         height: 720px;
+      }
+
+      @include mq(device-phone) {
+        left: 15.5px;
+        margin: {
+          left: initial;
+          right: initial;
+        }
+
+        width: 320px;
       }
 
       div.component_patry_select_div {
@@ -1049,10 +1282,23 @@
         left: 85px;
       }
 
+      @include mq(device-tablet) {
+        width: 665px;
+      }
+
+      @include mq(device-phone) {
+        left: 15.5px;
+        width: 320px;
+      }
+
       div.search__filter {
         @apply relative top-0 left-0;
         width: 100%;
         height: $height__filter;
+
+        @include mq(device-phone) {
+          height: 85px;
+        }
 
         div {
           @extend %checkbox_style_wapper;
@@ -1069,6 +1315,11 @@
 
           @include mq(device-tablet-lg) {
             width: 80%;
+          }
+
+          @include mq(device-phone) {
+            margin-left: 5%;
+            width: 90%;
           }
 
           label {
@@ -1094,6 +1345,49 @@
               &:not(:last-of-type) {
                 margin-right: 1.5%;
               }
+            }
+
+            @include mq(device-tablet) {
+              font-size: 17px;
+            }
+
+            @include mq(device-phone) {
+              @apply absolute top-0 left-0;
+              padding-left: 10%;
+              font-size: 15px;
+
+              &:nth-of-type(-n + 4) {
+                top: 30%;
+              }
+
+              &:nth-of-type(1) {
+                left: 4%;
+              }
+
+              &:nth-of-type(2) {
+                left: 36.5%;
+              }
+
+              &:nth-of-type(3) {
+                left: 68.5%;
+              }
+
+              &:nth-of-type(n + 4) {
+                top: 70%;
+              }
+
+              &:nth-of-type(4) {
+                left: 4%;
+              }
+
+              &:nth-of-type(5) {
+                left: 36.5%;
+              }
+
+              &:nth-of-type(6) {
+                left: 68.5%;
+              }
+
             }
 
           }
@@ -1139,20 +1433,36 @@
             color: $color-background-button_search;
           }
 
+          @include mq(device-phone) {
+            height: 45px;
+          }
+
           span {
             @extend %common_text_normal;
             color: $color-font-basic2;
             font-size: 28px;
+
+            @include mq(device-phone) {
+              font-size: 21.5px;
+            }
           }
         }
 
         button:nth-of-type(1) {
           width: 250px;
           left: 2.5%;
+
+          @include mq(device-phone) {
+            width: 125px;
+          }
         }
         button:nth-of-type(2) {
           width: 200px;
           left: 5.5%;
+
+          @include mq(device-phone) {
+            width: 160px;
+          }
         }
       }
 
@@ -1185,6 +1495,15 @@
             left: 30px;
           }
 
+          @include mq(device-tablet) {
+            left: 20px;
+          }
+
+          @include mq(device-phone) {
+            @apply justify-around;
+            left: 0px;
+          }
+
           div {
             @apply relative top-0 left-0;
             width: 64px;
@@ -1205,6 +1524,7 @@
               }
             }
 
+            //* 1280px からは 8つまで表示
             @include mq(device-tablet-lg) {
 
               &:nth-of-type(n + 9) {
@@ -1213,6 +1533,18 @@
 
               &:not(:first-of-type) {
                 margin-left: 20px;
+              }
+            }
+
+            @include mq(device-tablet) {
+              width: 60px;
+              height: 60px;
+            }
+
+            //* 428px からは 3つまで表示
+            @include mq(device-phone) {
+              &:nth-of-type(n + 4) {
+                display: none;
               }
             }
 
@@ -1225,6 +1557,11 @@
               width: 54px;
               height: 54px;
               transform: translate(-50%,-50%);
+
+              @include mq(device-tablet) {
+                width: 50px;
+                height: 50px;
+              }
             }
           }
         }
