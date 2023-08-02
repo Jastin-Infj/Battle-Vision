@@ -11,6 +11,7 @@ import Footer from "../src/frontend/ts/components/Footer";
 
 // import
 import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
+import PatryMembers from "../src/frontend/ts/components/_patrymembers";
 
 
 function Adjustment() {
@@ -512,39 +513,7 @@ function Adjustment() {
           </div>
           <div className="main__detail">
             <div className="detail__patry">
-              <div className="component_patry_select_div">
-                <img />
-                <div>
-                  <span>パーティ名</span>
-                </div>
-                <img />
-              </div>
-              <div className="component_patryMember_div">
-                <div className="col">
-                  <div>
-                    <img />
-                  </div>
-                  <div>
-                    <img />
-                  </div>
-                </div>
-                <div className="col">
-                  <div>
-                    <img />
-                  </div>
-                  <div>
-                    <img />
-                  </div>
-                </div>
-                <div className="col">
-                  <div>
-                    <img />
-                  </div>
-                  <div>
-                    <img />
-                  </div>
-                </div>
-              </div>
+              <PatryMembers />
             </div>
             <div className="detail__search">
               <div className="search__filter">

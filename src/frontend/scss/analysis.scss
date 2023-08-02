@@ -7,12 +7,14 @@
     grid-template:
       "...    ...... ...... ...... ...   " 0px
       "header header header header header" $header__height_normal
-      "...    ...... ...... ...... ...   " 175px
+      "...    ...... ...... ...... ...   " 100px
       "...    main   main   main   ...   " auto
       "...    ...... ...... ...... ...   " 300px
       "footer footer footer footer footer" $footer__height_normal
       "...    ...... ...... ...... ...   " 0px
       / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+    
+    height: viewport_getHeight(150) !important;
   }
 
   @include mq(device-tablet-lg) {
@@ -33,12 +35,51 @@
 
 %main {
   @apply relative top-0 left-0;
-  @apply flex;
+  @apply flex flex-col;
   grid-area: main;
   z-index: var(--z-component);
 
   width: 100%;
   height: 100%;
+
+  //todo
+  // background: red;
+
+  //* 高さの比率
+  $height__selectArrow: 7.5%;
+  $height__sortButton: 10.5%;
+  $height__party: calc(100% - $height__selectArrow - $height__sortButton);
+
+  @include mq(device-pc) {
+    z-index: initial;
+  }
+
+  %main__selectArrow {
+    @apply relative top-0 left-0;
+    width: 100%;
+    height: $height__selectArrow;
+
+    //todo
+    background: red;
+  }
+
+  %main__sortButton {
+    @apply relative top-0 left-0;
+    width: 100%;
+    height: $height__sortButton;
+
+    //todo
+    background: blue;
+  }
+
+  %main__party {
+    @apply relative top-0 left-0;
+    width: 100%;
+    height: $height__party;
+
+    //todo
+    background: green;
+  }
 }
 
 div.layer-canvas {
@@ -46,5 +87,17 @@ div.layer-canvas {
 
   main {
     @extend %main;
+
+    div.main__selectArrow {
+      @extend %main__selectArrow;
+    }
+
+    div.main__sortButton {
+      @extend %main__sortButton;
+    }
+
+    div.main__party {
+      @extend %main__party;
+    }
   }
 }
