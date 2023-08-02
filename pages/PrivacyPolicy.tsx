@@ -15,7 +15,7 @@ function PrivacyPolicy() {
   let indexcounter = 0;
   for(const key in Messages.Page.PrivacyPolicy.Text.Message) {
     //メッセージを先に取得
-    const msg = Messages.Page.Conditions.Text.Message[key].map((val) => {
+    const msg = Messages.Page.PrivacyPolicy.Text.Message[key].map((val) => {
       indexcounter++;
       return <p key={key + "_" + indexcounter} className="main__text_messageText">{val}</p>;
     });

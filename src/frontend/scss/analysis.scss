@@ -1,0 +1,50 @@
+@use 'import' as *;
+
+%layer-canvas_changeStyle {
+  //? change
+
+  @include mq(device-pc) {
+    grid-template:
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 175px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 300px
+      "footer footer footer footer footer" $footer__height_normal
+      "...    ...... ...... ...... ...   " 0px
+      / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template: initial !important;
+  }
+}
+
+//* common
+
+
+%main {
+  @apply relative top-0 left-0;
+  @apply flex;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+  }
+}

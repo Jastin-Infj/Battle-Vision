@@ -42,7 +42,7 @@
     "...    ...... ...... ...... ...   " 0px
     / 0.3fr 1fr 1fr 1fr 0.2fr !important;
 
-    height: viewport_getHeight(400) !important;
+    height: viewport_getHeight(385) !important;
   }
 
   @include mq(device-phone) {
@@ -98,7 +98,7 @@ div.main__text_title:nth-of-type(4) {
 }
 
 div.main__text_title:nth-of-type(7) {
-  p:is(:nth-of-type(7) , :nth-of-type(8) , :nth-of-type(12) , :nth-of-type(13)) {
+  p:is(:nth-of-type(7) , :nth-of-type(8) , :nth-of-type(9) , :nth-of-type(12) , :nth-of-type(13)) {
     &::before {
       content: $content__add_liText;
     }
