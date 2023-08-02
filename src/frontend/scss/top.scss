@@ -16,6 +16,16 @@
     / 1fr 1fr 1fr 1fr 1fr !important;
   }
 
+  @include mq(device-tablet-lg) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0px
+    "main   main   main   main   main  " 1fr
+    "...    ...... ...... ...... ...   " 0px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 1fr 1fr 1fr 1fr 1fr !important;
+  }
+
   @include mq(device-ipad) {
     grid-template: 
     "main   main   main  " 4fr
