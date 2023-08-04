@@ -8,9 +8,10 @@ import '../src/frontend/scss/analysis.scss';
 import Canvas from "../src/frontend/ts/components/Canvas";
 import Header from "../src/frontend/ts/components/Header";
 import Footer from "../src/frontend/ts/components/Footer";
+import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 
 // style import
-import PatryMembers from "../src/frontend/ts/components/_patrymembers";
+
 
 function Analysis() {
   //* render
@@ -29,25 +30,26 @@ function Analysis() {
           </div>
           <div className="main__sortButton">
             <button>
-              <span></span>
+              <div className="stroke-text">
+                <span className="main">{Messages.Page.Analysis.Button.Sort}</span>
+                <span className="back">{Messages.Page.Analysis.Button.Sort}</span>
+              </div>
             </button>
           </div>
           <div className="main__party">
-            <div>
-              <PatryMembers />
-              <PatryMembers />
-              <PatryMembers />
-              <PatryMembers />
-              <PatryMembers />
-              <PatryMembers />
+            <div className="patry__row">
+              <PatryCanvas />
+              <PatryCanvas />
+              <PatryCanvas />
+              <PatryCanvas />
+              <PatryCanvas />
             </div>
-            <div>
-              <PatryMembers />
-              <PatryMembers />
-              <PatryMembers />
-              <PatryMembers />
-              <PatryMembers />
-              <PatryMembers />
+            <div className="patry__row">
+              <PatryCanvas />
+              <PatryCanvas />
+              <PatryCanvas />
+              <PatryCanvas />
+              <PatryCanvas />
             </div>
           </div>
         </main>

@@ -11,7 +11,7 @@ import Footer from "../src/frontend/ts/components/Footer";
 
 // import
 import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
-import PatryMembers from "../src/frontend/ts/components/_patrymembers";
+import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 
 
 function Adjustment() {
@@ -513,7 +513,7 @@ function Adjustment() {
           </div>
           <div className="main__detail">
             <div className="detail__patry">
-              <PatryMembers />
+              <PatryCanvas />
             </div>
             <div className="detail__search">
               <div className="search__filter">
