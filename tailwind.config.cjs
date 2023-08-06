@@ -6,14 +6,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        page: {
-          top: {
-            btn: {
-              bgColor: 'rgba(59, 58, 109, 1)',
-              boColor: 'rgba(111, 105, 124, 1)',
-            }
-          }
-        }
       },
       fontFamily: {
         'Inter-Chrome': ['"InterChrome"','sans-serif'],

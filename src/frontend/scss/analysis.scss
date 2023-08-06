@@ -57,30 +57,59 @@
 
   %main__selectArrow {
     @apply relative top-0 left-0;
-    @apply flex flex-row justify-between;
+    top: -2%;
+    left: -2.5%;
     width: 100%;
     height: $height__selectArrow;
 
     //todo
     // background: red;
 
-    img {
+    div.back {
       @apply relative top-0 left-0;
-      width: 64px;
-      height: 64px;
-      transform: translateY(-50%);
-      top: 50%;
+      @apply flex flex-row justify-between;
+      width: 300px;
+      height: 80px;
 
-      background-color: black;
+      border-radius: 15px;
+      background: $color-background-div_selectArrow;
 
-      &:nth-of-type(1) {
-        left: 2.5%;
+      div.borderBg {
+        @apply relative top-0 left-0;
+        @apply flex;
+        transform: translateY(-50%);
+        top: 50%;
+
+        $width_selectArrow: 64px;
+        $height_selectArrow: 64px;
+
+        width: calc($width_selectArrow * 1.2);
+        height: calc($height_selectArrow * 1.1);
+            
+        &:nth-of-type(1) {
+          left: 5%;
+        }
+  
+        &:nth-of-type(2) {
+          left: -5%;
+        }
+
+        border-radius: 15px;
+        background: $color-background-div_selectArrow_borderBg;
+
+        img {
+          @apply relative top-0 left-0;
+          width: $width_selectArrow;
+          height: $height_selectArrow;
+          transform: translate(-50%,-50%);
+          top: 50%;
+          left: 50%;
+          background-color: black;
+        }
       }
-
-      &:nth-of-type(2) {
-        left: -2.5%;
-      }
+      
     }
+
   }
 
   %main__sortButton {

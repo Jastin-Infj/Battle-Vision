@@ -25,8 +25,14 @@ function Analysis() {
         <Header />
         <main>
           <div className="main__selectArrow">
-            <img />
-            <img /> 
+            <div className="back">
+              <div className="borderBg">
+                <img />
+              </div>
+              <div className="borderBg">
+                <img />
+              </div>
+            </div>
           </div>
           <div className="main__sortButton">
             <button>
