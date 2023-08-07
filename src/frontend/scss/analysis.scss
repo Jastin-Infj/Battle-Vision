@@ -18,11 +18,31 @@
   }
 
   @include mq(device-tablet-lg) {
-    grid-template: initial !important;
+    grid-template: 
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 100px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 300px
+      "footer footer footer footer footer" $footer__height_normal
+      "...    ...... ...... ...... ...   " 0px
+      / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(190) !important;
   }
 
   @include mq(device-ipad) {
-    grid-template: initial !important;
+    grid-template: 
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 100px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 100px
+      "footer footer footer footer footer" $footer__height_ipad
+      "...    ...... ...... ...... ...   " 0px
+      / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+
+    height: viewport_getHeight(170) !important;
   }
 
   @include mq(device-phone) {
@@ -104,7 +124,6 @@
           transform: translate(-50%,-50%);
           top: 50%;
           left: 50%;
-          background-color: black;
         }
       }
       
@@ -190,6 +209,18 @@
 
       &:last-of-type {
         margin-top: 600px;
+
+        @include mq(device-ipad) {
+          margin-top: 900px;
+        }
+      }
+
+      @include mq(device-tablet-lg) {
+        left: -2.5%;
+      }
+
+      @include mq(device-ipad) {
+        height: 800px;
       }
 
       div.component_patryCanvas_div {
@@ -201,22 +232,102 @@
         box-shadow: 0px 5.8px 5.8px 0px rgba(0, 0, 0, 0.25);
 
         &:not(:first-of-type) {
-          margin-left: 40px;
+          @include mq(device-pc) {
+            margin-left: 40px;
+          }
+
+          @include mq(device-tablet-lg) {
+            margin-left: 0px;
+          }
+        }
+
+        @include mq(device-tablet-lg) {
+          $lists: [2,3,4,5];
+          @each $i in $lists {
+            &:nth-of-type(#{$i}) {
+              left: 10px * calc($i - 1);
+            }
+          }
+        }
+
+        @include mq(device-ipad) {
+          width: calc(100% / 3);
+
+          &:nth-of-type(4) {
+            display: none;
+          }
+          &:last-of-type {
+            display: none;
+          }
+
         }
 
         div.text {
           margin-top: 5%;
-          div > span {
-            @apply whitespace-nowrap;
-            left: 51.5%;
+
+          img {
+            @include mq(device-tablet-lg) {
+              transform: scale(0.8);
+            }
+          }
+
+          div {
+            @include mq(device-tablet-lg) {
+              @apply overflow-hidden;
+            }
+
+            @include mq(device-ipad) {
+              @apply absolute;
+              top: 120%;
+              left: 5%;
+
+              width: 190px;
+              height: 70px;
+            }
+
+            span {
+              @apply whitespace-nowrap;
+              left: 51.5%;
+  
+              @include mq(device-tablet-lg) {
+                font-size: 16px;
+                top: 25%;
+                left: 7.5%;
+                transform: initial;
+              }
+
+              @include mq(device-ipad) {
+                left: initial;
+                width: 100%;
+                font-size: 20px;
+
+                text-align: center;
+              }
+            }
           }
         }
 
         div.member {
-          margin-top: 2.5%;
+          @include mq(device-pc) {
+            margin-top: 2.5%;
+          }
+
+          @include mq(device-tablet-lg) {
+            margin-top: 2.5%;
+          }
+
+          @include mq(device-ipad) {
+            margin-top: 30%;
+          }
+
           div.col {
             width: 100%;
             flex: 1;
+
+            @include mq(device-ipad) {
+              margin-bottom: initial !important;
+              margin-top: initial !important;
+            }
 
             div.pokemonImg {
               flex: 1;
@@ -225,10 +336,32 @@
 
               &:first-of-type {
                 margin-right: 1.5%;
+
+                @include mq(device-tablet-lg) {
+                  margin-right: 0%;
+                }
+
+                @include mq(device-ipad) {
+                  margin-right: 2.5%;
+                }
               }
 
               &:last-of-type {
                 margin-left: 1.5%;
+
+                @include mq(device-tablet-lg) {
+                  margin-left: 0%;
+                }
+
+                @include mq(device-ipad) {
+                  margin-left: 2.5%;
+                }
+              }
+
+              @include mq(device-ipad) {
+                top: 50%;
+                transform: translateY(-50%);
+                height: 140px;
               }
             }
           }
