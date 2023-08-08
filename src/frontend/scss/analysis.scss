@@ -1,5 +1,10 @@
 @use 'import' as *;
 
+//todo
+div.header__box_menu {
+  display: none;
+}
+
 %layer-canvas_changeStyle {
   //? change
 
@@ -45,8 +50,32 @@
     height: viewport_getHeight(170) !important;
   }
 
+  @include mq(device-tablet) {
+    grid-template: 
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 100px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 100px
+      "footer footer footer footer footer" $footer__height_ipad
+      "...    ...... ...... ...... ...   " 0px
+      / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+
+    height: viewport_getHeight(200) !important;
+  }
+
   @include mq(device-phone) {
-    grid-template: initial !important;
+    grid-template: 
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 100px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 100px
+      "footer footer footer footer footer" $footer__height_phone
+      "...    ...... ...... ...... ...   " 0px
+      / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+
+    height: viewport_getHeight(150) !important;
   }
 }
 
@@ -85,6 +114,12 @@
     //todo
     // background: red;
 
+    @include mq(device-phone) {
+      @apply absolute;
+      top: 9.5%;
+      left: initial;
+    }
+
     div.back {
       @apply relative top-0 left-0;
       @apply flex flex-row justify-between;
@@ -93,6 +128,10 @@
 
       border-radius: 15px;
       background: $color-background-div_selectArrow;
+
+      @include mq(device-phone)  {
+        width: 355px;
+      }
 
       div.borderBg {
         @apply relative top-0 left-0;
@@ -139,6 +178,13 @@
     //todo
     // background: blue;
 
+    @include mq(device-phone) {
+      @apply absolute;
+      top: initial;
+
+      height: initial;
+    }
+
     button {
       @apply relative top-0 left-0;
       left: 10.5%;
@@ -151,6 +197,11 @@
       background: $color-background-button_sortButton;
       box-shadow: 0px 5.8px 5.8px 0px rgba(0, 0, 0, 0.25);
 
+      @include mq(device-phone) {
+        width: 165px;
+        left: -0.5%;
+      }
+
       &:hover {
         background: $color-background-basic;
       }
@@ -159,6 +210,10 @@
         span.back {
           color: $color-background-button_sortButton;
           -webkit-text-stroke-width: 5px;
+
+          @include mq(device-phone) {
+            -webkit-text-stroke-width: 3.5px;
+          }
         }
         
       }
@@ -168,12 +223,20 @@
         left: 50%;
         top: 50%;
         
+        @include mq(device-phone) {
+          top: 48%;
+        }
+        
         span {
           @extend %text_stroke_style_common;
           @apply whitespace-nowrap;
           font-size: 34px;
           font-weight: 600;
           text-shadow: 0px 5.8px 5.8px rgba(0, 0, 0, 0.25);
+
+          @include mq(device-phone) {
+            font-size: 21px;
+          }
         }
 
         span.main {
@@ -200,6 +263,11 @@
     //todo
     // background: green;
 
+    @include mq(device-phone) {
+      top: 20%;
+      left: 5%;
+    }
+
     div.patry__row {
       @apply absolute top-0 left-0;
       @apply flex flex-row;
@@ -213,6 +281,10 @@
         @include mq(device-ipad) {
           margin-top: 900px;
         }
+
+        @include mq(device-phone) {
+          display: none;
+        }
       }
 
       @include mq(device-tablet-lg) {
@@ -221,6 +293,12 @@
 
       @include mq(device-ipad) {
         height: 800px;
+      }
+
+      @include mq(device-phone) {
+        &:first-of-type {
+          @apply flex flex-col;
+        }
       }
 
       div.component_patryCanvas_div {
@@ -262,6 +340,14 @@
 
         }
 
+        @include mq(device-phone) {
+          width: 95%;
+          box-shadow: 5.8px 5.8px 5.8px 0px rgba(0, 0, 0, 0.25);
+          &:not(:first-of-type) {
+            display: none;
+          }
+        }
+
         div.text {
           margin-top: 5%;
 
@@ -283,6 +369,12 @@
 
               width: 190px;
               height: 70px;
+            }
+
+            @include mq(device-phone) {
+              left: 2.5%;
+              top: 140%;
+              width: 90%;
             }
 
             span {
