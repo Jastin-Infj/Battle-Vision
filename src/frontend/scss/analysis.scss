@@ -1,10 +1,5 @@
 @use 'import' as *;
 
-//todo
-div.header__box_menu {
-  display: none;
-}
-
 %layer-canvas_changeStyle {
   //? change
 
@@ -99,11 +94,6 @@ div.header__box_menu {
   $height__sortButton: 10.5%;
   $height__party: calc(100% - $height__selectArrow - $height__sortButton);
 
-  @include mq(device-pc) {
-    //todo
-    // z-index: initial;
-  }
-
   %main__selectArrow {
     @apply relative top-0 left-0;
     top: -2%;
@@ -185,70 +175,13 @@ div.header__box_menu {
       height: initial;
     }
 
-    button {
-      @apply relative top-0 left-0;
+    button.component__button1 {
+      @extend %component__button1;
       left: 10.5%;
-      width: 290px;
-      height: 60px;
-
-      border-radius: 29px;
-      border-color: $color-border-sort_button;
-      border-width: 4.5px;
-      background: $color-background-button_sortButton;
-      box-shadow: 0px 5.8px 5.8px 0px rgba(0, 0, 0, 0.25);
 
       @include mq(device-phone) {
         width: 165px;
         left: -0.5%;
-      }
-
-      &:hover {
-        background: $color-background-basic;
-      }
-
-      &:hover > div.stroke-text {
-        span.back {
-          color: $color-background-button_sortButton;
-          -webkit-text-stroke-width: 5px;
-
-          @include mq(device-phone) {
-            -webkit-text-stroke-width: 3.5px;
-          }
-        }
-        
-      }
-
-      div.stroke-text {
-        @apply absolute top-0 left-0;
-        left: 50%;
-        top: 50%;
-        
-        @include mq(device-phone) {
-          top: 48%;
-        }
-        
-        span {
-          @extend %text_stroke_style_common;
-          @apply whitespace-nowrap;
-          font-size: 34px;
-          font-weight: 600;
-          text-shadow: 0px 5.8px 5.8px rgba(0, 0, 0, 0.25);
-
-          @include mq(device-phone) {
-            font-size: 21px;
-          }
-        }
-
-        span.main {
-          @extend %text_stroke_style_main;
-          color: $color-font-basic2;
-        }
-
-        span.back {
-          @extend %text_stroke_style_back;
-          color: $color-font-sort__button_stroke;
-          -webkit-text-stroke-width: 2.5px;
-        }
       }
     }
 
@@ -413,7 +346,6 @@ div.header__box_menu {
           }
 
           div.col {
-            width: 100%;
             flex: 1;
 
             @include mq(device-ipad) {

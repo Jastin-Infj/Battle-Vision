@@ -35,7 +35,7 @@ function Analysis() {
             </div>
           </div>
           <div className="main__sortButton">
-            <button>
+            <button className="component__button1">
               <div className="stroke-text">
                 <span className="main">{Messages.Page.Analysis.Button.Sort}</span>
                 <span className="back">{Messages.Page.Analysis.Button.Sort}</span>

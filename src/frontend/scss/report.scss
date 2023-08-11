@@ -1,0 +1,393 @@
+@use 'import' as *;
+
+%layer-canvas_changeStyle {
+  //? change
+
+  @include mq(device-pc) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+  height: viewport_getHeight(160) !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template: initial !important;
+  }
+}
+
+//* common
+%main {
+  @apply relative top-0 left-0;
+  @apply flex flex-col;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+
+  //* 高さの比率
+  $height__reportButton: 10%;
+  $height__battleReport: 38%;
+  $height__patryButton: calc(100% - $height__reportButton - $height__battleReport);
+
+  @include mq(device-pc) {
+    //todo
+    // z-index: 0;
+  }
+
+  %main__reportButton {
+    @apply relative top-0 left-0;
+    @apply flex flex-row justify-between;
+    width: 100%;
+    height: $height__reportButton;
+
+    //todo
+    // background: red;
+
+    button.component__button1 {
+      @extend %component__button1;
+      left: initial;
+    }
+
+    div.aggregation {
+      @apply relative top-0 left-0;
+      @apply flex flex-row justify-around;
+      width: 40%;
+      height: 100%;
+
+      //todo
+      // background: lightcyan;
+
+      div.text {
+        @apply relative top-0 left-0;
+        @extend %common_text_normal;
+      }
+
+      div.date {
+        @apply relative top-0 left-0;
+        width: 170px;
+        height: 55px;
+
+        border-width: 2px;
+        border-color: $color-border-basic3;
+        border-radius: 3px;
+
+        box-shadow: 0px 4.2px 4.2px 0px rgba(0, 0, 0, 0.25);
+
+        input {
+          width: 100%;
+          height: 100%;
+
+          padding-left: 10%;
+
+          @extend %common_text_sm;
+          
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  %main__patryReport {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+    width: 100%;
+    height: $height__patryButton;
+
+    //todo
+    background: green;
+
+    //* 横幅
+    $width__row1: 35.5%;
+    $width__row2: calc(100% - $width__row1);
+
+    div.row:nth-of-type(1) {
+
+      @apply relative top-0 left-0;
+      width: $width__row1;
+      height: 100%;
+
+      //todo
+      // background: red;
+
+      div.component_patryCanvas_div {
+        @extend %component_patryCanvas_div;
+
+        div.text {
+          margin-top: 7.5%;
+
+          div > span {
+            padding-right: 5%;
+          }
+        }
+
+        div.member {
+          margin-top: 2.5%;
+
+          div.col {
+            @apply justify-between;
+            width: 100%;
+            height: 30%;
+
+            div.pokemonImg {
+              &:nth-of-type(1) {
+                margin-left: 10%;
+              }
+
+              &:nth-of-type(2) {
+                margin-right: 10%;
+              }
+            }
+          }
+        }
+      }
+
+      img.rename {
+        @apply absolute top-0 left-0;
+        left: 70.5%;
+        top: 5.25%;  
+        width: 47.5px;
+        height: 47.5px;
+      }
+    }
+
+    div.row:nth-of-type(2) {
+      @apply relative top-0 left-0;
+      width: $width__row2;
+      height: 100%;
+
+      //todo
+      // background: black;
+
+      div.winG {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+
+        left: 5.5%;
+        width: calc(100% - 5.5%);
+        height: 35%;
+
+        //todo
+        // background: black;
+
+        div.report {
+          @apply relative top-0 left-0;
+          width: 35%;
+          height: 100%;
+
+          div.winBox {
+            @apply relative top-0 left-0;
+            @apply flex flex-col;
+            width: 100%;
+            height: 100%;
+
+            border-radius: 15.5px;
+            background: $color-background-div_report_Common;
+
+            span:nth-of-type(1) {
+              @extend %common_text_normal;
+              @apply relative top-0 left-0;
+              transform: translateX(-50%);
+              top: 5%;
+              left: 30.5%;
+
+              color: $color-font-basic2;
+              
+            }
+
+            img {
+              @apply relative top-0 left-0;
+              transform: translateX(-50%);
+              top: 12.5%;
+              left: 50%;
+              width: 140px;
+              height: 140px;
+            }
+
+            div.stroke-text {
+              @apply relative top-0 left-0;
+              left: 50%;
+              top: 25%;
+              span {
+                @extend %text_stroke_style_common;
+                font-size: 42px;
+                text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.25);
+              }
+
+              span.main {
+                @extend %text_stroke_style_main;
+                color: $color-font-report__main;
+              }
+
+              span.back {
+                @extend %text_stroke_style_back;
+                color: $color-font-report__back;
+                -webkit-text-stroke-width: 3px; 
+              }
+            }
+          }
+        }
+
+        div.tagG {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          width: 60%;
+          height: 100%;
+          margin-left: 2.5%;
+
+          //todo
+          // background: lightcoral;
+
+          //* 比率
+          $height__box: 65%;
+          $height__button: 35%;
+
+          span {
+            @apply relative top-0 left-0;
+            @extend %common_text_normal;
+
+            transform: translateY(-50%);
+            top: 32.5%;
+            left: -2%;
+            //todo
+            // background: blue;
+          }
+
+          div.row {
+            @apply relative top-0 left-0;
+            width: 100%;
+            height: 100%;
+
+            //todo
+            // background: lightgreen;
+
+            div.box:nth-of-type(1) {
+              @apply relative top-0 left-0;
+              @apply flex flex-col;
+              width: 100%;
+              height: $height__box;
+  
+              background: $color-background-basic;
+              border-color: $color-border-basic3;
+              border-width: 4.5px;
+              border-radius: 3px;
+  
+              div.common_checkbox {
+                @extend %checkbox_style_wapper;
+                @apply flex flex-col;
+                @apply justify-between;
+                width: 100%;
+                height: 90%;
+                margin-top: 1.5%;
+  
+                label {
+                  @apply absolute top-0 left-0;
+                  padding-left: 6.5%;
+                  font-size: 21px;
+  
+                  //* テキスト設定
+                  $text_margin: 26%;
+                  
+                  &:nth-of-type(1) {
+                    left: 2.5%;
+                  }
+  
+                  &:nth-of-type(2) {
+                    left: calc(2.5% + $text_margin * 1);
+                  }
+  
+                  &:nth-of-type(3) {
+                    left: calc(2.5% + $text_margin * 2);
+                  }
+  
+                  &:nth-of-type(4) {
+                    left: calc(2.5% + $text_margin * 3);
+                  }
+                }
+              }
+            }
+
+            button.component__button1 {
+              @apply relative top-0 left-0;
+              width: 40%;
+              height: $height__button;
+              
+              //todo
+              background: $color-background-div_report_Common;
+              border-radius: 21px;
+              border-width: 3px;
+  
+              span {
+                @apply absolute top-0 left-0;
+                @extend %common_text_normal;
+                transform: translate(-50%,-50%);
+                top: 50%;
+                left: 50%;
+                color: $color-font-basic2;
+              }
+            }
+
+          }
+        }
+
+      }
+
+      div.r_selection {
+        @apply relative top-0 left-0;
+        width: 100%;
+        height: 65%;
+
+        //todo
+        // background: red;
+      }
+    }
+    
+  }
+
+  %main__battleReport {
+    @apply relative top-0 left-0;
+    width: 100%;
+    height: $height__battleReport;
+
+    //todo
+    background: blue;
+  }
+
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+
+    div.main__reportButton {
+      @extend %main__reportButton;
+    }
+
+    div.main__patryReport {
+      @extend %main__patryReport;
+    }
+
+    div.main__battleReport {
+      @extend %main__battleReport;
+    }
+  }
+}
