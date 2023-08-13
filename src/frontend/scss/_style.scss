@@ -83,6 +83,19 @@
   // -webkit-text-stroke-width: 4px;
 }
 
+%text_stroke_style_wapper {
+  span {
+    @extend %text_stroke_style_common;
+  }
+
+  span.main {
+    @extend %text_stroke_style_main;
+  }
+
+  span.back {
+    @extend %text_stroke_style_back;
+  }
+}
 
 //----------------------------------------------------
 //-----------------  input  -------------------------

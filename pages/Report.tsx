@@ -10,6 +10,7 @@ import Header from "../src/frontend/ts/components/Header";
 import Footer from "../src/frontend/ts/components/Footer";
 import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 import CheckBoxItem from "../src/frontend/ts/components/_checkItem";
+import TextStroke from "../src/frontend/ts/components/_textStroke";
 
 function Report() {
   return (
@@ -19,10 +20,7 @@ function Report() {
         <main>
           <div className="main__reportButton">
             <button className="component__button1">
-              <div className="stroke-text">
-                <span className="main">{Messages.Page.Report.Button.Reset}</span>
-                <span className="back">{Messages.Page.Report.Button.Reset}</span>
-              </div>
+              <TextStroke text={Messages.Page.Report.Button.Reset} />
             </button>
             <div className="aggregation">
               <div className="text">
@@ -50,10 +48,7 @@ function Report() {
                   <div className="winBox">
                     <span>{Messages.Page.Report.Text.Win}</span>
                     <img />
-                    <div className="stroke-text">
-                      <span className="main">(14.5%)</span>
-                      <span className="back">(14.5%)</span>
-                    </div>
+                    <TextStroke text={"(14.5%)"} />
                   </div>
                 </div>
                 <div className="tagG">
@@ -83,22 +78,141 @@ function Report() {
                       </div>
                     </div>
                     <button className="component__button1">
-                      <span>{Messages.Page.Report.Button.Report}</span>
+                      <div className="stroke-text">
+                        <span className="main">{Messages.Page.Report.Button.Report}</span>
+                        <span className="back">{Messages.Page.Report.Button.Report}</span>
+                      </div>
                     </button>
                   </div>
                 </div>
               </div>
               <div className="r_selection">
-                
+                <div className="selection">
+                  <span className="title">{Messages.Page.Report.Text.Selection}</span>
+                  <div className="circleGrach">
+                  
+                  </div>
+                </div>
+                <div className="list">
+                  <div className="ranking">
+                    <img />
+                    <span className="name">ああああああ</span>
+                    <TextStroke text="test" />
+                  </div>
+                  <div className="ranking">
+                    <img />
+                    <span className="name">ああああ</span>
+                    <TextStroke text="test" />
+                  </div>
+                  <div className="ranking">
+                    <img />
+                    <span className="name"></span>
+                    <TextStroke text="test" />
+                  </div>
+                  <div className="ranking">
+                    <img />
+                    <span className="name"></span>
+                    <TextStroke text="test" />
+                  </div>
+                  <div className="ranking">
+                    <img />
+                    <span className="name"></span>
+                    <TextStroke text="test" />
+                  </div>
+                  <div className="ranking">
+                    <img />
+                    <span className="name"></span>
+                    <TextStroke text="test" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div className="main__battleReport">
-            <div className="r_first">
+            <div className="row">
+              <span className="title">{Messages.Page.Report.Text.First}</span>
+              <div className="circleGrach">
 
+              </div>
+              <div className="list">
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+              </div>
+              <div className="list">
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+              </div>
+              <div className="list">
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+              </div>
             </div>
-            <div className="r_reserve">
+            <div className="row">
+              <span className="title">{Messages.Page.Report.Text.Reserve}</span>
+              <div className="circleGrach">
 
+              </div>
+              <div className="list">
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+              </div>
+              <div className="list">
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+              </div>
+              <div className="list">
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+                <div className="ranking">
+                  <img />
+                  <span className="name">ああああああ</span>
+                  <TextStroke text="test" />
+                </div>
+              </div>
+              
             </div>
           </div>
         </main>

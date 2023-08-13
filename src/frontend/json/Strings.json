@@ -396,7 +396,10 @@
         "Aggregation": "集計期間",
         "AggregationM": "~",
         "Win": "勝率比(1ヶ月)",
-        "Tag": "集計タグ"
+        "Tag": "集計タグ",
+        "Selection": "選出率",
+        "First": "先手選抜率",
+        "Reserve": "控え率"
       },
       "Button": {
         "Reset": "成績リセット",

@@ -14,7 +14,7 @@
     "...    ...... ...... ...... ...   " 0px
     / 0.3fr 1fr 1fr 1fr 0.3fr !important;
   
-  height: viewport_getHeight(160) !important;
+  height: viewport_getHeight(170) !important;
   }
 
   @include mq(device-tablet-lg) {
@@ -112,7 +112,7 @@
     height: $height__patryButton;
 
     //todo
-    background: green;
+    // background: green;
 
     //* 横幅
     $width__row1: 35.5%;
@@ -162,7 +162,7 @@
       img.rename {
         @apply absolute top-0 left-0;
         left: 70.5%;
-        top: 5.25%;  
+        top: 4.75%;  
         width: 47.5px;
         height: 47.5px;
       }
@@ -257,7 +257,7 @@
 
           //* 比率
           $height__box: 65%;
-          $height__button: 35%;
+          $height__button: 27.5%;
 
           span {
             @apply relative top-0 left-0;
@@ -325,25 +325,46 @@
             }
 
             button.component__button1 {
-              @apply relative top-0 left-0;
-              width: 40%;
+              left: 25%;
+              top: 5%;
+              width: 50%;
               height: $height__button;
-              
-              //todo
-              background: $color-background-div_report_Common;
-              border-radius: 21px;
-              border-width: 3px;
-  
-              span {
-                @apply absolute top-0 left-0;
-                @extend %common_text_normal;
-                transform: translate(-50%,-50%);
-                top: 50%;
+
+              @extend %component__button1;
+
+              &:hover > div.stroke-text > span {
+                &.main {
+                  color: $color-font-basic2;
+                }
+
+                &.back {
+                  display: initial;
+                  -webkit-text-stroke-color: $color-background-div_report_Common;
+                  -webkit-text-stroke-width: 5px;
+                }
+              }
+
+              div.stroke-text {
+                @apply relative top-0 left-0;
                 left: 50%;
-                color: $color-font-basic2;
+
+                span {
+                  @extend %text_stroke_style_common;
+                  font-size: 42px;
+                  text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.25);
+                }
+  
+                span.main {
+                  @extend %text_stroke_style_main;
+                  color: $color-background-basic;
+                }
+  
+                span.back {
+                  @extend %text_stroke_style_back;
+                  display: none;
+                }
               }
             }
-
           }
         }
 
@@ -351,11 +372,112 @@
 
       div.r_selection {
         @apply relative top-0 left-0;
-        width: 100%;
-        height: 65%;
+        @apply flex flex-row;
+        margin-left: 5.5%;
+        width: calc(100% - 5.5%);
 
-        //todo
-        // background: red;
+        margin-top: 2.5%;
+        height: calc(65% - 2.5%);
+
+        background: $color-background-div_report_Common;
+        border-radius: 15px;
+
+        $width__row1: 65%;
+        $width__row2: 35%;
+
+        div.selection {
+          @apply relative top-0 left-0;
+          width: $width__row1;
+          height: 100%;
+
+          //todo
+          // background: lightgreen;
+
+          span.title {
+            @apply absolute top-0 left-0;
+            @extend %common_text_normal;
+            top: 3.5%;
+            left: 2.5%;
+            color: $color-font-basic2;
+          }
+
+          div.circleGrach {
+            @apply relative top-0 left-0;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 50%;
+
+            width: 390px;
+            height: 390px;
+
+            //todo
+            background: lightblue;
+          }
+        }
+
+        div.list {
+          @apply relative top-0 left-0;
+          width: $width__row2;
+          height: 100%;
+
+          //todo
+          // background: purple;
+          
+          div.ranking {
+            @apply relative top-0 left-0;
+            @apply flex flex-row;
+            top: 12.5%;
+            width: 100%;
+            height: calc((100% - 25%) / 6);
+
+            //todo
+            // background: red;
+
+            img {
+              @apply relative top-0 left-0;
+              transform: translateY(-50%);
+              top: 50%;
+              margin-left: 7.5%;
+
+              width: 42px;
+              height: 42px;
+
+            }
+
+            span.name {
+              @apply relative top-0 left-0;
+              @extend %common_text_normal;
+              transform: translateY(-50%);
+              top: 50%;
+              margin-left: 8%;
+
+              color: $color-font-basic2;
+            }
+
+            div.stroke-text {
+              @extend %text_stroke_style_wapper;
+              @apply absolute top-0 left-0;
+              top: 47.5%;
+              left: 82.5%;
+
+              span {
+                font-size: 32px;
+                text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.25);
+                font-weight: 600;
+              }
+
+              span.main {
+                color: $color-font-report__main;
+              }
+
+              span.back {
+                -webkit-text-stroke: $color-font-report__back;
+                -webkit-text-stroke-width: 3px;
+              }
+            }
+          }
+        }
+
       }
     }
     
@@ -363,11 +485,125 @@
 
   %main__battleReport {
     @apply relative top-0 left-0;
+    @apply flex flex-row;
     width: 100%;
+
+    margin-top: 2.5%;
     height: $height__battleReport;
 
-    //todo
-    background: blue;
+    background: $color-background-div_report_Common;
+    border-radius: 15px;
+
+    div.row {
+      @apply relative top-0 left-0;
+      @apply flex flex-col;
+      @apply overflow-hidden;
+
+      width: 50%;
+      height: 100%;
+
+      //todo
+      &:nth-of-type(1) {
+        // background: lightcoral;
+      }
+
+      &:nth-of-type(2) {
+        // background: lightgray;
+      }
+      
+      span.title {
+        @apply relative top-0 left-0;
+        @extend %common_text_normal;
+  
+        left: 3%;
+        top: 2.5%;
+        color: $color-font-basic2;
+        font-size: 34px;
+      }
+
+      div.circleGrach {
+        @apply relative top-0 left-0;
+        left: 30%;
+        top: -2%;
+        width: 355px;
+        height: 355px;
+  
+        //todo
+        background: lightblue;
+      }
+
+      div.list {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        top: 2%;
+        width: 100%;
+        height: calc(40% / 3);
+
+        //todo
+        // background: green;
+
+        div.ranking {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          width: 50%;
+          height: 100%;
+
+          //todo
+          // background: lightblue;
+
+          &:nth-of-type(2) {
+            //todo
+            // background: red;
+          }
+
+          img {
+            @apply relative top-0 left-0;
+            transform: translateY(-50%);
+            top: 50%;
+            margin-left: 7.5%;
+
+            width: 30px;
+            height: 30px;
+          }
+
+          span.name {
+            @apply relative top-0 left-0;
+            @extend %common_text_normal;
+            transform: translateY(-50%);
+            top: 47.5%;
+            margin-left: 8.5%;
+
+            color: $color-font-basic2;
+            font-size: 25px;
+          }
+
+          div.stroke-text {
+            @apply absolute top-0 left-0;
+            @extend %text_stroke_style_wapper;
+            transform: translateY(-50%);
+            top: 44.5%;
+            left: 75%;
+
+            span {
+              color: $color-font-basic2;
+              font-size: 27px;
+              font-weight: 500;
+            }
+
+            span.main {
+              color: $color-font-report__main;
+            }
+
+            span.back {
+              -webkit-text-stroke-color: $color-font-report__back;
+              -webkit-text-stroke-width: 3.5px;
+            }
+          }
+        }
+        
+      }
+
+    }
   }
 
 }
