@@ -23,13 +23,13 @@ function Report() {
               <TextStroke text={Messages.Page.Report.Button.Reset} />
             </button>
             <div className="aggregation">
-              <div className="text">
+              <div className="text agg">
                 <span>{Messages.Page.Report.Text.Aggregation}</span>
               </div>
               <div className="date">
                 <input type="date" />
               </div>
-              <div className="text">
+              <div className="text mark">
                 <span>{Messages.Page.Report.Text.AggregationM}</span>
               </div>
               <div className="date">
@@ -46,13 +46,13 @@ function Report() {
               <div className="winG">
                 <div className="report">
                   <div className="winBox">
-                    <span>{Messages.Page.Report.Text.Win}</span>
+                    <span className="title">{Messages.Page.Report.Text.Win}</span>
                     <img />
                     <TextStroke text={"(14.5%)"} />
                   </div>
                 </div>
                 <div className="tagG">
-                  <span>{Messages.Page.Report.Text.Tag}</span>
+                  <span className="title">{Messages.Page.Report.Text.Tag}</span>
                   <div className="row">
                     <div className="box">
                       <div className="common_checkbox">

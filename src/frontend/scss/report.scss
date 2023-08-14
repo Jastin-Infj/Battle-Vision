@@ -14,11 +14,21 @@
     "...    ...... ...... ...... ...   " 0px
     / 0.3fr 1fr 1fr 1fr 0.3fr !important;
   
-  height: viewport_getHeight(170) !important;
+    height: viewport_getHeight(170) !important;
   }
 
   @include mq(device-tablet-lg) {
-    grid-template: initial !important;
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(180) !important;
   }
 
   @include mq(device-ipad) {
@@ -67,15 +77,36 @@
     div.aggregation {
       @apply relative top-0 left-0;
       @apply flex flex-row justify-around;
-      width: 40%;
       height: 100%;
 
       //todo
       // background: lightcyan;
 
+      @include mq(device-pc) {
+        width: 40%;
+      }
+
+      @include mq(device-tablet-lg) {
+        width: 45%;
+        left: -20px;
+      }
+
       div.text {
         @apply relative top-0 left-0;
         @extend %common_text_normal;
+
+        &.agg {
+          @include mq(device-tablet-lg) {
+            left: -25px;
+          } 
+        }
+        
+        &.mark {
+          margin: {
+            left: 10px;
+            right: 10px;
+          }
+        }
       }
 
       div.date {
@@ -161,10 +192,20 @@
 
       img.rename {
         @apply absolute top-0 left-0;
-        left: 70.5%;
-        top: 4.75%;  
-        width: 47.5px;
-        height: 47.5px;
+
+        @include mq(device-pc) {
+          left: 70.5%;
+          top: 4.75%;
+          width: 47.5px;
+          height: 47.5px;
+        }
+
+        @include mq(device-tablet-lg) {
+          left: 65%;
+          top: 5.5%;
+          width: 40px;
+          height: 40px;
+        }
       }
     }
 
@@ -201,34 +242,67 @@
             border-radius: 15.5px;
             background: $color-background-div_report_Common;
 
-            span:nth-of-type(1) {
+            span.title {
               @extend %common_text_normal;
               @apply relative top-0 left-0;
               transform: translateX(-50%);
-              top: 5%;
-              left: 30.5%;
 
               color: $color-font-basic2;
+
+              @include mq(device-pc) {
+                top: 5%;
+                left: 30.5%;
+              }
+
+              @include mq(device-tablet-lg) {
+                top: 2.5%;
+                left: 36.5%;
+                font-size: 24px;
+              }
               
             }
 
             img {
               @apply relative top-0 left-0;
               transform: translateX(-50%);
-              top: 12.5%;
               left: 50%;
-              width: 140px;
-              height: 140px;
+
+              @include mq(device-pc) {
+                top: 12.5%;
+                width: 140px;
+                height: 140px;
+              }
+
+              @include mq(device-tablet-lg) {
+                top: 10.5%;
+                width: 100px;
+                height: 100px;
+              }
             }
 
             div.stroke-text {
               @apply relative top-0 left-0;
               left: 50%;
-              top: 25%;
+              
+              @include mq(device-pc) {
+                top: 25%;
+              }
+              
+              @include mq(device-tablet-lg) {
+                top: 25.5%;
+              }
+
               span {
                 @extend %text_stroke_style_common;
-                font-size: 42px;
                 text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.25);
+
+                @include mq(device-pc) {
+                  font-size: 42px;
+                }
+
+                @include mq(device-tablet-lg) {
+                  font-size: 30px;
+                }
               }
 
               span.main {
@@ -259,15 +333,20 @@
           $height__box: 65%;
           $height__button: 27.5%;
 
-          span {
+          span.title {
             @apply relative top-0 left-0;
             @extend %common_text_normal;
 
             transform: translateY(-50%);
             top: 32.5%;
             left: -2%;
+
             //todo
             // background: blue;
+
+            @include mq(device-tablet-lg) {
+              font-size: 20px;
+            }
           }
 
           div.row {
@@ -299,11 +378,22 @@
   
                 label {
                   @apply absolute top-0 left-0;
-                  padding-left: 6.5%;
-                  font-size: 21px;
+
+                  @include mq(device-pc) {
+                    padding-left: 6.5%;
+                    font-size: 21px;
+                  }
+
+                  @include mq(device-tablet-lg) {
+                    padding-left: 7.5%;
+                    font-size: 15px;
+                  }
   
                   //* テキスト設定
                   $text_margin: 26%;
+                  @include mq(device-tablet-lg) {
+                    $text_margin: 26.5%;
+                  }
                   
                   &:nth-of-type(1) {
                     left: 2.5%;
@@ -320,17 +410,31 @@
                   &:nth-of-type(4) {
                     left: calc(2.5% + $text_margin * 3);
                   }
+
+                  span {
+                    @include mq(device-tablet-lg) {
+                      top: 50.5%;
+                    }
+                  }
                 }
               }
             }
 
             button.component__button1 {
-              left: 25%;
               top: 5%;
-              width: 50%;
               height: $height__button;
 
               @extend %component__button1;
+
+              @include mq(device-pc) {
+                left: 25%;
+                width: 50%;
+              }
+
+              @include mq(device-tablet-lg) {
+                left: 20%;
+                width: 65%;
+              }
 
               &:hover > div.stroke-text > span {
                 &.main {
@@ -350,8 +454,15 @@
 
                 span {
                   @extend %text_stroke_style_common;
-                  font-size: 42px;
                   text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.25);
+
+                  @include mq(device-pc) {
+                    font-size: 42px;
+                  }
+
+                  @include mq(device-tablet-lg) {
+                    font-size: 30px;
+                  }
                 }
   
                 span.main {
@@ -399,19 +510,32 @@
             top: 3.5%;
             left: 2.5%;
             color: $color-font-basic2;
+
+            @include mq(device-tablet-lg) {
+              font-size: 24px;
+            }
           }
 
           div.circleGrach {
             @apply relative top-0 left-0;
             transform: translate(-50%,-50%);
-            left: 50%;
-            top: 50%;
-
-            width: 390px;
-            height: 390px;
 
             //todo
             background: lightblue;
+
+            @include mq(device-pc) {
+              left: 50%;
+              top: 50%;
+              width: 390px;
+              height: 390px;
+            }
+            
+            @include mq(device-tablet-lg) {
+              top: 55%;
+              left: 47.5%;
+              width: 285px;
+              height: 285px;
+            }
           }
         }
 
@@ -426,22 +550,42 @@
           div.ranking {
             @apply relative top-0 left-0;
             @apply flex flex-row;
-            top: 12.5%;
             width: 100%;
             height: calc((100% - 25%) / 6);
 
             //todo
             // background: red;
 
+            @include mq(device-pc) {
+              top: 15.5%;
+              left: 0%;
+            }
+
+            @include mq(device-tablet-lg) {
+              top: 13.5%;
+              left: -14.5%;
+
+              &:not(:first-of-type) {
+                margin-top: 2%;
+              }
+            }
+
             img {
               @apply relative top-0 left-0;
               transform: translateY(-50%);
-              top: 50%;
               margin-left: 7.5%;
 
-              width: 42px;
-              height: 42px;
+              @include mq(device-pc) {
+                top: 50%;
+                width: 42px;
+                height: 42px;
+              }
 
+              @include mq(device-tablet-lg) {
+                top: 52%;
+                width: 36px;
+                height: 36px;
+              }
             }
 
             span.name {
@@ -452,13 +596,24 @@
               margin-left: 8%;
 
               color: $color-font-basic2;
+
+              @include mq(device-tablet-lg) {
+                font-size: 20px;
+              }
             }
 
             div.stroke-text {
               @extend %text_stroke_style_wapper;
               @apply absolute top-0 left-0;
               top: 47.5%;
-              left: 82.5%;
+              
+              @include mq(device-pc) {
+                left: 82.5%;
+              }
+
+              @include mq(device-tablet-lg) {
+                left: 95%;
+              }
 
               span {
                 font-size: 32px;
@@ -518,29 +673,54 @@
         left: 3%;
         top: 2.5%;
         color: $color-font-basic2;
-        font-size: 34px;
+
+        @include mq(device-pc) {
+          font-size: 34px;
+        }
+
+        @include mq(device-tablet-lg) {
+          font-size: 24px;
+        }
       }
 
       div.circleGrach {
         @apply relative top-0 left-0;
-        left: 30%;
-        top: -2%;
-        width: 355px;
-        height: 355px;
-  
+
         //todo
         background: lightblue;
+
+        @include mq(device-pc) {
+          left: 30%;
+          top: -2%;
+          width: 355px;
+          height: 355px;
+        }
+
+        @include mq(device-tablet-lg) {
+          left: 25.5%;
+          top: 2.5%;
+          width: 250px;
+          height: 230px;
+          transform: scale(0.9);
+        }
       }
 
       div.list {
         @apply relative top-0 left-0;
         @apply flex flex-row;
-        top: 2%;
         width: 100%;
         height: calc(40% / 3);
 
         //todo
         // background: green;
+
+        @include mq(device-pc) {
+          top: 2%;
+        }
+
+        @include mq(device-tablet-lg) {
+          top: 4%;
+        }
 
         div.ranking {
           @apply relative top-0 left-0;
@@ -570,11 +750,19 @@
             @apply relative top-0 left-0;
             @extend %common_text_normal;
             transform: translateY(-50%);
-            top: 47.5%;
             margin-left: 8.5%;
 
             color: $color-font-basic2;
-            font-size: 25px;
+
+            @include mq(device-pc) {
+              top: 47.5%;
+              font-size: 25px;
+            }
+
+            @include mq(device-tablet-lg) {
+              top: 44%;
+              font-size: 20px;
+            }
           }
 
           div.stroke-text {
@@ -582,7 +770,14 @@
             @extend %text_stroke_style_wapper;
             transform: translateY(-50%);
             top: 44.5%;
-            left: 75%;
+
+            @include mq(device-pc) {
+              left: 75%;
+            }
+
+            @include mq(device-tablet-lg) {
+              left: 81.5%;
+            }
 
             span {
               color: $color-font-basic2;
