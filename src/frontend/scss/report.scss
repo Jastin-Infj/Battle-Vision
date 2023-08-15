@@ -32,7 +32,17 @@
   }
 
   @include mq(device-ipad) {
-    grid-template: initial !important;
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(260) !important;
   }
 
   @include mq(device-phone) {
@@ -60,6 +70,10 @@
     // z-index: 0;
   }
 
+  @include mq(device-ipad) {
+    z-index: 1;
+  }
+
   %main__reportButton {
     @apply relative top-0 left-0;
     @apply flex flex-row justify-between;
@@ -69,9 +83,32 @@
     //todo
     // background: red;
 
+    @include mq(device-ipad) {
+      @apply absolute;
+      @apply flex flex-col;
+      left: -5px;
+      top: 945px;
+      height: 200px;
+    }
+
     button.component__button1 {
       @extend %component__button1;
       left: initial;
+
+      @include mq(device-ipad) {
+        @apply absolute;
+        top: 0px;
+        left: 400px;
+        width: 235px;
+        height: 75px;
+      }
+
+      div.stroke-text > span {
+        @include mq(device-ipad) {
+          top: -2.5px;
+          font-size: 28px;
+        }
+      }
     }
 
     div.aggregation {
@@ -91,14 +128,29 @@
         left: -20px;
       }
 
+      @include mq(device-ipad) {
+        @apply justify-normal;
+        top: 120px;
+        left: 10%;
+      }
+
       div.text {
         @apply relative top-0 left-0;
         @extend %common_text_normal;
 
+        @include mq(device-ipad) {
+          top: 3.5%;
+          font-size: 24px;
+        }
+
         &.agg {
           @include mq(device-tablet-lg) {
             left: -25px;
-          } 
+          }
+
+          @include mq(device-ipad) {
+            left: -50px;
+          }
         }
         
         &.mark {
@@ -119,6 +171,12 @@
         border-radius: 3px;
 
         box-shadow: 0px 4.2px 4.2px 0px rgba(0, 0, 0, 0.25);
+
+        @include mq(device-ipad) {
+          &.start {
+            margin-left: 90px;
+          }
+        }
 
         input {
           width: 100%;
@@ -149,6 +207,14 @@
     $width__row1: 35.5%;
     $width__row2: calc(100% - $width__row1);
 
+    @include mq(device-ipad) {
+      z-index: -1;
+      @apply flex flex-col;
+
+      $width__row1: 85%;
+      $width__row2: 100%;
+    }
+
     div.row:nth-of-type(1) {
 
       @apply relative top-0 left-0;
@@ -166,6 +232,10 @@
 
           div > span {
             padding-right: 5%;
+
+            @include mq(device-ipad) {
+              font-size: 30px;
+            }
           }
         }
 
@@ -178,6 +248,10 @@
             height: 30%;
 
             div.pokemonImg {
+              @include mq(device-ipad) {
+                height: 100%;
+              }
+
               &:nth-of-type(1) {
                 margin-left: 10%;
               }
@@ -206,6 +280,11 @@
           width: 40px;
           height: 40px;
         }
+
+        @include mq(device-ipad) {
+          left: 72.5%;
+          top: 5.5%;
+        }
       }
     }
 
@@ -216,6 +295,10 @@
 
       //todo
       // background: black;
+
+      @include mq(device-ipad) {
+        top: 305px;
+      }
 
       div.winG {
         @apply relative top-0 left-0;
@@ -228,10 +311,20 @@
         //todo
         // background: black;
 
+        @include mq(device-ipad) {
+          left: initial;
+        }
+
         div.report {
           @apply relative top-0 left-0;
           width: 35%;
           height: 100%;
+
+          @include mq(device-ipad) {
+            @apply absolute;
+            top: 400px;
+            width: 45%;
+          }
 
           div.winBox {
             @apply relative top-0 left-0;
@@ -241,6 +334,10 @@
 
             border-radius: 15.5px;
             background: $color-background-div_report_Common;
+
+            @include mq(device-ipad) {
+              top: 100px;
+            }
 
             span.title {
               @extend %common_text_normal;
@@ -258,6 +355,11 @@
                 top: 2.5%;
                 left: 36.5%;
                 font-size: 24px;
+              }
+
+              @include mq(device-ipad) {
+                left: 33%;
+                font-size: 26px;
               }
               
             }
@@ -278,6 +380,12 @@
                 width: 100px;
                 height: 100px;
               }
+
+              @include mq(device-ipad) {
+                top: 12.5%;
+                width: 140px;
+                height: 140px;
+              }
             }
 
             div.stroke-text {
@@ -290,6 +398,10 @@
               
               @include mq(device-tablet-lg) {
                 top: 25.5%;
+              }
+
+              @include mq(device-ipad) {
+                top: 23.5%;
               }
 
               span {
@@ -333,6 +445,12 @@
           $height__box: 65%;
           $height__button: 27.5%;
 
+          @include mq(device-ipad) {
+            @apply flex flex-col;
+
+            $height__box: 100%;
+          }
+
           span.title {
             @apply relative top-0 left-0;
             @extend %common_text_normal;
@@ -346,6 +464,12 @@
 
             @include mq(device-tablet-lg) {
               font-size: 20px;
+            }
+
+            @include mq(device-ipad) {
+              top: initial;
+              left: initial;
+              font-size: 24px;
             }
           }
 
@@ -367,6 +491,10 @@
               border-color: $color-border-basic3;
               border-width: 4.5px;
               border-radius: 3px;
+
+              @include mq(device-ipad) {
+                width: 140%;
+              }
   
               div.common_checkbox {
                 @extend %checkbox_style_wapper;
@@ -375,6 +503,10 @@
                 width: 100%;
                 height: 90%;
                 margin-top: 1.5%;
+
+                @include mq(device-ipad) {
+                  margin-top: 2.5%;
+                }
   
                 label {
                   @apply absolute top-0 left-0;
@@ -387,6 +519,10 @@
                   @include mq(device-tablet-lg) {
                     padding-left: 7.5%;
                     font-size: 15px;
+                  }
+
+                  @include mq(device-ipad) {
+                    font-size: 24px;
                   }
   
                   //* テキスト設定
@@ -411,9 +547,33 @@
                     left: calc(2.5% + $text_margin * 3);
                   }
 
+                  input {
+                    &:checked ~ span {
+                      background: $color-background-checkbox;
+                      @include mq(device-ipad) {
+                        width: 24px;
+                        height: 24px;
+                      }
+                    }
+                    
+                    &:checked ~ span::after {
+                      border-color: $color-font-checkbox;
+
+                      @include mq(device-ipad) {
+                        transform: translate(-50%,-50%) rotate(45deg) scale(130%);
+                      }
+                    }
+                  }
+
                   span {
                     @include mq(device-tablet-lg) {
                       top: 50.5%;
+                    }
+
+                    @include mq(device-ipad) {
+                      top: 53.5%;
+                      width: 24px;
+                      height: 24px;
                     }
                   }
                 }
@@ -434,6 +594,11 @@
               @include mq(device-tablet-lg) {
                 left: 20%;
                 width: 65%;
+              }
+
+              @include mq(device-ipad) {
+                left: 35%;
+                top: 15%;
               }
 
               &:hover > div.stroke-text > span {
@@ -496,6 +661,11 @@
         $width__row1: 65%;
         $width__row2: 35%;
 
+        @include mq(device-ipad) {
+          margin-left: initial;
+          top: 520px;
+        }
+
         div.selection {
           @apply relative top-0 left-0;
           width: $width__row1;
@@ -513,6 +683,11 @@
 
             @include mq(device-tablet-lg) {
               font-size: 24px;
+            }
+
+            @include mq(device-ipad) {
+              left: 5.5%;
+              font-size: 26px;
             }
           }
 
@@ -532,9 +707,14 @@
             
             @include mq(device-tablet-lg) {
               top: 55%;
-              left: 47.5%;
+              left: 45.5%;
               width: 285px;
               height: 285px;
+            }
+
+            @include mq(device-ipad) {
+              top: 47%;
+              left: 43%;
             }
           }
         }
@@ -570,6 +750,12 @@
               }
             }
 
+            @include mq(device-ipad) {
+              top: 8.5%;
+              height: calc((100% - 25%) / 6 + 1%);
+              left: -27%;
+            }
+
             img {
               @apply relative top-0 left-0;
               transform: translateY(-50%);
@@ -583,6 +769,7 @@
 
               @include mq(device-tablet-lg) {
                 top: 52%;
+                margin-left: 0%;
                 width: 36px;
                 height: 36px;
               }
@@ -600,6 +787,10 @@
               @include mq(device-tablet-lg) {
                 font-size: 20px;
               }
+
+              @include mq(device-ipad) {
+                font-size: 22px;
+              }
             }
 
             div.stroke-text {
@@ -613,6 +804,10 @@
 
               @include mq(device-tablet-lg) {
                 left: 95%;
+              }
+
+              @include mq(device-ipad) {
+                left: 96.5%;
               }
 
               span {
@@ -649,6 +844,14 @@
     background: $color-background-div_report_Common;
     border-radius: 15px;
 
+    @include mq(device-ipad) {
+      @apply flex flex-col;
+      margin-top: initial;
+      top: 900px;
+      height: 900px;
+      width: 94.5%;
+    }
+
     div.row {
       @apply relative top-0 left-0;
       @apply flex flex-col;
@@ -664,6 +867,10 @@
 
       &:nth-of-type(2) {
         // background: lightgray;
+      }
+
+      @include mq(device-ipad) {
+        width: 100%;
       }
       
       span.title {
@@ -703,6 +910,14 @@
           height: 230px;
           transform: scale(0.9);
         }
+
+        @include mq(device-ipad) {
+          left: 7%;
+          top: 9.5%;
+          width: 285px;
+          height: 285px;
+          transform: initial;
+        }
       }
 
       div.list {
@@ -722,6 +937,26 @@
           top: 4%;
         }
 
+        @include mq(device-ipad) {
+          @apply absolute;
+          @apply flex flex-col;
+
+          top: 10.5%;
+          left: 51.5%;
+
+          &.col1 {
+            margin-top: initial;
+          }
+
+          &.col2 {
+            margin-top: 20%;
+          }
+
+          &.col3 {
+            margin-top: 40%;
+          }
+        }
+
         div.ranking {
           @apply relative top-0 left-0;
           @apply flex flex-row;
@@ -736,6 +971,12 @@
             // background: red;
           }
 
+          @include mq(device-ipad) {
+            &:not(:first-of-type) {
+              margin-top: 30px;
+            }
+          }
+
           img {
             @apply relative top-0 left-0;
             transform: translateY(-50%);
@@ -744,6 +985,11 @@
 
             width: 30px;
             height: 30px;
+
+            @include mq(device-ipad) {
+              width: 36px;
+              height: 36px;
+            }
           }
 
           span.name {
@@ -763,6 +1009,12 @@
               top: 44%;
               font-size: 20px;
             }
+
+            @include mq(device-ipad) {
+              top: 50%;
+              font-size: 22px;
+              margin-left: 6%;
+            }
           }
 
           div.stroke-text {
@@ -779,10 +1031,19 @@
               left: 81.5%;
             }
 
+            @include mq(device-ipad) {
+              left: 76%;
+            }
+
             span {
               color: $color-font-basic2;
               font-size: 27px;
-              font-weight: 500;
+              font-weight: 600;
+              text-shadow: 3px 2px 2px rgb(0 0 0 / 25%);
+
+              @include mq(device-ipad) {
+                font-size: 32px;
+              }
             }
 
             span.main {
@@ -792,6 +1053,10 @@
             span.back {
               -webkit-text-stroke-color: $color-font-report__back;
               -webkit-text-stroke-width: 3.5px;
+
+              @include mq(device-ipad) {
+                -webkit-text-stroke-width: 3px;
+              }
             }
           }
         }

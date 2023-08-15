@@ -26,13 +26,13 @@ function Report() {
               <div className="text agg">
                 <span>{Messages.Page.Report.Text.Aggregation}</span>
               </div>
-              <div className="date">
+              <div className="date start">
                 <input type="date" />
               </div>
               <div className="text mark">
                 <span>{Messages.Page.Report.Text.AggregationM}</span>
               </div>
-              <div className="date">
+              <div className="date end">
                 <input type="date" />
               </div>
             </div>
@@ -134,7 +134,7 @@ function Report() {
               <div className="circleGrach">
 
               </div>
-              <div className="list">
+              <div className="list col1">
                 <div className="ranking">
                   <img />
                   <span className="name">ああああああ</span>
@@ -146,7 +146,7 @@ function Report() {
                   <TextStroke text="test" />
                 </div>
               </div>
-              <div className="list">
+              <div className="list col2">
                 <div className="ranking">
                   <img />
                   <span className="name">ああああああ</span>
@@ -158,7 +158,7 @@ function Report() {
                   <TextStroke text="test" />
                 </div>
               </div>
-              <div className="list">
+              <div className="list col3">
                 <div className="ranking">
                   <img />
                   <span className="name">ああああああ</span>
@@ -176,7 +176,7 @@ function Report() {
               <div className="circleGrach">
 
               </div>
-              <div className="list">
+              <div className="list col1">
                 <div className="ranking">
                   <img />
                   <span className="name">ああああああ</span>
@@ -188,7 +188,7 @@ function Report() {
                   <TextStroke text="test" />
                 </div>
               </div>
-              <div className="list">
+              <div className="list col2">
                 <div className="ranking">
                   <img />
                   <span className="name">ああああああ</span>
@@ -200,7 +200,7 @@ function Report() {
                   <TextStroke text="test" />
                 </div>
               </div>
-              <div className="list">
+              <div className="list col3">
                 <div className="ranking">
                   <img />
                   <span className="name">ああああああ</span>
