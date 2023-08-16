@@ -1,5 +1,9 @@
 @use 'import' as *;
 
+div.header__box_menu {
+  display: none;
+}
+
 %layer-canvas_changeStyle {
   //? change
 
@@ -70,7 +74,7 @@
       "...    ...... ...... ...... ...   " 0px
       / 0.3fr 1fr 1fr 1fr 0.3fr !important;
 
-    height: viewport_getHeight(150) !important;
+    height: viewport_getHeight(170) !important;
   }
 }
 
@@ -107,7 +111,7 @@
     @include mq(device-phone) {
       @apply absolute;
       top: 9.5%;
-      left: initial;
+      left: -5%;
     }
 
     div.back {

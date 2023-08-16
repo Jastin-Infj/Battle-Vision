@@ -1,5 +1,10 @@
 @use 'import' as *;
 
+//todo
+div.header__box_menu {
+  // display: none;
+}
+
 %layer-canvas_changeStyle {
   //? change
 
@@ -60,7 +65,17 @@
   }
 
   @include mq(device-phone) {
-    grid-template: initial !important;
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_phone
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(330) !important;
   }
 }
 
@@ -105,6 +120,10 @@
       height: 200px;
     }
 
+    @include mq(device-phone) {
+      top: 690px;
+    }
+
     button.component__button1 {
       @extend %component__button1;
       left: initial;
@@ -115,6 +134,12 @@
         left: 400px;
         width: 235px;
         height: 75px;
+      }
+
+      @include mq(device-phone) {
+        left: 150px;
+        width: 210px;
+        height: 65px;
       }
 
       div.stroke-text > span {
@@ -148,6 +173,11 @@
         left: 10%;
       }
 
+      @include mq(device-phone) {
+        left: initial;
+        height: fit-content;
+      }
+
       div.text {
         @apply relative top-0 left-0;
         @extend %common_text_normal;
@@ -165,12 +195,22 @@
           @include mq(device-ipad) {
             left: -50px;
           }
+
+          @include mq(device-phone) {
+            @apply absolute;
+            top: -55px;
+            left: initial;
+          }
         }
         
         &.mark {
           margin: {
             left: 10px;
             right: 10px;
+          }
+
+          @include mq(device-phone) {
+            top: 7.5px;
           }
         }
       }
@@ -186,10 +226,17 @@
 
         box-shadow: 0px 4.2px 4.2px 0px rgba(0, 0, 0, 0.25);
 
-        @include mq(device-ipad) {
-          &.start {
+        &.start {
+          @include mq(device-ipad) {
             margin-left: 90px;
+          } 
+          @include mq(device-phone) {
+            margin-left: initial;
           }
+        }
+
+        @include mq(device-phone) {
+          width: 140px;
         }
 
         input {
@@ -202,6 +249,10 @@
           
           &:focus {
             outline: none;
+          }
+
+          @include mq(device-phone) {
+            font-size: 17px;
           }
         }
       }
@@ -228,6 +279,10 @@
       @apply flex flex-col;
     }
 
+    @include mq(device-phone) {
+      height: 640px;
+    }
+
     div.row:nth-of-type(1) {
 
       @apply relative top-0 left-0;
@@ -240,18 +295,45 @@
       @include mq(device-ipad) {
         width: $width__row2__ipad;
       }
+      @include mq(device-phone) {
+        @apply absolute;
+        height: 100%;
+      }
 
       div.component_patryCanvas_div {
         @extend %component_patryCanvas_div;
 
+        @include mq(device-phone) {
+          height: 100%;
+        }
+
         div.text {
           margin-top: 7.5%;
 
-          div > span {
-            padding-right: 5%;
+          div {
+            @include mq(device-phone) {
+              @apply absolute;
+              flex: initial;
+              top: 140%;
+              margin: {
+                left: 5%;
+                right: 5%;
+              }
 
-            @include mq(device-ipad) {
-              font-size: 30px;
+              width: 90%;
+              height: 100%;
+            }
+
+            span {
+              padding-right: 5%;
+  
+              @include mq(device-ipad) {
+                font-size: 30px;
+              }
+  
+              @include mq(device-phone) {
+                font-size: 23px;
+              }
             }
           }
         }
@@ -259,22 +341,39 @@
         div.member {
           margin-top: 2.5%;
 
+          @include mq(device-phone) {
+            margin-top: 14.5%;
+          }
+
           div.col {
             @apply justify-between;
             width: 100%;
             height: 30%;
 
-            div.pokemonImg {
-              @include mq(device-ipad) {
-                height: 100%;
+            @include mq(device-phone) {
+              @for $i from 2 through 3 {
+                &:nth-of-type(#{$i}) {
+                  top: calc(-10px * ($i - 1));
+                }
               }
+            }
 
+            div.pokemonImg {
               &:nth-of-type(1) {
                 margin-left: 10%;
               }
 
               &:nth-of-type(2) {
                 margin-right: 10%;
+              }
+
+              @include mq(device-ipad) {
+                height: 100%;
+              }
+
+              @include mq(device-phone) {
+                height: 80%;
+                transform: translateY(-50%) scale(1.1);
               }
             }
           }
@@ -306,6 +405,11 @@
         @include mq(device-tablet-lg) {
           top: 6%;
         }
+
+        @include mq(device-phone) {
+          top: 16.5%;
+          left: 78%;
+        }
       }
     }
 
@@ -320,6 +424,12 @@
       @include mq(device-ipad) {
         top: 305px;
         width: $width__row2__ipad;
+      }
+
+      @include mq(device-phone) {
+        @apply absolute;
+        top: 940px;
+        height: 300px;
       }
 
       div.winG {
@@ -337,6 +447,12 @@
           left: initial;
         }
 
+        @include mq(device-phone) {
+          @apply absolute;
+          width: 100%;
+          height: 300px;
+        }
+
         div.report {
           @apply relative top-0 left-0;
           width: 35%;
@@ -344,8 +460,13 @@
 
           @include mq(device-ipad) {
             @apply absolute;
-            top: 400px;
+            top: 375px;
             width: 45%;
+          }
+
+          @include mq(device-phone) {
+            top: 480px;
+            width: 75%;
           }
 
           div.winBox {
@@ -359,6 +480,10 @@
 
             @include mq(device-ipad) {
               top: 100px;
+            }
+
+            @include mq(device-phone) {
+              top: initial;
             }
 
             span.title {
@@ -472,6 +597,11 @@
             @apply flex flex-col;
           }
 
+          @include mq(device-phone) {
+            width: 100%;
+            margin-left: initial;
+          }
+
           span.title {
             @apply relative top-0 left-0;
             @extend %common_text_normal;
@@ -517,6 +647,10 @@
                 width: 140%;
                 height: $height__box__ipad;
               }
+
+              @include mq(device-phone) {
+                width: 100%;
+              }
   
               div.common_checkbox {
                 @extend %checkbox_style_wapper;
@@ -528,6 +662,10 @@
 
                 @include mq(device-ipad) {
                   margin-top: 2.5%;
+                }
+
+                @include mq(device-phone) {
+                  margin-top: 3%;
                 }
   
                 label {
@@ -546,10 +684,15 @@
                   @include mq(device-ipad) {
                     font-size: 24px;
                   }
+
+                  @include mq(device-phone) {
+                    font-size: 17px;
+                  }
   
                   //* テキスト設定
                   $text_margin__pc: 26%;
                   $text_margin__tablet-lg: 26.5%;
+                  $text_margin__phone: 29%;
 
                   &:nth-of-type(1) {
                     left: 2.5%;
@@ -563,6 +706,12 @@
                       @include mq(device-tablet-lg) {
                         left: calc(2.5% + $text_margin__tablet-lg * ($i - 1));
                       }
+                      @include mq(device-phone) {
+                        left: calc(2.5% + $text_margin__phone * ($i - 1));
+                        @if $i == 4 {
+                          left: calc(2.5% + $text_margin__phone * ($i - 1) - 7.5%);
+                        }
+                      }
                     }
                   }
 
@@ -572,6 +721,11 @@
                       @include mq(device-ipad) {
                         width: 24px;
                         height: 24px;
+                      }
+
+                      @include mq(device-phone) {
+                        width: 20px;
+                        height: 20px;
                       }
                     }
                     
@@ -593,6 +747,11 @@
                       top: 53.5%;
                       width: 24px;
                       height: 24px;
+                    }
+
+                    @include mq(device-phone) {
+                      width: 20px;
+                      height: 20px;
                     }
                   }
                 }
@@ -618,6 +777,10 @@
               @include mq(device-ipad) {
                 left: 35%;
                 top: 15%;
+              }
+
+              @include mq(device-phone) {
+                left: 20.5%;
               }
 
               &:hover > div.stroke-text > span {
@@ -685,6 +848,13 @@
           top: 520px;
         }
 
+        @include mq(device-phone) {
+          @apply absolute;
+          top: 830px;
+          height: 100%;
+          width: 103.5%;
+        }
+
         div.selection {
           @apply relative top-0 left-0;
           width: $width__row1;
@@ -740,6 +910,12 @@
               width: 250px;
               height: 250px;
             }
+
+            @include mq(device-phone) {
+              top: 53.5%;
+              width: 160px;
+              height: 160px;
+            }
           }
         }
 
@@ -750,6 +926,10 @@
 
           //todo
           // background: purple;
+
+          @include mq(device-phone) {
+            width: 42%;
+          }
           
           div.ranking {
             @apply relative top-0 left-0;
@@ -797,6 +977,11 @@
                 width: 36px;
                 height: 36px;
               }
+
+              @include mq(device-phone) {
+                width: 25px;
+                height: 25px;
+              }
             }
 
             span.name {
@@ -814,6 +999,11 @@
 
               @include mq(device-ipad) {
                 font-size: 22px;
+              }
+
+              @include mq(device-phone) {
+                margin-left: 5%;
+                font-size: 16px;
               }
             }
 
@@ -838,6 +1028,10 @@
                 font-size: 32px;
                 text-shadow: 3px 2px 2px rgba(0, 0, 0, 0.25);
                 font-weight: 600;
+
+                @include mq(device-phone) {
+                  font-size: 25px;
+                }
               }
 
               span.main {
@@ -876,6 +1070,12 @@
       width: 94.5%;
     }
 
+    @include mq(device-phone) {
+      top: 1500px;
+      width: 103.5%;
+      height: 700px;
+    }
+
     div.row {
       @apply relative top-0 left-0;
       @apply flex flex-col;
@@ -896,7 +1096,7 @@
       @include mq(device-ipad) {
         width: 100%;
       }
-      
+
       span.title {
         @apply relative top-0 left-0;
         @extend %common_text_normal;
@@ -948,6 +1148,12 @@
           width: 250px;
           height: 250px;
         }
+
+        @include mq(device-phone) {
+          left: 4%;
+          width: 165px;
+          height: 165px;
+        }
       }
 
       div.list {
@@ -987,6 +1193,22 @@
           }
         }
 
+        @include mq(device-phone) {
+          left: 51.5%;
+
+          &.col1 {
+            margin-top: initial;
+          }
+
+          &.col2 {
+            margin-top: 25%;
+          }
+
+          &.col3 {
+            margin-top: 50%;
+          }
+        }
+
         div.ranking {
           @apply relative top-0 left-0;
           @apply flex flex-row;
@@ -1008,6 +1230,9 @@
             @include mq(device-tablet-lg) {
               margin-top: 25px;
             }
+            @include mq(device-phone) {
+              margin-top: 20px;
+            }
           }
 
           img {
@@ -1022,6 +1247,12 @@
             @include mq(device-ipad) {
               width: 36px;
               height: 36px;
+            }
+
+            @include mq(device-phone) {
+              margin-left: initial;
+              width: 25px;
+              height: 25px;
             }
           }
 
@@ -1047,6 +1278,11 @@
               top: 50%;
               font-size: 22px;
               margin-left: 6%;
+            }
+
+            @include mq(device-phone) {
+              font-size: 16px;
+              margin-left: 4.5%;
             }
           }
 
@@ -1077,6 +1313,10 @@
               @include mq(device-ipad) {
                 font-size: 32px;
               }
+
+              @include mq(device-phone) {
+                font-size: 25px;
+              }
             }
 
             span.main {
@@ -1086,10 +1326,6 @@
             span.back {
               -webkit-text-stroke-color: $color-font-report__back;
               -webkit-text-stroke-width: 3.5px;
-
-              @include mq(device-ipad) {
-                -webkit-text-stroke-width: 3px;
-              }
             }
           }
         }
