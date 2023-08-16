@@ -268,8 +268,8 @@
         @apply absolute top-0 left-0;
 
         @include mq(device-pc) {
-          left: 70.5%;
-          top: 4.75%;
+          left: 73.5%;
+          top: 6.15%;
           width: 47.5px;
           height: 47.5px;
         }
@@ -348,7 +348,7 @@
 
               @include mq(device-pc) {
                 top: 5%;
-                left: 30.5%;
+                left: 32.5%;
               }
 
               @include mq(device-tablet-lg) {
@@ -442,13 +442,12 @@
           // background: lightcoral;
 
           //* 比率
-          $height__box: 65%;
+          $height__box__pc: 65%;
+          $height__box__ipad: 100%;
           $height__button: 27.5%;
 
           @include mq(device-ipad) {
             @apply flex flex-col;
-
-            $height__box: 100%;
           }
 
           span.title {
@@ -485,15 +484,19 @@
               @apply relative top-0 left-0;
               @apply flex flex-col;
               width: 100%;
-              height: $height__box;
   
               background: $color-background-basic;
               border-color: $color-border-basic3;
               border-width: 4.5px;
               border-radius: 3px;
 
+              @include mq(device-pc) {
+                height: $height__box__pc;
+              }
+
               @include mq(device-ipad) {
                 width: 140%;
+                height: $height__box__ipad;
               }
   
               div.common_checkbox {
@@ -512,8 +515,8 @@
                   @apply absolute top-0 left-0;
 
                   @include mq(device-pc) {
-                    padding-left: 6.5%;
-                    font-size: 21px;
+                    padding-left: 6%;
+                    font-size: 20px;
                   }
 
                   @include mq(device-tablet-lg) {
@@ -526,25 +529,22 @@
                   }
   
                   //* テキスト設定
-                  $text_margin: 26%;
-                  @include mq(device-tablet-lg) {
-                    $text_margin: 26.5%;
-                  }
-                  
+                  $text_margin__pc: 26%;
+                  $text_margin__tablet-lg: 26.5%;
+
                   &:nth-of-type(1) {
                     left: 2.5%;
                   }
-  
-                  &:nth-of-type(2) {
-                    left: calc(2.5% + $text_margin * 1);
-                  }
-  
-                  &:nth-of-type(3) {
-                    left: calc(2.5% + $text_margin * 2);
-                  }
-  
-                  &:nth-of-type(4) {
-                    left: calc(2.5% + $text_margin * 3);
+
+                  @for $i from 2 through 4 {
+                    &:nth-of-type(#{$i}) {
+                      @include mq(device-pc) {
+                        left: calc(2.5% + $text_margin__pc * ($i - 1));
+                      }
+                      @include mq(device-tablet-lg) {
+                        left: calc(2.5% + $text_margin__tablet-lg * ($i - 1));
+                      }
+                    }
                   }
 
                   input {
@@ -737,8 +737,8 @@
             // background: red;
 
             @include mq(device-pc) {
-              top: 15.5%;
-              left: 0%;
+              top: 13%;
+              left: -20%;
             }
 
             @include mq(device-tablet-lg) {
@@ -799,7 +799,7 @@
               top: 47.5%;
               
               @include mq(device-pc) {
-                left: 82.5%;
+                left: 94.5%;
               }
 
               @include mq(device-tablet-lg) {
