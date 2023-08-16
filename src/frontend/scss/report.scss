@@ -45,6 +45,20 @@
     height: viewport_getHeight(260) !important;
   }
 
+  @include mq(device-tablet) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(300) !important;
+  }
+
   @include mq(device-phone) {
     grid-template: initial !important;
   }
@@ -205,14 +219,13 @@
 
     //* 横幅
     $width__row1: 35.5%;
+    $width__row1__ipad: 85%;
     $width__row2: calc(100% - $width__row1);
+    $width__row2__ipad: 100%;
 
     @include mq(device-ipad) {
       z-index: -1;
       @apply flex flex-col;
-
-      $width__row1: 85%;
-      $width__row2: 100%;
     }
 
     div.row:nth-of-type(1) {
@@ -223,6 +236,10 @@
 
       //todo
       // background: red;
+
+      @include mq(device-ipad) {
+        width: $width__row2__ipad;
+      }
 
       div.component_patryCanvas_div {
         @extend %component_patryCanvas_div;
@@ -268,8 +285,8 @@
         @apply absolute top-0 left-0;
 
         @include mq(device-pc) {
-          left: 73.5%;
-          top: 6.15%;
+          left: 70.5%;
+          top: 4.75%;
           width: 47.5px;
           height: 47.5px;
         }
@@ -285,6 +302,10 @@
           left: 72.5%;
           top: 5.5%;
         }
+
+        @include mq(device-tablet-lg) {
+          top: 6%;
+        }
       }
     }
 
@@ -298,6 +319,7 @@
 
       @include mq(device-ipad) {
         top: 305px;
+        width: $width__row2__ipad;
       }
 
       div.winG {
@@ -348,7 +370,7 @@
 
               @include mq(device-pc) {
                 top: 5%;
-                left: 32.5%;
+                left: 30.5%;
               }
 
               @include mq(device-tablet-lg) {
@@ -484,15 +506,12 @@
               @apply relative top-0 left-0;
               @apply flex flex-col;
               width: 100%;
-  
+              height: $height__box__pc;
+
               background: $color-background-basic;
               border-color: $color-border-basic3;
               border-width: 4.5px;
               border-radius: 3px;
-
-              @include mq(device-pc) {
-                height: $height__box__pc;
-              }
 
               @include mq(device-ipad) {
                 width: 140%;
@@ -716,6 +735,11 @@
               top: 47%;
               left: 43%;
             }
+
+            @include mq(device-tablet-lg) {
+              width: 250px;
+              height: 250px;
+            }
           }
         }
 
@@ -918,6 +942,12 @@
           height: 285px;
           transform: initial;
         }
+
+        @include mq(device-tablet-lg) {
+          top: 12.5%;
+          width: 250px;
+          height: 250px;
+        }
       }
 
       div.list {
@@ -971,9 +1001,12 @@
             // background: red;
           }
 
-          @include mq(device-ipad) {
-            &:not(:first-of-type) {
+          &:not(:first-of-type) {
+            @include mq(device-ipad) {
               margin-top: 30px;
+            }
+            @include mq(device-tablet-lg) {
+              margin-top: 25px;
             }
           }
 
