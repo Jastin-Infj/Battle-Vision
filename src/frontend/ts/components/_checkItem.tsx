@@ -1,6 +1,10 @@
 import React from 'react';
 
-function CheckBoxItem(props) {
+interface Props {
+  text: string;
+}
+
+function CheckBoxItem(props:Props) {
   return (
     <>
       <label>

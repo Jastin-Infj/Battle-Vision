@@ -1,0 +1,328 @@
+@use 'import' as *;
+
+//todo
+div.header__box_menu {
+  display: none;
+}
+
+%layer-canvas_changeStyle {
+  //? change
+
+  @include mq(device-pc) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(180) !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template: initial !important;
+  }
+}
+
+//* common
+
+
+%main {
+  @apply relative top-0 left-0;
+  @apply flex flex-col;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+
+  //* 高さ調整
+
+  $height__MyBox: 50%;
+  $marginTop_MyPokemonDetail: 3.5%;
+  $height__MyPokemonDetail: calc(100% - $height__MyBox - $marginTop_MyPokemonDetail);
+
+  %main__MyBox {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+    width: 100%;
+    height: 50%;
+
+    //todo
+    // background: red;
+
+    //* 見出し
+    span.title {
+      @apply absolute top-0 left-0;
+      @extend %common_text_normal;
+      color: $color-font-basic;
+    }
+
+    $width__Box: 60%;
+    $margin__Patry: 2.5%;
+    $width__Patry: calc(100% - $width__Box - $margin__Patry);
+
+    //* ポケモン一覧
+    div.Box {
+      @apply relative top-0 left-0;
+      width: $width__Box;
+      height: 100%;
+
+      background: $color-background-component__battlecanvas;
+      border-radius: 16px;
+
+      //* 高さ調整
+      $marginTop_sortArea: 3%;
+      $marginBottom_sortArea: 2.5%;
+      $height__sortArea: 15%;
+      $height__total_sortArea: calc($marginTop_sortArea + $height__sortArea + $marginBottom_sortArea);
+
+      $height__list: calc(100% - $height__total_sortArea);
+
+      div.sortArea {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        margin-left: 2.5%;
+        width: calc(100% - (2.5% * 2));
+        margin-top: $marginTop_sortArea;
+        height: $height__sortArea;
+
+        margin-bottom: $marginBottom_sortArea;
+        
+        background: $color-background-component__patryselect;
+        border-radius: 16px;
+
+        box-shadow: 0px 2px 2px 2.5px rgba(0, 0, 0, 0.25);
+
+        span.title {
+          @apply relative top-0 left-0;
+          @extend %common_text_normal;
+          color: $color-font-basic2;
+
+          margin: {
+            left: 2.5%;
+            top: 1.5%;
+          }
+        }
+
+        div.sort {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+
+          top: 3.5%;
+          left: 20%;
+          width: 60%;
+          height: 55px;
+
+          //todo
+          // background: red;
+
+          div {
+            @apply relative top-0 left-0;
+            width: 50%;
+            height: 100%;
+
+            &.row2 {
+              margin-left: 10%;
+            }
+
+            select {
+              @apply relative top-0 left-0;
+              @extend %disabled_arrow_icon;
+              width: 100%;
+              height: 100%;
+
+              @extend %common_text_normal;
+              text-indent: 10%;
+
+              // option にも反映される
+              padding-left: 5%;
+
+              background: $color-background-select_sortOption;
+              color: $color-font-basic2;
+
+              border-radius: 16px;
+              border-width: 3px;
+              border-color: $color-border-select_sortOption;
+
+              box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+
+              &:focus {
+                outline: none;
+              }
+
+              option {
+                @apply relative top-0 left-0;
+                width: 100%;
+                height: 100%;
+
+                font-size: 24px;
+                font-weight: 600;
+                color: $color-font-basic2;
+
+                background: $color-background-select_sortOption;
+              }
+            }
+
+            img {
+              @apply absolute top-0 left-0;
+              left: 77.5%;  
+              top: 50%;
+              transform: translateY(-50%);
+              width: 40px;
+              height: 40px;
+
+              //todo
+              // background: lightsalmon;
+            }
+          }
+        }
+      }
+      
+      div.list {
+        @apply relative top-0 left-0;
+        @apply flex flex-col justify-around;
+        height: $height__list;
+
+        //todo
+        // background: lightcoral;
+
+        div.row {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          height: calc(100% / 6);
+          width: 100%;
+
+          //todo
+          // background: lightcyan;
+
+          div.component__PokemonImg_div2 {
+            margin-left: 4%;
+            @include component__PokemonImg_div2(85%,calc(100% / 6 - 4% - 0.5%));
+          }
+        }
+      }
+    }
+
+    //* パーティ枠
+    div.Patry {
+      @apply relative top-0 left-0;
+      margin-left: $margin__Patry;
+      width: $width__Patry;
+      height: 100%;
+
+      background: $color-background-component__battlecanvas;
+      border-radius: 16px;
+
+      img.rename {
+        @apply absolute top-0 left-0;
+        top: 6.25%;
+        left: 71.5%;
+        width: 47.5px;
+        height: 47.5px;
+
+        //todo
+        // background: red;
+      }
+
+      div.component_patryCanvas_div {
+        @extend %component_patryCanvas_div;
+      }
+
+    }
+
+  }
+
+  %main__MyPokemonDetail {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+    width: 100%;
+    margin-top: $marginTop_MyPokemonDetail;
+    height: $height__MyPokemonDetail;
+
+    //todo
+    background: green;
+
+    $width__row1: 12.5%;
+    $width__row2: calc(60% - $width__row1);
+    $width__row3: calc(100% - $width__row2);
+
+    div.row1 {
+      @apply relative top-0 left-0;
+      @apply flex flex-col justify-around;
+      height: 100%;
+      width: $width__row1;
+
+      //todo
+      background: lightcoral;
+
+      img.arrow {
+        @apply relative top-0 left-0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 60px;
+      }
+
+      div.list {
+        @apply relative top-0 left-0;
+        @apply flex flex-col justify-around;
+        width: 100%;
+        height: 75%;
+
+        //todo
+        // background: lightgreen;
+
+        div.component__PokemonImg_div2 {
+          @include component__PokemonImg_div2(calc(100% / 6),75%);
+          @apply relative top-0 left-0;
+          margin-left: 12.5%;
+          top: initial;
+          transform: scale(0.85);
+        }
+      }
+    }
+
+    div.row2 {
+      @apply relative top-0 left-0;
+      height: 100%;
+      width: $width__row2;
+
+      //todo
+      background: lime;
+    }
+
+    div.row3 {
+      @apply relative top-0 left-0;
+      height: 100%;
+      width: $width__row3;
+    }
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+
+    div.main__MyBox {
+      @extend %main__MyBox;
+    }
+
+    div.main__MyPokemonDetail {
+      @extend %main__MyPokemonDetail;
+    }
+  }
+}
