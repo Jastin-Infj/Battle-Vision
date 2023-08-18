@@ -35,7 +35,7 @@ function Adjustment__Gender() {
   switch(state) {
     case 'Man':
       g_element = (
-        <div className="basic__gender_man" onClick={() => {
+        <div className="component__gender_div man" onClick={() => {
           let sendData = {
             payload: {
               current: state
@@ -50,7 +50,7 @@ function Adjustment__Gender() {
       break;
     case 'Woman':
       g_element = (
-        <div className="basic__gender_woman" onClick={() => {
+        <div className="component__gender_div woman" onClick={() => {
           let sendData = {
             payload: {
               current: state
@@ -65,7 +65,7 @@ function Adjustment__Gender() {
       break;
     case 'None':
       g_element = (
-        <div className="basic__gender_none" onClick={() => {
+        <div className="component__gender_div none" onClick={() => {
           let sendData = {
             payload: {
               current: state

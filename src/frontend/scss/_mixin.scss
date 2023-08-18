@@ -90,3 +90,11 @@ $screen_Max_Height: $screenHeight * 1.0;
 @function viewport_getWidth($num,$device:"none") {
   @return $screen_Max_Width * calc($num / 100);
 }
+
+//----------------------------------------------------
+//-----------------  計算  -------------------------
+//----------------------------------------------------
+
+@function autolayoutCenterRender($size) {
+  @return calc((100% - $size) / 2);
+}

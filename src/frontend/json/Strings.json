@@ -425,7 +425,7 @@
       "Text": {
         "Title__MyBox": "ポケモン一覧",
         "Sort": "並び替え",
-        "Title__Id": "作成ID",
+        "Title__Id": "作成ID:",
         "Register": "登録日",
         "Update": "更新日"
       },

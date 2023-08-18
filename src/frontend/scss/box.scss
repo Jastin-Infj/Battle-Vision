@@ -296,11 +296,322 @@ div.header__box_menu {
 
     div.row2 {
       @apply relative top-0 left-0;
+      @apply flex flex-col;
       height: 100%;
       width: $width__row2;
 
       //todo
       background: lime;
+
+      //* 高さ比率
+      $marginTop__basic: 5%;
+      $height__basic: 30%;
+      $total__basic: calc($marginTop__basic + $height__basic);
+
+      $marginTop__move: 5%;
+      $height__move: 30%;
+      $total__move: calc($marginTop__move + $height__move);
+
+      $marginTop__id: 4%;
+      $height__id: 12.5%;
+      $total__id: calc($marginTop__id + $height__id);
+
+      $marginTop__tagG: 2.5%;
+      $height__tagG: 12.5%;
+      $total__tagG: calc($marginTop__tagG + $height__tagG);
+
+      div.basic {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        margin-top: $marginTop__basic;
+        height: $height__basic;
+        margin: {
+          left: 10%;
+          right: 10%;
+        }
+        width: 80%;
+
+        border-radius: 16px;
+        background: $color-background-component__patryMember;
+
+        div.types {
+          @apply relative top-0 left-0;
+          @apply flex flex-row justify-around;
+          flex: 1;
+          height: 100%;
+
+          //todo
+          // background: red;
+
+          img {
+            @apply relative top-0 left-0;
+            top: 19.5%;
+            left: -5%;
+            width: 48px;
+            height: 48px;
+
+            &:nth-of-type(1) {
+              margin-right: -25px;
+            }
+
+            &:nth-of-type(2) {
+              margin-left: -25px;
+            }
+          }
+        }
+
+        div.pokemon {
+          @apply relative top-0 left-0;
+          flex: 1;
+          height: 100%;
+          text-align: center;
+
+          span.name {
+            @extend %common_text_normal;
+            @apply relative top-0 left-0;
+            top: 2%;
+            left: -5.5%;
+            color: $color-font-basic2;
+            font-size: 25px;
+          }
+          img {
+            @apply relative top-0 left-0;
+            left: 45%;
+            top: 35%;
+            transform: translate(-50%,-50%);
+            width: 80%;
+            height: 50%;
+            text-align: initial;
+          }
+          span.ability {
+            @extend %common_text_normal;
+            @apply relative top-0 left-0;
+            top: 15%;
+            left: -3.5%;
+            color: $color-font-basic2;
+            font-size: 25px;
+          }
+        }
+
+        div.other {
+          @apply relative top-0 left-0;
+          @apply flex flex-col;
+          flex: 1;
+          height: 100%;
+
+          div.col1 {
+            @apply relative top-0 left-0;
+            @apply flex flex-row justify-around;
+            margin-top: 28.5%;
+            width: 100%;
+            height: 20%;
+
+            //todo
+            // background: lightcyan;
+
+            div.component__gender_div {
+              @extend %component__gender_div;
+              @apply relative top-0 left-0;
+              left: 5%;
+              top: 50%;
+            }
+            img {
+              @apply relative top-0 left-0;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 48px;
+              height: 48px;
+            }
+          }
+
+          div.col2 {
+            @apply relative top-0 left-0;
+            @apply flex flex-col;
+            left: -5%;
+
+            width: 100%;
+            height: 45%;
+
+            //todo
+            // background: lightgreen;
+
+            img {
+              @apply relative top-0 left-0;
+              left: 50%;
+              top: 38%;
+              transform: translate(-50%,-50%);
+              width: 56px;
+              height: 56px;
+            }
+
+            span {
+              @extend %common_text_normal;
+              @include text_align_attachReset();
+              margin-top: 33px;
+              font-size: 22px;
+              
+              color: $color-font-basic2;
+              text-align: center;
+            }
+          }
+        }
+      }
+      
+      div.move {
+        @apply relative top-0 left-0;
+        margin-top: $marginTop__move;
+        height: $height__move;
+        width: 80%;
+        margin: {
+          left: 10%;
+          right: 10%;
+        }
+
+        border-radius: 16px;
+        background: $color-background-component__patryMember;
+
+        div.back {
+          @apply relative top-0 left-0;
+          height: calc(100% / 4 - 2.5% - 2% - 1%);
+          margin-left: autolayoutCenterRender(90%);
+          width: 90%;
+
+          background: $color-background-div_moveBackPattren1;
+          border-radius: 16px;
+          
+          &:first-of-type {
+            margin-top: 2.5%;
+          }
+
+          @for $i from 2 through 4 {
+            &:nth-of-type(#{$i}) {
+              margin-top: 2%;
+            }
+          }
+
+          div.moveback {
+            @apply relative top-0 left-0;
+            @apply flex flex-row;
+            width: 98%;
+            height: 80%;
+            top: autolayoutCenterRender(80%);
+            margin-left: autolayoutCenterRender(98%);
+
+            //todo
+            background: lightblue;
+            border-radius: 16px;
+
+            img {
+              @apply relative top-0 left-0;
+              margin-left: 1.5%;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 36px;
+              height: 80%;
+            }
+
+            span {
+              @extend %common_text_normal;
+              @apply relative top-0 left-0;
+              margin-left: 6.5%;
+              color: $color-font-basic2;
+            }
+          }
+        }
+      }
+
+      div.id {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        margin-top: $marginTop__id;
+        height: $height__id;
+        width: 80%;
+        margin: {
+          left: 10%;
+          right: 10%;
+        }
+
+        border-radius: 16px;
+        background: $color-background-component__patryMember;
+
+        span {
+          @extend %common_text_normal;
+          color: $color-font-basic2;
+          margin-top: 6.5%;
+
+          &:first-of-type {
+            margin-left: 20%;
+          }
+
+          &:last-of-type {
+            margin-left: 20%;
+          }
+        }
+      }
+
+      div.tagG {
+        @apply relative top-0 left-0;
+        margin-top: $marginTop__tagG;
+        height: $height__tagG;
+        width: 80%;
+        margin: {
+          left: 10%;
+          right: 10%;
+        }
+
+        border-radius: 16px;
+        background: $color-background-component__patryMember;
+
+        div {
+          @extend %checkbox_style_wapper;
+          @apply flex flex-row justify-around;
+          margin-top: 2.5%;
+          height: calc(100% / 2 - 15% - 2.5%);
+
+          //todo
+          // background: red;
+
+          &:nth-of-type(1) {
+            label {
+              &:nth-of-type(1) {
+                left: 0%;
+              }
+
+              &:nth-of-type(2) {
+                left: -2%;
+              }
+
+              &:nth-of-type(3) {
+                left: -4.25%;
+              }
+            }
+          }
+
+          &:nth-of-type(2) {
+            label:nth-of-type(1) {
+              left: 2.5%;
+            }
+          }
+
+          label {
+            padding-left: 5%;
+
+            input {
+              &:checked ~ span {
+                background: $color-background-checkbox;
+              }
+
+              &:checked ~ span::after {
+                border-color: $color-font-checkbox;
+              }
+            }
+            span {
+              border-color: $color-border-basic2;
+              background: $color-background-basic;
+            }
+          }
+        }
+      }
     }
 
     div.row3 {

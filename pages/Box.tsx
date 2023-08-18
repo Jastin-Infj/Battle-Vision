@@ -10,6 +10,7 @@ import Header from "../src/frontend/ts/components/Header";
 import Footer from "../src/frontend/ts/components/Footer";
 import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 import CheckBoxItem from "../src/frontend/ts/components/_checkItem";
+import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
 
 function Box() {
 
@@ -117,9 +118,7 @@ function Box() {
                 </div>
                 <div className="other">
                   <div className="col1">
-                    <div className="gender">
-                      <span />
-                    </div>
+                    <Adjustment__Gender />
                     <img />
                   </div>
                   <div className="col2">

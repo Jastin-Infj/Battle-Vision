@@ -339,52 +339,10 @@
           }
 
           //* gender
-          div {
+          div.component__gender_div {
             z-index: $z-img;
-            @apply absolute top-0;
-            
+            @extend %component__gender_div;
             left: 105%;
-            top: 50%;
-            transform: translateY(-50%);
-            
-            height: 30px;
-            width: 30px;
-
-            border-radius: 50%;
-
-            span {
-              @apply absolute top-0 left-0;
-              top: 45%;
-              left: 45%;
-              transform: translate(-50%,-50%);
-              
-              @extend %common_text_sm;
-              @extend %not_copyline;
-              //change
-              font-size: 24px;
-              color: $color-background-basic;
-            }
-
-            &.basic__gender_man {
-              background: $color-background-gender-man;
-            }
-            
-            &.basic__gender_woman {
-              background: $color-background-gender-woman;
-
-              span {
-                left: 49%;
-              }
-            }
-
-            &.basic__gender_none {
-              background: $color-background-gender-none;
-
-              span {
-                top: 40%;
-                left: 47%;
-              }
-            }
           }
 
           input {
