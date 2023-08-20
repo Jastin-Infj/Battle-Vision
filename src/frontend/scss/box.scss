@@ -252,7 +252,7 @@ div.header__box_menu {
     height: $height__MyPokemonDetail;
 
     //todo
-    background: green;
+    // background: green;
 
     $width__row1: 12.5%;
     $width__row2: calc(60% - $width__row1);
@@ -264,8 +264,8 @@ div.header__box_menu {
       height: 100%;
       width: $width__row1;
 
-      //todo
-      background: lightcoral;
+      background: $color-background-component__battlecanvas;
+      border-radius: 16px 0 0 16px;
 
       img.arrow {
         @apply relative top-0 left-0;
@@ -300,8 +300,7 @@ div.header__box_menu {
       height: 100%;
       width: $width__row2;
 
-      //todo
-      background: lime;
+      background: $color-background-component__battlecanvas;
 
       //* 高さ比率
       $marginTop__basic: 5%;
@@ -595,6 +594,7 @@ div.header__box_menu {
 
           label {
             padding-left: 5%;
+            color: $color-font-basic2;
 
             input {
               &:checked ~ span {
@@ -616,8 +616,134 @@ div.header__box_menu {
 
     div.row3 {
       @apply relative top-0 left-0;
+      @apply flex flex-col;
       height: 100%;
       width: $width__row3;
+
+      $marginTop__date: 5%;
+      $height__date: 10%;
+
+      $marginTop__status: 5%;
+      $height__status: 79%;
+
+      background: $color-background-component__battlecanvas;
+      border-radius: 0 16px 16px 0;
+
+      div.date {
+        @apply relative top-0 left-0;
+        @apply flex flex-row justify-around;
+        margin-top: $marginTop__date;
+        height: $height__date;
+        width: 97%;
+        margin-left: autolayoutCenterRender(97%);
+
+        background: $color-background-component__patryMember;
+        border-radius: 16px;
+
+        div {
+          @apply relative top-0 left-0;
+          width: calc(100% / 2);
+
+          span {
+            @extend %common_text_normal;
+            @apply absolute top-0 left-0;
+            color: $color-font-basic2;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%,-50%);
+          }
+
+          input {
+            @extend %common_text_sm;
+            @apply absolute top-0 left-0;
+            color: $color-font-basic2;
+            left: 45%;
+            top: 50%;
+            transform: translateY(-50%);
+            
+            padding-left: 2.5%;
+
+            background: $color-background-div_datePattren1;
+            border-color: $color-border-div_datePattren1;
+            border-width: 2px;
+
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+
+      div.status {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        margin-top: $marginTop__status;
+        margin-left: 1.5%;
+        height: $height__status;
+        width: 97%;
+
+        background: $color-background-component__patryMember;
+        border-radius: 16px;
+
+        div.param {
+          @apply relative top-0 left-0;
+          @apply flex flex-row justify-around;
+          margin-top: 2.5%;
+          width: 100%;
+          height: 90px;
+
+          button {
+            @apply relative top-0 left-0;
+            width: calc(100% / 4 - 2.5%);
+            height: 100%;
+
+            background: $color-background-div_datePattren1;
+            border-radius: 16px;
+            span {
+              @extend %common_text_normal;
+              color: $color-font-basic2;
+            }
+          }
+        }
+
+        div.grach {
+          @apply relative top-0 left-0;
+          margin-top: 3%;
+          height: 67.5%;
+          width: 100%;
+
+          //todo
+          background: lightblue;
+        }
+
+        div.buttons {
+          @apply relative top-0 left-0;
+          @apply flex flex-row justify-around;
+          height: 170px;
+          width: 100%;
+
+          //todo
+          // background: lightcyan;
+
+          button {
+            @apply relative top-0 left-0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: calc(75% / 2);
+            height: 45%;
+
+            background: $color-background-param__button;
+            border-color: $color-border-param__button;
+            border-width: 3px;
+            border-radius: 16px;
+
+            span {
+              @extend %common_text_normal;
+              color: $color-font-basic2;
+            }
+          }
+        }
+      }
     }
   }
 }
