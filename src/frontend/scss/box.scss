@@ -37,7 +37,17 @@ div.header__box_menu {
   }
 
   @include mq(device-ipad) {
-    grid-template: initial !important;
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(180) !important;
   }
 
   @include mq(device-phone) {
@@ -63,6 +73,13 @@ div.header__box_menu {
   $marginTop_MyPokemonDetail: 3.5%;
   $height__MyPokemonDetail: calc(100% - $height__MyBox - $marginTop_MyPokemonDetail);
 
+  $height__MyBox_ipad: 1150px;
+  $height__MyPokemonDetail_ipad: calc(3500px - 1150px);
+
+  @include mq(device-ipad) {
+    height: 3500px;
+  }
+
   %main__MyBox {
     @apply relative top-0 left-0;
     @apply flex flex-row;
@@ -71,6 +88,10 @@ div.header__box_menu {
 
     //todo
     // background: red;
+
+    @include mq(device-ipad) {
+      height: $height__MyBox_ipad;
+    }
 
     //* 見出し
     span.title {
@@ -128,6 +149,10 @@ div.header__box_menu {
           @include mq(device-tablet-lg) {
             font-size: 24px;
           }
+
+          @include mq(device-ipad) {
+            top: 4px;
+          }
         }
 
         div.sort {
@@ -143,6 +168,11 @@ div.header__box_menu {
             top: -11.5%;
           }
 
+          @include mq(device-ipad) {
+            top: 14.5%;
+            left: 12%;
+          }
+
           //todo
           // background: red;
 
@@ -151,8 +181,18 @@ div.header__box_menu {
             width: 50%;
             height: 100%;
 
+            &.row1 {
+              @include mq(device-ipad) {
+                left: -30px;
+              }
+            }
+
             &.row2 {
               margin-left: 10%;
+              @include mq(device-ipad) {
+                left: 40px;
+                margin-left: initial;
+              }
             }
 
             select {
@@ -179,6 +219,11 @@ div.header__box_menu {
               @include mq(device-tablet-lg) {
                 font-size: 21px;
                 width: 115%;
+              }
+
+              @include mq(device-ipad) {
+                width: 145%;
+                padding-left: initial;
               }
 
               &:focus {
@@ -219,6 +264,11 @@ div.header__box_menu {
                 width: 35px;
                 height: 30px;
               }
+
+              @include mq(device-ipad) {
+                left: 111.5%;
+                width: 30px;
+              }
             }
           }
         }
@@ -248,6 +298,17 @@ div.header__box_menu {
             @include mq(device-tablet-lg) {
               margin-top: initial;
             }
+
+            @include mq(device-ipad) {
+              width: calc(90% / 3);
+              margin-left: autolayoutCenterRender(95%);
+
+              @for $i from 4 through 6{
+                &:nth-of-type(#{$i}) {
+                  display: none;
+                }
+              }
+            }
           }
         }
       }
@@ -274,6 +335,13 @@ div.header__box_menu {
           top: 6.5%;
           left: 64%;
         }
+
+        @include mq(device-ipad) {
+          top: 7%;
+          left: 70%;
+          width: 42.5px;
+          height: 42.5px;
+        }
       }
 
       div.canvas {
@@ -287,9 +355,57 @@ div.header__box_menu {
         div.component_patryCanvas_div {
           @extend %component_patryCanvas_div;
 
+          div.text {
+
+            img {
+              @include mq(device-ipad) {
+                top: -12px;
+              }
+            }
+
+            div {
+              @include mq(device-ipad) {
+                @apply absolute;
+                top: 50px;
+                width: 90%;
+                height: 50px;
+                margin-left: autolayoutCenterRender(90%);
+              }
+
+              span {
+                @apply whitespace-nowrap;
+                @include mq(device-ipad) {
+                  left: 33.5%;
+                  font-size: 25px;
+                }
+              }
+            }
+          }
+
           div.member {
             @include mq(device-tablet-lg) {
-              margin-top: initial;
+              margin-top: 10px;
+            }
+
+            div.col {
+              @include mq(device-ipad) {
+                @apply flex flex-col;
+              }
+              div.pokemonImg {
+                @include mq(device-ipad) {
+                  width: 40.5%;
+                  height: 45%;
+
+                  transform: translate(-50%,-50%) scale(1);
+
+                  margin-left: 50% !important;
+                  margin-right: initial !important;
+
+                  &:last-of-type {
+                    margin-top: 15px;
+                  }
+                }
+              }
             }
           }
         }
@@ -313,6 +429,15 @@ div.header__box_menu {
     $width__row2: calc(60% - $width__row1);
     $width__row3: calc(100% - $width__row2);
 
+    $height__row1_ipad: 21.5%;
+    $height__row2_ipad: 0;
+    $height__row3_ipad: 0;
+
+    @include mq(device-ipad) {
+      @apply flex flex-col;
+      height: $height__MyPokemonDetail_ipad;
+    }
+
     div.row1 {
       @apply relative top-0 left-0;
       @apply flex flex-col justify-around;
@@ -321,6 +446,13 @@ div.header__box_menu {
 
       background: $color-background-component__battlecanvas;
       border-radius: 16px 0 0 16px;
+
+      @include mq(device-ipad) {
+        @apply flex flex-row;
+        height: $height__row1_ipad;
+        width: 100%;
+        border-radius: 16px;
+      }
 
       img.arrow {
         @apply relative top-0 left-0;
@@ -333,6 +465,20 @@ div.header__box_menu {
           width: 45px;
           height: 45px;
         }
+
+        @include mq(device-ipad) {
+          @apply absolute;
+          transform: translateY(-50%);
+          left: 30px;
+
+          &:first-of-type {
+            top: 30%;
+          }
+
+          &:last-of-type {
+            top: 70%;
+          }
+        }
       }
 
       div.list {
@@ -344,6 +490,13 @@ div.header__box_menu {
         //todo
         // background: lightgreen;
 
+        @include mq(device-ipad) {
+          @apply flex flex-row justify-normal;
+          top: 20%;
+          transform: translateY(-50%);
+          left: 70px;
+        }
+
         div.component__PokemonImg_div2 {
           @include component__PokemonImg_div2(calc(100% / 6),75%);
           @apply relative top-0 left-0;
@@ -353,6 +506,27 @@ div.header__box_menu {
 
           @include mq(device-tablet-lg) {
             transform: scale(0.75);
+          }
+
+          @include mq(device-ipad) {
+            @apply absolute;
+            transform: initial;
+            top: initial;
+            margin-left: initial;
+            height: 95px;
+            width: 95px;
+
+            @for $i from 1 through 3 {
+              &:nth-of-type(#{$i}) {
+                top: 50px;
+                left: calc(70px + (($i - 1) * 175px));
+              }
+
+              &:nth-of-type(#{$i + 3}) {
+                top: 155px;
+                left: calc(70px + (($i - 1) * 175px));
+              }
+            }
           }
         }
       }
@@ -365,6 +539,11 @@ div.header__box_menu {
       width: $width__row2;
 
       background: $color-background-component__battlecanvas;
+
+      @include mq(device-ipad) {
+        margin-top: 5%;
+        border-radius: 16px;
+      }
 
       //* 高さ比率
       $marginTop__basic: 5%;
@@ -383,6 +562,10 @@ div.header__box_menu {
       $height__tagG: 12.5%;
       $total__tagG: calc($marginTop__tagG + $height__tagG);
 
+      @include mq(device-ipad) {
+        width: 100%;
+      }
+
       div.basic {
         @apply relative top-0 left-0;
         @apply flex flex-row;
@@ -396,6 +579,10 @@ div.header__box_menu {
 
         border-radius: 16px;
         background: $color-background-component__patryMember;
+
+        @include mq(device-ipad) {
+
+        }
 
         div.types {
           @apply relative top-0 left-0;
@@ -420,11 +607,22 @@ div.header__box_menu {
               height: 30px;
             }
 
+            @include mq(device-ipad) {
+              top: 15.5%;
+              left: -5.5%;
+              width: 50px;
+              height: 50px;
+            }
+
             &:nth-of-type(1) {
               margin-right: -25px;
 
               @include mq(device-tablet-lg) {
                 margin-right: -15px;
+              }
+
+              @include mq(device-ipad) {
+                margin-right: -30px;
               }
             }
 
@@ -432,6 +630,10 @@ div.header__box_menu {
               margin-left: -25px;
               @include mq(device-tablet-lg) {
                 margin-left: -15px;
+              }
+
+              @include mq(device-ipad) {
+                margin-left: -30px;
               }
             }
           }
@@ -456,6 +658,10 @@ div.header__box_menu {
             left: -5.5%;
             color: $color-font-basic2;
             font-size: 25px;
+
+            @include mq(device-ipad) {
+              font-size: 27px;
+            }
           }
           img {
             @apply relative top-0 left-0;
@@ -472,6 +678,12 @@ div.header__box_menu {
               width: 65%;
               height: 50%;
             }
+
+            @include mq(device-ipad) {
+              top: 35.5%;
+
+              width: 92.5%;
+            }
           }
           span.ability {
             @extend %common_text_normal;
@@ -485,6 +697,10 @@ div.header__box_menu {
               @apply absolute;
               top: 80.5%;
               font-size: 18px;
+            }
+
+            @include mq(device-ipad) {
+              font-size: 27px;
             }
           }
         }
@@ -518,6 +734,10 @@ div.header__box_menu {
               @apply relative top-0 left-0;
               left: 5%;
               top: 50%;
+
+              @include mq(device-ipad) {
+                transform: translateY(-50%) scale(1.3);
+              }
             }
             img {
               @apply relative top-0 left-0;
@@ -529,6 +749,11 @@ div.header__box_menu {
               @include mq(device-tablet-lg) {
                 width: 40px;
                 height: 40px; 
+              }
+
+              @include mq(device-ipad) {
+                width: 45px;
+                height: 45px;
               }
             }
           }
@@ -544,6 +769,10 @@ div.header__box_menu {
             //todo
             // background: lightgreen;
 
+            @include mq(device-ipad) {
+              left: initial;
+            }
+
             img {
               @apply relative top-0 left-0;
               left: 50%;
@@ -555,6 +784,12 @@ div.header__box_menu {
               @include mq(device-tablet-lg) {
                 @apply absolute;
                 top: 45px;
+              }
+
+              @include mq(device-ipad) {
+                top: 44%;
+                width: 80px;
+                height: 80px;
               }
             }
 
@@ -570,6 +805,11 @@ div.header__box_menu {
               @include mq(device-tablet-lg) {
                 margin-top: 73px;
                 font-size: 20px;
+              }
+
+              @include mq(device-ipad) {
+                margin-top: 59.5%;
+                font-size: 26px;
               }
             }
           }
@@ -632,6 +872,11 @@ div.header__box_menu {
                 margin-left: 5.5%;
                 width: 25px;
               }
+
+              @include mq(device-ipad) {
+                margin-left: 3.5%;
+                width: 38px;
+              }
             }
 
             span {
@@ -643,6 +888,10 @@ div.header__box_menu {
               @include mq(device-tablet-lg) {
                 margin-left: 15.5%;
                 font-size: 20.5px;
+              }
+
+              @include mq(device-ipad) {
+                font-size: 30px;
               }
             }
           }
@@ -670,6 +919,11 @@ div.header__box_menu {
 
           @include mq(device-tablet-lg) {
             margin-top: 4.5%;
+          }
+
+          @include mq(device-ipad) {
+            margin-top: 6.5%;
+            font-size: 38px;
           }
 
           &:first-of-type {
@@ -718,6 +972,10 @@ div.header__box_menu {
                 @include mq(device-tablet-lg) {
                   left: -2.5%;
                 }
+
+                @include mq(device-ipad) {
+                  left: -2.25%;
+                }
               }
 
               &:nth-of-type(2) {
@@ -725,12 +983,20 @@ div.header__box_menu {
                 @include mq(device-tablet-lg) {
                   left: -3%;
                 }
+
+                @include mq(device-ipad) {
+                  left: -2.1%;
+                }
               }
 
               &:nth-of-type(3) {
                 left: -4.25%;
                 @include mq(device-tablet-lg) {
                   left: -5.5%;
+                }
+
+                @include mq(device-ipad) {
+                  left: -4.75%;
                 }
               }
             }
@@ -754,13 +1020,24 @@ div.header__box_menu {
               padding-left: 8%;
             }
 
+            @include mq(device-ipad) {
+              font-size: 29px;
+            }
+
             input {
               &:checked ~ span {
                 background: $color-background-checkbox;
+                @include mq(device-ipad) {
+                  height: 28px;
+                  width: 28px;
+                }
               }
 
               &:checked ~ span::after {
                 border-color: $color-font-checkbox;
+                @include mq(device-ipad) {
+                  transform: translate(-50%, -50%) rotate(45deg) scale(130%);
+                }
               }
             }
             span {
@@ -769,6 +1046,12 @@ div.header__box_menu {
 
               @include mq(device-tablet-lg) {
                 top: 72.5%;
+              }
+
+              @include mq(device-ipad) {
+                top: 54.5%;
+                height: 28px;
+                width: 28px;
               }
             }
           }
@@ -790,6 +1073,12 @@ div.header__box_menu {
 
       background: $color-background-component__battlecanvas;
       border-radius: 0 16px 16px 0;
+
+      @include mq(device-ipad) {
+        margin-top: 5%;
+        border-radius: 16px;
+        width: 100%;
+      }
 
       div.date {
         @apply relative top-0 left-0;
@@ -821,6 +1110,10 @@ div.header__box_menu {
             @include mq(device-tablet-lg) {
               font-size: 21px;
             }
+
+            @include mq(device-ipad) {
+              font-size: 29px;
+            }
           }
 
           input {
@@ -846,6 +1139,12 @@ div.header__box_menu {
               left: 30%;
               top: 50%;
               transform: translateY(-50%) scale(0.75);
+            }
+
+            @include mq(device-ipad) {
+              width: 215px;
+              height: 70px;
+              font-size: 28px;
             }
           }
         }
