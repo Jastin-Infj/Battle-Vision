@@ -65,12 +65,27 @@ div.header__box_menu {
   }
 
   @include mq(device-phone) {
-    grid-template: initial !important;
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 150px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_phone
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(130) !important;
   }
 }
 
 //* common
-
+.phone__mode {
+  display: none;
+  @include mq(device-phone) {
+    display: block;
+  }
+}
 
 %main {
   @apply relative top-0 left-0;
@@ -94,6 +109,38 @@ div.header__box_menu {
     height: 3500px;
   }
 
+  @include mq(device-phone) {
+    height: fit-content;
+  }
+
+  //* 切り替えモード
+  input#mode_MyBox_OR_MyPokemonDetail {
+    @apply fixed;
+    @extend %disabled_tabKey;
+    top: 10px;
+    left: -50px;
+
+    &:checked ~ div.main__MyBox {
+      display: none !important;
+    }
+
+    &:checked ~ div.main__MyPokemonDetail {
+      display: block !important;
+    }
+  }
+
+  label#mode_MyBox_OR_MyPokemonDetail {
+    img {
+      @apply absolute top-0 left-0;
+      transform: translateY(-50%);
+      top: -35px;
+      left: 280px;
+      width: 50px;
+      height: 50px;
+      z-index: 1;
+    }
+  }
+
   %main__MyBox {
     @apply relative top-0 left-0;
     @apply flex flex-row;
@@ -105,6 +152,37 @@ div.header__box_menu {
 
     @include mq(device-ipad) {
       height: $height__MyBox_ipad;
+    }
+
+    @include mq(device-phone) {
+      height: fit-content;
+      @apply flex flex-col;
+    }
+
+    //* 切り替えモード
+    input#mode_Box_OR_Patry {
+      @apply fixed;
+      @extend %disabled_tabKey;
+      top: 10px;
+      left: -30px;
+      &:checked ~ div.Box {
+        display: none !important;
+      }
+
+      &:checked ~ div.Patry {
+        display: block !important;
+      }
+    }
+
+    label#mode_Box_OR_Patry {
+      img {
+        @apply absolute top-0 left-0;
+        transform: translateY(-50%);
+        top: -35px;
+        left: 180px;  
+        width: 50px;
+        height: 50px;
+      }
     }
 
     //* 見出し
@@ -143,6 +221,13 @@ div.header__box_menu {
       $height__total_sortArea: calc($marginTop_sortArea + $height__sortArea + $marginBottom_sortArea);
 
       $height__list: calc(100% - $height__total_sortArea);
+
+      @include mq(device-phone) {
+        width: 100%;
+        height: 880px;
+
+        margin-top: 5%;
+      }
 
       div.sortArea {
         @apply relative top-0 left-0;
@@ -356,6 +441,17 @@ div.header__box_menu {
       width: $width__Patry;
       height: 100%;
 
+      @include mq(device-phone) {
+        margin-top: 5%;
+        margin-left: initial;
+        width: 100%;
+        height: 720px;
+      }
+
+      @include mq(device-phone) {
+        display: none;
+      }
+
       img.rename {
         @apply absolute top-0 left-0;
         top: 6.25%;
@@ -381,6 +477,11 @@ div.header__box_menu {
         @include mq(device-tablet) {
           top: 6.75%;
         }
+
+        @include mq(device-phone) {
+          top: 12.5%;
+          left: 75%;
+        }
       }
 
       div.canvas {
@@ -400,6 +501,10 @@ div.header__box_menu {
               @include mq(device-ipad) {
                 top: -12px;
               }
+
+              @include mq(device-phone) {
+                top: -18px;
+              }
             }
 
             div {
@@ -417,6 +522,10 @@ div.header__box_menu {
                   left: 33.5%;
                   font-size: 25px;
                 }
+
+                @include mq(device-phone) {
+                  left: 48%;
+                }
               }
             }
           }
@@ -426,10 +535,19 @@ div.header__box_menu {
               margin-top: 10px;
             }
 
+            @include mq(device-phone) {
+              margin-top: 40px;
+            }
+
             div.col {
               @include mq(device-ipad) {
                 @apply flex flex-col;
               }
+
+              @include mq(device-phone) {
+                @apply flex flex-row;
+              }
+
               div.pokemonImg {
                 @include mq(device-ipad) {
                   width: 40.5%;
@@ -443,10 +561,21 @@ div.header__box_menu {
                   &:last-of-type {
                     margin-top: 15px;
                   }
+                }
 
-                  @include mq(device-tablet) {
-                    width: 54.5%;
-                    height: 46%;
+                @include mq(device-tablet) {
+                  width: 54.5%;
+                  height: 46%;
+                }
+
+                @include mq(device-phone) {
+                  margin-left: initial !important;
+                  width: 125px;
+                  height: 125px;
+                  left: 17.5%;
+
+                  &:last-of-type {
+                    margin-top: initial;
                   }
                 }
               }
@@ -482,6 +611,71 @@ div.header__box_menu {
       height: $height__MyPokemonDetail_ipad;
     }
 
+    @include mq(device-phone) {
+      display: none;
+      margin-top: 20.5%;
+      height: fit-content;
+    }
+
+    //* Phone画面のみ
+
+    div.titleList {
+      span {
+        @extend %common_text_normal;
+        @apply absolute top-0 left-0;
+        top: -60px;
+  
+        display: none;
+      }
+    }
+
+    input#row1 , input#row2 , input#row3 {
+      @apply fixed top-0 left-0;
+      width: 30px;
+      height: 30px;
+      @for $i from 1 through 3 {
+        &:nth-of-type(#{$i}) {
+          left: calc(-50px * $i);
+
+          //* タブごとに切り替え
+          &:checked ~ div.titleList > span:nth-of-type(#{$i}) {
+            display: block !important;
+          }
+
+          &:checked ~ div.row#{$i} {
+            display: block !important;
+          }
+        }
+      }
+    }
+
+    label.reportButton {
+      @for $i from 1 through 3 {
+        &:nth-of-type(#{$i}) {
+          img {
+            left: calc(160px + 65px * ($i - 1));
+          }
+        }
+      }
+
+      &:nth-of-type(1) {
+        img {
+          left: 160px;
+        }
+      }
+
+      img {
+        @apply absolute;
+        transform: translateY(-50%);
+        top: -40px;
+
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    //* 通常
+
     div.row1 {
       @apply relative top-0 left-0;
       @apply flex flex-col justify-around;
@@ -496,6 +690,11 @@ div.header__box_menu {
         height: $height__row1_ipad;
         width: 100%;
         border-radius: 16px;
+      }
+
+      @include mq(device-phone) {
+        display: none;
+        height: 500px;
       }
 
       img.arrow {
@@ -523,6 +722,19 @@ div.header__box_menu {
             top: 70%;
           }
         }
+
+        @include mq(device-phone) {
+          transform: translate(-50%,-50%);
+          &:first-of-type {
+            top: 12.5%;
+            left: 15%;
+          }
+
+          &:last-of-type {
+            top: 12.5%;
+            left: 85%;
+          }
+        }
       }
 
       div.list {
@@ -539,6 +751,12 @@ div.header__box_menu {
           top: 20%;
           transform: translateY(-50%);
           left: 70px;
+        }
+
+        @include mq(device-phone) {
+          @apply flex flex-col;
+          top: 50%;
+          left: 0px;
         }
 
         div.component__PokemonImg_div2 {
@@ -572,6 +790,25 @@ div.header__box_menu {
               }
             }
           }
+
+          @include mq(device-phone) {
+            @for $i from 1 through 2 {
+              &:nth-of-type(#{$i + 2 * 0}) {
+                top: 50px;
+                left: calc(55px + (($i - 1) * 155px));
+              }
+
+              &:nth-of-type(#{$i + 2 * 1}) {
+                top: calc(125px + 50px);
+                left: calc(55px + (($i - 1) * 155px));
+              }
+
+              &:nth-of-type(#{$i + 2 * 2}) {
+                top: calc(125px + 175px);
+                left: calc(55px + (($i - 1) * 155px));
+              }
+            }
+          }
         }
       }
     }
@@ -587,6 +824,12 @@ div.header__box_menu {
       @include mq(device-ipad) {
         margin-top: 5%;
         border-radius: 16px;
+      }
+
+      @include mq(device-phone) {
+        display: none;
+        height: 1100px;
+        background: initial;
       }
 
       //* 高さ比率
@@ -624,8 +867,12 @@ div.header__box_menu {
         border-radius: 16px;
         background: $color-background-component__patryMember;
 
-        @include mq(device-ipad) {
-
+        @include mq(device-phone) {
+          width: 100%;
+          margin: {
+            left: initial;
+            right: initial;
+          }
         }
 
         div.types {
@@ -658,6 +905,14 @@ div.header__box_menu {
               height: 50px;
             }
 
+            @include mq(device-phone) {
+              top: 3.5%;
+              width: 35px;
+              height: 35px;
+
+              margin-left: 2.5%;
+            }
+
             &:nth-of-type(1) {
               margin-right: -25px;
 
@@ -671,6 +926,11 @@ div.header__box_menu {
 
               @include mq(device-tablet) {
                 margin-right: -17.5px;
+              }
+
+              @include mq(device-phone) {
+                left: 188px;
+                top: 102px;
               }
             }
 
@@ -686,6 +946,12 @@ div.header__box_menu {
 
               @include mq(device-tablet) {
                 margin-left: -17.5px;
+              }
+
+              @include mq(device-phone) {
+                margin-left: initial;
+                left: 210px;
+                top: 102px;
               }
             }
           }
@@ -718,6 +984,11 @@ div.header__box_menu {
             @include mq(device-tablet) {
               left: 0.5%;
             }
+
+            @include mq(device-phone) {
+              left: -62.5%;
+              top: 5%;
+            }
           }
           img {
             @apply relative top-0 left-0;
@@ -744,6 +1015,16 @@ div.header__box_menu {
             @include mq(device-tablet) {
               left: 50%;
             }
+
+            @include mq(device-phone) {
+              @apply absolute;
+              left: initial;
+              top: 41%;
+              width: 100px;
+              height: 100px;
+
+              transform: translate(-50%,-50%) scale(1.25);
+            }
           }
           span.ability {
             @extend %common_text_normal;
@@ -765,6 +1046,11 @@ div.header__box_menu {
 
             @include mq(device-tablet) {
               left: -1.5%;
+            }
+
+            @include mq(device-phone) {
+              left: -61.5%;
+              top: 66.5%;
             }
           }
         }
@@ -793,6 +1079,10 @@ div.header__box_menu {
               margin-top: 23.5%;
             }
 
+            @include mq(device-phone) {
+              margin-top: 30px;
+            }
+
             div.component__gender_div {
               @extend %component__gender_div;
               @apply relative top-0 left-0;
@@ -801,6 +1091,11 @@ div.header__box_menu {
 
               @include mq(device-ipad) {
                 transform: translateY(-50%) scale(1.3);
+              }
+
+              @include mq(device-phone) {
+                left: -50px;
+                transform: translateY(-50%) scale(1.1);
               }
             }
             img {
@@ -819,6 +1114,10 @@ div.header__box_menu {
                 width: 45px;
                 height: 45px;
               }
+
+              @include mq(device-phone) {
+                top: 15%;
+              }
             }
           }
 
@@ -834,7 +1133,8 @@ div.header__box_menu {
             // background: lightgreen;
 
             @include mq(device-ipad) {
-              left: initial;
+              left: -20px;
+              top: 20px;
             }
 
             img {
@@ -854,6 +1154,13 @@ div.header__box_menu {
                 top: 44%;
                 width: 80px;
                 height: 80px;
+              }
+
+              @include mq(device-phone) {
+                top: 50%;
+                left: 48%;
+                width: 50px;
+                height: 50px;
               }
             }
 
@@ -879,6 +1186,12 @@ div.header__box_menu {
               @include mq(device-tablet) {
                 margin-top: 65.5%;
               }
+
+              @include mq(device-phone) {
+                @apply absolute;
+                margin-top: 150px;
+                left: -171px;
+              }
             }
           }
         }
@@ -897,6 +1210,14 @@ div.header__box_menu {
         border-radius: 16px;
         background: $color-background-component__patryMember;
 
+        @include mq(device-phone) {
+          width: 100%;
+          margin: {
+            left: initial;
+            right: initial;
+          }
+        }
+
         div.back {
           @apply relative top-0 left-0;
           height: calc(100% / 4 - 2.5% - 2% - 1%);
@@ -908,12 +1229,23 @@ div.header__box_menu {
           
           &:first-of-type {
             margin-top: 2.5%;
+            @include mq(device-phone) {
+              margin-top: initial;
+            }
           }
 
           @for $i from 2 through 4 {
             &:nth-of-type(#{$i}) {
               margin-top: 2%;
+              @include mq(device-phone) {
+                margin-top: calc(75px * ($i - 1));
+              }
             }
+          }
+
+          @include mq(device-phone) {
+            @apply absolute;
+            top: 20px;
           }
 
           div.moveback {
@@ -961,6 +1293,10 @@ div.header__box_menu {
               @include mq(device-ipad) {
                 font-size: 30px;
               }
+
+              @include mq(device-phone) {
+                margin-left: 8.5%;
+              }
             }
           }
         }
@@ -980,6 +1316,14 @@ div.header__box_menu {
         border-radius: 16px;
         background: $color-background-component__patryMember;
 
+        @include mq(device-phone) {
+          width: 100%;
+          margin: {
+            left: initial;
+            right: initial;
+          }
+        }
+
         span {
           @extend %common_text_normal;
           color: $color-font-basic2;
@@ -994,8 +1338,15 @@ div.header__box_menu {
             font-size: 38px;
           }
 
+          @include mq(device-phone) {
+            margin-top: 11%;
+          }
+
           &:first-of-type {
             margin-left: 20%;
+            @include mq(device-phone) {
+              margin-left: 14.5%;
+            }
           }
 
           &:last-of-type {
@@ -1020,6 +1371,14 @@ div.header__box_menu {
         border-radius: 16px;
         background: $color-background-component__patryMember;
 
+        @include mq(device-phone) {
+          width: 100%;
+          margin: {
+            left: initial;
+            right: initial;
+          }
+        }
+
         div {
           @extend %checkbox_style_wapper;
           @apply flex flex-row justify-around;
@@ -1034,6 +1393,10 @@ div.header__box_menu {
           }
 
           &:nth-of-type(1) {
+            @include mq(device-phone) {
+              top: 25px;
+            }
+
             label {
               &:nth-of-type(1) {
                 left: 0%;
@@ -1055,6 +1418,10 @@ div.header__box_menu {
                 @include mq(device-ipad) {
                   left: -2.1%;
                 }
+
+                @include mq(device-phone) {
+                  left: -2.5%;
+                }
               }
 
               &:nth-of-type(3) {
@@ -1066,11 +1433,18 @@ div.header__box_menu {
                 @include mq(device-ipad) {
                   left: -4.75%;
                 }
+
+                @include mq(device-phone) {
+                  left: -5.5%;
+                }
               }
             }
           }
 
           &:nth-of-type(2) {
+            @include mq(device-phone) {
+              top: 25px;
+            }
             label:nth-of-type(1) {
               left: 2.5%;
               @include mq(device-tablet-lg) {
@@ -1092,12 +1466,21 @@ div.header__box_menu {
               font-size: 29px;
             }
 
+            @include mq(device-phone) {
+              font-size: 22px;
+            }
+
             input {
               &:checked ~ span {
                 background: $color-background-checkbox;
                 @include mq(device-ipad) {
                   height: 28px;
                   width: 28px;
+                }
+
+                @include mq(device-phone) {
+                  height: 20px;
+                  width: 20px;
                 }
               }
 
@@ -1120,6 +1503,12 @@ div.header__box_menu {
                 top: 54.5%;
                 height: 28px;
                 width: 28px;
+              }
+
+              @include mq(device-phone) {
+                top: 36.5%;
+                height: 20px;
+                width: 20px;
               }
             }
           }
@@ -1148,6 +1537,12 @@ div.header__box_menu {
         width: 100%;
       }
 
+      @include mq(device-phone) {
+        display: none;
+        height: fit-content;
+        background: initial;
+      }
+
       div.date {
         @apply relative top-0 left-0;
         @apply flex flex-row justify-around;
@@ -1159,12 +1554,23 @@ div.header__box_menu {
         background: $color-background-component__patryMember;
         border-radius: 16px;
 
+        @include mq(device-phone) {
+          @apply flex flex-col;
+          width: 100%;
+          margin-left: initial;
+          height: 150px;
+        }
+
         div {
           @apply relative top-0 left-0;
           width: calc(100% / 2);
 
           @include mq(device-tablet-lg) {
             left: 15px;
+          }
+
+          @include mq(device-phone) {
+            left: 20px;
           }
 
           span {
@@ -1181,6 +1587,10 @@ div.header__box_menu {
 
             @include mq(device-ipad) {
               font-size: 29px;
+            }
+
+            @include mq(device-phone) {
+              font-size: 26px;
             }
           }
 
@@ -1214,6 +1624,11 @@ div.header__box_menu {
               height: 70px;
               font-size: 28px;
             }
+
+            @include mq(device-phone) {
+              left: 50%;
+              height: 55px;
+            }
           }
         }
       }
@@ -1229,12 +1644,18 @@ div.header__box_menu {
         background: $color-background-component__patryMember;
         border-radius: 16px;
 
+        @include mq(device-phone) {
+          width: 100%;
+          margin-left: initial;
+          height: 750px;
+        }
+
         div.param {
           @apply relative top-0 left-0;
           @apply flex flex-row justify-around;
           margin-top: 2.5%;
           width: 100%;
-          height: 90px;
+          height: 80px;
 
           button {
             @apply relative top-0 left-0;
@@ -1258,6 +1679,10 @@ div.header__box_menu {
 
           //todo
           background: lightblue;
+
+          @include mq(device-phone) {
+            height: 450px;
+          }
         }
 
         div.buttons {
@@ -1284,6 +1709,10 @@ div.header__box_menu {
             span {
               @extend %common_text_normal;
               color: $color-font-basic2;
+
+              @include mq(device-phone) {
+                font-size: 22px;
+              }
             }
           }
         }

@@ -11,6 +11,7 @@ import Footer from "../src/frontend/ts/components/Footer";
 import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 import CheckBoxItem from "../src/frontend/ts/components/_checkItem";
 import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
+import ModeSelect from "../src/frontend/ts/components/_modeSelect";
 
 function Box() {
 
@@ -52,8 +53,14 @@ function Box() {
       <Canvas>
         <Header />
         <main>
+          <ModeSelect id="mode_MyBox_OR_MyPokemonDetail" classname="phone__mode">
+            <img />
+          </ModeSelect>
           <div className="main__MyBox">
             <span className="title">{Messages.Page.Box.Text.Title__MyBox}</span>
+            <ModeSelect id="mode_Box_OR_Patry" classname="phone__mode">
+              <img />
+            </ModeSelect>
             <div className="Box">
               <div className="sortArea">
                 <span className="title">{Messages.Page.Box.Text.Sort}</span>
@@ -93,6 +100,20 @@ function Box() {
             </div>
           </div>
           <div className="main__MyPokemonDetail">
+            <ModeSelect id="row1" type="radio" name="reportButton" classname="phone__mode reportButton" defaultChecked={true}>
+              <img />
+            </ModeSelect>
+            <ModeSelect id="row2" type="radio" name="reportButton" classname="phone__mode reportButton">
+              <img />
+            </ModeSelect>
+            <ModeSelect id="row3" type="radio" name="reportButton" classname="phone__mode reportButton">
+              <img />
+            </ModeSelect>
+            <div className="phone__mode titleList">
+              <span>戦績データ1</span>
+              <span>戦績データ2</span>
+              <span>戦績データ3</span>
+            </div>
             <div className="row1">
               <img className="arrow" />
               <div className="list">

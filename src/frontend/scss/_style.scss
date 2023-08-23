@@ -58,6 +58,17 @@
   text-overflow: '';
 }
 
+//* タブキーに反応させない
+%disabled_tabKey {
+  &:focus {
+    outline: none;
+    background: #ffdd00; /* gold */
+  }
+  &:focus:not(:focus-visible) {
+    background: white; /* undo gold */
+  }
+}
+
 //----------------------------------------------------
 //-----------------  フォント  -------------------------
 //----------------------------------------------------
