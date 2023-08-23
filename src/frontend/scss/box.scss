@@ -50,6 +50,20 @@ div.header__box_menu {
     height: viewport_getHeight(180) !important;
   }
 
+  @include mq(device-tablet) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(180) !important;
+  }
+
   @include mq(device-phone) {
     grid-template: initial !important;
   }
@@ -98,6 +112,15 @@ div.header__box_menu {
       @apply absolute top-0 left-0;
       @extend %common_text_normal;
       color: $color-font-basic;
+
+      @include mq(device-tablet-lg) {
+        top: -50px;
+      }
+
+      @include mq(device-ipad) {
+        top: -56px;
+        left: 4px;
+      }
     }
 
     $width__Box: 60%;
@@ -152,6 +175,10 @@ div.header__box_menu {
 
           @include mq(device-ipad) {
             top: 4px;
+          }
+
+          @include mq(device-tablet) {
+            left: 5px;
           }
         }
 
@@ -226,6 +253,10 @@ div.header__box_menu {
                 padding-left: initial;
               }
 
+              @include mq(device-tablet) {
+                font-size: 18px;
+              }
+
               &:focus {
                 outline: none;
               }
@@ -268,6 +299,10 @@ div.header__box_menu {
               @include mq(device-ipad) {
                 left: 111.5%;
                 width: 30px;
+              }
+
+              @include mq(device-tablet) {
+                left: 105%;
               }
             }
           }
@@ -342,6 +377,10 @@ div.header__box_menu {
           width: 42.5px;
           height: 42.5px;
         }
+
+        @include mq(device-tablet) {
+          top: 6.75%;
+        }
       }
 
       div.canvas {
@@ -403,6 +442,11 @@ div.header__box_menu {
 
                   &:last-of-type {
                     margin-top: 15px;
+                  }
+
+                  @include mq(device-tablet) {
+                    width: 54.5%;
+                    height: 46%;
                   }
                 }
               }
@@ -624,6 +668,10 @@ div.header__box_menu {
               @include mq(device-ipad) {
                 margin-right: -30px;
               }
+
+              @include mq(device-tablet) {
+                margin-right: -17.5px;
+              }
             }
 
             &:nth-of-type(2) {
@@ -634,6 +682,10 @@ div.header__box_menu {
 
               @include mq(device-ipad) {
                 margin-left: -30px;
+              }
+
+              @include mq(device-tablet) {
+                margin-left: -17.5px;
               }
             }
           }
@@ -662,6 +714,10 @@ div.header__box_menu {
             @include mq(device-ipad) {
               font-size: 27px;
             }
+
+            @include mq(device-tablet) {
+              left: 0.5%;
+            }
           }
           img {
             @apply relative top-0 left-0;
@@ -684,6 +740,10 @@ div.header__box_menu {
 
               width: 92.5%;
             }
+
+            @include mq(device-tablet) {
+              left: 50%;
+            }
           }
           span.ability {
             @extend %common_text_normal;
@@ -701,6 +761,10 @@ div.header__box_menu {
 
             @include mq(device-ipad) {
               font-size: 27px;
+            }
+
+            @include mq(device-tablet) {
+              left: -1.5%;
             }
           }
         }
@@ -810,6 +874,10 @@ div.header__box_menu {
               @include mq(device-ipad) {
                 margin-top: 59.5%;
                 font-size: 26px;
+              }
+
+              @include mq(device-tablet) {
+                margin-top: 65.5%;
               }
             }
           }
