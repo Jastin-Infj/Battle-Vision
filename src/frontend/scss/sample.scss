@@ -1,0 +1,44 @@
+@use 'import' as *;
+
+%layer-canvas_changeStyle {
+  //? change
+
+  @include mq(device-pc) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template: initial !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template: initial !important;
+  }
+}
+
+//* common
+%main__text_common {
+  
+}
+
+%main {
+  @apply relative top-0 left-0;
+  @apply flex;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+  }
+}

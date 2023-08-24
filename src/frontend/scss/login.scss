@@ -1,0 +1,303 @@
+@use 'import' as *;
+
+%layer-canvas_changeStyle {
+  // change
+  @include mq(device-tablet-lg) {
+    grid-template:
+    "...    ...    ...    ...    ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 0.1fr
+    "...    main    main  main   ...   " 1fr
+    "...    ...... ...... ...... ...   " 0.2fr
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 1fr 1fr 1fr 1fr 1fr !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template: 
+      "header header header" $header__height_normal
+      "...... ...... ......" 0.5fr
+      "main   main   main  " 1fr
+      "main   main   main  " 1fr
+      "main   main   main  " 1fr
+      "...... ...... ......" 0.5fr
+      "footer footer footer" $footer__height_ipad
+      "...... ...... ......" 0px
+    / 1fr 1fr 1fr !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template:
+    "header header header" $header__height_normal
+    "...... ...... ......" 0.5fr
+    "main   main   main  " 3fr
+    "...... ...... ......" 0.5fr
+    "footer footer footer" $footer__height_phone
+    "...... ...... ......" 0px
+  / 1fr 1fr 1fr !important;
+  }
+}
+
+%main {
+  @apply flex flex-col;
+  @apply relative top-0 left-0;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  //? 調整
+  width: 70%;
+  height: 90%;
+  @include position_centerWidthRender();
+
+  @include mq(device-ipad) {
+    z-index: 0;
+  }
+
+  %main__text_title {
+    @apply relative top-0 left-0;
+    //? 調整
+    width: 100%;
+    height: 15%;
+
+    span {
+      @apply relative;
+      left: 40.5%;
+      
+      color: rgba(0, 0, 0, 1);
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 44px;
+
+      @include mq(device-phone) {
+        left: 26.5%;
+      }
+    }
+  }
+
+  %main__form {
+    @apply flex flex-col;
+    @apply relative left-0;
+    //? 調整
+    width: 100%;
+    height: 85%;
+
+    background: rgba(250, 250, 250, 1);
+
+    div.loginform {
+      @apply flex flex-col;
+      @apply relative;
+      width: 100%;
+      height: 40%;
+      
+      input {
+        @apply relative;
+        @include position_centerWidthRender();
+        margin-top: 30px;
+        padding-left: 20px;
+        padding-bottom: 5px;
+
+        width: 600px;
+        height: 200px;
+        background: rgba(255, 255, 255, 1);
+
+        @apply border-solid;
+        border-width: 3.5px;
+        border-radius: 4.5px;
+        border-color: rgba(153, 153, 153, 1);
+
+        font-weight: 600;
+        font-size: 32px;
+        color: rgba(0, 0, 0, 1);
+
+        @include mq(device-tablet-lg) {
+          width: 80%;
+        }
+
+        @include mq(device-ipad) {
+          font-size: 30px;
+        }
+
+        @include mq(device-phone) {
+          font-size: 15.5px;
+          padding-bottom: 0px;
+        }
+
+        &::placeholder {
+          font-size: 20px;
+
+          @include mq(device-ipad) {
+            font-size: 18px;
+          }
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0px 6.25225px 6.25225px rgba(0, 0, 0, 0.25);
+        }
+
+      }
+    }
+
+    span.password_forgetlink {
+      @apply relative;
+      margin-top: 25px;
+      margin-left: 20px;
+
+      width: 225px;
+      height: 22px;
+
+      color: rgba(60, 60, 60, 1);
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 18px;
+
+      a {
+        color: rgba(83, 80, 209, 1);
+      }
+    }
+
+    div.BR {
+      @apply flex flex-row;
+      width: 100%;
+      margin-top: 10px;
+
+      @include mq(device-phone) {
+        margin-top: 30px;
+      }
+
+      div {
+        @apply relative;
+        @include position_centerHeightRender();
+        margin: {
+          left: 30px;
+          right: 30px;
+        }
+        
+        width: 100%;
+        height: 10px;
+        background: rgba(231, 231, 231, 1);
+
+        @include mq(device-phone) {
+          margin: {
+            left: 15px;
+            right: 15px;
+          }
+        }
+
+      }
+
+      span {
+        @apply whitespace-nowrap;
+        width: 100%;
+        
+        text-align: center;
+        color: rgba(80, 80, 80, 1);
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 18px;
+      }
+    }
+
+    div.login_platform {
+      @apply flex flex-col justify-between;
+      @apply relative top-0 left-0;
+      @apply h-full;
+      margin: {
+        top: 40px;
+        bottom: 40px;
+        left: auto;
+        right: auto;
+      }
+      width: 80%;
+
+      button {
+        @apply relative top-0 left-0;
+        height: 40%;
+        width: 100%;
+
+        background: rgba(255,255,255,1);
+
+        @apply border-solid;
+        border-width: 1px;
+        border-color: rgba(235,235,235,0.92);
+        border-radius: 15px;
+
+        img.icon , img.arrow {
+          @apply absolute top-0;
+          @include position_centerHeightRender();
+          width: 12.5%;
+          height: 80%;
+
+          @include mq(device-ipad) {
+            width: 40px;
+            height: 40px;
+          }
+
+          @include mq(device-phone) {
+            width: 25px;
+            height: 25px;
+          }
+
+        }
+
+        img.icon {
+          left: 6.5%;
+
+          @include mq(device-tablet-lg) {
+            left: 3.5%;
+          }
+
+          @include mq(device-ipad) {
+            left: 5%;
+          }
+        }
+
+        span.main {
+          font-size: 22px;
+          font-weight: 600;
+          word-wrap: break-word;
+          color: rgba(128, 128, 128, 1);
+
+          @include mq(device-tablet-lg) {
+            font-size: 20px;
+          }
+
+          @include mq(device-phone) {
+            @apply relative;
+            left: 6%;
+            bottom: 3%;
+            font-size: 13px;
+          }
+
+        }
+
+        img.arrow {
+          left: 80%;
+          @include mq(device-tablet-lg) {
+            left: 84%;
+          }
+
+          @include mq(device-phone) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+  main {
+    @extend %main;
+
+    div.main__text_title {
+      @extend %main__text_title;
+    }
+
+    div.main__form {
+      @extend %main__form;
+    }
+  }
+}
