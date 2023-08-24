@@ -1,9 +1,23 @@
 import React from "react";
+import Link from "next/link";
+import Router, { useRouter } from "next/router";
 
+// style json or scss
 import Messages from '../../json/Strings.json';
+import Links from '../../json/link.json';
 import '../../scss/_layerbase.scss';
 
+interface Action {
+  next: string;
+}
+
 function Footer() {
+
+  const router = useRouter();
+  const onClickEvents = (action: Action) => {
+    router.push(action.next);
+  };
+
   return (
     <>
       <footer>
@@ -21,12 +35,16 @@ function Footer() {
             <span>{Messages.Page.Fotter.Accounts.Text}</span>
           </div>
           <div className="buttons">
-            <button className="SignUp">
+            <button className="SignUp" onClick={() => {
+              onClickEvents({next: '/Login'});
+            }}>
               <span>
                 {Messages.Page.Fotter.Accounts.SignUp}
               </span>
             </button>
-            <button className="SignIn">
+            <button className="SignIn" onClick={() => {
+              location.href = Links.Page.Footer.SignIn;
+            }}>
               <span>
                 {Messages.Page.Fotter.Accounts.SignIn}
               </span>
