@@ -9,8 +9,8 @@ import Messages from '../src/frontend/json/Strings.json';
 import { CustomJSX } from '../src/frontend/ts/jsxform';
 
 //* JSX
-import Canvas from '../src/frontend/ts/components/Canvas';
-import Footer from '../src/frontend/ts/components/Footer';
+import Canvas from './Canvas';
+import Footer from './Footer';
 
 //* CSS
 import '../src/frontend/scss/top.scss';
@@ -18,9 +18,6 @@ import '../src/frontend/scss/top.scss';
 //* 画像ファイル
 // @ts-ignore IDE側がエラーとして認識するため
 import image from '../src/frontend/img/topimage.jpg';
-
-
-import { Head, Html } from 'next/document';
 
 function Top() {
   const [style_titlelogo,SetStyleTitlelogo] = useState<CustomJSX.cssStyle>();
@@ -65,34 +62,27 @@ function Top() {
 
   return (
     <>
-      <Html>
-        <Head>
-          <title>My page title</title>
-        </Head>
-        <body>
-          <Canvas>
-            <img src={image.src} className='back__image' />
-            <main>
-              <div className="main__text_titlelogo">
-                <span className={classnames(style_titlelogo)}>{Messages.Title}</span>
-              </div>
-              <div className="main__button_start">
-                <div>
-                  <button name='use'>
-                    <span>{Messages.Page.Top.Button.Demo}</span>
-                  </button>
-                </div>
-                <div>
-                  <button name='demo'>
-                    <span>{Messages.Page.Top.Button.Used}</span>
-                  </button>
-                </div>
-              </div>
-            </main>
-            <Footer />
-          </Canvas>
-        </body>
-      </Html>
+      <Canvas id='Top'>
+        <img src={image.src} className='back__image' />
+        <main>
+          <div className="main__text_titlelogo">
+            <span className={classnames(style_titlelogo)}>{Messages.Title}</span>
+          </div>
+          <div className="main__button_start">
+            <div>
+              <button name='use'>
+                <span>{Messages.Page.Top.Button.Demo}</span>
+              </button>
+            </div>
+            <div>
+              <button name='demo'>
+                <span>{Messages.Page.Top.Button.Used}</span>
+              </button>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </Canvas>
     </>
   );
 }

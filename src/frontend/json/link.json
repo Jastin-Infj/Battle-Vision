@@ -1,12 +1,13 @@
 {
   "Page": {
     "Footer": {
-      "SignUp": "新規登録",
-      "SignIn": "ログイン",
-      "Demo": "デモを試す",
-      "Text1": "トップ",
-      "Text2": "利用規約",
-      "Text3": "プライバシーポリシー",
+      "SignUp": "/Login",
+      "SignIn": "/Login",
+      "Demo_enable": "/Report?mode=demo",
+      "Demo_disabled": "/Report",
+      "Text1": "/Top",
+      "Text2": "/Conditions",
+      "Text3": "/PrivacyPolicy",
       "Company1": "株式会社ポケモン",
       "Company2": "任天堂",
       "Company3": "クリーチャーズ",

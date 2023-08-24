@@ -1,21 +1,20 @@
 import React, { useEffect } from "react";
-import classNames from "classnames";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
 import '../src/frontend/scss/login.scss';
 
 // style JSX
-import Canvas from "../src/frontend/ts/components/Canvas";
-import Header from '../src/frontend/ts/components/Header';
-import Footer from '../src/frontend/ts/components/Footer';
+import Canvas from './Canvas';
+import Header from './Header';
+import Footer from './Footer';
 
 function Login() {
 
   
   return (
     <>
-      <Canvas>
+      <Canvas id="Login">
         <Header />
         <main>
           <div className="main__text_title">

@@ -176,7 +176,7 @@
   }
 }
 
-div.layer-canvas {
+div.layer-canvas#Top {
   @extend %layer-canvas_changeStyle;
 
   img.back__image {

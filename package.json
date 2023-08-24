@@ -12,7 +12,8 @@
     "sass": "sass",
     "next": "next dev -p 8080",
     "next:build": "next build",
-    "next:start": "next start -p 8080"
+    "next:start": "next start -p 8080",
+    "lint": "next lint"
   },
   "author": "",
   "license": "ISC",

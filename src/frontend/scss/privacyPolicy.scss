@@ -149,7 +149,7 @@ div.main__text_title:nth-of-type(8) {
   }
 }
 
-div.layer-canvas {
+div.layer-canvas#PrivacyPolicy {
   @extend %layer-canvas_changeStyle;
 
   div.header__text_Demo {

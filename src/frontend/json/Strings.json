@@ -36,6 +36,12 @@
       }
     },
     "Fotter": {
+      "CompanyLinks": {
+        "Pokemon": "",
+        "Nintedo": "",
+        "Creatures": "",
+        "Gamefreak": ""
+      },
       "Messages": {
         "Text1": "ポケットモンスター・ポケモン・Pokémonは株式会社ポケモン・任天堂・クリーチャーズ・ゲームフリークの登録商標です。",
         "Text2": "当サイトは個人ファンサイトであり、株式会社ポケモン他企業様とは一切関係ありません。",
@@ -49,7 +55,8 @@
         "Text": "アカウント",
         "SignUp": "新規登録",
         "SignIn": "ログイン",
-        "Demo": "デモを試す"
+        "Demo": "デモを試す",
+        "Demo_enable": "デモをやめる"
       },
       "Links": {
         "Text1": "トップ",

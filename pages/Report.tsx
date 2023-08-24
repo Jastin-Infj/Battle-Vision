@@ -5,17 +5,18 @@ import Messages from '../src/frontend/json/Strings.json';
 import '../src/frontend/scss/report.scss';
 
 // style JSX
-import Canvas from "../src/frontend/ts/components/Canvas";
-import Header from "../src/frontend/ts/components/Header";
-import Footer from "../src/frontend/ts/components/Footer";
+import Canvas from "./Canvas";
+import Header from "./Header";
+import Footer from "./Footer";
 import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 import CheckBoxItem from "../src/frontend/ts/components/_checkItem";
 import TextStroke from "../src/frontend/ts/components/_textStroke";
 
 function Report() {
+
   return (
     <>
-      <Canvas>
+      <Canvas id="Report">
         <Header />
         <main>
           <div className="main__reportButton">
