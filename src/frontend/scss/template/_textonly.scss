@@ -1,0 +1,75 @@
+@use '../../css/globals.css';
+@use '../base' as *;
+@use '../mixin' as *;
+@use '../style' as *;
+@use '../layerbase' as *;
+
+//* 個別のテキスト設定
+
+$margin__large: 30px;
+$margin__normal: 10px;
+
+$content__add_liText: "・";
+
+%main__text_title {
+  @apply relative;
+  @apply flex flex-col;
+
+  &:not(:first-child) {
+    margin-top: 35px;
+  }
+
+  %main__text_messageTitle {
+    color: rgba(0, 0, 0, 1);
+    font-size: 28px;
+    font-weight: 600;
+
+    @include mq(device-phone) {
+      font-size: 20px;
+    }
+  }
+
+  %main__br {
+    @apply relative;
+    margin: {
+      top: 15px;
+      bottom: 10px;
+    }
+    width: 100%;
+    height: 4px;
+    
+    background: rgba(212, 212, 212, 1);
+  }
+
+  %main__text_messageText {
+    @apply break-all;
+    color: rgba(0, 0, 0, 1);
+    font-size: 17.55px;
+    font-weight: 600;
+
+    @include mq(device-phone) {
+      font-size: 12.55px;
+    }
+  }
+}
+
+
+%header__text_Demo_changeStyle {
+  @include mq(device-phone) {
+    display: none !important;
+  }
+}
+
+%header__textbox_search_changeStyle {
+  @include mq(device-phone) {
+    margin-left: 100px !important;
+    flex: 1 !important;
+  }
+}
+
+%header__icon_login_changeStyle {
+  @include mq(device-phone) {
+    width: 75px !important;
+    height: 75px !important;
+  }
+}

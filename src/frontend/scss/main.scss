@@ -1,0 +1,1055 @@
+@use 'import' as *;
+
+%layer-canvas_changeStyle {
+  //change
+  @include mq(device-pc) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 35px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.6fr !important;
+  
+    // height: viewport_getHeight(150) !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 35px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.2fr !important;
+  
+    // height: viewport_getHeight(150) !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 35px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 200px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(220) !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 110px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 200px
+    "footer footer footer footer footer" $footer__height_phone
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.2fr !important;
+
+  }
+
+}
+
+//* common
+%main__text_common {
+  top: 50%;
+
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+%main__button_common {
+  border-radius: 16px;
+  background: rgba(59, 58, 109, 1);
+  box-shadow: 0px 3.35px 3.35px 0px rgba(0, 0, 0, 0.25);
+  
+  color: rgba(255, 255, 255, 1);
+
+  &:hover {
+    background: rgba(249, 246, 255, 1);
+  }
+
+  &:hover span {
+    color: rgba(59, 58, 109, 1);
+  }
+}
+
+%main {
+  @apply relative top-0 left-0;
+  @apply flex flex-col;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+
+  @include mq(device-phone) {
+    z-index: initial;
+  }
+
+  %main__filter {
+    @apply flex flex-row;
+    width: 100%;
+    height: 150px;
+
+    //* 比率
+    $flex__text: 0.1;
+    $flex__tag: 0.6;
+    $flex__day: 0.15;
+
+    @include mq(device-tablet-lg) {
+      @apply flex-col;
+      width: 80%;
+      height: 300px;
+    }
+
+    @include mq(device-ipad) {
+      width: 60%;
+      height: 500px;
+    }
+
+    @include mq(device-phone) {
+      width: 100%;
+    }
+
+    %main__text_filter {
+      @apply relative;
+      @extend %main__text_common;
+      flex: $flex__text;
+      transform: translateY(-10%);
+
+      @include mq(device-tablet-lg) {
+        @apply absolute top-0 left-0;
+      }
+    }
+
+    %main__group_tag {
+      @apply relative;
+      @apply flex flex-row justify-between;
+      @include position_centerHeightRender();
+      height: 50%;
+
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0px 5.35px 5.35px 0px rgba(0, 0, 0, 0.25);
+      border: solid;
+      border-radius: 2.5px;
+      border-color: rgba(0, 0, 0, 1);
+      border-width: 3.5px;
+
+      @include mq(device-pc) {
+        flex: $flex__tag;
+      }
+
+      @include mq(device-tablet-lg) {
+        top: 25%;
+        height: 80px;
+      }
+
+      @include mq(device-ipad) {
+        @apply flex-col;
+        top: 130px;
+        height: 160px;
+        width: 100%;
+      }
+
+      div {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        width: 100%;
+        height: 100%;
+
+        padding-left: 1.5%;
+
+        @include mq(device-tablet-lg) {
+          &:not(:nth-of-type(4)) {
+            @apply justify-around;
+          }
+
+          &:nth-of-type(4) {
+            top: 11.5%;
+          }
+        }
+
+        @include mq(device-ipad) {
+          @apply flex-row justify-around;
+
+          width: 100%;
+          height: 50%;
+
+          &:not(:first-of-type) {
+            @apply justify-around;
+            left: -2.275%;
+            top: initial;
+          }
+
+          &:nth-of-type(4) {
+            top: initial;
+          }
+        }
+
+        label {
+          @apply relative top-0 left-0;
+          font-size: 20px;
+          font-weight: 600;
+          padding-left: 27.5%;
+
+          @include mq(device-tablet-lg) {
+            @apply whitespace-nowrap;
+            font-size: 14.5px;
+
+            padding-left: 35%;
+          }
+
+          @include mq(device-ipad) {
+            padding-top: 11.5px;
+            padding-left: 30px;
+            
+            &:not(.other) {
+              left: initial;
+
+              &:nth-of-type(1) {
+                left: 0.25%;
+              }
+
+              &:nth-of-type(2) {
+                left: -7.5%;
+              }
+              
+              &:nth-of-type(3) {
+                left: -14.05%;
+              }
+            }
+
+          }
+
+          input {
+            @apply relative top-0 left-0;
+            width: 0px;
+            height: 0px;
+          }
+
+          span {
+            @apply absolute top-0 left-0;
+            height: 20px;
+            width: 20px;
+            top: 57.5%;
+            transform: translateY(-50%);
+
+            border: solid;
+            border-width: 2px;
+            border-radius: 2.5px;
+            border-color: rgba(0, 0, 0, 1);
+            
+            background: rgba(255, 255, 255, 1);
+
+            @include mq(device-tablet-lg) {
+              height: 20px;
+              width: 20px;
+            }
+          }
+
+          input:checked ~ span {
+            width: 20px;
+            height: 20px;
+
+            @apply border-solid border-transparent;
+            background: $color-background-checkbox;
+
+            @include mq(device-tablet-lg) {
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          input:checked ~ span::after {
+            @apply absolute top-0 left-0;
+            left: 50%;
+            top: 40%;
+            width: 6px;
+            height: 10px;
+            transform: translate(-50%,-50%) rotate(45deg) scale(120%);
+
+            border: solid;
+            border-width: 0 2px 2px 0;
+            border-color: rgba(255, 255, 255, 1);
+            
+            content: "";
+          }
+        }
+      }
+
+    }
+
+    %main__group_day {
+      @apply relative;
+      @apply flex flex-row;
+
+      //* 比率
+      $width_span: 40%;
+      $width_span_tablet_lg: 30%;
+      $width_div: 60%;
+      $width_div_tablet_lg: 70%;
+
+      @include mq(device-pc) {
+        flex: $flex__day;
+      }
+
+      @include mq(device-tablet-lg) {
+        flex: initial;
+
+        top: 95px;
+        left: 0px;
+        height: 100px;
+        width: 100%;
+      }
+
+      @include mq(device-ipad) {
+        @apply flex-col;
+        height: fit-content;
+      }
+
+      div {
+        @apply absolute top-0 left-0;
+        @apply flex flex-col justify-normal;
+        height: 100%;
+        width: 100%;
+
+        @include mq(device-pc) {
+          &:last-of-type {
+            left: 100%;
+          }
+        }
+
+        @include mq(device-tablet-lg) {
+          @apply relative top-0 left-0;
+          width: 30%;
+        }
+
+        @include mq(device-ipad) {
+          &:last-of-type {
+            left: initial;
+          }
+
+          width: 100%;
+          height: 125px;
+        }
+
+        span {
+          @apply absolute;
+          @extend %main__text_common;
+          transform: translateY(-10%);
+          padding-left: 0px;
+  
+          width: $width_span;
+          height: 100%;
+  
+          @include mq(device-tablet-lg) {
+            @apply relative top-0 left-0;
+            @apply whitespace-nowrap;
+            width: fit-content;
+            height: fit-content;
+            transform: translateY(-50%);
+          }
+
+          @include mq(device-ipad) {
+            transform: initial;
+          }
+        }
+  
+        input {
+          @apply absolute;
+          @include position_centerHeightRender();
+          left: $width_span;
+          width: $width_div;
+          height: 40%;
+  
+          background: rgba(255, 255, 255, 1);
+  
+          border: solid;
+          border-radius: 2.5px;
+          border-color: rgba(0, 0, 0, 1);
+  
+          padding-left: 5px;
+          text-align: center;
+          font-size: 16.5px;
+          font-weight: 600;
+  
+          @include mq(device-tablet-lg) {
+            @apply relative top-0 left-0;
+            margin-left: 75px;
+            width: 150px;
+            height: 50px;
+  
+            font-size: 14px;
+          }
+
+          @include mq(device-ipad) {
+            margin-left: initial;
+            top: 40px;
+
+          }
+        }
+      } 
+
+    }
+  }
+
+  %main__group_winlose {
+    @apply relative left-0;
+    @apply flex flex-row;
+    margin-top: 2.5%;
+    width: 100%;
+    height: 200px;
+
+    $flex__winlose: 0.3;
+    $flex__button: 0.45;
+    $flex__reports: 0.25;
+
+    @include mq(device-tablet-lg) {
+      height: 125px;
+    }
+
+    @include mq(device-ipad) {
+      @apply flex-col;
+      margin-top: 75px;
+      height: fit-content;
+    }
+
+    %winlose__text {
+      @apply relative;
+      @extend %main__text_common;
+      transform: translateY(-50%);
+      height: fit-content;
+
+      @include mq(device-pc) {
+        margin-left: 150px;
+      }
+
+      @include mq(device-tablet-lg) {
+        @apply absolute;
+        top: 0%;
+      }
+
+      @include mq(device-ipad) {
+        transform: initial;
+      }
+    }
+
+    %winlose__box {
+      @apply relative;
+      flex: $flex__winlose;
+      height: 40%;
+
+      margin-left: 2.5%;
+      @include position_centerHeightRender();
+
+      @apply flex flex-row;
+      background-color: rgba(255, 255, 255, 1);
+
+      border: solid;
+      border-radius: 8px;
+      border-color: rgba(0, 0, 0, 1);
+      box-shadow: 0px 3.35px 3.35px 0px rgba(0, 0, 0, 0.25);
+
+      @include mq(device-ipad) {
+        flex: initial;
+        margin-left: initial;
+        margin-top: 50px;
+        top: 50px;
+        
+        width: 70%;
+        height: 75px;
+      }
+
+      @include mq(device-phone) {
+        width: 90%;
+      }
+
+      %winlose__box_win {
+        @apply relative;
+        width: 50%;
+        height: 100%;
+
+        background-color: rgba(255, 0, 0, 0.38);
+        border-radius: 3.75px 0px 0px 3.75px;
+
+        span {
+          @apply absolute;
+          @extend %main__text_common;
+          left: 10%;
+          transform: translateY(-50%);
+        }
+      }
+
+      %winlose__box_lose {
+        @apply relative;
+        width: 50%;
+        height: 100%;
+
+        background-color: rgba(0, 26, 255, 0.38);
+        border-radius: 0px 3.75px 3.75px 0px;
+
+        span {
+          @apply absolute;
+          @extend %main__text_common;
+          right: 10%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+
+    %winlose__buttons {
+      @apply relative;
+      @apply flex flex-row justify-around;
+      flex: $flex__button;
+      margin-left: 1%;
+
+      @include mq(device-ipad) {
+        flex: initial;
+        margin-left: initial;
+        margin-top: 75px;
+
+        width: 68%;
+      }
+
+      @include mq(device-phone) {
+        width: 90%;
+      }
+
+      button {
+        @apply relative top-0 left-0;
+        margin: {
+          top: auto;
+          bottom: auto;
+        }
+
+        width: 190px;
+        height: 90px;
+        
+        @extend %main__button_common;
+
+        @include mq(device-phone) {
+          transform: scale(90%);
+        }
+
+        span {
+          font-weight: 600;
+          font-size: 30px;
+          color: rgba(255, 255, 255, 1);
+          text-align: center;
+        }
+      }
+    }
+
+    %winlose__reports {
+      @apply relative top-0 left-0;
+      @apply flex flex-row justify-between;
+      flex: $flex__reports;
+
+      @include mq(device-tablet-lg) {
+        @apply absolute;
+        left: 52%;
+        top: -75%;
+      }
+
+      @include mq(device-ipad) {
+        @apply relative justify-around;
+        @apply flex-col;
+        flex: initial;
+        margin-top: 35px;
+
+        top: initial;
+        left: initial;
+
+        height: 160px;
+      }
+
+      img {
+        @apply relative top-0 left-0;
+        margin {
+          left: 10%;
+          top: 2.5%;
+        }
+
+        width: 46px;
+        height: 46px;
+
+        background: rgba(215, 215, 215, 1);
+        border-radius: 50%;
+
+        @include mq(device-tablet-lg) {
+          top: -56px;
+          height: 50px;
+          width: 50px;
+        }
+
+        @include mq(device-ipad) {
+          top: initial;
+          margin: initial;
+          height: 56px;
+        }
+      }
+
+      button {
+        @apply relative top-0 left-0;
+        width: 250px;
+        height: 50px;
+
+        margin: {
+          top: auto;
+          bottom: auto;
+        }
+
+        @extend %main__button_common;
+
+        @include mq(device-ipad) {
+          margin-top: 20px;
+          left: 28px;
+        }
+
+        @include mq(device-phone) {
+          left: initial;
+          width: 175px;
+        }
+
+        span {
+          @apply relative top-0 left-0;
+          @extend %main__text_common;
+          width: fit-content;
+          height: fit-content;
+
+          @include mq(device-phone) {
+            font-size: 18.25px;
+          }
+        }
+      }
+    }
+  }
+
+  %main__group_battlecanvas {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+    width: 75%;
+    height: 675px;
+
+    $flex__me: calc((1 - 0.17) / 2);
+    $flex__other: 0.17;
+
+    margin-top: 2.5%;
+    
+    @include mq(device-pc) {
+      margin-left: 23%;
+    }
+
+    @include mq(device-tablet-lg) {
+      margin-top: 95px;
+      width: 100%;
+    }
+
+    @include mq(device-ipad) {
+      @apply flex-col;
+      margin: {
+        left: initial;
+        top: 65px;
+      }
+      width: 90%;
+      height: fit-content;
+    }
+
+    @include mq(device-phone) {
+      width: 100%;
+    }
+
+    %battlecanvas_common {
+      @extend %component_patryCanvas_div;
+      flex: $flex__me;
+
+      @include mq(device-ipad) {
+        flex: initial;
+
+        margin: {
+          left: auto;
+          right: auto;
+        }
+
+        width: 90%;
+        height: 695px;
+      }
+
+      span.battlecanvas__text_patryname {
+        // extend はここで定義しないとエラー
+        @extend %main__text_common;
+
+        @include mq(device-pc) {
+          display: none;
+        }
+
+        @include mq(device-tablet-lg) {
+          display: none;
+        }
+
+        @include mq(device-ipad) {
+          @apply absolute top-0 left-0;
+          display: initial;
+
+          width: fit-content;
+          height: fit-content;
+          top: -50px;
+        }
+      }
+
+      img.battlecanvas__img_history {
+        @apply absolute top-0 right-0;
+        width: 48px;
+        height: 48px;
+
+        top: 2.5%;
+        right: 5.5%;
+
+        //todo
+        background-color: lightgreen;
+      }
+
+      div.component_patry_select_div {
+        @extend %component_patry_select_div;
+        margin-top: 20%;
+
+        @include mq(device-phone) {
+          margin-top: 25%;
+        }
+      }
+
+      div.battlecanvas__patry {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        width: 100%;
+        //? 調整
+        height: 62.5%;
+        margin-top: 8.5%;
+
+        @include mq(device-ipad) {
+          @apply justify-between;
+        }
+
+        div {
+          @apply relative top-0 left-0;
+          @apply flex flex-row justify-around;
+          width: 100%;
+          height: 100%;
+
+          @include mq(device-ipad) {
+            margin: {
+              top: auto;
+              bottom: auto;
+            }
+          }
+          
+          div {
+            @apply relative top-0 left-0;
+            width: 152px;
+            height: 132px;
+            margin-bottom: 4.5%;
+
+            border-radius: 12px;
+
+            &.none_me {
+              background: rgba(62, 84, 141, 1);
+            }
+            &.none_target {
+              background: rgba(170, 97, 87, 1);
+            }
+            &.active {
+              background: rgba(236, 255, 119, 1);
+            }
+            &.soon {
+              background: rgba(103, 227, 153, 1);
+            }
+            
+            @include mq(device-ipad) {
+              top: 50%;
+              transform: translateY(-50%) scale(90%) !important;
+            }
+
+            &:nth-of-type(1) {
+              margin: {
+                right: -7.5%;
+              }
+
+              @include mq(device-ipad) {
+                margin: {
+                  right: initial;
+                }
+              }
+            }
+
+            &:nth-of-type(2) {
+              margin: {
+                left: -7.5%;
+              }
+
+              @include mq(device-ipad) {
+                margin: {
+                  right: initial;
+                }
+              }
+            }
+
+            img {
+              @apply absolute top-0 left-0;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%,-50%);
+
+              width: 80%;
+              height: 80%;
+
+              //todo
+              background-color: lightblue;
+            }
+            
+          }
+        }
+      }
+    }
+
+    %battlecanvas__me {
+      @extend %battlecanvas_common;
+
+      @include mq(device-ipad) {
+        height: 725px;
+      }
+
+      @include mq(device-phone) {
+        height: 655px;
+      }
+    }
+
+    %battlecanvas__target {
+      @extend %battlecanvas_common;
+      background: rgba(229, 123, 123, 1);
+
+      @include mq(device-ipad) {
+        margin-top: 120px;
+        height: 625px;
+      }
+
+      div.battlecanvas__patry {
+        margin-top: 40.5%;
+
+        @include mq(device-ipad) {
+          @apply justify-around;
+          margin-top: 50px;
+          
+          height: 90%;
+        }
+
+        @include mq(device-ipad) {
+          @apply justify-between;
+          margin-top: 100px;
+          height: 62.5%;
+        }
+
+        div {
+
+          @include mq(device-ipad) {
+            margin: {
+              top: 10px;
+              bottom: 10px;
+            }
+          }
+
+          div {
+            @include mq(device-ipad) {
+              margin-top: initial;
+              margin-bottom: initial;
+
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+        }
+      }
+    }
+
+    %battlecanvas__other {
+      @apply relative top-0 left-0;
+      flex: $flex__other;
+      @apply flex flex-col;
+      height: 100%;
+
+      margin-left: 3%;
+      margin-right: 3%;
+
+      @include mq(device-ipad) {
+        @apply absolute;
+        flex: initial;
+        margin: {
+          left: initial;
+          right: initial;
+        }
+
+        top: -125px;
+        left: 375px;
+        transform: translateY(-50%);
+
+        height: initial;
+      }
+
+      @include mq(device-ipad) {
+        width: 250px;
+        height: 50px;
+      }
+
+      @include mq(device-phone) {
+        left: 182.5px;
+        width: 175px;
+      }
+
+      button {
+        @apply relative top-0 left-0;
+        height: 45px;
+        width: 100%;
+        @extend %main__button_common;
+        border-radius: 10px;
+
+        @include mq(device-ipad) {
+          border-radius: 16px;
+          width: 100%;
+          height: 100%;
+        }
+
+        span {
+          @apply relative top-0 left-0;
+          @extend %main__text_common;
+          width: fit-content;
+          height: fit-content;
+
+          @include mq(device-phone) {
+            font-size: 18.25px;
+          }
+        }
+      }
+
+      div {
+        @apply relative top-0 left-0;
+        height: 100%;
+        width: 100%;
+
+        @include mq(device-ipad) {
+          display: none;
+        }
+
+        img {
+          @apply relative top-0 left-0;
+          width: 100px;
+          height: 100px;
+          left: 50%;
+          top: 40%;
+          transform: translate(-50%,-40%);
+
+          //todo
+          background-color: lightcoral;
+        }
+
+        span {
+          @apply absolute;
+          @extend %main__text_common;
+          left: 12.5%;
+          top: 40%;
+          transform: translateY(-40%);
+
+          @apply italic;
+          letter-spacing: 50px;
+          font-size: 60px;
+          font-weight: 800;
+          color: rgba(241, 255, 155, 1);
+
+          -webkit-text-stroke: {
+            width: 0.8px;
+            color: rgba(208, 194, 121, 1);
+          }
+        }
+      }
+    }
+
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+
+    div.main__filter {
+      @extend %main__filter;
+
+      span.main__text_filter {
+        @extend %main__text_filter;
+      }
+
+      div.main__group_tag {
+        @extend %main__group_tag;
+      }
+
+      div.main__group_day {
+        @extend %main__group_day;
+      }
+    }
+
+    div.main__group_winlose {
+      @extend %main__group_winlose;
+
+      span.winlose__text {
+        @extend %winlose__text;
+      }
+
+      div.winlose__box {
+        @extend %winlose__box;
+
+        div.winlose__box_win {
+          @extend %winlose__box_win;
+        }
+
+        div.winlose__box_lose {
+          @extend %winlose__box_lose;
+        }
+      }
+
+      div.winlose__buttons {
+        @extend %winlose__buttons;
+      }
+
+      div.winlose__reports {
+        @extend %winlose__reports;
+      }
+    }
+
+    div.main__group_battlecanvas {
+      @extend %main__group_battlecanvas;
+
+      div.battlecanvas__me {
+        @extend %battlecanvas__me;
+      }
+
+      div.battlecanvas__other {
+        @extend %battlecanvas__other;
+      }
+
+      div.battlecanvas__target {
+        @extend %battlecanvas__target;
+      }
+    }
+
+  }
+}

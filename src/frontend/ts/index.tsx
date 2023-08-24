@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import App from './components/App';
+// import App from './components/App';
 
 export const END_POINT = 'http://localhost:8000/api/users';
 
@@ -10,7 +10,7 @@ if (rootEl) {
   const root = createRoot(rootEl);
   root.render(
     <React.StrictMode>
-      <App />
+      {/* <div>Hello World</div> */}
     </React.StrictMode>
   );
 }

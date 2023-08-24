@@ -1,0 +1,356 @@
+@use '../../css/globals.css' as *;
+@use '../mixin' as *;
+@use '../variables' as *;
+
+@use '../layerbase' as *;
+
+//* 共通
+%common_text_normal {
+  @apply whitespace-nowrap;
+  font-size: 28px;
+  font-weight: 600;
+  
+  width: fit-content;
+  height: fit-content;
+
+  color: $color-font-basic;
+}
+
+%common_text_sm {
+  @extend %common_text_normal;
+  //change
+  font-size: 21px;
+  font-weight: 800;
+  font-style: bold;
+  
+  -webkit-text-stroke: {
+    width: 0.25px;
+  }
+}
+
+%common_text_sm_2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+%common_placeholder_normal {
+  @apply whitespace-nowrap;
+  font-size: 18px;
+  font-weight: 600;
+
+  color: $color-font-basic;
+
+  &:focus {
+    color: $color-font-basic;
+  }
+
+  &::placeholder {
+    color: $color-font-basic-placeholder;
+  }
+}
+
+//* ヘルプアイコン
+%component_text_help_div {
+  @apply absolute top-0 left-0;
+  top: 0px;
+  left: 165px;
+  transform: translate(-50%,-50%);
+  width: 20px;
+  height: 20px;
+  
+  border-radius: 50%;
+  background: $color-background-help;
+
+  @include mq(device-tablet) {
+    top: 7px;
+  }
+
+  @include mq(device-phone) {
+    left: 132px;
+    top: 0px;
+  }
+
+  span {
+    @apply absolute top-0 left-0;
+    @extend %common_text_sm;
+    left: 47.5%;
+    top: 45%;
+    transform: translate(-50%,-50%);
+  
+    color: $color-font-help;
+  
+    -webkit-text-stroke: {
+      color: $color-font-help;
+    }
+  }
+}
+
+//* ボタンパターン1
+%component__button1 {
+  @apply relative top-0 left-0;
+  width: 290px;
+  height: 60px;
+
+  border-radius: 29px;
+  border-color: $color-border-sort_button;
+  border-width: 4.5px;
+  background: $color-background-button_sortButton;
+  box-shadow: 0px 5.8px 5.8px 0px rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    background: $color-background-basic;
+  }
+
+  &:hover > div.stroke-text {
+    span.back {
+      color: $color-background-button_sortButton;
+      -webkit-text-stroke-width: 5px;
+
+      @include mq(device-phone) {
+        -webkit-text-stroke-width: 3.5px;
+      }
+    }
+    
+  }
+
+  div.stroke-text {
+    @apply absolute top-0 left-0;
+    left: 50%;
+    top: 50%;
+    
+    @include mq(device-phone) {
+      top: 48%;
+    }
+    
+    span {
+      @extend %text_stroke_style_common;
+      @apply whitespace-nowrap;
+      font-size: 34px;
+      font-weight: 600;
+      text-shadow: 0px 5.8px 5.8px rgba(0, 0, 0, 0.25);
+
+      @include mq(device-phone) {
+        font-size: 21px;
+      }
+    }
+
+    span.main {
+      @extend %text_stroke_style_main;
+      color: $color-font-basic2;
+    }
+
+    span.back {
+      @extend %text_stroke_style_back;
+      color: $color-font-sort__button_stroke;
+      -webkit-text-stroke-width: 2.5px;
+    }
+  }
+}
+
+//* パーティ全体
+%component_patryCanvas_div {
+  @apply absolute top-0 left-0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 8.5px;
+  background: $color-background-component__battlecanvas;
+
+  //* パーティテキスト
+  div.text {
+    @apply relative top-0 left-0;
+    @apply flex flex-row justify-between;
+    margin-top: 10%;
+    width: 100%;
+    height: 52px;
+  
+    img {
+      @apply relative top-0 left-0;
+      width: 52px;
+      height: 100%;
+      background: lightcoral;
+  
+      &:nth-of-type(1) {
+        margin-left: 5%;
+      }
+  
+      &:nth-of-type(2) {
+        margin-right: 5%;
+      }
+    }
+  
+    div {
+      @apply relative top-0 left-0;
+      flex: 1;
+      margin: {
+        left: 3%;
+        right: 3%;
+      }
+  
+      background: $color-background-component__patryselect;
+  
+      border-radius: 8.5px;
+  
+      span {
+        @apply absolute top-0 left-0;
+        left: 48.5%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+  
+        @extend %common_text_sm_2;
+        color: $color-background-basic;
+      }
+  
+    }
+  }
+
+  //* パーティ枠
+  div.member {
+    @apply relative top-0 left-0;
+    @apply flex flex-col;
+    width: 100%;
+    height: 81%;
+  
+    margin-top: 7.5%;
+  
+    div.col {
+      @apply relative top-0 left-0;
+      @apply flex flex-row;
+      @apply justify-around;
+
+      width: 100%;
+      height: 33%;
+  
+      &:first-of-type {
+        @include mq(device-pc) {
+          margin-top: 2.5%;
+        }
+        
+        @include mq(device-tablet-lg) {
+          margin-top: 10%;
+        }
+      }
+  
+      &:not(:last-of-type) {
+        margin-bottom: 5%;
+      }
+  
+      div.pokemonImg {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        top: 50%;
+        transform: translateY(-50%);
+
+        width: 32.5%;
+        height: 90%;
+  
+        @include mq(device-tablet-lg) {
+          transform: translateY(-50%) scale(0.9);
+        }
+  
+        &:first-of-type {
+          @include mq(device-pc) {
+            margin-left: 2.5%;
+          }
+          
+          @include mq(device-tablet-lg) {
+            margin-left: 5%;
+          }
+        }
+  
+        &:last-of-type {
+          @include mq(device-pc) {
+            margin-right: 2.5%;
+          }
+          
+          @include mq(device-tablet-lg) {
+            margin-right: 5%;
+          }
+        }
+  
+        border-radius: 15.5px;
+        background: $color-background-component__patryMember;
+
+        img {
+          @apply relative top-0 left-0;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+
+          width: 85%;
+          height: 85%;
+        }
+      }
+    }
+  }
+}
+
+//* ポケモン枠 パターン2
+@mixin component__PokemonImg_div2($height,$width) {
+  @apply relative top-0 left-0;
+  transform: translateY(-50%);
+  top: 50%;
+
+  height: $height;
+  width: $width;
+
+  background: $color-background-component__patryMember;
+  border-radius: 21px;
+
+  img {
+    @apply absolute top-0 left-0;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+
+    width: 80%;
+    height: 80%;
+  }
+}
+
+%component__gender_div {
+  @apply absolute top-0;
+  
+  top: 50%;
+  transform: translateY(-50%);
+  
+  height: 30px;
+  width: 30px;
+
+  border-radius: 50%;
+
+  span {
+    @apply absolute top-0 left-0;
+    top: 45%;
+    left: 45%;
+    transform: translate(-50%,-50%);
+    
+    @extend %common_text_sm;
+    @extend %not_copyline;
+    //change
+    font-size: 24px;
+    color: $color-background-basic;
+  }
+
+  &.man {
+    background: $color-background-gender-man;
+  }
+  
+  &.woman {
+    background: $color-background-gender-woman;
+
+    span {
+      left: 49%;
+    }
+  }
+
+  &.none {
+    background: $color-background-gender-none;
+
+    span {
+      top: 40%;
+      left: 47%;
+    }
+  }
+}
