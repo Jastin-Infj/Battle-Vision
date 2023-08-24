@@ -9,7 +9,10 @@
     "tsc": "tsc",
     "eslint": "eslint",
     "css:build": "tailwindcss build src/frontend/css/tailwindStyle.css -o dist/tailwind.css",
-    "sass": "sass"
+    "sass": "sass",
+    "next": "next dev -p 8080",
+    "next:build": "next build",
+    "next:start": "next start -p 8080"
   },
   "author": "",
   "license": "ISC",
@@ -68,6 +71,7 @@
     "@types/react": "^18.2.9",
     "@types/react-dom": "^18.2.4",
     "axios": "^1.4.0",
+    "next": "^13.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

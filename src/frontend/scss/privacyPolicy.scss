@@ -1,0 +1,185 @@
+@use 'import' as *;
+@use '../scss/template/textonly' as *;
+
+%layer-canvas_changeStyle {
+  //change
+  @include mq(device-pc) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 200px
+    "...    main    main  main   ...   " auto
+    "...    ...... ...... ...... ...   " 0px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.6fr 1fr 1fr 1fr 0.8fr !important;
+  
+    height: viewport_getHeight(300) !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 125px
+    "...    main    main  main   ...   " 1fr
+    "...    ...... ...... ...... ...   " 125px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(270) !important; 
+  }
+
+  @include mq(device-ipad) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0fr
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 125px
+    "...    main    main  main   ...   " auto
+    "...    ...... ...... ...... ...   " 125px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(300) !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template: 
+    "...    ...    ...    ...    ...   " 0fr
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main    main  main   ...   " 1fr
+    "...    ...... ...... ...... ...   " 125px
+    "footer footer footer footer footer" $footer__height_phone
+    "...    ...... ...... ...... ...   " 0fr
+    / 0.3fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(325) !important;
+  }
+
+}
+
+//* テキスト設定
+$margin__large_attachlist: (
+  1: [3],
+  2: [5,7,9,11],
+  3: [3,5],
+  4: [2,3],
+  5: [2,4],
+  6: [1,3,4,5],
+  7: [1,4,5,9,10,14,16,18],
+  8: [1,2,4,6,13],
+  9: [1],
+  11: [2]
+);
+
+@each $key , $vals in $margin__large_attachlist {
+  div.main__text_title:nth-of-type(#{$key}) {
+    @each $val in $vals {
+      p:nth-of-type(#{$val}) {
+        margin-bottom: $margin__large;
+      }
+    }
+  }
+}
+
+div.main_text_title {
+  p:not(:first-of-type , :last-of-type) {
+    margin-bottom: 2.5px;
+  }
+}
+
+div.main__text_title:nth-of-type(2) {
+  p:nth-of-type(2) {
+    margin-bottom: $margin__normal;
+  }
+}
+
+div.main__text_title:nth-of-type(4) {
+  p:nth-of-type(5) {
+    margin-bottom: $margin__normal;
+  }
+}
+
+div.main__text_title:nth-of-type(6) {
+  p:nth-of-type(2) {
+    margin-bottom: $margin__normal;
+  }
+}
+
+div.main__text_title:nth-of-type(7) {
+  $lists: [7,8,12,13];
+  @each $val in $lists {
+    p:nth-of-type(#{$val}) {
+      &::before {
+        content: $content__add_liText;
+      }
+      margin-left: $margin__large;
+    }
+  }
+}
+
+div.main__text_title:nth-of-type(8) {
+  $lists: [7,8,9,10,11,12,13];
+  @each $val in $lists {
+    p:nth-of-type(#{$val}) {
+      &::before {
+        content: $content__add_liText;
+      }
+      margin-left: $margin__large;
+    }
+  }
+}
+
+//------------------------------------------------------
+
+%main {
+  @apply flex flex-col;
+  @apply relative top-0 left-0;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+
+  @include mq(device-tablet-lg) {
+    z-index: 0;
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  div.header__text_Demo {
+    @extend %header__text_Demo_changeStyle;
+  }
+
+  div.header__textbox_search {
+    @extend %header__textbox_search_changeStyle;
+  }
+
+  div.header__icon_login {
+    @extend %header__icon_login_changeStyle;
+  }
+
+  main {
+    @extend %main;
+
+    div.main__text_title {
+      @extend %main__text_title;
+      span.main__text_messageTitle {
+        @extend %main__text_messageTitle;
+      }
+
+      div.main__br {
+        @extend %main__br;
+      }
+
+      p.main__text_messageText {
+        @extend %main__text_messageText;
+      }
+    }
+  }
+}

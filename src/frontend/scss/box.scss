@@ -1,0 +1,1738 @@
+@use 'import' as *;
+
+//todo
+div.header__box_menu {
+  display: none;
+}
+
+%layer-canvas_changeStyle {
+  //? change
+
+  @include mq(device-pc) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(180) !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_normal
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(180) !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(180) !important;
+  }
+
+  @include mq(device-tablet) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 100px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(180) !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template:
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 150px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 300px
+    "footer footer footer footer footer" $footer__height_phone
+    "...    ...... ...... ...... ...   " 0px
+    / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+  
+    height: viewport_getHeight(130) !important;
+  }
+}
+
+//* common
+.phone__mode {
+  display: none;
+  @include mq(device-phone) {
+    display: block;
+  }
+}
+
+%main {
+  @apply relative top-0 left-0;
+  @apply flex flex-col;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+
+  //* 高さ調整
+
+  $height__MyBox: 50%;
+  $marginTop_MyPokemonDetail: 3.5%;
+  $height__MyPokemonDetail: calc(100% - $height__MyBox - $marginTop_MyPokemonDetail);
+
+  $height__MyBox_ipad: 1150px;
+  $height__MyPokemonDetail_ipad: calc(3500px - 1150px);
+
+  @include mq(device-ipad) {
+    height: 3500px;
+  }
+
+  @include mq(device-phone) {
+    height: fit-content;
+  }
+
+  //* 切り替えモード
+  input#mode_MyBox_OR_MyPokemonDetail {
+    @apply fixed;
+    @extend %disabled_tabKey;
+    top: 10px;
+    left: -50px;
+
+    &:checked ~ div.main__MyBox {
+      display: none !important;
+    }
+
+    &:checked ~ div.main__MyPokemonDetail {
+      display: block !important;
+    }
+  }
+
+  label#mode_MyBox_OR_MyPokemonDetail {
+    img {
+      @apply absolute top-0 left-0;
+      transform: translateY(-50%);
+      top: -35px;
+      left: 280px;
+      width: 50px;
+      height: 50px;
+      z-index: 1;
+    }
+  }
+
+  %main__MyBox {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+    width: 100%;
+    height: 50%;
+
+    //todo
+    // background: red;
+
+    @include mq(device-ipad) {
+      height: $height__MyBox_ipad;
+    }
+
+    @include mq(device-phone) {
+      height: fit-content;
+      @apply flex flex-col;
+    }
+
+    //* 切り替えモード
+    input#mode_Box_OR_Patry {
+      @apply fixed;
+      @extend %disabled_tabKey;
+      top: 10px;
+      left: -30px;
+      &:checked ~ div.Box {
+        display: none !important;
+      }
+
+      &:checked ~ div.Patry {
+        display: block !important;
+      }
+    }
+
+    label#mode_Box_OR_Patry {
+      img {
+        @apply absolute top-0 left-0;
+        transform: translateY(-50%);
+        top: -35px;
+        left: 180px;  
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    //* 見出し
+    span.title {
+      @apply absolute top-0 left-0;
+      @extend %common_text_normal;
+      color: $color-font-basic;
+
+      @include mq(device-tablet-lg) {
+        top: -50px;
+      }
+
+      @include mq(device-ipad) {
+        top: -56px;
+        left: 4px;
+      }
+    }
+
+    $width__Box: 60%;
+    $margin__Patry: 2.5%;
+    $width__Patry: calc(100% - $width__Box - $margin__Patry);
+
+    //* ポケモン一覧
+    div.Box {
+      @apply relative top-0 left-0;
+      width: $width__Box;
+      height: 100%;
+
+      background: $color-background-component__battlecanvas;
+      border-radius: 16px;
+
+      //* 高さ調整
+      $marginTop_sortArea: 3%;
+      $marginBottom_sortArea: 2.5%;
+      $height__sortArea: 15%;
+      $height__total_sortArea: calc($marginTop_sortArea + $height__sortArea + $marginBottom_sortArea);
+
+      $height__list: calc(100% - $height__total_sortArea);
+
+      @include mq(device-phone) {
+        width: 100%;
+        height: 880px;
+
+        margin-top: 5%;
+      }
+
+      div.sortArea {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        margin-left: 2.5%;
+        width: calc(100% - (2.5% * 2));
+        margin-top: $marginTop_sortArea;
+        height: $height__sortArea;
+
+        margin-bottom: $marginBottom_sortArea;
+        
+        background: $color-background-component__patryselect;
+        border-radius: 16px;
+
+        box-shadow: 0px 2px 2px 2.5px rgba(0, 0, 0, 0.25);
+
+        span.title {
+          @apply relative top-0 left-0;
+          @extend %common_text_normal;
+          color: $color-font-basic2;
+
+          margin: {
+            left: 2.5%;
+            top: 1.5%;
+          }
+
+          @include mq(device-tablet-lg) {
+            font-size: 24px;
+          }
+
+          @include mq(device-ipad) {
+            top: 4px;
+          }
+
+          @include mq(device-tablet) {
+            left: 5px;
+          }
+        }
+
+        div.sort {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+
+          top: 3.5%;
+          left: 20%;
+          width: 60%;
+          height: 55px;
+          
+          @include mq(device-tablet-lg) {
+            top: -11.5%;
+          }
+
+          @include mq(device-ipad) {
+            top: 14.5%;
+            left: 12%;
+          }
+
+          //todo
+          // background: red;
+
+          div {
+            @apply relative top-0 left-0;
+            width: 50%;
+            height: 100%;
+
+            &.row1 {
+              @include mq(device-ipad) {
+                left: -30px;
+              }
+            }
+
+            &.row2 {
+              margin-left: 10%;
+              @include mq(device-ipad) {
+                left: 40px;
+                margin-left: initial;
+              }
+            }
+
+            select {
+              @apply relative top-0 left-0;
+              @extend %disabled_arrow_icon;
+              width: 100%;
+              height: 100%;
+
+              @extend %common_text_normal;
+              text-indent: 10%;
+
+              // option にも反映される
+              padding-left: 5%;
+
+              background: $color-background-select_sortOption;
+              color: $color-font-basic2;
+
+              border-radius: 16px;
+              border-width: 3px;
+              border-color: $color-border-select_sortOption;
+
+              box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+
+              @include mq(device-tablet-lg) {
+                font-size: 21px;
+                width: 115%;
+              }
+
+              @include mq(device-ipad) {
+                width: 145%;
+                padding-left: initial;
+              }
+
+              @include mq(device-tablet) {
+                font-size: 18px;
+              }
+
+              &:focus {
+                outline: none;
+              }
+
+              option {
+                @apply relative top-0 left-0;
+                width: 100%;
+                height: 100%;
+
+                font-size: 24px;
+                font-weight: 600;
+                color: $color-font-basic2;
+
+                background: $color-background-select_sortOption;
+
+                @include mq(device-tablet-lg) {
+                  font-size: 21px;
+                }
+              }
+            }
+
+            img {
+              @apply absolute top-0 left-0;
+              left: 77.5%;  
+              top: 50%;
+              transform: translateY(-50%);
+              width: 40px;
+              height: 40px;
+
+              //todo
+              // background: lightsalmon;
+
+              @include mq(device-tablet-lg) {
+                left: 86.5%;
+
+                width: 35px;
+                height: 30px;
+              }
+
+              @include mq(device-ipad) {
+                left: 111.5%;
+                width: 30px;
+              }
+
+              @include mq(device-tablet) {
+                left: 105%;
+              }
+            }
+          }
+        }
+      }
+      
+      div.list {
+        @apply relative top-0 left-0;
+        @apply flex flex-col justify-around;
+        height: $height__list;
+
+        //todo
+        // background: lightcoral;
+
+        div.row {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          height: calc(100% / 6);
+          width: 100%;
+
+          //todo
+          // background: lightcyan;
+
+          div.component__PokemonImg_div2 {
+            margin-left: 4%;
+            @include component__PokemonImg_div2(85%,calc(100% / 6 - 4% - 0.5%));
+
+            @include mq(device-tablet-lg) {
+              margin-top: initial;
+            }
+
+            @include mq(device-ipad) {
+              width: calc(90% / 3);
+              margin-left: autolayoutCenterRender(95%);
+
+              @for $i from 4 through 6{
+                &:nth-of-type(#{$i}) {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    //* パーティ枠
+    div.Patry {
+      @apply relative top-0 left-0;
+      margin-left: $margin__Patry;
+      width: $width__Patry;
+      height: 100%;
+
+      @include mq(device-phone) {
+        margin-top: 5%;
+        margin-left: initial;
+        width: 100%;
+        height: 720px;
+      }
+
+      @include mq(device-phone) {
+        display: none;
+      }
+
+      img.rename {
+        @apply absolute top-0 left-0;
+        top: 6.25%;
+        left: 71.5%;
+        width: 47.5px;
+        height: 47.5px;
+
+        //todo
+        // background: red;
+
+        @include mq(device-tablet-lg) {
+          top: 6.5%;
+          left: 64%;
+        }
+
+        @include mq(device-ipad) {
+          top: 7%;
+          left: 70%;
+          width: 42.5px;
+          height: 42.5px;
+        }
+
+        @include mq(device-tablet) {
+          top: 6.75%;
+        }
+
+        @include mq(device-phone) {
+          top: 12.5%;
+          left: 75%;
+        }
+      }
+
+      div.canvas {
+        @apply relative top-0 left-0;
+        height: 100%;
+        width: 100%;
+
+        background: $color-background-component__battlecanvas;
+        border-radius: 16px;
+
+        div.component_patryCanvas_div {
+          @extend %component_patryCanvas_div;
+
+          div.text {
+
+            img {
+              @include mq(device-ipad) {
+                top: -12px;
+              }
+
+              @include mq(device-phone) {
+                top: -18px;
+              }
+            }
+
+            div {
+              @include mq(device-ipad) {
+                @apply absolute;
+                top: 50px;
+                width: 90%;
+                height: 50px;
+                margin-left: autolayoutCenterRender(90%);
+              }
+
+              span {
+                @apply whitespace-nowrap;
+                @include mq(device-ipad) {
+                  left: 33.5%;
+                  font-size: 25px;
+                }
+
+                @include mq(device-phone) {
+                  left: 48%;
+                }
+              }
+            }
+          }
+
+          div.member {
+            @include mq(device-tablet-lg) {
+              margin-top: 10px;
+            }
+
+            @include mq(device-phone) {
+              margin-top: 40px;
+            }
+
+            div.col {
+              @include mq(device-ipad) {
+                @apply flex flex-col;
+              }
+
+              @include mq(device-phone) {
+                @apply flex flex-row;
+              }
+
+              div.pokemonImg {
+                @include mq(device-ipad) {
+                  width: 40.5%;
+                  height: 45%;
+
+                  transform: translate(-50%,-50%) scale(1);
+
+                  margin-left: 50% !important;
+                  margin-right: initial !important;
+
+                  &:last-of-type {
+                    margin-top: 15px;
+                  }
+                }
+
+                @include mq(device-tablet) {
+                  width: 54.5%;
+                  height: 46%;
+                }
+
+                @include mq(device-phone) {
+                  margin-left: initial !important;
+                  width: 125px;
+                  height: 125px;
+                  left: 17.5%;
+
+                  &:last-of-type {
+                    margin-top: initial;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+
+  %main__MyPokemonDetail {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+    width: 100%;
+    margin-top: $marginTop_MyPokemonDetail;
+    height: $height__MyPokemonDetail;
+
+    //todo
+    // background: green;
+
+    $width__row1: 12.5%;
+    $width__row2: calc(60% - $width__row1);
+    $width__row3: calc(100% - $width__row2);
+
+    $height__row1_ipad: 21.5%;
+    $height__row2_ipad: 0;
+    $height__row3_ipad: 0;
+
+    @include mq(device-ipad) {
+      @apply flex flex-col;
+      height: $height__MyPokemonDetail_ipad;
+    }
+
+    @include mq(device-phone) {
+      display: none;
+      margin-top: 20.5%;
+      height: fit-content;
+    }
+
+    //* Phone画面のみ
+
+    div.titleList {
+      span {
+        @extend %common_text_normal;
+        @apply absolute top-0 left-0;
+        top: -60px;
+  
+        display: none;
+      }
+    }
+
+    input#row1 , input#row2 , input#row3 {
+      @apply fixed top-0 left-0;
+      width: 30px;
+      height: 30px;
+      @for $i from 1 through 3 {
+        &:nth-of-type(#{$i}) {
+          left: calc(-50px * $i);
+
+          //* タブごとに切り替え
+          &:checked ~ div.titleList > span:nth-of-type(#{$i}) {
+            display: block !important;
+          }
+
+          &:checked ~ div.row#{$i} {
+            display: block !important;
+          }
+        }
+      }
+    }
+
+    label.reportButton {
+      @for $i from 1 through 3 {
+        &:nth-of-type(#{$i}) {
+          img {
+            left: calc(160px + 65px * ($i - 1));
+          }
+        }
+      }
+
+      &:nth-of-type(1) {
+        img {
+          left: 160px;
+        }
+      }
+
+      img {
+        @apply absolute;
+        transform: translateY(-50%);
+        top: -40px;
+
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    //* 通常
+
+    div.row1 {
+      @apply relative top-0 left-0;
+      @apply flex flex-col justify-around;
+      height: 100%;
+      width: $width__row1;
+
+      background: $color-background-component__battlecanvas;
+      border-radius: 16px 0 0 16px;
+
+      @include mq(device-ipad) {
+        @apply flex flex-row;
+        height: $height__row1_ipad;
+        width: 100%;
+        border-radius: 16px;
+      }
+
+      @include mq(device-phone) {
+        display: none;
+        height: 500px;
+      }
+
+      img.arrow {
+        @apply relative top-0 left-0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 60px;
+
+        @include mq(device-tablet-lg) {
+          width: 45px;
+          height: 45px;
+        }
+
+        @include mq(device-ipad) {
+          @apply absolute;
+          transform: translateY(-50%);
+          left: 30px;
+
+          &:first-of-type {
+            top: 30%;
+          }
+
+          &:last-of-type {
+            top: 70%;
+          }
+        }
+
+        @include mq(device-phone) {
+          transform: translate(-50%,-50%);
+          &:first-of-type {
+            top: 12.5%;
+            left: 15%;
+          }
+
+          &:last-of-type {
+            top: 12.5%;
+            left: 85%;
+          }
+        }
+      }
+
+      div.list {
+        @apply relative top-0 left-0;
+        @apply flex flex-col justify-around;
+        width: 100%;
+        height: 75%;
+
+        //todo
+        // background: lightgreen;
+
+        @include mq(device-ipad) {
+          @apply flex flex-row justify-normal;
+          top: 20%;
+          transform: translateY(-50%);
+          left: 70px;
+        }
+
+        @include mq(device-phone) {
+          @apply flex flex-col;
+          top: 50%;
+          left: 0px;
+        }
+
+        div.component__PokemonImg_div2 {
+          @include component__PokemonImg_div2(calc(100% / 6),75%);
+          @apply relative top-0 left-0;
+          margin-left: 12.5%;
+          top: initial;
+          transform: scale(0.85);
+
+          @include mq(device-tablet-lg) {
+            transform: scale(0.75);
+          }
+
+          @include mq(device-ipad) {
+            @apply absolute;
+            transform: initial;
+            top: initial;
+            margin-left: initial;
+            height: 95px;
+            width: 95px;
+
+            @for $i from 1 through 3 {
+              &:nth-of-type(#{$i}) {
+                top: 50px;
+                left: calc(70px + (($i - 1) * 175px));
+              }
+
+              &:nth-of-type(#{$i + 3}) {
+                top: 155px;
+                left: calc(70px + (($i - 1) * 175px));
+              }
+            }
+          }
+
+          @include mq(device-phone) {
+            @for $i from 1 through 2 {
+              &:nth-of-type(#{$i + 2 * 0}) {
+                top: 50px;
+                left: calc(55px + (($i - 1) * 155px));
+              }
+
+              &:nth-of-type(#{$i + 2 * 1}) {
+                top: calc(125px + 50px);
+                left: calc(55px + (($i - 1) * 155px));
+              }
+
+              &:nth-of-type(#{$i + 2 * 2}) {
+                top: calc(125px + 175px);
+                left: calc(55px + (($i - 1) * 155px));
+              }
+            }
+          }
+        }
+      }
+    }
+
+    div.row2 {
+      @apply relative top-0 left-0;
+      @apply flex flex-col;
+      height: 100%;
+      width: $width__row2;
+
+      background: $color-background-component__battlecanvas;
+
+      @include mq(device-ipad) {
+        margin-top: 5%;
+        border-radius: 16px;
+      }
+
+      @include mq(device-phone) {
+        display: none;
+        height: 1100px;
+        background: initial;
+      }
+
+      //* 高さ比率
+      $marginTop__basic: 5%;
+      $height__basic: 30%;
+      $total__basic: calc($marginTop__basic + $height__basic);
+
+      $marginTop__move: 5%;
+      $height__move: 30%;
+      $total__move: calc($marginTop__move + $height__move);
+
+      $marginTop__id: 4%;
+      $height__id: 12.5%;
+      $total__id: calc($marginTop__id + $height__id);
+
+      $marginTop__tagG: 2.5%;
+      $height__tagG: 12.5%;
+      $total__tagG: calc($marginTop__tagG + $height__tagG);
+
+      @include mq(device-ipad) {
+        width: 100%;
+      }
+
+      div.basic {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        margin-top: $marginTop__basic;
+        height: $height__basic;
+        margin: {
+          left: 10%;
+          right: 10%;
+        }
+        width: 80%;
+
+        border-radius: 16px;
+        background: $color-background-component__patryMember;
+
+        @include mq(device-phone) {
+          width: 100%;
+          margin: {
+            left: initial;
+            right: initial;
+          }
+        }
+
+        div.types {
+          @apply relative top-0 left-0;
+          @apply flex flex-row justify-around;
+          flex: 1;
+          height: 100%;
+
+          //todo
+          // background: red;
+
+          img {
+            @apply relative top-0 left-0;
+            top: 19.5%;
+            left: -5%;
+            width: 48px;
+            height: 48px;
+
+            @include mq(device-tablet-lg) {
+              top: 25.5%;
+              left: -3.5%;
+              width: 30px;
+              height: 30px;
+            }
+
+            @include mq(device-ipad) {
+              top: 15.5%;
+              left: -5.5%;
+              width: 50px;
+              height: 50px;
+            }
+
+            @include mq(device-phone) {
+              top: 3.5%;
+              width: 35px;
+              height: 35px;
+
+              margin-left: 2.5%;
+            }
+
+            &:nth-of-type(1) {
+              margin-right: -25px;
+
+              @include mq(device-tablet-lg) {
+                margin-right: -15px;
+              }
+
+              @include mq(device-ipad) {
+                margin-right: -30px;
+              }
+
+              @include mq(device-tablet) {
+                margin-right: -17.5px;
+              }
+
+              @include mq(device-phone) {
+                left: 188px;
+                top: 102px;
+              }
+            }
+
+            &:nth-of-type(2) {
+              margin-left: -25px;
+              @include mq(device-tablet-lg) {
+                margin-left: -15px;
+              }
+
+              @include mq(device-ipad) {
+                margin-left: -30px;
+              }
+
+              @include mq(device-tablet) {
+                margin-left: -17.5px;
+              }
+
+              @include mq(device-phone) {
+                margin-left: initial;
+                left: 210px;
+                top: 102px;
+              }
+            }
+          }
+        }
+
+        div.pokemon {
+          @apply relative top-0 left-0;
+          flex: 1;
+          height: 100%;
+          text-align: center;
+
+          @include mq(device-tablet-lg) {
+            left: -15px;
+            flex: initial;
+            width: calc(100% / 3);
+          }
+
+          span.name {
+            @extend %common_text_normal;
+            @apply relative top-0 left-0;
+            top: 2%;
+            left: -5.5%;
+            color: $color-font-basic2;
+            font-size: 25px;
+
+            @include mq(device-ipad) {
+              font-size: 27px;
+            }
+
+            @include mq(device-tablet) {
+              left: 0.5%;
+            }
+
+            @include mq(device-phone) {
+              left: -62.5%;
+              top: 5%;
+            }
+          }
+          img {
+            @apply relative top-0 left-0;
+            left: 45%;
+            top: 35%;
+            transform: translate(-50%,-50%);
+            width: 80%;
+            height: 50%;
+            text-align: initial;
+
+            @include mq(device-tablet-lg) {
+              top: 30.5%;
+
+              width: 65%;
+              height: 50%;
+            }
+
+            @include mq(device-ipad) {
+              top: 35.5%;
+
+              width: 92.5%;
+            }
+
+            @include mq(device-tablet) {
+              left: 50%;
+            }
+
+            @include mq(device-phone) {
+              @apply absolute;
+              left: initial;
+              top: 41%;
+              width: 100px;
+              height: 100px;
+
+              transform: translate(-50%,-50%) scale(1.25);
+            }
+          }
+          span.ability {
+            @extend %common_text_normal;
+            @apply relative top-0 left-0;
+            top: 15%;
+            left: -3.5%;
+            color: $color-font-basic2;
+            font-size: 25px;
+
+            @include mq(device-tablet-lg) {
+              @apply absolute;
+              top: 80.5%;
+              font-size: 18px;
+            }
+
+            @include mq(device-ipad) {
+              font-size: 27px;
+            }
+
+            @include mq(device-tablet) {
+              left: -1.5%;
+            }
+
+            @include mq(device-phone) {
+              left: -61.5%;
+              top: 66.5%;
+            }
+          }
+        }
+
+        div.other {
+          @apply relative top-0 left-0;
+          @apply flex flex-col;
+          flex: 1;
+          height: 100%;
+
+          @include mq(device-tablet-lg) {
+            left: -15px;
+          }
+
+          div.col1 {
+            @apply relative top-0 left-0;
+            @apply flex flex-row justify-around;
+            margin-top: 28.5%;
+            width: 100%;
+            height: 20%;
+
+            //todo
+            // background: lightcyan;
+
+            @include mq(device-tablet-lg) {
+              margin-top: 23.5%;
+            }
+
+            @include mq(device-phone) {
+              margin-top: 30px;
+            }
+
+            div.component__gender_div {
+              @extend %component__gender_div;
+              @apply relative top-0 left-0;
+              left: 5%;
+              top: 50%;
+
+              @include mq(device-ipad) {
+                transform: translateY(-50%) scale(1.3);
+              }
+
+              @include mq(device-phone) {
+                left: -50px;
+                transform: translateY(-50%) scale(1.1);
+              }
+            }
+            img {
+              @apply relative top-0 left-0;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 48px;
+              height: 48px;
+
+              @include mq(device-tablet-lg) {
+                width: 40px;
+                height: 40px; 
+              }
+
+              @include mq(device-ipad) {
+                width: 45px;
+                height: 45px;
+              }
+
+              @include mq(device-phone) {
+                top: 15%;
+              }
+            }
+          }
+
+          div.col2 {
+            @apply relative top-0 left-0;
+            @apply flex flex-col;
+            left: -5%;
+
+            width: 100%;
+            height: 45%;
+
+            //todo
+            // background: lightgreen;
+
+            @include mq(device-ipad) {
+              left: -20px;
+              top: 20px;
+            }
+
+            img {
+              @apply relative top-0 left-0;
+              left: 50%;
+              top: 38%;
+              transform: translate(-50%,-50%);
+              width: 56px;
+              height: 56px;
+
+              @include mq(device-tablet-lg) {
+                @apply absolute;
+                top: 45px;
+              }
+
+              @include mq(device-ipad) {
+                top: 44%;
+                width: 80px;
+                height: 80px;
+              }
+
+              @include mq(device-phone) {
+                top: 50%;
+                left: 48%;
+                width: 50px;
+                height: 50px;
+              }
+            }
+
+            span {
+              @extend %common_text_normal;
+              @include text_align_attachReset();
+              margin-top: 33px;
+              font-size: 22px;
+              
+              color: $color-font-basic2;
+              text-align: center;
+
+              @include mq(device-tablet-lg) {
+                margin-top: 73px;
+                font-size: 20px;
+              }
+
+              @include mq(device-ipad) {
+                margin-top: 59.5%;
+                font-size: 26px;
+              }
+
+              @include mq(device-tablet) {
+                margin-top: 65.5%;
+              }
+
+              @include mq(device-phone) {
+                @apply absolute;
+                margin-top: 150px;
+                left: -171px;
+              }
+            }
+          }
+        }
+      }
+      
+      div.move {
+        @apply relative top-0 left-0;
+        margin-top: $marginTop__move;
+        height: $height__move;
+        width: 80%;
+        margin: {
+          left: 10%;
+          right: 10%;
+        }
+
+        border-radius: 16px;
+        background: $color-background-component__patryMember;
+
+        @include mq(device-phone) {
+          width: 100%;
+          margin: {
+            left: initial;
+            right: initial;
+          }
+        }
+
+        div.back {
+          @apply relative top-0 left-0;
+          height: calc(100% / 4 - 2.5% - 2% - 1%);
+          margin-left: autolayoutCenterRender(90%);
+          width: 90%;
+
+          background: $color-background-div_moveBackPattren1;
+          border-radius: 16px;
+          
+          &:first-of-type {
+            margin-top: 2.5%;
+            @include mq(device-phone) {
+              margin-top: initial;
+            }
+          }
+
+          @for $i from 2 through 4 {
+            &:nth-of-type(#{$i}) {
+              margin-top: 2%;
+              @include mq(device-phone) {
+                margin-top: calc(75px * ($i - 1));
+              }
+            }
+          }
+
+          @include mq(device-phone) {
+            @apply absolute;
+            top: 20px;
+          }
+
+          div.moveback {
+            @apply relative top-0 left-0;
+            @apply flex flex-row;
+            width: 98%;
+            height: 80%;
+            top: autolayoutCenterRender(80%);
+            margin-left: autolayoutCenterRender(98%);
+
+            //todo
+            background: lightblue;
+            border-radius: 16px;
+
+            img {
+              @apply relative top-0 left-0;
+              margin-left: 1.5%;
+              top: 50%;
+              transform: translateY(-50%);
+              width: 36px;
+              height: 80%;
+
+              @include mq(device-tablet-lg) {
+                margin-left: 5.5%;
+                width: 25px;
+              }
+
+              @include mq(device-ipad) {
+                margin-left: 3.5%;
+                width: 38px;
+              }
+            }
+
+            span {
+              @extend %common_text_normal;
+              @apply relative top-0 left-0;
+              margin-left: 6.5%;
+              color: $color-font-basic2;
+
+              @include mq(device-tablet-lg) {
+                margin-left: 15.5%;
+                font-size: 20.5px;
+              }
+
+              @include mq(device-ipad) {
+                font-size: 30px;
+              }
+
+              @include mq(device-phone) {
+                margin-left: 8.5%;
+              }
+            }
+          }
+        }
+      }
+
+      div.id {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        margin-top: $marginTop__id;
+        height: $height__id;
+        width: 80%;
+        margin: {
+          left: 10%;
+          right: 10%;
+        }
+
+        border-radius: 16px;
+        background: $color-background-component__patryMember;
+
+        @include mq(device-phone) {
+          width: 100%;
+          margin: {
+            left: initial;
+            right: initial;
+          }
+        }
+
+        span {
+          @extend %common_text_normal;
+          color: $color-font-basic2;
+          margin-top: 6.5%;
+
+          @include mq(device-tablet-lg) {
+            margin-top: 4.5%;
+          }
+
+          @include mq(device-ipad) {
+            margin-top: 6.5%;
+            font-size: 38px;
+          }
+
+          @include mq(device-phone) {
+            margin-top: 11%;
+          }
+
+          &:first-of-type {
+            margin-left: 20%;
+            @include mq(device-phone) {
+              margin-left: 14.5%;
+            }
+          }
+
+          &:last-of-type {
+            margin-left: 20%;
+            @include mq(device-tablet-lg) {
+              margin-left: 10%;
+            }
+          }
+        }
+      }
+
+      div.tagG {
+        @apply relative top-0 left-0;
+        margin-top: $marginTop__tagG;
+        height: $height__tagG;
+        width: 80%;
+        margin: {
+          left: 10%;
+          right: 10%;
+        }
+
+        border-radius: 16px;
+        background: $color-background-component__patryMember;
+
+        @include mq(device-phone) {
+          width: 100%;
+          margin: {
+            left: initial;
+            right: initial;
+          }
+        }
+
+        div {
+          @extend %checkbox_style_wapper;
+          @apply flex flex-row justify-around;
+          margin-top: 2.5%;
+          height: calc(100% / 2 - 15% - 2.5%);
+
+          //todo
+          // background: red;
+
+          @include mq(device-tablet-lg) {
+            margin-top: 2%;
+          }
+
+          &:nth-of-type(1) {
+            @include mq(device-phone) {
+              top: 25px;
+            }
+
+            label {
+              &:nth-of-type(1) {
+                left: 0%;
+                @include mq(device-tablet-lg) {
+                  left: -2.5%;
+                }
+
+                @include mq(device-ipad) {
+                  left: -2.25%;
+                }
+              }
+
+              &:nth-of-type(2) {
+                left: -2%;
+                @include mq(device-tablet-lg) {
+                  left: -3%;
+                }
+
+                @include mq(device-ipad) {
+                  left: -2.1%;
+                }
+
+                @include mq(device-phone) {
+                  left: -2.5%;
+                }
+              }
+
+              &:nth-of-type(3) {
+                left: -4.25%;
+                @include mq(device-tablet-lg) {
+                  left: -5.5%;
+                }
+
+                @include mq(device-ipad) {
+                  left: -4.75%;
+                }
+
+                @include mq(device-phone) {
+                  left: -5.5%;
+                }
+              }
+            }
+          }
+
+          &:nth-of-type(2) {
+            @include mq(device-phone) {
+              top: 25px;
+            }
+            label:nth-of-type(1) {
+              left: 2.5%;
+              @include mq(device-tablet-lg) {
+                left: 0.5%;
+              }
+            }
+          }
+
+          label {
+            padding-left: 5%;
+            color: $color-font-basic2;
+
+            @include mq(device-tablet-lg) {
+              font-size: 21px;
+              padding-left: 8%;
+            }
+
+            @include mq(device-ipad) {
+              font-size: 29px;
+            }
+
+            @include mq(device-phone) {
+              font-size: 22px;
+            }
+
+            input {
+              &:checked ~ span {
+                background: $color-background-checkbox;
+                @include mq(device-ipad) {
+                  height: 28px;
+                  width: 28px;
+                }
+
+                @include mq(device-phone) {
+                  height: 20px;
+                  width: 20px;
+                }
+              }
+
+              &:checked ~ span::after {
+                border-color: $color-font-checkbox;
+                @include mq(device-ipad) {
+                  transform: translate(-50%, -50%) rotate(45deg) scale(130%);
+                }
+              }
+            }
+            span {
+              border-color: $color-border-basic2;
+              background: $color-background-basic;
+
+              @include mq(device-tablet-lg) {
+                top: 72.5%;
+              }
+
+              @include mq(device-ipad) {
+                top: 54.5%;
+                height: 28px;
+                width: 28px;
+              }
+
+              @include mq(device-phone) {
+                top: 36.5%;
+                height: 20px;
+                width: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    div.row3 {
+      @apply relative top-0 left-0;
+      @apply flex flex-col;
+      height: 100%;
+      width: $width__row3;
+
+      $marginTop__date: 5%;
+      $height__date: 10%;
+
+      $marginTop__status: 5%;
+      $height__status: 79%;
+
+      background: $color-background-component__battlecanvas;
+      border-radius: 0 16px 16px 0;
+
+      @include mq(device-ipad) {
+        margin-top: 5%;
+        border-radius: 16px;
+        width: 100%;
+      }
+
+      @include mq(device-phone) {
+        display: none;
+        height: fit-content;
+        background: initial;
+      }
+
+      div.date {
+        @apply relative top-0 left-0;
+        @apply flex flex-row justify-around;
+        margin-top: $marginTop__date;
+        height: $height__date;
+        width: 97%;
+        margin-left: autolayoutCenterRender(97%);
+
+        background: $color-background-component__patryMember;
+        border-radius: 16px;
+
+        @include mq(device-phone) {
+          @apply flex flex-col;
+          width: 100%;
+          margin-left: initial;
+          height: 150px;
+        }
+
+        div {
+          @apply relative top-0 left-0;
+          width: calc(100% / 2);
+
+          @include mq(device-tablet-lg) {
+            left: 15px;
+          }
+
+          @include mq(device-phone) {
+            left: 20px;
+          }
+
+          span {
+            @extend %common_text_normal;
+            @apply absolute top-0 left-0;
+            color: $color-font-basic2;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%,-50%);
+
+            @include mq(device-tablet-lg) {
+              font-size: 21px;
+            }
+
+            @include mq(device-ipad) {
+              font-size: 29px;
+            }
+
+            @include mq(device-phone) {
+              font-size: 26px;
+            }
+          }
+
+          input {
+            @extend %common_text_sm;
+            @apply absolute top-0 left-0;
+            color: $color-font-basic2;
+            left: 45%;
+            top: 50%;
+            transform: translateY(-50%);
+            
+            padding-left: 2.5%;
+
+            background: $color-background-div_datePattren1;
+            border-color: $color-border-div_datePattren1;
+            border-width: 2px;
+
+            &:focus {
+              outline: none;
+            }
+
+            @include mq(device-tablet-lg) {
+              width: 165px;
+              left: 30%;
+              top: 50%;
+              transform: translateY(-50%) scale(0.75);
+            }
+
+            @include mq(device-ipad) {
+              width: 215px;
+              height: 70px;
+              font-size: 28px;
+            }
+
+            @include mq(device-phone) {
+              left: 50%;
+              height: 55px;
+            }
+          }
+        }
+      }
+
+      div.status {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        margin-top: $marginTop__status;
+        margin-left: 1.5%;
+        height: $height__status;
+        width: 97%;
+
+        background: $color-background-component__patryMember;
+        border-radius: 16px;
+
+        @include mq(device-phone) {
+          width: 100%;
+          margin-left: initial;
+          height: 750px;
+        }
+
+        div.param {
+          @apply relative top-0 left-0;
+          @apply flex flex-row justify-around;
+          margin-top: 2.5%;
+          width: 100%;
+          height: 80px;
+
+          button {
+            @apply relative top-0 left-0;
+            width: calc(100% / 4 - 2.5%);
+            height: 100%;
+
+            background: $color-background-div_datePattren1;
+            border-radius: 16px;
+            span {
+              @extend %common_text_normal;
+              color: $color-font-basic2;
+            }
+          }
+        }
+
+        div.grach {
+          @apply relative top-0 left-0;
+          margin-top: 3%;
+          height: 67.5%;
+          width: 100%;
+
+          //todo
+          background: lightblue;
+
+          @include mq(device-phone) {
+            height: 450px;
+          }
+        }
+
+        div.buttons {
+          @apply relative top-0 left-0;
+          @apply flex flex-row justify-around;
+          height: 170px;
+          width: 100%;
+
+          //todo
+          // background: lightcyan;
+
+          button {
+            @apply relative top-0 left-0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: calc(75% / 2);
+            height: 45%;
+
+            background: $color-background-param__button;
+            border-color: $color-border-param__button;
+            border-width: 3px;
+            border-radius: 16px;
+
+            span {
+              @extend %common_text_normal;
+              color: $color-font-basic2;
+
+              @include mq(device-phone) {
+                font-size: 22px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+
+    div.main__MyBox {
+      @extend %main__MyBox;
+    }
+
+    div.main__MyPokemonDetail {
+      @extend %main__MyPokemonDetail;
+    }
+  }
+}
