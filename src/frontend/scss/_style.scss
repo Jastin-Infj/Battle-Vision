@@ -1,0 +1,228 @@
+//----------------------------------------------------
+//-----------------  footer  -------------------------
+//----------------------------------------------------
+
+%footer__font_common_style {
+  color: rgba(2, 11, 94, 1);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.5rem;
+}
+
+%footer__button_common_style {
+  @apply overflow-hidden;
+  @apply break-all;
+  @apply rounded-2xl;
+  
+  background: rgba(59, 58, 109, 1);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  &:hover {
+    background: rgba(249, 246, 255, 1);
+    -webkit-text-stroke: {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  span {
+    @apply overflow-hidden;
+    @apply whitespace-nowrap;
+    text-overflow: clip;
+
+    @apply text-center;
+    color: rgba(255, 255, 255, 1);
+  }
+
+  &:hover span {
+    color: rgba(59, 58, 109, 1);
+  }
+}
+
+//----------------------------------------------------
+//-----------------  その他  -------------------------
+//----------------------------------------------------
+
+//* 文字列のコピー禁止
+%not_copyline {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+//* セレクトボックスの ▽アイコン非表示
+%disabled_arrow_icon {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+}
+
+//* タブキーに反応させない
+%disabled_tabKey {
+  &:focus {
+    outline: none;
+    background: #ffdd00; /* gold */
+  }
+  &:focus:not(:focus-visible) {
+    background: white; /* undo gold */
+  }
+}
+
+//----------------------------------------------------
+//-----------------  フォント  -------------------------
+//----------------------------------------------------
+
+//* 縁取りフォント
+%text_stroke_style_common {
+  @apply absolute top-0 left-0;
+  width: fit-content;
+  height: fit-content;
+
+  transform: translate(-50%,-50%);
+}
+
+%text_stroke_style_main {
+  background-color: transparent;
+  z-index: 1;
+
+  // add
+
+  // color: white;
+}
+
+%text_stroke_style_back {
+  z-index: 0;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+
+  // add
+
+  // color: red;
+  // -webkit-text-stroke-width: 4px;
+}
+
+%text_stroke_style_wapper {
+  span {
+    @extend %text_stroke_style_common;
+  }
+
+  span.main {
+    @extend %text_stroke_style_main;
+  }
+
+  span.back {
+    @extend %text_stroke_style_back;
+  }
+}
+
+//* text-align適用出来ない場合に利用
+@mixin text_align_attachReset {
+  width: initial !important;
+  text-align: initial;
+}
+
+//----------------------------------------------------
+//-----------------  input  -------------------------
+//----------------------------------------------------
+
+//* 数値型のスクロールを非表示
+%input_disabled_spin {
+  &[type=number]::-webkit-inner-spin-button, 
+  &[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+  }
+}
+
+
+//* チェックボックス 作成
+%checkbox_label {
+  @apply relative top-0 left-0;
+  @apply whitespace-nowrap;
+  //* basic add
+  font-size: 26px;
+  font-weight: 600;
+  padding-left: 0%;
+}
+
+%checkbox_input {
+  @apply relative top-0 left-0;
+  width: 0px;
+  height: 0px;
+
+  //* チェックしない
+  &:checked ~ span {
+    //* basic add
+    width: 20px;
+    height: 20px;
+
+    @apply border-solid border-transparent;
+    //* basic add
+    // background: red;
+  }
+
+  //* チェック後
+  &:checked ~ span::after {
+    @apply absolute top-0 left-0;
+    left: 50%;
+    top: 40%;
+    width: 6px;
+    height: 10px;
+    transform: translate(-50%,-50%) rotate(45deg) scale(100%);
+
+    border: solid;
+    border-width: 0 2px 2px 0;
+    //* basic add
+    // border-color: red;
+
+    content: "";
+  }
+}
+
+//* チェックマーク
+%checkbox_span {
+  @apply absolute top-0 left-0;
+  //* basic add
+  height: 20px;
+  width: 20px;
+  top: 57.5%;
+  transform: translateY(-50%);
+
+  border: solid;
+  //* basic add
+  border-width: 2px;
+  border-radius: 2.5px;
+
+  // border-color: red;
+  // background: white;
+}
+
+%checkbox_style_wapper {
+  @apply relative top-0 left-0;
+  width: 100%;
+  height: 100%;
+
+  padding-left: 1.5%;
+
+  label {
+    @extend %checkbox_label;
+
+    input {
+      @extend %checkbox_input;
+    }
+  
+    span {
+      @extend %checkbox_span;
+    }
+  }
+}
+
+//----------------------------------------------------
+//-----------------  textarea  -----------------------
+//----------------------------------------------------
+
+//* リサイズを禁止
+%textarea_disabled_resize {
+  resize: none;
+}

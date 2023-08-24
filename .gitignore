@@ -15,6 +15,7 @@ yarn.lock
 dist
 node_modules
 src/backend/static
+.next
 
 ###################
 ## backend

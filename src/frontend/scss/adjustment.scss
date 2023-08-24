@@ -1,0 +1,1572 @@
+@use 'import' as *;
+
+%layer-canvas_changeStyle {
+  //change
+  @include mq(device-pc) {
+    grid-template:
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 175px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 300px
+      "footer footer footer footer footer" $footer__height_normal
+      "...    ...... ...... ...... ...   " 0px
+      / 0.3fr 1fr 1fr 1fr 0.3fr !important;
+
+    height: viewport_getHeight(160) !important;
+  }
+
+  @include mq(device-tablet-lg) {
+    grid-template: 
+      "...    ...... ...... ...... ...   " 0px
+      "header header header header header" $header__height_normal
+      "...    ...... ...... ...... ...   " 175px
+      "...    main   main   main   ...   " auto
+      "...    ...... ...... ...... ...   " 300px
+      "footer footer footer footer footer" $footer__height_normal
+      "...    ...... ...... ...... ...   " 0px
+      / 0.2fr 1fr 1fr 1fr 0.1fr !important;
+
+    height: viewport_getHeight(200) !important;
+  }
+
+  @include mq(device-ipad) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 175px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 250px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.2fr 1fr 1fr 1fr 0.1fr !important;
+
+    height: viewport_getHeight(280) !important;
+  }
+
+  @include mq(device-tablet) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 175px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 250px
+    "footer footer footer footer footer" $footer__height_ipad
+    "...    ...... ...... ...... ...   " 0px
+    / 0.1fr 1fr 1fr 1fr 0.1fr !important;
+
+    height: viewport_getHeight(320) !important;
+  }
+
+  @include mq(device-phone) {
+    grid-template: 
+    "...    ...... ...... ...... ...   " 0px
+    "header header header header header" $header__height_normal
+    "...    ...... ...... ...... ...   " 175px
+    "...    main   main   main   ...   " auto
+    "...    ...... ...... ...... ...   " 250px
+    "footer footer footer footer footer" $footer__height_phone
+    "...    ...... ...... ...... ...   " 0px
+    / 0.1fr 1fr 1fr 1fr 0.1fr !important;
+
+    height: viewport_getHeight(490) !important;
+  }
+}
+
+%main {
+  @apply relative top-0 left-0;
+  @apply flex flex-col;
+  grid-area: main;
+  z-index: var(--z-component);
+
+  width: 100%;
+  height: 100%;
+
+  @include mq(device-pc) {
+    z-index: initial;
+  }
+
+  @include mq(device-phone) {
+    z-index: 0;
+  }
+
+  //todo
+  // background-color: lightcyan;
+
+  %main__create {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+
+    width: 100%;
+
+    //todo
+    // background-color: lightblue;
+
+    //* 変数
+    $flex__basic: 0.3;
+    $flex__param: 0.45;
+    $flex__move: 0.25;
+
+    $width__tablet_lg: 550px;
+    $width__ipad: 730px;
+    $height__tablet_lg: 700px;
+    $height__ipad: 1200px;
+
+    @include mq(device-pc) {
+      height: 45%;
+    }
+
+    @include mq(device-tablet-lg) {
+      height: $height__tablet_lg;
+    }
+
+    @include mq(device-ipad) {
+      @apply flex-col;
+      width: $width__ipad;
+      height: $height__ipad;
+    }
+
+    @include mq(device-tablet) {
+      left: -10px;
+    }
+
+    @include mq(device-phone) {
+      width: 100%;
+      left: 0px;
+    }
+
+    %create__basic {
+      @apply relative top-0 left-0;
+      height: 100%;
+      
+      @include mq(device-pc) {
+        flex: $flex__basic;
+      }
+
+      @include mq(device-tablet-lg) {
+        left: -15px;
+        width: $width__tablet_lg;
+        height: $height__tablet_lg;
+      }
+
+      @include mq(device-ipad) {
+        width: $width__ipad;
+      }
+
+      @include mq(device-phone) {
+        width: 100%;
+        left: -10px;
+      }
+
+      //todo
+      // background-color: red;
+      
+      div.create__basic_group {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+
+        width: 100%;
+        height: 100px;
+        
+        //* 比率
+        $width_text: 35%;
+        $width_margin_box: 10%;
+        $width_box: 55%;
+
+        @include mq(device-tablet-lg) {
+          width: $width__tablet_lg;
+        }
+
+        @include mq(device-ipad) {
+          width: 100%;
+        }
+
+        @include mq(device-phone) {
+          @apply flex flex-col;
+
+          &:not(:first-of-type) {
+            margin-top: 35px;
+          }
+
+          //* テキストの調整
+          &:nth-of-type(2) > div.create__basic_text > span.basic__text_name {
+            left: 75px;
+          }
+        }
+
+        %create__basic_text {
+          @apply relative top-0 left-0;
+          @apply flex flex-col;
+
+          width: $width_text;
+          height: 100%;
+
+          @include mq(device-phone) {
+            margin-bottom: -15px;
+          }
+
+          div.component_text_help {
+            @extend %component_text_help_div;
+          }
+
+          span.basic__text_name {
+            @apply relative top-0 left-0;
+            @extend %common_text_normal;
+            margin-top: 10%;
+
+            left: 50%;
+            transform: translateX(-50%);
+
+            @include mq(device-phone) {
+              left: 65px;
+            }
+          }
+
+          div.basic__required {
+            @apply relative top-0 left-0;
+
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: 85px;
+            height: 20px;
+            
+            background: $color-background-basic;
+            
+            border: solid;
+            border: {
+              width: 1.6px;
+              radius: 3px;
+              color: $color-border-requied;
+            }
+
+            @include mq(device-phone) {
+              @apply absolute top-0 left-0;
+              top: 29px;
+              left: 183px;
+            }
+
+            div.stroke-text {
+              @apply absolute top-0 left-0;
+              left: 50%;
+              top: 50%;
+              
+              span {
+                @extend %text_stroke_style_common;
+                @apply whitespace-nowrap;
+                font-size: 16px;
+                font-weight: 600;
+              }
+
+              span.main {
+                @extend %text_stroke_style_main;
+                color: $color-font-requied-base;
+              }
+      
+              span.back {
+                @extend %text_stroke_style_back;
+                color: $color-font-requied-stroke;
+                -webkit-text-stroke-width: 2.5px;
+              }
+            }
+          }
+        }
+
+        %create__basic_box {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          width: $width_box;
+
+          @include mq(device-pc) {
+            margin-left: $width_margin_box;
+          }
+
+          @include mq(device-tablet-lg) {
+            margin-left: 2.5%;
+          }
+
+          @include mq(device-ipad) {
+            margin-left: initial;
+          }
+
+          @include mq(device-phone) {
+            width: 75%;
+            left: 28px;
+            top: 15px;
+          }
+
+          //todo
+          // background-color: blue;
+
+          $z-img: 2;
+          $z-input: 1;
+
+          //* search
+          img:nth-of-type(1) {
+            z-index: $z-img;
+            @apply absolute top-0 left-0;
+            
+            top: 50%;
+            transform: translateY(-50%);
+            left: 5%;
+
+            height: 30px;
+            width: 30px;
+
+            //todo
+            background-color: green;
+          }
+
+          //* arrow
+          img:nth-of-type(2) {
+            z-index: $z-img;
+            @apply absolute top-0 right-0;
+
+            top: 50%;
+            transform: translateY(-50%);
+            right: 5%;
+
+            height: 42px;
+            width: 42px;
+
+            //todo
+            background-color: red;
+
+            @include mq(device-phone) {
+              height: 37px;
+              width: 37px;
+            }
+          }
+
+          //* gender
+          div.component__gender_div {
+            z-index: $z-img;
+            @extend %component__gender_div;
+            left: 105%;
+          }
+
+          input {
+            z-index: $z-input;
+            @apply relative top-0 left-0;
+            outline: none;
+            top: 50%;
+            transform: translateY(-50%);
+
+            padding: {
+              left: 25%;
+              right: 25%;
+            }
+
+            width: 100%;
+            height: 75%;
+
+            @extend %common_placeholder_normal;
+
+            border: solid;
+            border: {
+              width: 3px;
+              radius: 3.25px;
+              color: $color-border-basic;
+            }
+
+            &:focus {
+              border-color: $color-border-param-focus;
+              outline: none;
+            }
+
+            @include mq(device-ipad) {
+              padding-left: 20%;
+              &::placeholder {
+                padding-left: 12.5%;
+              }
+
+              &:focus {
+                padding-left: 20%;
+
+                &::placeholder {
+                  padding-left: 23.5%;
+                }
+              }
+            }
+
+            @include mq(device-phone) {
+              border-radius: 11.25px;
+              height: 45px;
+            }
+
+            //todo
+            // background-color: lightgreen;
+          }
+        }
+      }
+    }
+
+    %create__param {
+      @apply relative top-0 left-0;
+      //todo
+      // background-color: blue;
+      flex: $flex__param;
+
+      left: 75px;
+      top: -50px;
+
+      $width_children: 600px;
+
+      @include mq(device-tablet-lg) {
+        left: 20px;
+      }
+
+      @include mq(device-ipad) {
+        top: 100px;
+        left: 75px;
+      }
+
+      @include mq(device-phone) {
+        top: 125px;
+        left: 15px;
+      }
+
+      div.param__rows {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        @apply justify-between;
+
+        width: $width_children;
+
+        @include mq(device-phone) {
+          top: 15px;
+          left: -23px;
+          width: 410px;
+        }
+
+        div.param__rowText {
+          @apply relative top-0 left-0;
+          // width: 0px;
+          // height: 0px;
+
+          &:nth-of-type(1) {
+            left: 16.5%;
+          }
+  
+          &:nth-of-type(2) {
+            left: 9.5%;
+
+            @include mq(device-phone) {
+              left: 7.5%;
+            }
+          }
+  
+          &:nth-of-type(3) {
+            left: 1.5%;
+
+            @include mq(device-phone) {
+              left: -1.5%;
+            }
+          }
+  
+          &:nth-of-type(4) {
+            left: -6.5%;
+
+            @include mq(device-phone) {
+              left: -11%;  
+            }
+          }
+          
+          span {
+            @apply relative top-0 left-0;
+            @extend %common_text_normal;
+  
+            transform: translateX(-50%);
+            flex: 1;
+            color: $color-font-basic;
+          }
+
+          div.component_text_help {
+            @extend %component_text_help_div;
+            left: 70px;
+            top: -10px;
+          }
+        }
+      }        
+
+      $margin__top: 30px;
+
+      //* 共通
+      %wapper__span {
+        @apply relative top-0 left-0;
+        @extend %common_text_sm;
+        transform: translate(-50%,-50%);
+        top: 25px;
+        left: 10px;
+        color: $color-font-basic;
+        width: 50px;
+        text-align: left;
+
+        @include mq(device-phone) {
+          left: -13px;
+          font-size: 16.5px;
+        }
+      }
+
+      %wapper__input {
+        @apply relative top-0 left-0;
+        @extend %input_disabled_spin;
+        width: 125px;
+        height: 50px;
+        border-width: 3px;
+        border-radius: 4px;
+        border-color: $color-border-param-focus;
+        @extend %common_placeholder_normal;
+        font-size: 26px;
+        text-align: right;
+        padding-right: 10px;
+
+        @include mq(device-tablet-lg) {
+          width: calc(125px * 0.9);
+          height: calc(50px * 0.9);
+        }
+
+        @include mq(device-phone) {
+          left: -75px;
+          width: 72.5px;
+
+          font-size: 20px;
+
+          &:not(:first-of-type) {
+            margin-left: -34px;
+          }
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      %wapper_input_placeholder {
+        border-color: $color-border-param;
+      }
+
+      div.param__paramator {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        @apply justify-around;
+
+        width: $width_children;
+        margin-top: $margin__top;
+
+        @include mq(device-phone) {
+          width: 445px;
+        }
+
+        span {
+          @extend %wapper__span;
+        }
+
+        input {
+          @extend %wapper__input;
+        }
+
+        input:nth-of-type(1) {
+          @extend %wapper_input_placeholder;
+        }
+      }
+      
+      //* total
+      div.param__total {
+        @apply relative top-0 left-0;
+        width: $width_children;
+        margin-top: $margin__top;
+
+        span {
+          @apply relative top-0 left-0;
+          @extend %wapper__span;
+          height: fit-content;
+          
+          @include mq(device-pc) {
+            left: -11.5px;
+          }
+
+          @include mq(device-tablet-lg) {
+            left: -7.5px;
+          }
+        }
+
+        input {
+          @apply relative top-0 left-0;
+          @extend %wapper__input;
+        }
+
+        input:nth-of-type(1) {
+          @extend %wapper_input_placeholder;
+          
+          @include mq(device-pc) {
+            margin-left: 17.5px;
+          }
+
+          @include mq(device-tablet-lg) {
+            margin-left: 32.5px;
+          }
+
+          @include mq(device-phone) {
+            margin-left: -2.5px;
+          }
+        }
+
+        input:nth-of-type(2) {
+          @include mq(device-pc) {
+            margin-left: 145px;
+          }
+          @include mq(device-tablet-lg) {
+            margin-left: 152.5px;
+          }
+          @include mq(device-phone) {
+            margin-left: 89.5px;
+          }
+        }
+      }
+
+      //* 登録ボタン
+      div.param__buttons {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        @apply justify-around;
+        width: 100%;
+        height: 100px;
+
+        //? 調整
+        left: -40px;
+        margin-top: 75px;
+
+        @include mq(device-ipad) {
+          left: -180px;
+          margin-top: 960px;
+        }
+
+        @include mq(device-phone) {
+          left: -30px;
+          margin-top: 1085px;
+        }
+
+
+        button {
+          @apply relative top-0 left-0;
+          width: 260px;
+          height: 65px;
+
+          background: $color-background-param__button;
+
+          border: solid;
+          border-color: $color-border-param__button;
+          border-radius: 20px;
+          border-width: 3px;
+
+          &:focus {
+            outline: none;
+          }
+
+          &:hover {
+            background: $color-background-basic;
+
+            div.stroke-text > span.back {
+              color: $color-font-param__button_stroke_hover;
+            }
+          }
+
+          div.stroke-text {
+            @apply relative top-0 left-0;
+            @apply whitespace-nowrap;
+            left: 50%;
+            width: fit-content;
+            height: fit-content;
+
+            span {
+              @extend %text_stroke_style_common;
+              font-size: 40px;
+              font-weight: 600;
+            }
+
+            span.main {
+              @extend %text_stroke_style_main;
+
+              color: $color-background-basic;
+            }
+
+            span.back {
+              @extend %text_stroke_style_back;
+
+              color: $color-font-param__button_stroke;
+              -webkit-text-stroke-width: 5px;
+            }
+          }
+        }
+      }
+
+      //* エラーメッセージ
+      div.param__error {
+        @apply relative top-0 left-0;
+        left: -25px;
+        top: -25px;
+
+        width: 95%;
+        height: 100px;
+
+        //todo
+        // background-color: red;
+
+        @include mq(device-ipad) {
+          left: -140px;
+        }
+
+        @include mq(device-phone) {
+          left: -95px;
+        }
+
+        span {
+          @apply relative top-0 left-0;
+          left: 25%;
+          @extend %common_text_sm;
+          // add
+          font-size: 20px;
+          color: $color-font-errorMessage;
+        }
+      }
+
+    }
+
+    %create__move {
+      @apply flex flex-col;
+      flex: $flex__move;
+
+      @include mq(device-pc) {
+        @apply relative top-0 left-0;
+      }
+
+      @include mq(device-tablet-lg) {
+        @apply absolute top-0 left-0;
+      }
+
+      @include mq(device-ipad) {
+        top: 800px;
+        left: 40px;
+      }
+
+      @include mq(device-phone) {
+        left: 0px;
+        width: 100%;
+      }
+
+      %wapper_input {
+        @apply relative top-0 left-0;
+        transform: translate(-50%,-50%);
+        left: 50px;
+
+        width: 140px;
+        height: 50px;
+
+        border-width: 3px;
+        border-radius: 4px;
+        border-color: $color-border-param;
+
+        @extend %common_placeholder_normal;
+        padding-left: 10px;
+        font-size: 18px;
+        text-align: left;
+
+        &:focus {
+          border-color: $color-border-param-focus;
+          outline: none;
+        }
+      } 
+
+      div.move__days {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+
+        @include mq(device-tablet-lg) {
+          @apply absolute top-0 left-0;
+        }
+
+        @include mq(device-ipad) {
+          top: -785px;
+        }
+
+        @include mq(device-tablet) {
+          left: 40px;
+        }
+
+        @include mq(device-phone) {
+          transform: scale(0.8);
+          left: -35px;
+        }
+
+        div.move__day {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          
+          //? 調整
+          top: -100.5px;
+          left: 30px;
+
+          &:nth-of-type(2) {
+            left: 70px;
+
+            @include mq(device-phone) {
+              left: 55px;
+            }
+          }
+  
+          span {
+            @apply relative top-0 left-0;
+            @extend %common_text_normal;
+            transform: translate(-50%,-50%);
+            color: $color-font-basic;
+
+            @include mq(device-phone) {
+              font-size: 21px;
+            }
+          }
+  
+          input {
+            @extend %wapper_input;
+          }
+        }
+      }
+
+      div.move__skills {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+
+        @include mq(device-tablet-lg) {
+          margin-top: 660px;
+        }
+
+        @include mq(device-phone) {
+          left: 0px;
+        }
+        
+        div.move__skill {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          top: -3.5px;
+          left: 40px;
+
+          &:not(:first-of-type) {
+            margin-top: 30px;
+
+            @include mq(device-phone) {
+              margin-top: 100px;
+            }
+          }
+
+          //座標がズレるので調整
+          &:nth-of-type(1) {
+            input {
+              left: 165px;
+            }
+          }
+
+          @include mq(device-phone) {
+            @apply flex flex-col;
+          }
+
+          div.component_text_help {
+            @extend %component_text_help_div;
+            //* add
+            z-index: 1;
+            top: -45px;
+            left: 45px;
+
+            @include mq(device-phone) {
+              top: -30px;
+            }
+          }
+
+          span {
+            @apply relative top-0 left-0;
+            @extend %common_text_normal;
+            transform: translate(-50%,-50%);
+            color: $color-font-basic;
+
+            @include mq(device-phone) {
+              font-size: 24px;
+            }
+          }
+
+          div.move__skill_box {
+            @apply absolute top-0 left-0;
+            @apply flex flex-col;
+            left: 62.5px;
+
+            @include mq(device-phone) {
+              left: -25px;
+              top: 60px;
+            }
+
+            img {
+              z-index: 1;
+              
+              transform: translate(-50%,-50%);
+            }
+
+            img:nth-of-type(1) {
+              @apply absolute top-0 left-0;
+              left: 30px;
+
+              width: 35px;
+              height: 35px;
+              //todo
+              // background-color: red;
+            }
+
+            img:nth-of-type(2) {
+              @apply absolute top-0 right-0;
+              right: 0px;
+
+              width: 40px;
+              height: 40px;
+              //todo
+              // background-color: blue;
+            }
+
+            input {
+              @extend %wapper_input;
+              left: 160px;
+              width: 325px;
+              padding-left: 70px;
+  
+              background: $color-background-basic;
+
+              &::placeholder {
+                padding-left: 16.5%;
+              }
+            }
+          }
+        }
+      }
+
+      div.move__tags {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        width: 100%;
+        height: 150px;
+
+        @include mq(device-tablet-lg) {
+          top: 50px;
+        }
+
+        @include mq(device-phone) {
+          top: 100px;
+        }
+
+        span {
+          @apply relative top-0 left-0;
+          @extend %common_text_normal;
+          left: 8.5%;
+          top: 15%;
+          transform: translate(-50%,-50%);
+
+          width: fit-content;
+          height: fit-content;
+
+          @include mq(device-tablet-lg) {
+            top: 22.5%;
+          }
+
+          @include mq(device-phone) {
+            left: 37px;
+            top: -13px;
+          }
+        }
+
+        div.move__tagG {
+          @apply relative top-0 left-0;
+          @apply flex flex-col;
+          @apply justify-around;
+          transform: translateY(-50%);
+          top: 25%;
+          left: 12.5%;
+          width: 325px;
+          height: 100px;
+          
+          background: $color-background-basic;
+
+          border: solid;
+          border-color: $color-border-move__tags;
+          border-radius: 3px;
+
+          @include mq(device-phone) {
+            left: -34px;
+            top: 65px;
+          }
+
+          div {
+            @apply relative;
+            @apply flex flex-row;
+            flex:1;
+
+            &:first-of-type {
+              top: 2.5%;
+            }
+
+            &:last-of-type {
+              top: -5%;
+            }
+
+            label {
+              @extend %checkbox_label;
+              @apply whitespace-nowrap;
+              @apply justify-around;
+              flex: 1;
+
+              font-size: 16px;
+              font-weight: 600;
+              padding-left: 10.5%;
+              padding-top: 4.5%;
+              margin-left: 10px;
+  
+              input {
+                @extend %checkbox_input;
+  
+                &:checked ~ span {
+                  width: 20px;
+                  height: 20px;
+                  background: $color-background-checkbox;
+                }
+  
+                &:checked ~ span::after {
+                  border-color: $color-font-checkbox;
+                }
+              }
+  
+              span {
+                @extend %checkbox_span;
+                height: 20px;
+                width: 20px;
+                top: 57.5%;
+  
+                border-width: 2px;
+                border-radius: 2.5px;
+                border-color: $color-font-basic;
+  
+                background: $color-background-basic;
+              }
+            }
+          }
+        }
+      }
+
+      div.move__notes {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        width: 415px;
+        height: 300px;
+
+        //todo
+        // background-color: red;
+
+        @include mq(device-pc) {
+          top: -40px;
+          left: 10px;
+        }
+
+        @include mq(device-tablet-lg) {
+          top: -310px;
+          left: 540px;
+        }
+
+        @include mq(device-ipad) {
+          top: 30px;
+          left: 12.5px;
+        }
+
+        @include mq(device-phone) {
+          top: 85px;
+        }
+
+        span {
+          @extend %common_text_normal;
+          width: fit-content;
+          height: fit-content;
+        }
+
+        textarea {
+          @apply relative top-0 left-0;
+          @extend %textarea_disabled_resize;
+          width: 100%;
+          height: 100%;
+
+          @extend %common_text_sm;
+          // change
+          font-size: 16px;
+          color: $color-font-move__skill;
+
+          background: $color-background-basic;
+          border: solid;
+          border-color: $color-border-move__tags;
+          border-radius: 3px;
+
+          @include mq(device-phone) {
+            width: 320px;
+          }
+
+          &:focus {
+            border: solid;
+            border-color: $color-border-move__tags;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  %main__detail {
+    @apply relative top-0 left-0;
+    @apply flex flex-row;
+
+    width: 100%;
+    height: 100%;
+
+    //todo
+    // background-color: lightgreen;
+
+    $flex__patry: 0.55;
+    $flex__search: 1;
+    
+    $height__tablet_lg: 720px;
+    $height__ipad: 1300px;
+
+    @include mq(device-pc) {
+      margin-top: 120px;
+      height: 100%;
+    }
+
+    @include mq(device-tablet-lg) {
+      left: -75px;
+      margin-top: 405px;
+      height: $height__tablet_lg;
+      width: 1200px;
+    }
+
+    @include mq(device-ipad) {
+      @apply flex flex-col;
+      top: 730px;
+      height: $height__ipad;
+    }
+
+    @include mq(device-tablet) {
+      top: 800px;
+    }
+
+    @include mq(device-phone) {
+      top: 1000px;
+      left: 0px;
+    }
+
+    %detail__patry {
+      @apply relative top-0 left-0;
+      
+      margin: {
+        left: 40px;
+        right: 60px;
+        top: 2.5%;
+      }
+
+      width: 400px;
+      height: 650px;
+
+      @include mq(device-tablet-lg) {
+        width: 390px;
+      }
+
+      @include mq(device-ipad) {
+        left: 45px;
+        height: 720px;
+      }
+
+      @include mq(device-phone) {
+        left: 15.5px;
+        margin: {
+          left: initial;
+          right: initial;
+        }
+
+        width: 320px;
+      }
+
+      div.component_patryCanvas_div {
+        @extend %component_patryCanvas_div;
+  
+        div.member {
+          div.col {
+            &:first-of-type {
+              @include mq(device-ipad) {
+                margin-top: 10%;
+              }
+            }
+
+            div.pokemonImg {
+              width: 160px;
+              height: 140px;
+            }
+          }
+        }
+      }
+    }
+
+    %detail__search {
+      @apply relative top-0 left-0;
+      margin-top: 2.5%;
+
+      height: 650px;
+      border-radius: 10px;
+
+      background: $color-background-detail-search;
+
+      $height__filter: 55px;
+      $height__button: 55px;
+      $height__result: 465px;
+
+      @include mq(device-pc) {
+        flex: $flex__search;
+      }
+
+      @include mq(device-tablet-lg) {
+        width: 710px;
+      }
+
+      @include mq(device-ipad) {
+        left: 85px;
+      }
+
+      @include mq(device-tablet) {
+        width: 665px;
+      }
+
+      @include mq(device-phone) {
+        left: 15.5px;
+        width: 320px;
+      }
+
+      div.search__filter {
+        @apply relative top-0 left-0;
+        width: 100%;
+        height: $height__filter;
+
+        @include mq(device-phone) {
+          height: 85px;
+        }
+
+        div {
+          @extend %checkbox_style_wapper;
+          top: 30px;
+          margin-left: 2.5%;
+
+          background: $color-background-component__patryMember;
+
+          border-radius: 16px;
+
+          @include mq(device-pc) {
+            width: 75%;
+          }
+
+          @include mq(device-tablet-lg) {
+            width: 80%;
+          }
+
+          @include mq(device-phone) {
+            margin-left: 5%;
+            width: 90%;
+          }
+
+          label {
+            transform: translateY(-50%);
+
+            color: $color-background-basic;
+
+            @include mq(device-pc) {
+              top: 10%;
+              font-size: 26px;
+              padding-left: 3.5%;
+
+              &:not(:last-of-type) {
+                margin-right: 1%;
+              }
+            }
+
+            @include mq(device-tablet-lg) {
+              top: 20%;
+              font-size: 18px;
+              padding-left: 5%;
+
+              &:not(:last-of-type) {
+                margin-right: 1.5%;
+              }
+            }
+
+            @include mq(device-tablet) {
+              font-size: 17px;
+            }
+
+            @include mq(device-phone) {
+              @apply absolute top-0 left-0;
+              padding-left: 10%;
+              font-size: 15px;
+
+              &:nth-of-type(-n + 4) {
+                top: 30%;
+              }
+
+              &:nth-of-type(1) {
+                left: 4%;
+              }
+
+              &:nth-of-type(2) {
+                left: 36.5%;
+              }
+
+              &:nth-of-type(3) {
+                left: 68.5%;
+              }
+
+              &:nth-of-type(n + 4) {
+                top: 70%;
+              }
+
+              &:nth-of-type(4) {
+                left: 4%;
+              }
+
+              &:nth-of-type(5) {
+                left: 36.5%;
+              }
+
+              &:nth-of-type(6) {
+                left: 68.5%;
+              }
+
+            }
+
+          }
+
+          input {
+            &:checked ~ span {
+              background: $color-background-checkbox_search_filter;
+            }
+
+            &:checked ~ span::after {
+              border-color: $color-background-component__patryMember !important;
+            }
+
+          }
+
+          span {
+            background: initial;
+          }
+        }
+      }
+
+      div.search__buttons {
+        @apply relative top-0 left-0;
+        @apply flex flex-row;
+        width: 100%;
+        height: $height__button;
+
+        top: 7.5%;
+
+        button {
+          @apply relative top-0 left-0;
+          outline: none;
+          height: 100%;
+
+          border-radius: 21.3px;
+          background: $color-background-button_search;
+
+          &:hover {
+            background: $color-font-basic2;
+          }
+
+          &:hover > span {
+            color: $color-background-button_search;
+          }
+
+          @include mq(device-phone) {
+            height: 45px;
+          }
+
+          span {
+            @extend %common_text_normal;
+            color: $color-font-basic2;
+            font-size: 28px;
+
+            @include mq(device-phone) {
+              font-size: 21.5px;
+            }
+          }
+        }
+
+        button:nth-of-type(1) {
+          width: 250px;
+          left: 2.5%;
+
+          @include mq(device-phone) {
+            width: 125px;
+          }
+        }
+        button:nth-of-type(2) {
+          width: 200px;
+          left: 5.5%;
+
+          @include mq(device-phone) {
+            width: 160px;
+          }
+        }
+      }
+
+      div.search__result {
+        @apply relative top-0 left-0;
+        @apply flex flex-col;
+        width: 100%;
+        height: $height__result;
+        top: 75px;
+        background: $color-background-component__patryMember;
+
+        border-radius: 0 0 11px 11px;
+
+        div.col {
+          @apply relative top-0 left-0;
+          @apply flex flex-row;
+          
+          width: 100%;
+          flex: 1;
+
+          &:first-of-type {
+            margin-top: 25px;
+          }
+
+          @include mq(device-pc) {
+            left: 25px;
+          }
+
+          @include mq(device-tablet-lg) {
+            left: 30px;
+          }
+
+          @include mq(device-tablet) {
+            left: 20px;
+          }
+
+          @include mq(device-phone) {
+            @apply justify-around;
+            left: 0px;
+          }
+
+          div {
+            @apply relative top-0 left-0;
+            width: 64px;
+            height: 64px;
+            border-radius: 15px;
+
+            &.none {
+              background: $color-background-div_search_result;
+            }
+  
+            &.selected {
+              background: $color-background-div_search_result2;
+            }
+
+            @include mq(device-pc) {
+              &:not(:first-of-type) {
+                margin-left: 25px;
+              }
+            }
+
+            //* 1280px からは 8つまで表示
+            @include mq(device-tablet-lg) {
+
+              &:nth-of-type(n + 9) {
+                display: none;
+              }
+
+              &:not(:first-of-type) {
+                margin-left: 20px;
+              }
+            }
+
+            @include mq(device-tablet) {
+              width: 60px;
+              height: 60px;
+            }
+
+            //* 428px からは 3つまで表示
+            @include mq(device-phone) {
+              &:nth-of-type(n + 4) {
+                display: none;
+              }
+            }
+
+
+            img {
+              @apply absolute top-0 left-0;
+              top: 50%;
+              left: 50%;
+
+              width: 54px;
+              height: 54px;
+              transform: translate(-50%,-50%);
+
+              @include mq(device-tablet) {
+                width: 50px;
+                height: 50px;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+
+div.layer-canvas {
+  @extend %layer-canvas_changeStyle;
+
+  main {
+    @extend %main;
+
+    div.main__create {
+      @extend %main__create;
+
+      div.create__basic {
+        @extend %create__basic;
+
+        div.create__basic_text {
+          @extend %create__basic_text;
+        }
+
+        div.create__basic_box {
+          @extend %create__basic_box;
+        }
+      }
+
+      div.create__param {
+        @extend %create__param;
+      }
+      
+      div.create__move {
+        @extend %create__move;
+      }
+    }
+    
+    div.main__detail {
+      @extend %main__detail;
+
+      div.detail__patry {
+        @extend %detail__patry;
+      }
+      
+      div.detail__search {
+        @extend %detail__search;
+      }
+    }
+  }
+}
