@@ -2,11 +2,15 @@
 import React , { useEffect , useState } from 'react';
 import classnames from 'classnames';
 import BrowserDetector from 'browser-dtector';
-//* 共通関連
+//* nextJs
+
+//* common
 import { getBrowserEnv } from '../src/frontend/ts/common';
+import { CustomJSX , NextLinkRouter , LinkTextObject } from '../src/frontend/ts/jsxform';
+
+
 //* 設定関連
 import Messages from '../src/frontend/json/Strings.json';
-import { CustomJSX } from '../src/frontend/ts/jsxform';
 
 //* JSX
 import Canvas from './Canvas';
@@ -29,7 +33,7 @@ function Top() {
   useEffect(() => {
     const browser = new BrowserDetector(window.navigator.userAgent);
     const useBrowser = browser.parseUserAgent();
-    console.log(window.screen);
+    // console.log(window.screen);
 
     const createElement = (str? :string) => {
       const env = getBrowserEnv(useBrowser);

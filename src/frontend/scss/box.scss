@@ -1721,7 +1721,7 @@ div.header__box_menu {
   }
 }
 
-div.layer-canvas {
+div.layer-canvas#Box {
   @extend %layer-canvas_changeStyle;
 
   main {

@@ -36,6 +36,12 @@
       }
     },
     "Fotter": {
+      "CompanyLinks": {
+        "Pokemon": "",
+        "Nintedo": "",
+        "Creatures": "",
+        "autolayoutCenterRender": ""
+      },
       "Messages": {
         "Text1 List": [
           "ポケットモンスター・ポケモン・Pokémonは",
@@ -49,11 +55,7 @@
           "の登録商標です。"
         ],
         "Text2": "当サイトは個人ファンサイトであり、株式会社ポケモン他企業様とは一切関係ありません。",
-        "Text3 List": [
-          "当サイトは",
-          "Flaticon.com",
-          "の画像を使用してデザインされています。"
-        ]
+        "Text3": "当サイトはFlaticon.comの画像を使用してデザインされています。"
       },
       "Copyright": {
         "Text1": "Copyright",

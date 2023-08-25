@@ -1,18 +1,25 @@
 {
+  "Query": {
+    "Demo": "demo",
+    "Tutorial": "tutorial" 
+  },
   "Page": {
     "Footer": {
       "SignUp": "/Login",
       "SignIn": "/Login",
-      "Demo_enable": "/Report?mode=demo",
-      "Demo_disabled": "/Report",
+      "Demo": "/Report",
       "Text1": "/Top",
       "Text2": "/Conditions",
       "Text3": "/PrivacyPolicy",
-      "Company1": "株式会社ポケモン",
-      "Company2": "任天堂",
-      "Company3": "クリーチャーズ",
-      "Company4": "ゲームフリーク",
-      "Company5": "Flaticon.com"
+      "Pokemon Inc": "https://corporate.pokemon.co.jp/",
+      "Nintedo Inc": "https://www.nintendo.co.jp/",
+      "Creatures Inc": "https://www.creatures.co.jp/",
+      "Gamefreak Inc": "https://www.gamefreak.co.jp/",
+      "Flaticon": "https://www.flaticon.com/"
+    },
+    "Top": {
+      "Demo": "/Report",
+      "Used": "/Main"
     }
   }
 }
