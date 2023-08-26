@@ -64,7 +64,7 @@
         "SignUp": "新規登録",
         "SignIn": "ログイン",
         "Demo": "デモを試す",
-        "Demo_enable": "デモをやめる"
+        "Demo_disabled": "デモをやめる"
       },
       "Links": {
         "Text1": "トップ",
@@ -75,7 +75,7 @@
     "Top": {
       "Button": {
         "Demo": "デモから試す",
-        "Used": "使ってみる"
+        "Used": "ログイン"
       }
     },
     "Conditions": {
@@ -476,6 +476,14 @@
         "カスタム2",
         "カスタム3"
       ]
+    }
+  },
+  "FrontEnd": {
+    "LinksQuerySortError": {
+      "01": "クエリの指定方法が誤っています"
+    },
+    "DevelopError": {
+      "01": "関数で予期せぬ値が入りました"
     }
   },
   "Server": {

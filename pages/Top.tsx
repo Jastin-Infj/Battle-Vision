@@ -3,20 +3,23 @@ import React , { useEffect , useState } from 'react';
 import classnames from 'classnames';
 import BrowserDetector from 'browser-dtector';
 //* nextJs
+import { useRouter } from 'next/router';
 
 //* common
-import { getBrowserEnv } from '../src/frontend/ts/common';
+import { QUERY_PATTREN, getBrowserEnv, getCurrentQueryMode, getQueryRequest, getQueryURL, getQueryURLParams, onClickEvents } from '../src/frontend/ts/common';
 import { CustomJSX , NextLinkRouter , LinkTextObject } from '../src/frontend/ts/jsxform';
 
 
 //* 設定関連
 import Messages from '../src/frontend/json/Strings.json';
+import Links from '../src/frontend/json/link.json';
 
 //* JSX
 import Canvas from './Canvas';
 import Footer from './Footer';
 
 //* CSS
+
 import '../src/frontend/scss/top.scss';
 
 //* 画像ファイル
@@ -29,6 +32,35 @@ function Top() {
   const [,SetStyleFotterCopyRight] = useState<CustomJSX.cssStyle>();
   const [,SetStyleFotterAccounts] = useState<CustomJSX.cssStyle>();
   const [,SetStyleFotterLinks] = useState<CustomJSX.cssStyle>();
+
+  const router = useRouter();
+
+  let currentQueryMode:string | null | string[] = getQueryURL(Links.Query["mode"].title);
+  if(currentQueryMode) {
+    let multiQuery = currentQueryMode.split(" ");
+    if(multiQuery.length > 1) {
+      currentQueryMode = multiQuery;
+    }
+  }
+
+  const getQuery__Use = () => {
+
+    let key_mode = Links.Query["mode"].title;
+    let req:any = '';
+    let render:JSX.Element = null!;
+
+    let currentMode = getCurrentQueryMode(currentQueryMode,key_mode);
+
+    switch(currentMode) {
+      case 'None':
+        return getQueryRequest(key_mode,Links.Query.mode.Demo);
+      case 'tutorial':
+        return getQueryRequest(key_mode,Links.Query.mode.Tutorial);
+      case 'demo':
+      case 'demo & tutorial':
+        return getQueryRequest(key_mode,QUERY_PATTREN["Demo&Tutorial"]);
+    }
+  }
 
   useEffect(() => {
     const browser = new BrowserDetector(window.navigator.userAgent);
@@ -74,12 +106,16 @@ function Top() {
           </div>
           <div className="main__button_start">
             <div>
-              <button name='use'>
+              <button name='use' onClick={() => {
+                onClickEvents(router,{next: Links.Page.Top.Demo , query: getQuery__Use()})
+              }}>
                 <span>{Messages.Page.Top.Button.Demo}</span>
               </button>
             </div>
             <div>
-              <button name='demo'>
+              <button name='demo' onClick={() => {
+                onClickEvents(router,{next: Links.Page.Top.Used})
+              }}>
                 <span>{Messages.Page.Top.Button.Used}</span>
               </button>
             </div>

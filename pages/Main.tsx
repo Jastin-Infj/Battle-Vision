@@ -129,7 +129,7 @@ function Main() {
 
   return (
     <>
-      <Canvas>
+      <Canvas id="Main">
         <Header />
         <main>
           <div className="main__filter">

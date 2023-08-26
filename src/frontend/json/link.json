@@ -1,7 +1,10 @@
 {
   "Query": {
-    "Demo": "demo",
-    "Tutorial": "tutorial" 
+    "mode": {
+      "title": "mode",
+      "Demo": "demo",
+      "Tutorial": "tutorial" 
+    }
   },
   "Page": {
     "Footer": {

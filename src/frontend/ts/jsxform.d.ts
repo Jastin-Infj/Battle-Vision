@@ -8,7 +8,7 @@ export namespace CustomJSX {
 
 }
 
-export interface NextRouter {
+export interface NextLinkRouter {
   next: string;
   query?: ParsedUrlQuery
 }
