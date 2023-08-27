@@ -80,12 +80,6 @@ div.header__box_menu {
 }
 
 //* common
-.phone__mode {
-  display: none;
-  @include mq(device-phone) {
-    display: block;
-  }
-}
 
 %main {
   @apply relative top-0 left-0;

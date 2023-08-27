@@ -14,6 +14,7 @@ import Main__Tags from "../src/frontend/ts/contents/main__tags";
 
 // import
 import { ENV_Window } from "../src/frontend/ts/components/updateComponent";
+import ModeSelect from "../src/frontend/ts/components/_modeSelect";
 
 function Main() {
   const MAX_PATRY_MEMBERS = 6;
@@ -93,7 +94,7 @@ function Main() {
       let ref_2 = useRef<HTMLDivElement>(null!);
 
       let generate_div = (
-        <div>
+        <div className="col">
           <div ref={ref_1} className={state_patrys[key][num_1]} onClick={() => {
             ChangeState([key , num_1]);
           }}>
@@ -174,6 +175,9 @@ function Main() {
             </div>
           </div>
           <div className="main__group_battlecanvas">
+            <ModeSelect id="mode_battleCanvas" classname="ipad__mode">
+              <img />
+            </ModeSelect>
             <div className="battlecanvas__me">
               <span className="battlecanvas__text_patryname">{Messages.Page.Main.Text.VS_Me}</span>
               <img className="battlecanvas__img_history" />
