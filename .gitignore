@@ -3,7 +3,8 @@
 ###################
 
 # Static
-src/frontend/img
+src/frontend/img/*
+!src/frontend/img/topimage.jpg
 
 # Dev
 .yarn
