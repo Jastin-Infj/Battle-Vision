@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 //* common
 import { LinkTextObject } from '../src/frontend/ts/jsxform';
-import { QUERY_PATTREN, getCurrentQueryMode, getQueryRequest, getQueryRequestHref, getQueryURL, getQueryURLParams , onClickEvents } from "../src/frontend/ts/common";
+import { QUERY_PATTREN, getCurrentQueryMode, getQueryRequest, getQueryRequestHref, getQueryURL , onClickEvents } from "../src/frontend/ts/common";
 
 // style json or scss
 import Messages from '../src/frontend/json/Strings.json';
@@ -16,12 +16,11 @@ function Footer() {
 
   // デモモード
   let QUERY_DEMO:string | null | string[] = getQueryURL(Links.Query["mode"].title);
-  const QUERY_PARAMS = getQueryURLParams(Links.Query["mode"].title);
   const router = useRouter();
 
   // 複数クエリある場合は取得
   if(QUERY_DEMO) {
-    let multiQuery = QUERY_DEMO.split(" ");
+    const multiQuery = QUERY_DEMO.split(" ");
     if(multiQuery.length > 1) {
       QUERY_DEMO = multiQuery;
     }
@@ -30,11 +29,11 @@ function Footer() {
   //* クエリ作成
   const JSX_Demo = () => {
 
-    let key_mode = Links.Query["mode"].title;
+    const key_mode = Links.Query["mode"].title;
     let req:any = '';
     let render:JSX.Element = null!;
 
-    let currentMode = getCurrentQueryMode(QUERY_DEMO,key_mode);
+    const currentMode = getCurrentQueryMode(QUERY_DEMO,key_mode);
     switch(currentMode) {
       case 'None':
         render = (
@@ -100,13 +99,13 @@ function Footer() {
     }
 
     return render;
-  }
+  };
 
   const JSX_Top = () => {
-    let key_mode = Links.Query["mode"].title;
+    const key_mode = Links.Query["mode"].title;
     let render:JSX.Element = null!;
 
-    let currentMode = getCurrentQueryMode(QUERY_DEMO,key_mode);
+    const currentMode = getCurrentQueryMode(QUERY_DEMO,key_mode);
 
     switch(currentMode) {
       case 'None':
@@ -144,10 +143,10 @@ function Footer() {
   };
 
   const JSX_Conditions = () => {
-    let key_mode = Links.Query["mode"].title;
+    const key_mode = Links.Query["mode"].title;
     let render:JSX.Element = null!;
 
-    let currentMode = getCurrentQueryMode(QUERY_DEMO,key_mode);
+    const currentMode = getCurrentQueryMode(QUERY_DEMO,key_mode);
 
     switch(currentMode) {
       case 'None':
@@ -193,10 +192,10 @@ function Footer() {
   };
 
   const JSX_PrivacyPolicy = () => {
-    let key_mode = Links.Query["mode"].title;
+    const key_mode = Links.Query["mode"].title;
     let render:JSX.Element = null!;
 
-    let currentMode = getCurrentQueryMode(QUERY_DEMO,key_mode);
+    const currentMode = getCurrentQueryMode(QUERY_DEMO,key_mode);
 
     switch(currentMode) {
       case 'None':
@@ -243,7 +242,7 @@ function Footer() {
 
   //* リンクありテキスト作成
   const Links_textCreate = (texts: string[] , linkObj: LinkTextObject[] = []) => {
-    let list =  texts.map((text,index) => {
+    const list =  texts.map((text,index) => {
       const match = linkObj.filter((item) => item.num === index);
       if(match.length > 0) {
         return <Link key={text} href={match[0].link.href} className={match[0].addclass}>{text}</Link>;
@@ -255,7 +254,7 @@ function Footer() {
     });
 
     return list;
-  }
+  };
 
   return (
     <>

@@ -1,4 +1,4 @@
-import React , { useContext, useEffect, useReducer, useRef, useState } from "react";
+import React , { useContext, useEffect , useRef, useState } from "react";
 
 // style json
 import Messages from '../../json/Strings.json';
@@ -8,14 +8,6 @@ import { CONTEXT_ENV_WINDOW } from "../components/updateComponent";
 
 //* Reducer
 
-type State_Checkbox = {
-  list: Array<boolean>;
-};
-
-type Action = {
-  index: any;
-};
-
 function Main__Tags() {
 
   //* 初期化処理
@@ -23,10 +15,10 @@ function Main__Tags() {
   const MAX_TAG = 13;
 
   //! test
-  const [text,setText] = useState('');
+  const [text,] = useState('');
 
   //* タグスタイルの定義
-  let render_tagStyles = {
+  const render_tagStyles = {
     "pc": [
       [0,7],
       [1,8],
@@ -49,7 +41,7 @@ function Main__Tags() {
   for(let i = 0; i < MAX_TAG;++i) {
     CHECKBOX_STATE[i] = useRef<HTMLInputElement>(null!);
   }
-  const [state,setState] = useState(CHECKBOX_STATE);
+  const [state,] = useState(CHECKBOX_STATE);
   const [CREATE_FLAG,setCREATE_FLAG] = useState(false);
   
   const ENV_ARRAY_NULLS = {
@@ -60,14 +52,14 @@ function Main__Tags() {
     "phone": []
   };
 
-  let generate_div = {...ENV_ARRAY_NULLS};
+  const generate_div = {...ENV_ARRAY_NULLS};
   const [JSX_TAGS , setJSX_TAGS] = useState({...ENV_ARRAY_NULLS});
 
   useEffect(() => {
 
     Object.keys(render_tagStyles).forEach((key) => {
       render_tagStyles[key].forEach((vals , index) => {
-        let e_checkbox = vals.map((val) => {
+        const e_checkbox = vals.map((val) => {
           let e_input:React.JSX.Element = null!;
 
           if(CREATE_FLAG === false) {
@@ -94,7 +86,7 @@ function Main__Tags() {
                     <span />
                     {Messages.Page.Main.Checkbox.Tags[val]}
                   </label>
-                )
+                );
               }
               break;
           }
@@ -102,14 +94,14 @@ function Main__Tags() {
           return e_label;
         });
 
-        let e_div = (
+        const e_div = (
           <div key={index}>
             {e_checkbox}
           </div>
         );
 
         generate_div[key].push(e_div);
-      })
+      });
     });
 
     // 同じ形式はここに記述

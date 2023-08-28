@@ -1,13 +1,13 @@
-import React, {useContext, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
 import '../src/frontend/scss/adjustment.scss';
 
 // style JSX
-import Canvas from "../src/frontend/ts/components/Canvas";
-import Header from "../src/frontend/ts/components/Header";
-import Footer from "../src/frontend/ts/components/Footer";
+import Canvas from "./Canvas";
+import Header from "./Header";
+import Footer from "./Footer";
 
 // import
 import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
@@ -59,7 +59,7 @@ function Adjustment() {
   };
 
   //* コンテンツごとに異なる場所はここで定義
-  let jsx_list:JSX_LIST = {
+  const jsx_list:JSX_LIST = {
     Name: {
       title: Messages.Page.Adjustment.Text.Name,
       placeholder: Messages.Page.Adjustment.PlaceHolder.Name,
@@ -143,7 +143,7 @@ function Adjustment() {
     }
 
     //* 必須フィールド
-    let jsx_option_required = (
+    const jsx_option_required = (
       <div className="basic__required">
         <div className="stroke-text">
           <span className="main">{Messages.Page.Adjustment.Text.Required}</span>
@@ -164,11 +164,11 @@ function Adjustment() {
     }
 
     //* 性別
-    let jsx_option_gender = (
+    const jsx_option_gender = (
       <Adjustment__Gender />
     );
 
-    let jsx_common = (
+    const jsx_common = (
       <>
         <div className="create__basic_group">
           <div className="create__basic_text">
@@ -196,7 +196,7 @@ function Adjustment() {
   //* パラメータ
   Object.keys(jsx_style["Param"]).forEach((key) => {
     let jsx:React.JSX.Element = null!;
-    let jsx_common:React.JSX.Element = (
+    const jsx_common:React.JSX.Element = (
       <>
         <input type="number" maxLength={3}></input>
         <input type="number" maxLength={3}></input>
@@ -224,7 +224,7 @@ function Adjustment() {
               {jsx_common}
             </div>
           </>
-        )
+        );
         break;
       case 'B':
         jsx = (
@@ -235,7 +235,7 @@ function Adjustment() {
               {jsx_common}
             </div>
           </>
-        )
+        );
         break;
       case 'C':
         jsx = (
@@ -246,7 +246,7 @@ function Adjustment() {
               {jsx_common}
             </div>
           </>
-        )
+        );
         break;
       case 'D':
         jsx = (
@@ -257,7 +257,7 @@ function Adjustment() {
               {jsx_common}
             </div>
           </>
-        )
+        );
         break;
       case 'S':
         jsx = (
@@ -268,7 +268,7 @@ function Adjustment() {
               {jsx_common}
             </div>
           </>
-        )
+        );
         break;
     }
     // スタイルを追加
@@ -360,9 +360,9 @@ function Adjustment() {
   const [,setREF_filter_result] = useState(REF_FILTER_RESULT);
 
   const ChangeState_Filter_result = (indexs) => {
-    let targetNum = (indexs[0] * MAX_RESULT_COL) + indexs[1];
-    let target = REF_FILTER_RESULT[targetNum];
-    let current_class = target.current.className;
+    const targetNum = (indexs[0] * MAX_RESULT_COL) + indexs[1];
+    const target = REF_FILTER_RESULT[targetNum];
+    const current_class = target.current.className;
     let next = State_SelectMode.indexOf(current_class) + 1;
 
     if(next === State_SelectMode.length) {
@@ -373,15 +373,15 @@ function Adjustment() {
     REF_FILTER_RESULT[targetNum] = target;
 
     setREF_filter_result(REF_FILTER_RESULT);
-  }
+  };
 
   { 
     for(let y = 0; y < MAX_RESULT_ROW;++y) {
       let jsx_row:React.JSX.Element = null!;
-      let jsx_render_col:React.JSX.Element[] = [];
+      const jsx_render_col:React.JSX.Element[] = [];
 
       for(let x = 0; x < MAX_RESULT_COL;++x){
-        let ref = useRef<HTMLDivElement>(null!);
+        const ref = useRef<HTMLDivElement>(null!);
         let jsx:React.JSX.Element = null!;
         jsx = (
           <>
@@ -422,7 +422,7 @@ function Adjustment() {
 
   return (
     <>
-      <Canvas>
+      <Canvas id="Adjustment">
         <Header />
         <main>
           <div className="main__create">
