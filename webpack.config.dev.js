@@ -21,7 +21,7 @@ module.exports = {
   },
   entry: ['react','react-dom/client'],
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].[contenthash]].js',
     path: OUTPUT_PATH
   },
   module: {
@@ -54,7 +54,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           limit: 0,
-          name: 'images/[name].[hash].[ext]'
+          name: 'images/[name].[contenthash]].[ext]'
         }
       }
     ]
@@ -68,7 +68,7 @@ module.exports = {
       filename: "index.html"
     }),
     new MINI_CSS_EXTRACT_PLUGIN({
-      filename: '[name].[hash].css'
+      filename: '[name].[contenthash]].css'
     }),
     new ESLINT_WEBPACK_PLUGIN({
       extensions: ['ts','tsx','js','jsx']
