@@ -5,9 +5,9 @@ import Messages from '../src/frontend/json/Strings.json';
 import '../src/frontend/scss/analysis.scss';
 
 // style JSX
-import Canvas from "../src/frontend/ts/components/Canvas";
-import Header from "../src/frontend/ts/components/Header";
-import Footer from "../src/frontend/ts/components/Footer";
+import Canvas from "./Canvas";
+import Header from "./Header";
+import Footer from "./Footer";
 import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 
 // style import
@@ -15,9 +15,6 @@ import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 
 function Analysis() {
   //* render
-  const RENDER_JSX = {
-    
-  };
 
   return (
     <>

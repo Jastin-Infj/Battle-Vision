@@ -1,14 +1,33 @@
 import React from "react";
+import { useSearchParams } from 'next/navigation';
 
-import Messages from '../../json/Strings.json';
-import '../../scss/_layerbase.scss';
+import Messages from '../src/frontend/json/Strings.json';
+import '../src/frontend/scss/_layerbase.scss';
 
 function Header() {
+
+  //* デモモード確認
+  const searchParams = useSearchParams();
+  const QUERY_PARAM = searchParams.get('mode');
+
+  const JSX_DemoMode = {
+    Demo: (
+      <>
+        <p>{Messages.Page.Header.Texts.Demo1}<br />{Messages.Page.Header.Texts.Demo2}</p>
+      </>
+    ),
+    None: (
+      <>
+        
+      </>
+    )
+  }
+
   return (
     <>
       <header>
         <div className="header__text_Demo">
-          <p>{Messages.Page.Header.Texts.Demo1}<br />{Messages.Page.Header.Texts.Demo2}</p>
+          {QUERY_PARAM === "demo" ? JSX_DemoMode.Demo  : JSX_DemoMode.None}
         </div>
         <div className="header__textbox_search">
           <img />

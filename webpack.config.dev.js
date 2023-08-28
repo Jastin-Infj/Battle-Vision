@@ -19,18 +19,7 @@ module.exports = {
     port: 8080,
     historyApiFallback: true
   },
-  entry: {
-    module: [
-      './src/frontend/json/Strings.json',
-      'react',
-      'react-dom/client'
-    ],
-    main: {
-      //* next.jsの場合は entry 不要
-      import: '',
-      dependOn: ['module']
-    }
-  },
+  entry: ['react','react-dom/client'],
   output: {
     filename: '[name].[hash].js',
     path: OUTPUT_PATH
