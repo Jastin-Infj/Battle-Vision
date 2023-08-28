@@ -12,7 +12,8 @@
     "sass": "sass",
     "next": "next dev -p 8080",
     "next:build": "next build",
-    "next:start": "next start -p 8080"
+    "next:start": "next start -p 8080",
+    "webpack": "webpack --config ./webpack.config.dev.js"
   },
   "author": "",
   "license": "ISC",
