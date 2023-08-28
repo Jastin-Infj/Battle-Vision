@@ -1,4 +1,3 @@
-import { Html , Head } from 'next/document';
 import React from 'react';
 
 // import Page_Top from '../page/Top';

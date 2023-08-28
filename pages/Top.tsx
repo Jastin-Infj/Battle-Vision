@@ -6,8 +6,8 @@ import BrowserDetector from 'browser-dtector';
 import { useRouter } from 'next/router';
 
 //* common
-import { QUERY_PATTREN, getBrowserEnv, getCurrentQueryMode, getQueryRequest, getQueryURL, getQueryURLParams, onClickEvents } from '../src/frontend/ts/common';
-import { CustomJSX , NextLinkRouter , LinkTextObject } from '../src/frontend/ts/jsxform';
+import { QUERY_PATTREN, getBrowserEnv, getCurrentQueryMode, getQueryRequest, getQueryURL, onClickEvents } from '../src/frontend/ts/common';
+import { CustomJSX } from '../src/frontend/ts/jsxform';
 
 
 //* 設定関連
@@ -37,7 +37,7 @@ function Top() {
 
   let currentQueryMode:string | null | string[] = getQueryURL(Links.Query["mode"].title);
   if(currentQueryMode) {
-    let multiQuery = currentQueryMode.split(" ");
+    const multiQuery = currentQueryMode.split(" ");
     if(multiQuery.length > 1) {
       currentQueryMode = multiQuery;
     }
@@ -45,11 +45,9 @@ function Top() {
 
   const getQuery__Use = () => {
 
-    let key_mode = Links.Query["mode"].title;
-    let req:any = '';
-    let render:JSX.Element = null!;
+    const key_mode = Links.Query["mode"].title;
 
-    let currentMode = getCurrentQueryMode(currentQueryMode,key_mode);
+    const currentMode = getCurrentQueryMode(currentQueryMode,key_mode);
 
     switch(currentMode) {
       case 'None':
@@ -60,7 +58,7 @@ function Top() {
       case 'demo & tutorial':
         return getQueryRequest(key_mode,QUERY_PATTREN["Demo&Tutorial"]);
     }
-  }
+  };
 
   useEffect(() => {
     const browser = new BrowserDetector(window.navigator.userAgent);
@@ -107,14 +105,14 @@ function Top() {
           <div className="main__button_start">
             <div>
               <button name='use' onClick={() => {
-                onClickEvents(router,{next: Links.Page.Top.Demo , query: getQuery__Use()})
+                onClickEvents(router,{next: Links.Page.Top.Demo , query: getQuery__Use()});
               }}>
                 <span>{Messages.Page.Top.Button.Demo}</span>
               </button>
             </div>
             <div>
               <button name='demo' onClick={() => {
-                onClickEvents(router,{next: Links.Page.Top.Used})
+                onClickEvents(router,{next: Links.Page.Top.Used});
               }}>
                 <span>{Messages.Page.Top.Button.Used}</span>
               </button>
