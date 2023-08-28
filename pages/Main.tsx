@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState , useRef } from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';
@@ -17,14 +17,9 @@ import { ENV_Window } from "../src/frontend/ts/components/updateComponent";
 import ModeSelect from "../src/frontend/ts/components/_modeSelect";
 
 function Main() {
+
   const MAX_PATRY_MEMBERS = 6;
   const CREATE_PATRY = ['me','target'];
-
-  // render
-  const JSX_PATRYS:object = {
-    'me': [],
-    'target': []
-  };
 
   // DOM 操作
   const REFS_PATRYS:object = {
@@ -32,22 +27,27 @@ function Main() {
     "target": []
   };
 
+  for(let i = 0; i < MAX_PATRY_MEMBERS;++i) {
+    REFS_PATRYS["me"].push(useRef<HTMLDivElement>(null!));
+    REFS_PATRYS["target"].push(useRef<HTMLDivElement>(null!));
+  }
+
   //* className ステート状態
-  let stateList_me = ['none_me','active','soon'];
-  let stateList_target = ['none_target','active','soon'];
+  const stateList_me = ['none_me','active','soon'];
+  const stateList_target = ['none_target','active','soon'];
 
   // イベントハンドラにて実際適用
-  let [,setActive_me] = useState(REFS_PATRYS["me"]);
-  let [,setActive_target] = useState(REFS_PATRYS["target"]);
+  const [,setActive_me] = useState(REFS_PATRYS["me"]);
+  const [,setActive_target] = useState(REFS_PATRYS["target"]);
 
   //* イベントハンドラ定義
   const ChangeState = (target) => {
+    debugger;
+    const key = target[0];
+    const row = target[1];
 
-    let key = target[0];
-    let row = target[1];
-
-    let targets = REFS_PATRYS[key];
-
+    const targets = REFS_PATRYS[key];
+    
     // class 変更
     if(key === 'me') {
       let next = stateList_me.indexOf(targets[row].current.className) + 1;
@@ -69,64 +69,18 @@ function Main() {
     
   };
 
-  //* パーティー枠のスタイル定義
-  CREATE_PATRY.map((key) => {
-    let state_patrys:object = {
-      "me": [],
-      "target": []
-    };
-    //* state 状態 初期化
-    for(let i = 0; i < MAX_PATRY_MEMBERS;++i){
-      let initstate: null | string = null;
-      if(key === 'me') {
-        initstate = stateList_me[0];
-      } else {
-        initstate = stateList_target[0];
-      }
-      state_patrys[key].push(initstate);
-    }
-
-    //* スタイル 定義
-    for(let i = 0; i < Math.ceil(state_patrys[key].length / 2); ++i) {
-      let num_1 = i * 2;
-      let ref_1 = useRef<HTMLDivElement>(null!);
-      let num_2 = i * 2 + 1;
-      let ref_2 = useRef<HTMLDivElement>(null!);
-
-      let generate_div = (
-        <div className="col">
-          <div ref={ref_1} className={state_patrys[key][num_1]} onClick={() => {
-            ChangeState([key , num_1]);
-          }}>
-            <img />
-          </div>
-          <div ref={ref_2} className={state_patrys[key][num_2]} onClick={() => {
-            ChangeState([key , num_2]);
-          }}>
-            <img />
-          </div>
-        </div>
-      );
-
-      REFS_PATRYS[key].push(ref_1);
-      REFS_PATRYS[key].push(ref_2);
-      
-      JSX_PATRYS[key].push(generate_div);
-    }
-  });
-
   //* 日付データの定義
-  let _startday:any = new Date().toLocaleDateString('ja-JP',{
+  const _startday:any = new Date().toLocaleDateString('ja-JP',{
     year: "numeric",
     month: "2-digit",
     day: "2-digit"
   }).split("/").join("-");
 
-  let [startDay,setstartDay]:any = useState(_startday);
-  let [updateDay,setupdateDay] = useState();
+  const [startDay,]:any = useState(_startday);
+  // todo
+  // const [updateDa,setupdateDay] = useState();
 
   //配置の拡張性があまりないため for は利用しない
-
 
   return (
     <>
@@ -189,9 +143,42 @@ function Main() {
                 <img />
               </div>
               <div className="battlecanvas__patry">
-                {JSX_PATRYS["me"][0]}
-                {JSX_PATRYS["me"][1]}
-                {JSX_PATRYS["me"][2]}
+                <div className="col">
+                  <div ref={REFS_PATRYS["me"][0]} className={stateList_me[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[0] , 0]);
+                  }}>
+                    <img />
+                  </div>
+                <div ref={REFS_PATRYS["me"][1]} className={stateList_me[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[0] , 1]);
+                  }}>
+                    <img />
+                  </div>
+                </div>
+                <div className="col">
+                  <div ref={REFS_PATRYS["me"][2]} className={stateList_me[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[0] , 2]);
+                  }}>
+                    <img />
+                  </div>
+                <div ref={REFS_PATRYS["me"][3]} className={stateList_me[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[0] , 3]);
+                  }}>
+                    <img />
+                  </div>
+                </div>
+                <div className="col">
+                  <div ref={REFS_PATRYS["me"][4]} className={stateList_me[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[0] , 4]);
+                  }}>
+                    <img />
+                  </div>
+                <div ref={REFS_PATRYS["me"][5]} className={stateList_me[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[0] , 5]);
+                  }}>
+                    <img />
+                  </div>
+                </div>
               </div>
             </div>
             <div className="battlecanvas__other">
@@ -207,9 +194,42 @@ function Main() {
               <span className="battlecanvas__text_patryname">{Messages.Page.Main.Text.VS_Target}</span>
               <img className="battlecanvas__img_history" />
               <div className="battlecanvas__patry">
-                {JSX_PATRYS["target"][0]}
-                {JSX_PATRYS["target"][1]}
-                {JSX_PATRYS["target"][2]}
+                <div className="col">
+                  <div ref={REFS_PATRYS["target"][0]} className={stateList_me[0]} onClick={() => {
+                      ChangeState([CREATE_PATRY[1] , 0]);
+                    }}>
+                      <img />
+                  </div>
+                  <div ref={REFS_PATRYS["target"][1]} className={stateList_target[0]} onClick={() => {
+                      ChangeState([CREATE_PATRY[1] , 1]);
+                    }}>
+                      <img />
+                  </div>
+                </div>
+                <div className="col">
+                  <div ref={REFS_PATRYS["target"][2]} className={stateList_target[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[1] , 2]);
+                  }}>
+                    <img />
+                  </div>
+                  <div ref={REFS_PATRYS["target"][3]} className={stateList_target[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[1] , 3]);
+                  }}>
+                    <img />
+                  </div>
+                </div>
+                <div className="col">
+                  <div ref={REFS_PATRYS["target"][4]} className={stateList_target[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[1] , 4]);
+                  }}>
+                    <img />
+                  </div>
+                  <div ref={REFS_PATRYS["target"][5]} className={stateList_target[0]} onClick={() => {
+                    ChangeState([CREATE_PATRY[1] , 5]);
+                  }}>
+                    <img />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -217,7 +237,7 @@ function Main() {
         <Footer />
       </Canvas>
     </>
-  )
+  );
 }
 
 export default Main;

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect , useState } from "react";
+import React, { createContext , useEffect , useState } from "react";
 
 // import
 import { ENV_WINDOW , WINDOW_SCREEN , getCurrentWindowScreenSize , getENV_WINDOW } from "../common";
@@ -32,4 +32,4 @@ export function ENV_Window(props) {
       </CONTEXT_ENV_WINDOW.Provider>
     </>
   );
-};
+}

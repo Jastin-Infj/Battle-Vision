@@ -14,9 +14,9 @@ type Action = {
 };
 
 function reducer(state: Gender , action: Action): Gender {
-  let genderFlow: Array<Gender> = ['Man','Woman','None'];
+  const genderFlow: Array<Gender> = ['Man','Woman','None'];
 
-  let next = genderFlow.indexOf(action.payload.current) + 1;
+  const next = genderFlow.indexOf(action.payload.current) + 1;
   if(next === genderFlow.length) {
     state = genderFlow[0];
   } else {
@@ -36,7 +36,7 @@ function Adjustment__Gender() {
     case 'Man':
       g_element = (
         <div className="component__gender_div man" onClick={() => {
-          let sendData = {
+          const sendData = {
             payload: {
               current: state
             }
@@ -51,7 +51,7 @@ function Adjustment__Gender() {
     case 'Woman':
       g_element = (
         <div className="component__gender_div woman" onClick={() => {
-          let sendData = {
+          const sendData = {
             payload: {
               current: state
             }
@@ -66,7 +66,7 @@ function Adjustment__Gender() {
     case 'None':
       g_element = (
         <div className="component__gender_div none" onClick={() => {
-          let sendData = {
+          const sendData = {
             payload: {
               current: state
             }
@@ -84,7 +84,7 @@ function Adjustment__Gender() {
     <>
       {g_element}
     </>
-  )
+  );
 }
 
 export default Adjustment__Gender;
