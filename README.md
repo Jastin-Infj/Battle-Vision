@@ -1,5 +1,6 @@
 # battle-vision
 ポケモンのパーティ編成画面をブラウザで管理出来るツールです
+https://main.d386vy79qo80lh.amplifyapp.com/
 
 ## Figma
 https://www.figma.com/file/qrfd5Zq8fw4kdVyWgo6gpj/Battle-Vision?type=design&node-id=0%3A1&mode=design&t=Cch1TzKtKAe9iA70-1
