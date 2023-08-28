@@ -5,9 +5,9 @@ import Messages from '../src/frontend/json/Strings.json';
 import '../src/frontend/scss/box.scss';
 
 // style JSX
-import Canvas from "../src/frontend/ts/components/Canvas";
-import Header from "../src/frontend/ts/components/Header";
-import Footer from "../src/frontend/ts/components/Footer";
+import Canvas from "./Canvas";
+import Header from "./Header";
+import Footer from "./Footer";
 import PatryCanvas from "../src/frontend/ts/components/_patrycanvas";
 import CheckBoxItem from "../src/frontend/ts/components/_checkItem";
 import Adjustment__Gender from "../src/frontend/ts/contents/adjustment__gender";
@@ -50,7 +50,7 @@ function Box() {
 
   return(
     <>
-      <Canvas>
+      <Canvas id="Box">
         <Header />
         <main>
           <ModeSelect id="mode_MyBox_OR_MyPokemonDetail" classname="phone__mode">

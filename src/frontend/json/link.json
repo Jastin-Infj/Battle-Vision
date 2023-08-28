@@ -1,0 +1,28 @@
+{
+  "Query": {
+    "mode": {
+      "title": "mode",
+      "Demo": "demo",
+      "Tutorial": "tutorial" 
+    }
+  },
+  "Page": {
+    "Footer": {
+      "SignUp": "/Login",
+      "SignIn": "/Login",
+      "Demo": "/Report",
+      "Text1": "/Top",
+      "Text2": "/Conditions",
+      "Text3": "/PrivacyPolicy",
+      "Pokemon Inc": "https://corporate.pokemon.co.jp/",
+      "Nintedo Inc": "https://www.nintendo.co.jp/",
+      "Creatures Inc": "https://www.creatures.co.jp/",
+      "Gamefreak Inc": "https://www.gamefreak.co.jp/",
+      "Flaticon": "https://www.flaticon.com/"
+    },
+    "Top": {
+      "Demo": "/Report",
+      "Used": "/Main"
+    }
+  }
+}
