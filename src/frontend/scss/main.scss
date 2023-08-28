@@ -41,7 +41,11 @@
     "...    ...... ...... ...... ...   " 0px
     / 0.2fr 1fr 1fr 1fr 0.2fr !important;
 
-    height: viewport_getHeight(220) !important;
+    height: viewport_getHeight(150) !important;
+  }
+
+  @include mq(device-tablet) {
+    height: viewport_getHeight(180) !important;
   }
 
   @include mq(device-phone) {
@@ -54,6 +58,8 @@
     "footer footer footer footer footer" $footer__height_phone
     "...    ...... ...... ...... ...   " 0px
     / 0.2fr 1fr 1fr 1fr 0.2fr !important;
+
+    height: viewport_getHeight(240) !important;
 
   }
 
@@ -642,13 +648,14 @@
     width: 75%;
     height: 675px;
 
-    $flex__me: calc((1 - 0.17) / 2);
-    $flex__other: 0.17;
+    $width__me: 35%;
+    $width__other: 30%;
+    $width__other_tabletlg: 15%;
 
     margin-top: 2.5%;
     
     @include mq(device-pc) {
-      margin-left: 23%;
+      margin-left: 18%;
     }
 
     @include mq(device-tablet-lg) {
@@ -670,9 +677,47 @@
       width: 100%;
     }
 
+    input#mode_battleCanvas {
+      @apply fixed top-0 left-0;
+      width: 25px;
+      height: 25px;
+
+      &:checked ~ div.battlecanvas__me {
+        display: none !important;
+      }
+
+      &:checked ~ div.battlecanvas__target {
+        display: block !important;
+      }
+    }
+
+    label#mode_battleCanvas {
+      img {
+        @apply absolute top-0 left-0;
+        top: -45px;
+        left: 510px;
+        transform: translateY(-50%);
+        width: 60px;
+        height: 60px;
+
+        @include mq(device-tablet) {
+          top: -55px;
+          left: 460px;
+        }
+
+        @include mq(device-phone) {
+          top: -37px;
+          left: 245px;
+          width: 50px;
+          height: 50px;
+        }
+      }
+    }
+
     %battlecanvas_common {
       @extend %component_patryCanvas_div;
-      flex: $flex__me;
+      // flex: $flex__me;
+      width: $width__me;
 
       @include mq(device-ipad) {
         flex: initial;
@@ -721,11 +766,40 @@
       }
 
       div.component_patry_select_div {
-        @extend %component_patry_select_div;
+        @apply relative top-0 left-0;
+        @apply flex flex-row justify-between;
+        margin-top: 10%;
+        width: 100%;
+        height: 52px;
+
         margin-top: 20%;
 
         @include mq(device-phone) {
           margin-top: 25%;
+        }
+
+        div {
+          @apply relative top-0 left-0;
+          flex: 1;
+          margin: {
+            left: 3%;
+            right: 3%;
+          }
+      
+          background: $color-background-component__patryselect;
+      
+          border-radius: 8.5px;
+      
+          span {
+            @apply absolute top-0 left-0;
+            left: 48.5%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+      
+            @extend %common_text_sm_2;
+            color: $color-background-basic;
+          }
+      
         }
       }
 
@@ -836,37 +910,50 @@
 
     %battlecanvas__target {
       @extend %battlecanvas_common;
+      left: 850px;
       background: rgba(229, 123, 123, 1);
 
+      @include mq(device-tablet-lg) {
+        left: 665px;
+      }
+
       @include mq(device-ipad) {
-        margin-top: 120px;
-        height: 625px;
+        left: 0px;
+        height: 725px;
+        display: none;
+      }
+
+      @include mq(device-phone) {
+        height: 655px;
       }
 
       div.battlecanvas__patry {
         margin-top: 40.5%;
 
         @include mq(device-ipad) {
-          @apply justify-around;
-          margin-top: 50px;
-          
-          height: 90%;
-        }
-
-        @include mq(device-ipad) {
           @apply justify-between;
-          margin-top: 100px;
+          margin-top: 235px;
           height: 62.5%;
         }
 
-        div {
+        @include mq(device-tablet) {
+          margin-top: 215px;
+        }
 
-          @include mq(device-ipad) {
-            margin: {
-              top: 10px;
-              bottom: 10px;
+        @include mq(device-phone) {
+          margin-top: 172.5px;
+        }
+
+        div.col {
+          &:not(:first-of-type) {
+            @include mq(device-ipad) {
+              margin-top: 26.5px;
+            }
+            @include mq(device-tablet) {
+              margin-top: 16.5px;
             }
           }
+
 
           div {
             @include mq(device-ipad) {
@@ -883,26 +970,20 @@
 
     %battlecanvas__other {
       @apply relative top-0 left-0;
-      flex: $flex__other;
+      width: $width__other;
       @apply flex flex-col;
       height: 100%;
 
-      margin-left: 3%;
+      left: 40%;
+      top: 3.5%;
       margin-right: 3%;
 
+      @include mq(device-tablet-lg) {
+        width: $width__other_tabletlg;
+      }
+
       @include mq(device-ipad) {
-        @apply absolute;
-        flex: initial;
-        margin: {
-          left: initial;
-          right: initial;
-        }
-
-        top: -125px;
-        left: 375px;
-        transform: translateY(-50%);
-
-        height: initial;
+        display: none;
       }
 
       @include mq(device-ipad) {
@@ -964,7 +1045,7 @@
         span {
           @apply absolute;
           @extend %main__text_common;
-          left: 12.5%;
+          left: 100px;
           top: 40%;
           transform: translateY(-40%);
 
@@ -978,6 +1059,10 @@
             width: 0.8px;
             color: rgba(208, 194, 121, 1);
           }
+
+          @include mq(device-tablet-lg) {
+            left: 17px;
+          }
         }
       }
     }
@@ -985,7 +1070,7 @@
   }
 }
 
-div.layer-canvas {
+div.layer-canvas#Main {
   @extend %layer-canvas_changeStyle;
 
   main {

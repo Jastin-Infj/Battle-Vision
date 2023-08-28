@@ -122,7 +122,7 @@ div.main__text_title:nth-of-type(7) {
   }
 }
 
-div.layer-canvas {
+div.layer-canvas#Conditions {
   @extend %layer-canvas_changeStyle;
 
   div.header__text_Demo {

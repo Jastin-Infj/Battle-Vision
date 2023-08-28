@@ -5,6 +5,21 @@
 @use '../layerbase' as *;
 
 //* 共通
+
+.phone__mode {
+  display: none;
+  @include mq(device-phone) {
+    display: block;
+  }
+}
+
+.ipad__mode {
+  display: none;
+  @include mq(device-ipad) {
+    display: block;
+  }
+}
+
 %common_text_normal {
   @apply whitespace-nowrap;
   font-size: 28px;
