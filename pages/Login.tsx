@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 // style scss or json
 import Messages from '../src/frontend/json/Strings.json';

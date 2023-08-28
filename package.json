@@ -12,7 +12,7 @@
     "sass": "sass",
     "next": "next dev -p 8080",
     "next:build": "next build",
-    "next:start": "next start -p 8080",
+    "next:start": "next start -p 8000",
     "webpack": "webpack --config ./webpack.config.dev.js"
   },
   "author": "",
@@ -74,7 +74,8 @@
     "axios": "^1.4.0",
     "next": "^13.4.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sharp": "^0.32.5"
   },
   "browserslist": {
     "production": [

@@ -12,7 +12,7 @@ function TextStroke(props:Props) {
         <span className="back">{props.text}</span>
       </div>
     </>
-  )
+  );
 }
 
 export default TextStroke;

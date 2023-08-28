@@ -11,7 +11,7 @@ import Footer from "./Footer";
 
 function PrivacyPolicy() {
 
-  let renderJsx:object = {};
+  const renderJsx:object = {};
   let indexcounter = 0;
   for(const key in Messages.Page.PrivacyPolicy.Text.Message) {
     //メッセージを先に取得
@@ -57,6 +57,6 @@ function PrivacyPolicy() {
       </Canvas>
     </>
   );
-};
+}
 
 export default PrivacyPolicy;

@@ -11,7 +11,7 @@ import Footer from "./Footer";
 
 function Conditions() {
 
-  let renderJsx:object = {};
+  const renderJsx:object = {};
   let indexcounter = 0;
   for(const key in Messages.Page.Conditions.Text.Message) {
     //メッセージを先に取得
@@ -60,6 +60,6 @@ function Conditions() {
       </Canvas>
     </>
   );
-};
+}
 
 export default Conditions;
