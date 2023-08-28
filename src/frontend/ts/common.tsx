@@ -43,8 +43,8 @@ export interface WINDOW_SCREEN {
 }
 
 export function getCurrentWindowScreenSize(window:any): WINDOW_SCREEN {
-  let current_h = window.innerHeight;
-  let current_w = window.innerWidth;
+  const current_h = window.innerHeight;
+  const current_w = window.innerWidth;
   
   return {
     "width": current_w,
@@ -91,7 +91,7 @@ export function onClickEvents(router: NextRouter,action: NextLinkRouter): void {
     router.push(action.next);
   }
 
-  let initQuery = QUERY_INIT;
+  const initQuery = QUERY_INIT;
 
   // object
   if(action.query) {
@@ -113,18 +113,18 @@ export function onClickEvents(router: NextRouter,action: NextLinkRouter): void {
 
     router.push(action.next);
   }
-};
+}
 
 // @return demo
 export function getQueryURL(search: string): string | null {
   const searchParams = useSearchParams();
-  let query = searchParams.get(search);
+  const query = searchParams.get(search);
   return query;
 }
 
 // @return mode?=XXX
 export function getQueryURLParams(search: string): string {
-  let query = getQueryURL(search);
+  const query = getQueryURL(search);
 
   const QUERY_PARAMS = QUERY_INIT + query;
   return QUERY_PARAMS;
@@ -152,7 +152,7 @@ export function getQueryRequest(key:string,param: string | string[]) {
 }
 
 export function getQueryRequestHref(next: string, query: string | string[]) {
-  let newQuery:string = '';
+  let newQuery = '';
 
   newQuery += QUERY_INIT;
 
@@ -173,7 +173,7 @@ export function getCurrentQueryMode(current:string | string[] | null,key: string
   let mode:CurrentModeState = null!;
 
   // demo & tutorial
-  let Demo_Tutorial = [
+  const Demo_Tutorial = [
     Links.Query.mode.Demo,
     Links.Query.mode.Tutorial
   ];

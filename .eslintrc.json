@@ -33,6 +33,10 @@
       }
     ],
     /* any 型は許可する */
-    "@typescript-eslint/no-explicit-any": 0
+    "@typescript-eslint/no-explicit-any": 0,
+    /* = null! を許可する */
+    "@typescript-eslint/no-non-null-assertion": "off",
+    /* propsがany型でも許可する */
+    "react/prop-types": "off"
   }
 }
