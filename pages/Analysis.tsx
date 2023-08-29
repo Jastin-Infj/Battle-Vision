@@ -18,7 +18,7 @@ function Analysis() {
 
   return (
     <>
-      <Canvas>
+      <Canvas id="Analysis">
         <Header />
         <main>
           <div className="main__selectArrow">

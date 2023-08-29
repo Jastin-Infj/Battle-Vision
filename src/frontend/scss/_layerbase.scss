@@ -25,6 +25,8 @@ $footer__height_phone: 420px;
   width: viewport_getWidth(100);
   height: viewport_getHeight(100);
   z-index: var(--z-canvas);
+  margin: 0;
+  min-width: 100%;
 
   @apply grid;
   grid-template:
