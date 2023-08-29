@@ -3,7 +3,7 @@
 
 https://main.d386vy79qo80lh.amplifyapp.com/Top
 
-https://feature-react-page-all.d386vy79qo80lh.amplifyapp.com
+https://feature-react-page-all.d386vy79qo80lh.amplifyapp.com/Top
 
 ## Figma
 https://www.figma.com/file/qrfd5Zq8fw4kdVyWgo6gpj/Battle-Vision?type=design&node-id=0%3A1&mode=design&t=Cch1TzKtKAe9iA70-1
