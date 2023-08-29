@@ -1,5 +1,9 @@
 @use 'import' as *;
 
+div.header__box_menu {
+  display: none;
+}
+
 %layer-canvas_changeStyle {
   //change
   @include mq(device-pc) {
@@ -69,7 +73,7 @@
     "...    ...... ...... ...... ...   " 0px
     / 0.1fr 1fr 1fr 1fr 0.1fr !important;
 
-    height: viewport_getHeight(490) !important;
+    height: viewport_getHeight(510) !important;
   }
 }
 
@@ -422,6 +426,7 @@
       }
 
       @include mq(device-phone) {
+        $width_children: 100%;
         top: 125px;
         left: 15px;
       }
@@ -867,6 +872,7 @@
 
           @include mq(device-phone) {
             @apply flex flex-col;
+            width: fit-content;
           }
 
           div.component_text_help {
@@ -1160,6 +1166,7 @@
     @include mq(device-phone) {
       top: 1000px;
       left: 0px;
+      width: 400px;
     }
 
     %detail__patry {

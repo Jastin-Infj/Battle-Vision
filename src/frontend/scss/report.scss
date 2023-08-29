@@ -75,7 +75,7 @@ div.header__box_menu {
     "...    ...... ...... ...... ...   " 0px
     / 0.3fr 1fr 1fr 1fr 0.3fr !important;
   
-    height: viewport_getHeight(330) !important;
+    height: viewport_getHeight(400) !important;
   }
 }
 
@@ -342,7 +342,7 @@ div.header__box_menu {
           margin-top: 2.5%;
 
           @include mq(device-phone) {
-            margin-top: 14.5%;
+            margin-top: 9.5%;
           }
 
           div.col {
@@ -372,8 +372,8 @@ div.header__box_menu {
               }
 
               @include mq(device-phone) {
-                height: 80%;
-                transform: translateY(-50%) scale(1.1);
+                height: 91%;
+                transform: translateY(-50%) scale(1.05);
               }
             }
           }
@@ -407,7 +407,7 @@ div.header__box_menu {
         }
 
         @include mq(device-phone) {
-          top: 16.5%;
+          top: 18%;
           left: 78%;
         }
       }
@@ -430,6 +430,8 @@ div.header__box_menu {
         @apply absolute;
         top: 940px;
         height: 300px;
+
+        width: fit-content;
       }
 
       div.winG {
@@ -449,7 +451,7 @@ div.header__box_menu {
 
         @include mq(device-phone) {
           @apply absolute;
-          width: 100%;
+          width: 430px;
           height: 300px;
         }
 
@@ -852,7 +854,7 @@ div.header__box_menu {
           @apply absolute;
           top: 830px;
           height: 100%;
-          width: 103.5%;
+          width: 485px;
         }
 
         div.selection {
@@ -1190,6 +1192,10 @@ div.header__box_menu {
 
           &.col3 {
             margin-top: 40%;
+          }
+
+          @include mq(device-phone) {
+            top: 8.5%;
           }
         }
 

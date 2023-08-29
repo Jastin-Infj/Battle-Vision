@@ -22,7 +22,7 @@ $footer__height_phone: 420px;
 //* base
 %layer-canvas {
   @apply absolute top-0 left-0;
-  width: viewport_getWidth(100);
+  width: 100vw;
   height: viewport_getHeight(100);
   z-index: var(--z-canvas);
   margin: 0;
@@ -38,6 +38,10 @@ $footer__height_phone: 420px;
     "footer footer footer footer footer" $footer__height_normal
     "...    ...... ...... ...... ...   " 0px
     / 1fr 1fr 1fr 1fr 1fr;
+
+  @include mq(device-phone) {
+    width: viewport_getWidth(100);
+  }
 
   %header {
     @apply relative top-0 left-0;
@@ -448,7 +452,7 @@ $footer__height_phone: 420px;
       }
 
       @include mq(device-phone) {
-        left: -9.5%;
+        left: -4.5%;
       }
 
       div.icon {
@@ -668,8 +672,9 @@ $footer__height_phone: 420px;
       }
 
       @include mq(device-phone) {
-        left: 64%;
-        top: 88%;
+        left: 71%;
+        top: 76%;
+        width: fit-content;
       }
 
       span {
@@ -719,7 +724,7 @@ $footer__height_phone: 420px;
 
       @include mq(device-phone) {
         left: 5%;
-        top: 42%;
+        top: 37%;
       }
 
       span {
@@ -751,6 +756,10 @@ $footer__height_phone: 420px;
             transform: scale(90%);
             width: 110px;
           }
+
+          @include mq(device-phone) {
+            transform: scale(110%);
+          }
           
         }
 
@@ -760,6 +769,12 @@ $footer__height_phone: 420px;
 
           @include mq(device-tablet-lg) {
             margin-left: 0px;
+          }
+        }
+
+        button.SignIn {
+          @include mq(device-phone) {
+            margin-left: 20px;
           }
         }
 
@@ -773,6 +788,10 @@ $footer__height_phone: 420px;
 
           @include mq(device-tablet-lg) {
             margin-left: 20px;
+          }
+
+          @include mq(device-phone) {
+            margin-left: calc(40px * 1.5);
           }
 
           background: rgba(48, 99, 198, 1);

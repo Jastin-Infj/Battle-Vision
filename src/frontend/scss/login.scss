@@ -1,5 +1,9 @@
 @use 'import' as *;
 
+div.header__box_menu {
+  // display: none; 
+}
+
 %layer-canvas_changeStyle {
   // change
   @include mq(device-tablet-lg) {
@@ -70,7 +74,9 @@
       line-height: 44px;
 
       @include mq(device-phone) {
-        left: 26.5%;
+        top: 25%;
+        transform: translateY(-50%);
+        left: 32.5%;
       }
     }
   }
@@ -267,7 +273,7 @@
             @apply relative;
             left: 6%;
             bottom: 3%;
-            font-size: 13px;
+            font-size: 17px;
           }
 
         }

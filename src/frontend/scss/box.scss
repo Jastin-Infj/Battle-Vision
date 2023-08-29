@@ -423,6 +423,11 @@ div.header__box_menu {
                 }
               }
             }
+
+            @include mq(device-phone) {
+              width: 24%;
+              margin-left: 6.5%;
+            }
           }
         }
       }
@@ -750,7 +755,7 @@ div.header__box_menu {
         @include mq(device-phone) {
           @apply flex flex-col;
           top: 50%;
-          left: 0px;
+          left: 10.5%;
         }
 
         div.component__PokemonImg_div2 {
@@ -786,6 +791,9 @@ div.header__box_menu {
           }
 
           @include mq(device-phone) {
+            height: 105px;
+            width: 105px;
+
             @for $i from 1 through 2 {
               &:nth-of-type(#{$i + 2 * 0}) {
                 top: 50px;
@@ -923,7 +931,7 @@ div.header__box_menu {
               }
 
               @include mq(device-phone) {
-                left: 188px;
+                left: 271px;
                 top: 102px;
               }
             }
@@ -944,7 +952,7 @@ div.header__box_menu {
 
               @include mq(device-phone) {
                 margin-left: initial;
-                left: 210px;
+                left: 266px;
                 top: 102px;
               }
             }
@@ -1088,8 +1096,9 @@ div.header__box_menu {
               }
 
               @include mq(device-phone) {
-                left: -50px;
+                left: -95px;
                 transform: translateY(-50%) scale(1.1);
+                top: 60%;
               }
             }
             img {
@@ -1184,7 +1193,7 @@ div.header__box_menu {
               @include mq(device-phone) {
                 @apply absolute;
                 margin-top: 150px;
-                left: -171px;
+                left: -231px;
               }
             }
           }
@@ -1333,7 +1342,7 @@ div.header__box_menu {
           }
 
           @include mq(device-phone) {
-            margin-top: 11%;
+            margin-top: 8%;
           }
 
           &:first-of-type {
@@ -1401,6 +1410,10 @@ div.header__box_menu {
                 @include mq(device-ipad) {
                   left: -2.25%;
                 }
+
+                @include mq(device-phone) {
+                  left: -1.95%;
+                }
               }
 
               &:nth-of-type(2) {
@@ -1414,7 +1427,7 @@ div.header__box_menu {
                 }
 
                 @include mq(device-phone) {
-                  left: -2.5%;
+                  left: -1.75%;
                 }
               }
 
@@ -1439,10 +1452,18 @@ div.header__box_menu {
             @include mq(device-phone) {
               top: 25px;
             }
-            label:nth-of-type(1) {
-              left: 2.5%;
-              @include mq(device-tablet-lg) {
-                left: 0.5%;
+            label {
+              &:nth-of-type(1) {
+                left: 2.5%;
+                @include mq(device-tablet-lg) {
+                  left: 0.5%;
+                }
+              }
+
+              &:nth-of-type(3) {
+                @include mq(device-phone) {
+                  left: -1.25%;
+                }
               }
             }
           }

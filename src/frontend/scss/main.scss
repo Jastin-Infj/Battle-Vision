@@ -59,8 +59,7 @@
     "...    ...... ...... ...... ...   " 0px
     / 0.2fr 1fr 1fr 1fr 0.2fr !important;
 
-    height: viewport_getHeight(240) !important;
-
+    height: viewport_getHeight(270) !important;
   }
 
 }
@@ -941,7 +940,7 @@
         }
 
         @include mq(device-phone) {
-          margin-top: 172.5px;
+          margin-top: 47.25%;
         }
 
         div.col {

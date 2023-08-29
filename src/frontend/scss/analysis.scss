@@ -74,7 +74,7 @@ div.header__box_menu {
       "...    ...... ...... ...... ...   " 0px
       / 0.3fr 1fr 1fr 1fr 0.3fr !important;
 
-    height: viewport_getHeight(170) !important;
+    height: viewport_getHeight(200) !important;
   }
 }
 
@@ -349,6 +349,10 @@ div.header__box_menu {
             margin-top: 30%;
           }
 
+          @include mq(device-phone) {
+            margin-top: 21%;
+          }
+
           div.col {
             flex: 1;
 
@@ -361,6 +365,11 @@ div.header__box_menu {
               flex: 1;
               top: 10%;
               transform: scale(0.9);
+
+              @include mq(device-phone) {
+                flex: initial;
+                width: 140px;
+              }
 
               &:first-of-type {
                 margin-right: 1.5%;

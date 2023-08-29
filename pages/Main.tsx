@@ -195,7 +195,7 @@ function Main() {
               <img className="battlecanvas__img_history" />
               <div className="battlecanvas__patry">
                 <div className="col">
-                  <div ref={REFS_PATRYS["target"][0]} className={stateList_me[0]} onClick={() => {
+                  <div ref={REFS_PATRYS["target"][0]} className={stateList_target[0]} onClick={() => {
                       ChangeState([CREATE_PATRY[1] , 0]);
                     }}>
                       <img />
