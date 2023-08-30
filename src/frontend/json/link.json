@@ -7,6 +7,12 @@
     }
   },
   "Page": {
+    "Header": {
+      "Step1": "/Adjustment",
+      "Step2": "/Box",
+      "Step3": "/Main",
+      "Step4": "/Report"
+    },
     "Footer": {
       "SignUp": "/Login",
       "SignIn": "/Login",

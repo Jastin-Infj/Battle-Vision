@@ -605,7 +605,7 @@ div.header__box_menu {
           @extend %wapper_input_placeholder;
           
           @include mq(device-pc) {
-            margin-left: 17.5px;
+            margin-left: 45.5px;
           }
 
           @include mq(device-tablet-lg) {
@@ -619,7 +619,7 @@ div.header__box_menu {
 
         input:nth-of-type(2) {
           @include mq(device-pc) {
-            margin-left: 145px;
+            margin-left: 182.5px;
           }
           @include mq(device-tablet-lg) {
             margin-left: 152.5px;
@@ -744,6 +744,7 @@ div.header__box_menu {
 
       @include mq(device-pc) {
         @apply relative top-0 left-0;
+        left: 5%;
       }
 
       @include mq(device-tablet-lg) {
@@ -786,6 +787,10 @@ div.header__box_menu {
       div.move__days {
         @apply relative top-0 left-0;
         @apply flex flex-row;
+
+        @include mq(device-pc) {
+          left: -10%;
+        }
 
         @include mq(device-tablet-lg) {
           @apply absolute top-0 left-0;

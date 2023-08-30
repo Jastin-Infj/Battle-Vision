@@ -2,6 +2,7 @@
 @use 'base' as *;
 @use 'mixin' as *;
 @use 'style' as *;
+@use 'variables' as *;
 
 :root {
   @include z-map((
@@ -51,9 +52,14 @@ $footer__height_phone: 420px;
     background: rgba(146, 171, 233, 1);
     z-index: var(--z-header);
 
-    div {
-      &:nth-of-type(2) {
-        margin-left: 0;
+
+    input#header__icon {
+      @extend %disabled_tabKey;
+      @apply fixed top-0 left-0;
+      left: -5%;
+
+      &:checked ~ div.header__box_menu {
+        display: block !important;
       }
     }
 
@@ -103,10 +109,11 @@ $footer__height_phone: 420px;
 
     %header__textbox_search {
       @apply relative top-0 left-0;
-
+      margin-left: 0;
       width: 320px;
       height: 65px;
       left: 90px;
+
       @include mq(device-tablet-lg) {
         left: 40px;
       }
@@ -208,7 +215,7 @@ $footer__height_phone: 420px;
         display: none;
       }
 
-      div {
+      div.row {
         @apply relative  top-0 left-0;
         @apply flex flex-col;
         @apply border-solid;
@@ -238,39 +245,35 @@ $footer__height_phone: 420px;
 
         }
 
-        span.main {
-          @apply absolute bottom-0;
-
-          text-align: center;
-
-          left: 45%;
-          transform: translateX(-45%);
-
-          width: 150px;
-          height: 20px;
-
+        div.stroke-text {
+          @apply absolute top-0 left-0;
           @apply whitespace-nowrap;
-          @apply font-semibold;
-          font-weight: 700;
-          font-size: 29px;
-          line-height: 27px;
-          color: rgba(255, 255, 255, 1);
-
-          -webkit-text-stroke: {
-            width: 4px;
-            color: rgba(40, 38, 158, 1);
-          }
+          left: 50%;
+          top: 90%;
 
           &:hover {
-            -webkit-text-stroke: {
-              color: rgba(81, 138, 222, 1);
+            a.back {
+              color: $color-border-headerTextHover;
             }
           }
 
-          span.back {
-            @include attach_textstyle_forFigma();
+          a {
+            @extend %text_stroke_style_common;
+            font-weight: 700;
+            font-size: 29px;
+            line-height: 29px;
           }
 
+          a.main {
+            @extend %text_stroke_style_main;
+            color: $color-border-basic2;
+          }
+
+          a.back {
+            @extend %text_stroke_style_back;
+            color: $color-border-headerText;
+            -webkit-text-stroke-width: 4px;
+          }
         }
 
         div.arrow {
@@ -301,129 +304,7 @@ $footer__height_phone: 420px;
             width: 28px;
           }
         }
-
-        //? 調整
-        &:nth-of-type(1) {
-
-          @include mq(device-ipad) {
-            span {
-              font-size: 0px;
-            }
-
-            span::before {
-              font-size: 29px;
-              content: "追加";
-            }
-
-            span.back::before {
-              @apply absolute;
-              transform: translateX(79%);
-            }
-          }
-
-          span {
-            left: 45%;
-            transform: translateX(-45%);
-          }
-
-          span.back {
-            left: 0%;
-            transform: translateX(0%);
-          }
-        }
-
-        &:nth-of-type(2) {
-          @include mq(device-ipad) {
-            span {
-              font-size: 0px;
-            }
-
-            span::before {
-              font-size: 29px;
-              content: "登録";
-            }
-
-            span.back::before {
-              @apply absolute;
-              transform: translateX(76%);
-            }
-          }
-
-          span {
-            left: 52.5%;
-            transform: translateX(-52.5%);
-          }
-
-          span.back {
-            left: 1%;
-            transform: translateX(1%);
-          }
-        }
-
-        &:nth-of-type(3) {
-          @include mq(device-ipad) {
-            span {
-              font-size: 0px;
-            }
-
-            span::before {
-              font-size: 29px;
-              content: "記録";
-            }
-
-            span.back::before {
-              @apply absolute;
-              transform: translateX(74%);
-            }
-          }
-
-          span {
-            left: 53%;
-            transform: translateX(-53%);
-          }
-
-          span.back {
-            left: 2%;
-            transform: translateX(2%);
-          }
-        }
-
-        &:nth-of-type(4) {
-          @include mq(device-ipad) {
-            span {
-              font-size: 0px;
-            }
-
-            span::before {
-              font-size: 29px;
-              content: "見る";
-            }
-
-            span.back::before {
-              @apply absolute;
-              transform: translateX(93%);
-            }
-          }
-
-          @include mq(device-tablet) {
-            span.back::before {
-              transform: translateX(95%);
-            }
-          }
-
-          span {
-            left: 40%;
-            transform: translateX(-40%);
-          }
-
-          span.back {
-            left: 0%;
-            transform: translateX(0%);
-          }
-        }
-
       }
-
     }
 
     %header__icon_login {
