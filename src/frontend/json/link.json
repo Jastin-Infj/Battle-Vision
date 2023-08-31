@@ -11,7 +11,16 @@
       "Step1": "/Adjustment",
       "Step2": "/Box",
       "Step3": "/Main",
-      "Step4": "/Report"
+      "Step4": "/Report",
+      "Menu1": false,
+      "Menu2": "/Adjustment",
+      "Menu3": "/Box",
+      "Menu4": "/Analysis",
+      "Menu5": "/Main",
+      "Menu6": "/Report",
+      "Menu7": "",
+      "Menu8": false,
+      "Menu9": false
     },
     "Footer": {
       "SignUp": "/Login",

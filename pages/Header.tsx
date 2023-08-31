@@ -101,6 +101,64 @@ function Header() {
     return render;
   }
 
+  const JSX_HeaderMenu = (num: number) => {
+    let render: JSX.Element = null!;
+    let text: string = null!;
+    let href: string = "";
+
+    switch(num) {
+      case 1:
+        text = Messages.Page.Header.Box.Menus.Text1;
+        //todo
+        break;
+      case 2:
+        text = Messages.Page.Header.Box.Menus.Text2;
+        href = Links.Page.Header.Menu2;
+        break;
+      case 3:
+        text = Messages.Page.Header.Box.Menus.Text3;
+        href = Links.Page.Header.Menu3;
+        break;
+      case 4:
+        text = Messages.Page.Header.Box.Menus.Text4;
+        href = Links.Page.Header.Menu4;
+        break;
+      case 5:
+        text = Messages.Page.Header.Box.Menus.Text5;
+        href = Links.Page.Header.Menu5;
+        break;
+      case 6:
+        text = Messages.Page.Header.Box.Menus.Text6;
+        href = Links.Page.Header.Menu6;
+        break;
+      case 7:
+        text = Messages.Page.Header.Box.Menus.Text7;
+        href = Links.Page.Header.Menu7;
+        break;
+      case 8:
+        text = Messages.Page.Header.Box.Menus.Text8;
+        //todo
+        break;
+      case 9:
+        text = Messages.Page.Header.Box.Menus.Text9;
+        //todo
+        break;
+      default:
+        new Error(Messages.FrontEnd.DevelopError["01"]);
+        break;
+    }
+
+    render = (
+      <>
+        <li>
+          <TextStroke text={text} type="a" href={href} />
+        </li>
+      </>
+    );
+
+    return render;
+  };
+
   return (
     <>
       <header>
@@ -154,60 +212,15 @@ function Header() {
         </div>
         <div className="header__box_menu">
           <ul>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text1}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text1}</span>
-              </span>
-            </li>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text2}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text2}</span>
-              </span>
-            </li>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text3}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text3}</span>
-              </span>
-            </li>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text4}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text4}</span>
-              </span>
-            </li>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text5}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text5}</span>
-              </span>
-            </li>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text6}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text6}</span>
-              </span>
-            </li>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text7}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text7}</span>
-              </span>
-            </li>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text8}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text8}</span>
-              </span>
-            </li>
-            <li>
-              <span className="main">
-              {Messages.Page.Header.Box.Menus.Text9}
-                <span className="back">{Messages.Page.Header.Box.Menus.Text9}</span>
-              </span>
-            </li>
+            {JSX_HeaderMenu(1)}
+            {JSX_HeaderMenu(2)}
+            {JSX_HeaderMenu(3)}
+            {JSX_HeaderMenu(4)}
+            {JSX_HeaderMenu(5)}
+            {JSX_HeaderMenu(6)}
+            {JSX_HeaderMenu(7)}
+            {JSX_HeaderMenu(8)}
+            {JSX_HeaderMenu(9)}
           </ul>
         </div>
       </header>

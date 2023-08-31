@@ -435,8 +435,6 @@ $footer__height_phone: 420px;
       border-width: 3px;
       border-radius: 10px;
 
-      z-index: var(--z-header__textbox_search_img);
-
       //todo
       // display: none;
 
@@ -459,29 +457,41 @@ $footer__height_phone: 420px;
         li {
           @apply  top-full left-full;
           width: 100%;
-          padding-left: 15%;
+          height: calc(100% / 8);
 
-          span.main {
+          div.stroke-text {
+            @apply relative top-0 left-0;
             width: 100%;
-            font-weight: 600;
-            font-size: 22px;
-            line-height: 27px;
-            color: rgba(255, 255, 255, 1);
-            -webkit-text-stroke: {
-              width: 4px;
-              color: rgba(34, 32, 96, 1);
-            }
+            height: 90%;
+            top: 5%;
 
             &:hover {
-              -webkit-text-stroke: {
-                color: rgba(166, 201, 255, 1);
+              a.back {
+                color: $color-border-headerTextMenuHover;
               }
             }
 
-            span.back {
-              @apply left-0;
-              @include attach_textstyle_forFigma();
-              padding-left: 15%;
+            a {
+              @extend %text_stroke_style_common;
+              @apply absolute;
+              transform: translateY(-50%);
+              top: 50%;
+              left: 15%;
+
+              font-weight: 600;
+              font-size: 22px;
+              line-height: 27px;
+            }
+
+            a.main {
+              @extend %text_stroke_style_main;
+              color: $color-font-basic2;
+            }
+
+            a.back {
+              @extend %text_stroke_style_back;
+              -webkit-text-stroke-width: 4px;
+              color: $color-border-headerTextMenu;
             }
           }
           
