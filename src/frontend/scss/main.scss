@@ -140,7 +140,7 @@
 
     %main__group_tag {
       @apply relative;
-      @apply flex flex-row justify-between;
+      @apply flex flex-col justify-between;
       @include position_centerHeightRender();
       height: 50%;
 
@@ -167,128 +167,180 @@
         width: 100%;
       }
 
-      div {
-        @apply relative top-0 left-0;
-        @apply flex flex-col;
+      div.col {
+        @extend %checkbox_style_wapper;
+        @apply flex flex-row;
         width: 100%;
         height: 100%;
-
-        padding-left: 1.5%;
-
-        @include mq(device-tablet-lg) {
-          &:not(:nth-of-type(4)) {
-            @apply justify-around;
-          }
-
-          &:nth-of-type(4) {
-            top: 11.5%;
-          }
-        }
-
-        @include mq(device-ipad) {
-          @apply flex-row justify-around;
-
-          width: 100%;
-          height: 50%;
-
-          &:not(:first-of-type) {
-            @apply justify-around;
-            left: -2.275%;
-            top: initial;
-          }
-
-          &:nth-of-type(4) {
-            top: initial;
-          }
-        }
+        top: -2%;
 
         label {
-          @apply relative top-0 left-0;
-          font-size: 20px;
-          font-weight: 600;
-          padding-left: 27.5%;
-
-          @include mq(device-tablet-lg) {
-            @apply whitespace-nowrap;
-            font-size: 14.5px;
-
-            padding-left: 35%;
-          }
+          @apply absolute top-0 left-0;
+          padding-left: 3.25%;
 
           @include mq(device-ipad) {
-            padding-top: 11.5px;
-            padding-left: 30px;
-            
-            &:not(.other) {
-              left: initial;
+            margin-top: 1.5%;
+            padding-left: 6%;
+            font-size: 22px;
+          }
 
-              &:nth-of-type(1) {
-                left: 0.25%;
-              }
+          //* テキスト設定
+          $text_margin__pc: 15.5%;
+          $text_margin__ipad: 25%;
+          $text_margin__tablet_first: 22.5%;
+          $text_margin__tablet: 30%;
+          $text_margin__phone: 22.5%;
 
-              &:nth-of-type(2) {
-                left: -7.5%;
+          $text_margin__phone_row2: 25%;
+          $text_margin__phone_row3: 50.5%;
+          $text_margin__phone_row4: 73%;
+
+          &:nth-of-type(1) {
+            left: 2.5%;
+          }
+
+          &:nth-of-type(3) {
+            @include mq(device-tablet) {
+              left: 50.5% !important;
+            }
+            @include mq(device-phone) {
+              left: $text_margin__phone_row3;
+            }
+          }
+
+          &:nth-of-type(4) {
+            @include mq(device-tablet) {
+              left: 73% !important;
+            }
+            @include mq(device-phone) {
+              left: $text_margin__phone_row4;
+            }
+          }
+
+          &:nth-of-type(7) {
+            left: 2.5%;
+            top: 48%;
+          }
+
+          //* pc tablet-lg
+          @for $i from 2 through 6 {
+            &:nth-of-type(#{$i}) {
+              @include mq(device-pc) {
+                left: calc(2.5% + $text_margin__pc * ($i - 1));
               }
-              
-              &:nth-of-type(3) {
-                left: -14.05%;
+              @include mq(device-tablet-lg) {
+                left: calc(2.5% + $text_margin__pc * ($i - 1));
               }
             }
+          }
 
+          @for $i from 8 through 12 {
+            &:nth-of-type(#{$i}) {
+              @include mq(device-pc) {
+                left: calc(2.5% + $text_margin__pc * ($i - 7));
+                top: 48%;
+              }
+              @include mq(device-tablet-lg) {
+                left: calc(2.5% + $text_margin__pc * ($i - 7));
+                top: 48%;
+              }
+            }
+          }
+
+          //* ipad tablet phone
+          @for $i from 2 through 4 {
+            &:nth-of-type(#{$i}) {
+              @include mq(device-ipad) {
+                left: calc(2.5% + $text_margin__ipad * ($i - 1));
+              }
+              @include mq(device-tablet) {
+                left: calc(2.5% + $text_margin__tablet_first * ($i - 1));
+              }
+              @include mq(device-phone) {
+                left: calc(2.5% + $text_margin__phone * ($i - 1));
+              }
+            }
+          }
+
+          @for $i from 5 through 7 {
+            &:nth-of-type(#{$i}) {
+              @include mq(device-ipad) {
+                left: calc(2.5% + $text_margin__ipad * ($i - 5));
+                top: 25%;
+              }
+              @include mq(device-tablet) {
+                left: calc(2.5% + $text_margin__tablet * ($i - 5));
+                top: 25%;
+              }
+              @include mq(device-phone) {
+                @if $i == 6 {
+                  left: $text_margin__phone_row2;
+                }
+                @if $i == 7 {
+                  left: $text_margin__phone_row3;
+                }
+              }
+            }
+          }
+
+          @for $i from 8 through 11 {
+            &:nth-of-type(#{$i}) {
+              @include mq(device-ipad) {
+                left: calc(2.5% + $text_margin__ipad * ($i - 8));
+                top: 50%;
+              }
+              @include mq(device-tablet) {
+                left: calc(2.5% + $text_margin__tablet * ($i - 8));
+                top: 50%;
+              }
+              @include mq(device-phone) {
+                @if $i == 9 {
+                  left: $text_margin__phone_row2;
+                }
+                @if $i == 10 {
+                  left: $text_margin__phone_row3;
+                }
+              }
+            }
+          }
+
+          @for $i from 11 through 13 {
+            &:nth-of-type(#{$i}) {
+              @include mq(device-ipad) {
+                left: calc(2.5% + $text_margin__ipad * ($i - 11));
+                top: 75%;
+              }
+              @include mq(device-tablet) {
+                left: calc(2.5% + $text_margin__tablet * ($i - 11));
+                top: 75%;
+              }
+              @include mq(device-phone) {
+                @if $i == 12 {
+                  left: $text_margin__phone_row2;
+                }
+              }
+            }
           }
 
           input {
-            @apply relative top-0 left-0;
-            width: 0px;
-            height: 0px;
+            &:checked ~ span {
+              background-color: $color-background-checkbox;
+            }
+
+            &:checked ~ span::after {
+              border-color: $color-font-checkbox;
+              transform: translate(-50%, -50%) rotate(45deg) scale(110%);
+            }
           }
 
           span {
             @apply absolute top-0 left-0;
-            height: 20px;
-            width: 20px;
-            top: 57.5%;
-            transform: translateY(-50%);
-
-            border: solid;
-            border-width: 2px;
-            border-radius: 2.5px;
-            border-color: rgba(0, 0, 0, 1);
-            
-            background: rgba(255, 255, 255, 1);
-
-            @include mq(device-tablet-lg) {
-              height: 20px;
-              width: 20px;
+            border-color: $color-border-basic;
+            background: $color-background-basic;
+            top: 55%;
+            @include mq(device-tablet) {
+              top: 50%;
             }
-          }
-
-          input:checked ~ span {
-            width: 20px;
-            height: 20px;
-
-            @apply border-solid border-transparent;
-            background: $color-background-checkbox;
-
-            @include mq(device-tablet-lg) {
-              width: 20px;
-              height: 20px;
-            }
-          }
-
-          input:checked ~ span::after {
-            @apply absolute top-0 left-0;
-            left: 50%;
-            top: 40%;
-            width: 6px;
-            height: 10px;
-            transform: translate(-50%,-50%) rotate(45deg) scale(120%);
-
-            border: solid;
-            border-width: 0 2px 2px 0;
-            border-color: rgba(255, 255, 255, 1);
-            
-            content: "";
           }
         }
       }

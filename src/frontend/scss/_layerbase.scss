@@ -466,12 +466,12 @@ $footer__height_phone: 420px;
             top: 5%;
 
             &:hover {
-              a.back {
+              a.back , span.back {
                 color: $color-border-headerTextMenuHover;
               }
             }
 
-            a {
+            a , span {
               @extend %text_stroke_style_common;
               @apply absolute;
               transform: translateY(-50%);
@@ -483,12 +483,16 @@ $footer__height_phone: 420px;
               line-height: 27px;
             }
 
-            a.main {
+            span {
+              @apply cursor-pointer;
+            }
+
+            a.main , span.main {
               @extend %text_stroke_style_main;
               color: $color-font-basic2;
             }
 
-            a.back {
+            a.back , span.back {
               @extend %text_stroke_style_back;
               -webkit-text-stroke-width: 4px;
               color: $color-border-headerTextMenu;

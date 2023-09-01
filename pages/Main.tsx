@@ -82,6 +82,21 @@ function Main() {
 
   //配置の拡張性があまりないため for は利用しない
 
+  //* タググループ定義
+  const CheckBoxList = Messages.Page.Main.Checkbox.Tags;
+
+  const JSX_CheckBoxs = CheckBoxList.map((val , index) => {
+    return (
+      <>
+        <label>
+          <input type="checkbox" />
+          <span />
+          {val}
+        </label>
+      </>
+    )
+  });
+
   return (
     <>
       <Canvas id="Main">
@@ -89,9 +104,22 @@ function Main() {
         <main>
           <div className="main__filter">
             <span className="main__text_filter">{Messages.Page.Main.Text.Filter}</span>
-            <ENV_Window>
-              <Main__Tags />
-            </ENV_Window>
+            <div className="main__group_tag">
+              <div className="col">
+                {JSX_CheckBoxs[0]}
+                {JSX_CheckBoxs[1]}
+                {JSX_CheckBoxs[2]}
+                {JSX_CheckBoxs[3]}
+                {JSX_CheckBoxs[4]}
+                {JSX_CheckBoxs[5]}
+                {JSX_CheckBoxs[6]}
+                {JSX_CheckBoxs[7]}
+                {JSX_CheckBoxs[8]}
+                {JSX_CheckBoxs[9]}
+                {JSX_CheckBoxs[10]}
+                {JSX_CheckBoxs[11]}
+              </div>
+            </div>
             <div className="main__group_day">
               <div>
                 <span>{Messages.Page.Main.Text.Register}</span>

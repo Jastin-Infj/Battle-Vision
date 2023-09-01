@@ -1,5 +1,6 @@
 import React from "react";
 import { getCurrentQueryMode , getQueryRequestHref, getQueryURL } from "../src/frontend/ts/common";
+import { useRouter } from "next/router";
 
 import Messages from '../src/frontend/json/Strings.json';
 import Links from '../src/frontend/json/link.json';
@@ -7,7 +8,10 @@ import Links from '../src/frontend/json/link.json';
 import '../src/frontend/scss/_layerbase.scss';
 import TextStroke from "../src/frontend/ts/components/_textStroke";
 
+
 function Header() {
+
+  const router = useRouter();
 
   //* デモモード確認
   let QUERY_DEMO:string | null | string[] = getQueryURL(Links.Query["mode"].title);
@@ -78,7 +82,7 @@ function Header() {
           <>
             <TextStroke 
               text={text}
-              type="a" 
+              type="Link" 
               href={href} 
             />
           </>
@@ -90,7 +94,7 @@ function Header() {
           <>
             <TextStroke 
               text={text}
-              type="a" 
+              type="Link"
               href={href} 
             />
           </>
@@ -101,7 +105,7 @@ function Header() {
     return render;
   }
 
-  const JSX_HeaderMenu = (num: number) => {
+  const JSX_HeaderMenu = (num: number , type: string) => {
     let render: JSX.Element = null!;
     let text: string = null!;
     let href: string = "";
@@ -132,8 +136,16 @@ function Header() {
         href = Links.Page.Header.Menu6;
         break;
       case 7:
-        text = Messages.Page.Header.Box.Menus.Text7;
-        href = Links.Page.Header.Menu7;
+        switch(currentMode) {
+          case 'None':
+            text = Messages.Page.Header.Box.Menus.Text7;
+            href = getQueryRequestHref(router.route,Links.Query.mode.Demo);
+            break;
+          case 'demo':
+            text = Messages.Page.Header.Box.Menus.Text7_disbled;
+            href = router.route;
+            break;
+        }
         break;
       case 8:
         text = Messages.Page.Header.Box.Menus.Text8;
@@ -148,13 +160,45 @@ function Header() {
         break;
     }
 
-    render = (
-      <>
-        <li>
-          <TextStroke text={text} type="a" href={href} />
-        </li>
-      </>
-    );
+    if(href) {
+      switch(currentMode) {
+        case 'demo':
+          if(num !== 7) {
+            href = getQueryRequestHref(href,Links.Query.mode.Demo);
+          }
+          break;
+      }
+    }
+
+    switch(type) {
+      case 'Link':
+        render = (
+          <>
+            <li>
+              <TextStroke text={text} type="Link" href={href} />
+            </li>
+          </>
+        );
+        break;
+      case 'a':
+        render = (
+          <>
+            <li>
+              <TextStroke text={text} type="a" href={href} />
+            </li>
+          </>
+        );
+        break;
+      case 'span':
+        render = (
+          <>
+            <li>
+              <TextStroke text={text} />
+            </li>
+          </>
+        );
+        break;
+    }
 
     return render;
   };
@@ -212,15 +256,15 @@ function Header() {
         </div>
         <div className="header__box_menu">
           <ul>
-            {JSX_HeaderMenu(1)}
-            {JSX_HeaderMenu(2)}
-            {JSX_HeaderMenu(3)}
-            {JSX_HeaderMenu(4)}
-            {JSX_HeaderMenu(5)}
-            {JSX_HeaderMenu(6)}
-            {JSX_HeaderMenu(7)}
-            {JSX_HeaderMenu(8)}
-            {JSX_HeaderMenu(9)}
+            {JSX_HeaderMenu(1 , "span")}
+            {JSX_HeaderMenu(2 , "Link")}
+            {JSX_HeaderMenu(3 , "Link")}
+            {JSX_HeaderMenu(4 , "Link")}
+            {JSX_HeaderMenu(5 , "Link")}
+            {JSX_HeaderMenu(6 , "Link")}
+            {JSX_HeaderMenu(7 , "a")}
+            {JSX_HeaderMenu(8 , "span")}
+            {JSX_HeaderMenu(9 , "span")}
           </ul>
         </div>
       </header>

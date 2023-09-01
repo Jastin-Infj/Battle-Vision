@@ -12,11 +12,16 @@ interface Span_TAG extends PropBase {
 }
 
 interface A_TAG extends PropBase {
-  type: 'a';
+  type: 'Link';
   href: Url;
 }
 
-type Props = Span_TAG | A_TAG;
+interface Link_TAG extends PropBase {
+  type: 'a';
+  href: string;
+}
+
+type Props = Span_TAG | A_TAG | Link_TAG;
 
 function TextStroke(props:Props) {
 
@@ -24,6 +29,14 @@ function TextStroke(props:Props) {
 
   switch(props.type) {
     case 'a':
+      render = (
+        <>
+          <a className="main" href={props.href} >{props.text}</a>
+          <a className="back" href={""}>{props.text}</a>
+        </>
+      );
+      break;
+    case 'Link':
       render = (
         <>
           <Link className="main" href={props.href} >{props.text}</Link>
