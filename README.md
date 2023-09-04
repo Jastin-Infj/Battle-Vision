@@ -37,7 +37,7 @@ python3 -m venv django-env
 ```
 
 ```bash
-python3 source django-env/bin/activate
+source django-env/bin/activate
 ```
 
 ```bash
