@@ -31,7 +31,9 @@ $footer__height_phone: 420px;
 
   @include mq(device-ipad) {
     -webkit-font-smoothing: antialiased;
-    -webkit-text-size-adjust: 100%; 
+    -webkit-text-size-adjust: 100%;
+
+    
   }
 
   @apply grid;
