@@ -28,14 +28,19 @@ src/backend/static
 */lib
 */lib64
 */pyvenv.cfg
+__pycache__
 
 *.env
 *db.sqlite3
 
-src/backend/db.sqlite3
+## test
+src/hello/django
 
 ## Run
 src/backend/*/__pycache__
 src/backend/*/migrations
 !src/backend/*/migrations/__init__.py
 src/django-env/*
+/test-results/
+/playwright-report/
+/playwright/.cache/

@@ -1,6 +1,7 @@
 @use 'import' as *;
 
 %layer-canvas_changeStyle {
+
   //change
   @include mq(device-pc) {
     grid-template: 
