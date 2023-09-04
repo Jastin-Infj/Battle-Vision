@@ -593,6 +593,7 @@ $footer__height_phone: 420px;
     %footer__button_accounts {
       @apply flex flex-col;
       @apply absolute top-0;
+      @apply m-0;
 
       left: 65%;
 
