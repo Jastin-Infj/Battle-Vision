@@ -45,7 +45,7 @@ function Header() {
         break;
     }
     return render;
-  }
+  };
 
   //* クエリ関係
   const JSX_StepFlow = (stepNum: number) => {
@@ -103,12 +103,12 @@ function Header() {
     }
 
     return render;
-  }
+  };
 
   const JSX_HeaderMenu = (num: number , type: string) => {
     let render: JSX.Element = null!;
     let text: string = null!;
-    let href: string = "";
+    let href = "";
 
     switch(num) {
       case 1:

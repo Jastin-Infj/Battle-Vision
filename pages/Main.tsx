@@ -9,11 +9,7 @@ import Canvas from "./Canvas";
 import Header from "./Header";
 import Footer from "./Footer";
 
-// style JSX Main
-import Main__Tags from "../src/frontend/ts/contents/main__tags";
-
 // import
-import { ENV_Window } from "../src/frontend/ts/components/updateComponent";
 import ModeSelect from "../src/frontend/ts/components/_modeSelect";
 
 function Main() {
@@ -85,7 +81,7 @@ function Main() {
   //* タググループ定義
   const CheckBoxList = Messages.Page.Main.Checkbox.Tags;
 
-  const JSX_CheckBoxs = CheckBoxList.map((val , index) => {
+  const JSX_CheckBoxs = CheckBoxList.map((val) => {
     return (
       <>
         <label>
@@ -94,7 +90,7 @@ function Main() {
           {val}
         </label>
       </>
-    )
+    );
   });
 
   return (
